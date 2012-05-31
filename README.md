@@ -1,4 +1,4 @@
 FrolorBillingSystem
 ===================
 
-Webshop to manage and sell own Frolor Webspaces
+Webshop to manage and sell own Froxlor Webspaces
