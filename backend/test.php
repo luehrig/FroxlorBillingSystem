@@ -19,7 +19,6 @@
 
 
 <?php
-echo 'hello world';
 
 // Include the CKEditor class.
 include("ckeditor/ckeditor.php");
@@ -34,9 +33,7 @@ $CKEditor->basePath = 'ckeditor/';
 $CKEditor->replaceAll();
 ?>
 
-
 <textarea name="testtext"></textarea>
-
 
 </body>
 </html>
