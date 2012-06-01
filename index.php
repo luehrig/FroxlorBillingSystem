@@ -12,7 +12,7 @@
 <body>
 <p>This page uses frames. The current browser you are using does not support frames.</p>
 <?php
-	echo 'Hello World';
+	echo 'Hello World by Max';
 ?>
 </body>
 </html>
