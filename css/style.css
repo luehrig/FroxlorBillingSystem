@@ -1,20 +1,25 @@
 @CHARSET "ISO-8859-1";
 
 body {
-	color: red;
-	width: 560px;
+	color: black;
+	width: 900px;
 	margin: 0 auto;
 }
 
 .header {
-	text-align: center;
-	
-	
-	clear: both;
-	background-color: blue;
+	background-color: #F0F0F0;
+	text-align: center;	
+}
+
+#logo {
+	width: 700px;
+	height: 120px;
+}
+
+.menu {
+	background-color: #F0F0F0;
 }
 
 .content_container {
-	clear: both;
-	background-color: blue;
+	background-color: #F0F0F0;
 }
