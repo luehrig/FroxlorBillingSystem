@@ -13,10 +13,28 @@ function db_query($sql_statement,$db_connection = '') {
 	
 	// if no db connection was handed over use default
 	if($db_connection == '') {
-		mysql_query($sec_sql_statement);
+		return mysql_query($sec_sql_statement);
 	}
 	else {
-		mysql_query($sec_sql_statement, $db_connection);
+		return mysql_query($sec_sql_statement, $db_connection);
 	}
 }
+
+// transform db query into array format
+function db_fetch_result($db_query_result) {
+	return mysql_fetch_assoc($db_query_result);
+}
+
+// get number of query results
+function db_num_results($db_query_result) {
+	return mysql_num_rows($db_query_result);
+}
+
+// do db query and return an array with result set
+function db_query_with_result($sql_statement) {
+	$query_result = db_query($sql_statement);
+	return db_fetch_result($query_result);
+}
+
+
 ?>
