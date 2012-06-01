@@ -3,7 +3,8 @@
 // get default language from customizing
 function get_default_language() {
 	$sql_statement = 'SELECT value AS default_language FROM '. TBL_CUSTOMIZING .' WHERE key = default_language';
-	$default_language = db_query_with_result($sql_statement);$db_query = db_query($sql_statement);
+	$default_language = db_query_with_result($sql_statement);
+	$db_query = db_query($sql_statement);
 	$result_array = db_fetch_result($db_query);
 	
 	return $result_array['default_language'];
@@ -28,5 +29,13 @@ function get_site_title($language_id = '') {
 	return $result_array['site_title'];
 }
 
+// get setup date of installation
+function get_setup_date() {
+	$sql_statement = 'SELECT value as setup_date FROM '. TBL_CUSTOMIZING .' WHERE key = setup_date';
+	$db_query = db_query($sql_statement);
+	$result_array = db_fetch_result($db_query);
+	
+	return $result_array['setup_date'];
+}
 
 ?>
