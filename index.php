@@ -3,7 +3,7 @@
 	include("View/header_view.php");
 	
 // 	Menu
-	include("View/menu_view.php");
+// 	include("View/menu_view.php");
 	
 // 	Content
 	include("View/home_view.php");
