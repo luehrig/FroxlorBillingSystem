@@ -3,9 +3,10 @@
 // get default language from customizing
 function get_default_language() {
 	$sql_statement = 'SELECT cust.value AS default_language FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.key = "default_language"';
-	$result_array = db_query_with_result($sql_statement);
-	$default_language = $result_array['default_language'];
-	return $default_language;
+	$query = db_query($sql_statement);
+	$default_language = db_fetch_array($query);
+	
+	return $default_language['default_language'];
 }
 
 // read site title from customizing
@@ -22,7 +23,7 @@ function get_site_title($language_id = NULL) {
 	}
 	
 	$db_query = db_query($sql_statement);
-	$result_array = db_fetch_result($db_query);
+	$result_array = db_query_with_result($db_query);
 	
 	return $result_array['site_title'];
 }
@@ -31,11 +32,35 @@ function get_site_title($language_id = NULL) {
 function get_setup_date() {
 	$sql_statement = 'SELECT cust.value as setup_date FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.key = "setup_date"';
 	$db_query = db_query($sql_statement);
-	$result_array = db_fetch_result($db_query);
+	$result_array = db_query_with_result($db_query);
 	
 	return $result_array['setup_date'];
 }
 
+// get minimum password length from customizing
+function get_min_password_length() {
+	$sql_statement = 'SELECT cust.value as min_password_length FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.key = "min_password_length"';
+	$db_query = db_query($sql_statement);
+	$result_array = db_query_with_result($db_query);
+	
+	return $result_array['min_password_length'];
+}
 
+// search array with key
+function search($searchKey, $array){
+	foreach($array as $key => $value){
+		if($key == $searchKey){
+			return array($key);
+		}
+		elseif(is_array($value)){
+			$retVal = search($value, $searchKey);
+			if(is_array($retVal)){
+				$retVal[] = $key;
+				return $retVal;
+			}
+		}
+	}
+	return false;
+}
 
 ?>

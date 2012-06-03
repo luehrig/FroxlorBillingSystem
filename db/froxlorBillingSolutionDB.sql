@@ -649,6 +649,7 @@ USE `froxlor_billing`;
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('site_title', 1, 'Froxlorcloud');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('site_title', 2, 'Froxlorcloud');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('default_language', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('min_password_length', NULL, '8');
 
 COMMIT;
 

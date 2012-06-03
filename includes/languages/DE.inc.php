@@ -19,11 +19,13 @@ define('LABEL_TELEPHONE','Telefon');
 define('LABEL_FAX','Fax');
 define('LABEL_EMAIL','eMail Adresse');
 define('LABEL_PASSWORD','Passwort');
-define('LABEL_STREET','Stra�e');
+define('LABEL_STREET','Straße');
 define('LABEL_STREETNUMBER','Hausnummer');
 define('LABEL_POSTCODE','Postleitzahl');
 define('LABEL_CITY','Ort');
 define('LABEL_COUNTRY','Land');
+
+define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
 
 define('FIELDSET_GENERAL_INFORMATION','Allgemeine Daten');
 define('FIELDSET_CONTACT_INFORMATION','Kontaktdaten');
@@ -31,5 +33,8 @@ define('FIELDSET_ADDRESS_INFORMATION','Lieferadresse');
 define('SELECT_GENDER_MALE','Herr');
 define('SELECT_GENDER_FEMALE','Frau');
 
+/* message texts */
+define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
+define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');
 
 ?>
