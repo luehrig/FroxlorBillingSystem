@@ -6,6 +6,7 @@ define('TBL_COUNTRY','tbl_country');
 define('TBL_TAX','tbl_tax');
 define('TBL_CURRENCY','tbl_currency');
 define('TBL_ACTIVE_CUSTOMER','tbl_active_customer');
+define('TBL_SHOPPING_CART','tbl_shopping_cart');
 define('TBL_CONTENT','tbl_content');
 define('TBL_BACKEND_USER','tbl_backend_user');
 define('TBL_SERVER','tbl_server');

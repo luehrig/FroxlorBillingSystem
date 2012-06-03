@@ -1,0 +1,36 @@
+<?php
+
+class country {
+	
+	private $available_countries;
+	
+	public function __construct($language_id = NULL) {
+		if($language_id == NULL) {
+			$language_id = get_default_language();
+		}
+		$this->available_countries = $this->getAllAvailableCountries($language_id);
+	}
+	
+	// print html select box
+	public function printSelectBox($selectbox_id) {
+		$result = '<select name="'. $selectbox_id .'" id="'. $selectbox_id .'" size="1">';
+		
+		
+		for($i=0; $i < count($this->available_countries); $i++) {
+			$result = $result . '<option id="'. $this->available_countries[$i]['country_id'] .'">'. $this->available_countries[$i]['country_name'] . '</option>';
+		}
+		
+		$result = $result . '</select>';
+		
+		echo $result;
+	}
+	
+	// read all countries for selected language
+	private function getAllAvailableCountries($language_id) {
+		$sql_statement = 'SELECT country_id, iso_code, country_name FROM '. TBL_COUNTRY .' WHERE language_id = '. $language_id;
+		return db_query_with_result($sql_statement);
+	}
+	
+}
+
+?>
