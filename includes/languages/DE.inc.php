@@ -4,8 +4,7 @@
 /* page titles */
 define('PAGE_TITLE_REGISTRATION','Neukundenregistrierung');
 define('PAGE_TITLE_LOGIN_CUSTOMER','Kundenanmeldung');
-define('PAGE_TITLE_LOGIN_BACKEND','Anmeldung für Shopeinstellungen');
-define('PAGE_TITLE_SHOPMAINTENANCE_BACKEND','Shopeinstellungen');
+
 
 /* general texts */
 define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
@@ -31,13 +30,11 @@ define('LABEL_COUNTRY','Land');
 
 /* Login process */
 define('FIELDSET_LOGIN_FORM_CUSTOMER','Kundenanmeldung');
-define('FIELDSET_LOGIN_FORM_BACKEND','Shopzugang');
+
 
 define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
 define('BUTTON_LOGIN_CUSTOMER','Einloggen');
 define('BUTTON_LOGOUT_CUSTOMER','Abmelden');
-define('BUTTON_LOGIN_BACKEND','Einloggen');
-define('BUTTON_LOGOUT_BACKEND','Abmelden');
 
 
 define('FIELDSET_GENERAL_INFORMATION','Allgemeine Daten');

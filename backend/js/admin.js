@@ -1,7 +1,13 @@
+// append to every textarea with class editor a CKEditor
+function initCKEditor() {
+	$( 'textarea.editor' ).ckeditor();
+}
+
 $(function() {
 
 	$(document).ready(function() {
 		// code that is executed if page was loaded
+		initCKEditor();
 	});
 
     // logout customer and redirect to main page

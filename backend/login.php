@@ -9,7 +9,7 @@ db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 
 include_once '../includes/database_tables.php';
-include_once '../includes/languages/DE.inc.php';
+include_once 'includes/languages/DE.inc.php';
 
 
 require '../functions/general.php';
@@ -28,7 +28,8 @@ require '../includes/classes/cl_customizing.php';
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><?php echo PAGE_TITLE_LOGIN_BACKEND; ?></title>
-<script language="javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="../js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
 <script language="javascript" src="../js/general.js"></script>
 </head>
 <body>

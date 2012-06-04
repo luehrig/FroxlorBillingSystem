@@ -10,7 +10,7 @@ require '../functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 include_once '../includes/database_tables.php';
-include_once '../includes/languages/DE.inc.php';
+include_once 'includes/languages/DE.inc.php';
 include_once '../functions/user_management.php';
 
 if(!db_backend_user_is_logged_in( session_id() )) {
@@ -28,7 +28,7 @@ else {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><?php echo PAGE_TITLE_SHOPMAINTENANCE_BACKEND; ?></title>
 
-<link rel="stylesheet" href="../css/style.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
 
 <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>!window.jQuery && document.write(unescape('%3Cscript src="../js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
