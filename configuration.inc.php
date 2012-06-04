@@ -1,14 +1,11 @@
-    ______                __              _____ _                 __        _____      _____            
-   / ____/________  _  __/ /___  _____   / ___/(_)___ ___  ____  / /__     / ___/___  / / (_)___  ____ _
-  / /_  / ___/ __ \| |/_/ / __ \/ ___/   \__ \/ / __ `__ \/ __ \/ / _ \    \__ \/ _ \/ / / / __ \/ __ `/
- / __/ / /  / /_/ />  </ / /_/ / /      ___/ / / / / / / / /_/ / /  __/   ___/ /  __/ / / / / / / /_/ / 
-/_/   /_/   \____/_/|_/_/\____/_/      /____/_/_/ /_/ /_/ .___/_/\___/   /____/\___/_/_/_/_/ /_/\__, /  
-                                                       /_/                                     /____/  
 <?php
 
-define('DB_USER','');
+define('PATH_INCLUDES','includes/');
+define('PATH_CLASSES', PATH_INCLUDES . 'classes/');
+
+define('DB_USER','root');
 define('DB_PASSWORD','');
-define('DB_SERVER','');
-define('DB_NAME','');
+define('DB_SERVER','localhost');
+define('DB_NAME','froxlor_billing');
 
 ?>
