@@ -60,7 +60,7 @@ $(function() {
 				data: { action: "create_customer", customerData: customerData }
 			}).done(function( msg ) {
 				//$('#messagearea').html( msg );
-				window.location.href = "login.php";
+				window.location.href = "customercenter/index.php";
 			});
 		}
 		
@@ -75,11 +75,11 @@ $(function() {
 		// do ajax call. If login was successful redirect to customer center
 		$.ajax({
 			type: "POST",
-			url: "logic/process_usermanagement.php",
+			url: "../logic/process_usermanagement.php",
 			data: { action: "login_customer", email: email, password: password }
 		}).done(function( msg ) {
 			$('#messagearea').html( msg );
-			window.location.href = "customercenter/index.php";
+			window.location.href = "../customercenter/index.php";
 		});
 		
 		// reset input fields

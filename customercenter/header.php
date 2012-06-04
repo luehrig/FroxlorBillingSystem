@@ -14,7 +14,7 @@ include_once '../includes/languages/DE.inc.php';
 include_once '../functions/user_management.php';
 
 if(!db_user_is_logged_in( session_id() )) {
-	header ("Location: ../login.php");
+	header ("Location: login.php");
 	exit();
 }
 else {

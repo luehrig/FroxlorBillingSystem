@@ -567,6 +567,26 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_shopping_cart` (
 ENGINE = MyISAM;
 
 
+-- -----------------------------------------------------
+-- Table `froxlor_billing`.`tbl_active_backend_user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `froxlor_billing`.`tbl_active_backend_user` ;
+
+CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_active_backend_user` (
+  `backend_user_id` INT NOT NULL ,
+  `session_id` CHAR(32) NOT NULL ,
+  `start_date` TIMESTAMP NULL ,
+  `expiration_date` TIMESTAMP NULL ,
+  PRIMARY KEY (`backend_user_id`) ,
+  INDEX `fk_active_backend_user_backend_user_id` (`backend_user_id` ASC) ,
+  CONSTRAINT `fk_active_backend_user_backend_user_id`
+    FOREIGN KEY (`backend_user_id` )
+    REFERENCES `froxlor_billing`.`tbl_backend_user` (`backend_user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -1,25 +1,21 @@
 <?php
 session_start();
 
-include_once 'configuration.inc.php';
+include_once '../configuration.inc.php';
 
-require 'functions/database.php';
+require '../functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 
 
-include_once 'includes/database_tables.php';
-include_once 'includes/languages/DE.inc.php';
+include_once '../includes/database_tables.php';
+include_once '../includes/languages/DE.inc.php';
 
 
-require 'functions/general.php';
-require 'functions/user_management.php';
+require '../functions/general.php';
 
-require 'includes/classes/cl_country.php';
 
-$country = new country( get_default_language() );
-
-require 'includes/classes/cl_customizing.php';
+require '../includes/classes/cl_customizing.php';
 
 /* if(!isset($_SESSION['customizing'])) { */
 	$customizing = new customizing( get_default_language() );
@@ -32,8 +28,8 @@ require 'includes/classes/cl_customizing.php';
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><?php echo PAGE_TITLE_LOGIN_CUSTOMER; ?></title>
-<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
-<script language="javascript" src="js/general.js"></script>
+<script language="javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script language="javascript" src="../js/general.js"></script>
 </head>
 <body>
 <div id="messagearea"></div>    
