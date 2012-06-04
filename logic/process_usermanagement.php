@@ -38,9 +38,35 @@ switch($action) {
 		
 	break;
 	
+	case 'login_backend':
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+	
+		$user_information = db_backend_user_check_credentials( $email, $password );
+	
+		if( $user_information != false) {
+				
+			$is_logged_in = db_backend_user_is_logged_in(session_id());
+			if($is_logged_in == true) {
+				echo WARNING_STILL_LOGGED_IN;
+			}
+			else {
+				db_backend_login( $user_information['backend_user_id'], session_id() );
+			}
+		}
+	
+		break;
+	
 	case 'logout_customer':
 		
 		db_user_customer_logout(session_id());
+		session_destroy();
+	
+		break;
+		
+	case 'logout_backend':
+	
+		db_user_backend_logout(session_id());
 		session_destroy();
 	
 		break;

@@ -89,4 +89,26 @@ $(function() {
 		return false;
 	});	
 	
+	// process login procedure for shop backend
+	$("body").on("click","form[id=loginformbackend] input[type=submit][id=login]", function() {
+		var email = $('input[type=text][id=email]').val();
+		var password = $('input[type=password][id=password]').val();
+		
+		// do ajax call. If login was successful redirect to customer center
+		$.ajax({
+			type: "POST",
+			url: "../logic/process_usermanagement.php",
+			data: { action: "login_backend", email: email, password: password }
+		}).done(function( msg ) {
+			$('#messagearea').html( msg );
+			window.location.href = "../backend/index.php";
+		});
+		
+		// reset input fields
+		$('input[type=text][id=email]').val('');
+		$('input[type=password][id=password]').val('');
+		
+		return false;
+	});	
+	
 });
