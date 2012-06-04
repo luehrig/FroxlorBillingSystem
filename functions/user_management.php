@@ -59,7 +59,11 @@ function db_backend_user_check_credentials ( $username, $password ) {
 
 // write customer to active session table
 function db_customer_login ( $customer_id, $session_id ) {
-	$sql_statement = 'INSERT INTO '. TBL_ACTIVE_CUSTOMER .' (customer_id, session_id, start_date, expiration_date) VALUES ('. (int) $customer_id .', "'. $session_id .'", NOW() ,  DATE_ADD(NOW(), INTERVAL 1 HOUR))';
+	// delete old sessions
+	$sql_statement = 'DELETE FROM '. TBL_ACTIVE_CUSTOMER .' WHERE customer_id = '. (int) $customer_id;
+	db_query($sql_statement);
+	
+	$sql_statement = 'INSERT INTO '. TBL_ACTIVE_CUSTOMER .' (customer_id, session_id, start_date, expiration_date) VALUES ('. (int) $customer_id .', "'. $session_id .'", NOW() ,  DATE_ADD(NOW(), INTERVAL 30 MINUTE))';
 	$customer_login_query = db_query($sql_statement);
 	
 	// check if any errors occured while insert customer ID to session table
@@ -70,7 +74,11 @@ function db_customer_login ( $customer_id, $session_id ) {
 
 // write backend user to active session table
 function db_backend_login ( $backend_user_id, $session_id ) {
-	$sql_statement = 'INSERT INTO '. TBL_ACTIVE_BACKEND_USER .' (backend_user_id, session_id, start_date, expiration_date) VALUES ('. (int) $backend_user_id .', "'. $session_id .'", NOW() ,  DATE_ADD(NOW(), INTERVAL 1 HOUR))';
+	// delete old sessions
+	$sql_statement = 'DELETE FROM '. TBL_ACTIVE_BACKEND_USER .' WHERE backend_user_id = '. (int) $backend_user_id;
+	db_query($sql_statement);
+	
+	$sql_statement = 'INSERT INTO '. TBL_ACTIVE_BACKEND_USER .' (backend_user_id, session_id, start_date, expiration_date) VALUES ('. (int) $backend_user_id .', "'. $session_id .'", NOW() ,  DATE_ADD(NOW(), INTERVAL 30 MINUTE))';
 	$backend_login_query = db_query($sql_statement);
 
 	// check if any errors occured while insert backend user ID to session table
@@ -92,7 +100,7 @@ function db_user_is_logged_in($session_id) {
 	// a valid session was found
 	// update expiration_date and return true
 	if ( db_num_results($check_login_query) == 1) {
-		$sql_statement = 'UPDATE '. TBL_ACTIVE_CUSTOMER .' SET expiration_date = DATE_ADD(NOW(), INTERVAL 1 HOUR)';
+		$sql_statement = 'UPDATE '. TBL_ACTIVE_CUSTOMER .' SET expiration_date = DATE_ADD(NOW(), INTERVAL 30 MINUTE)';
 		db_query($sql_statement);
 		
 		return true;
@@ -115,7 +123,7 @@ function db_backend_user_is_logged_in($session_id) {
 	// a valid session was found
 	// update expiration_date and return true
 	if ( db_num_results($check_login_query) == 1) {
-		$sql_statement = 'UPDATE '. TBL_ACTIVE_BACKEND_USER .' SET expiration_date = DATE_ADD(NOW(), INTERVAL 1 HOUR)';
+		$sql_statement = 'UPDATE '. TBL_ACTIVE_BACKEND_USER .' SET expiration_date = DATE_ADD(NOW(), INTERVAL 30 MINUTE)';
 		db_query($sql_statement);
 
 		return true;
