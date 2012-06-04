@@ -6,7 +6,7 @@ $(function() {
 
 
 	// check password length
-	$("body").on("change", "input[id=password]", function() {
+	$("body").on("change", "form[id=registrationform] input[id=password]", function() {
 		var password = $(this).val();
 		
 		$.ajax({
@@ -18,7 +18,7 @@ $(function() {
 		});	
 	});
 
-	$("body").on("click","input[type=submit][id=register]", function() {
+	$("body").on("click","form[id=registrationform] input[type=submit][id=register]", function() {
 		var mandatory_filled = true;
 		var customerData = {};
 		
@@ -47,7 +47,7 @@ $(function() {
 			
 			// get password
 			customerData['password'] = $('input[type=password][id=password]').val();
-			
+						
 			// get all select fields
 			$('select option:selected').each(function() {
 				var key = $(this).attr('name');
@@ -59,11 +59,34 @@ $(function() {
 				url: "logic/process_db.php",
 				data: { action: "create_customer", customerData: customerData }
 			}).done(function( msg ) {
-				$('#messagearea').html( msg );
+				//$('#messagearea').html( msg );
+				window.location.href = "login.php";
 			});
 		}
 		
 		return false;
 	});
+	
+	// process login procedure
+	$("body").on("click","form[id=loginform] input[type=submit][id=login]", function() {
+		var email = $('input[type=text][id=email]').val();
+		var password = $('input[type=password][id=password]').val();
+		
+		// do ajax call. If login was successful redirect to customer center
+		$.ajax({
+			type: "POST",
+			url: "logic/process_usermanagement.php",
+			data: { action: "login_customer", email: email, password: password }
+		}).done(function( msg ) {
+			$('#messagearea').html( msg );
+			window.location.href = "customercenter/index.php";
+		});
+		
+		// reset input fields
+		$('input[type=text][id=email]').val('');
+		$('input[type=password][id=password]').val('');
+		
+		return false;
+	});	
 	
 });

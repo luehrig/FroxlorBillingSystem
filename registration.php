@@ -21,10 +21,10 @@ $country = new country( get_default_language() );
 
 require 'includes/classes/cl_customizing.php';
 
-if(!isset($_SESSION['customizing'])) {
+/* if(!isset($_SESSION['customizing'])) { */
 	$customizing = new customizing( get_default_language() );
 	$_SESSION['customizing'] = $customizing;
-}
+/* } */
  
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
@@ -37,14 +37,14 @@ if(!isset($_SESSION['customizing'])) {
 </head>
 <body>
 <div id="messagearea"></div>    
-<form method="post" action="#" accept-charset=utf-8>
+<form method="post" action="#" id="registrationform" accept-charset=utf-8>
     <fieldset>
     <legend><?php echo FIELDSET_GENERAL_INFORMATION; ?></legend>
     	<label for="gender"><?php echo LABEL_GENDER; ?></label>
     	<select name="gender" id="gender" size="1" rel="mandatory">
       		<option value="" style="display:none;"></option>
-      		<option id="<?php echo SELECT_GENDER_MALE; ?>" name="gender"><?php echo SELECT_GENDER_MALE; ?></option>
-      		<option id="<?php echo SELECT_GENDER_FEMALE; ?>" name="gender"><?php echo SELECT_GENDER_FEMALE; ?></option>
+      		<option id="<?php echo $customizing->getCustomizingValue('sys_gender_male'); ?>" name="gender"><?php echo SELECT_GENDER_MALE; ?></option>
+      		<option id="<?php echo $customizing->getCustomizingValue('sys_gender_female'); ?>" name="gender"><?php echo SELECT_GENDER_FEMALE; ?></option>
     	</select>
     	<label for="title"><?php echo LABEL_TITLE; ?></label>
     	<input type="text" id="title" name="title">
@@ -78,7 +78,7 @@ if(!isset($_SESSION['customizing'])) {
     		<label for="shippingcity"><?php echo LABEL_CITY; ?></label>
     		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory">
     		<label for="shippingcountry"><?php echo LABEL_COUNTRY; ?></label>
-    		<?php $country->printSelectBox("shippingcountry"); ?>
+    		<?php $country->printSelectBox("shippingcountry","shippingcountry"); ?>
     	</div>
     	<div id="billingaddress"></div>
     </fieldset>	

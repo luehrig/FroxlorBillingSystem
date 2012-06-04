@@ -7,6 +7,7 @@ function db_connect($db_server, $db_user, $db_password, $db_name, $connection = 
 	$$connection = mysql_connect($db_server,$db_user,$db_password) OR die(mysql_error());
 	
 	if($$connection) {
+		mysql_set_charset('utf8',$$connection);
 		mysql_select_db($db_name);
 	}
 	
@@ -41,6 +42,12 @@ function db_close($connection = 'db_connection') {
 	global $$connection;
 
 	return mysql_close($$connection);
+}
+
+function db_insert_id($connection = 'db_connection') {
+	global $$connection;
+	
+	return mysql_insert_id($$connection);
 }
 
 ?>

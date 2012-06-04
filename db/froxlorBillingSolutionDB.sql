@@ -77,9 +77,8 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_customer` (
   `telephone` VARCHAR(50) NULL ,
   `fax` VARCHAR(50) NULL ,
   `email` VARCHAR(255) NOT NULL ,
-  `registered_on` DATE NOT NULL ,
+  `registered_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
   `password` VARCHAR(40) NOT NULL ,
-  `business_client` TINYINT(1)  NULL ,
   `customer_number` CHAR(10) NULL ,
   PRIMARY KEY (`customer_id`) ,
   UNIQUE INDEX `customer_id_UNIQUE` (`customer_id` ASC) ,
@@ -650,6 +649,10 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('site_title', 2, 'Froxlorcloud');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('default_language', NULL, '1');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('min_password_length', NULL, '8');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_gender_male', NULL, 'm');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_gender_female', NULL, 'f');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_customer_prefix', NULL, 'K');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_invoice_prefix', NULL, 'R');
 
 COMMIT;
 
