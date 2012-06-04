@@ -1,3 +1,18 @@
+<?php 
+
+require 'includes/classes/cl_customizing.php';
+
+session_start();
+
+include_once 'configuration.inc.php';
+
+require 'functions/database.php';
+db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
+
+include_once 'includes/database_tables.php';
+include_once 'includes/languages/DE.inc.php';
+
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
@@ -12,6 +27,6 @@
 <body>
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
-	<div ID="warenkorb"><a href"#">Warenkorb (0)</a></div>
+	<div ID="warenkorb"><a href="#"><?php echo TEXT_SHOPPING_CART; ?> (0)</a></div>
 
 </div>

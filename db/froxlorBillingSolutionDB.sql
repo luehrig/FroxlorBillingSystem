@@ -677,6 +677,15 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 COMMIT;
 
 -- -----------------------------------------------------
+-- Data for table `froxlor_billing`.`tbl_backend_user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `froxlor_billing`;
+INSERT INTO `froxlor_billing`.`tbl_backend_user` (`backend_user_id`, `first_name`, `last_name`, `password`, `email`) VALUES (1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@projektplatz.eu');
+
+COMMIT;
+
+-- -----------------------------------------------------
 -- Data for table `froxlor_billing`.`tbl_reminder_type`
 -- -----------------------------------------------------
 START TRANSACTION;

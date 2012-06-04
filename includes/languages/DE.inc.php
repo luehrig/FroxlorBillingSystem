@@ -7,6 +7,7 @@ define('PAGE_TITLE_LOGIN_CUSTOMER','Kundenanmeldung');
 
 /* general texts */
 define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
+define('TEXT_SHOPPING_CART','Warenkorb');
 
 /* registration process */
 define('LABEL_GENDER','Geschlecht');
