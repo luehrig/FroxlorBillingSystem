@@ -6,6 +6,6 @@
 	   <li><a href='#'><span>Produkte</span></a></li>
 	   <li><a href='#'><span>Hilfe</span></a></li>
 	   <li><a href='#'><span>Impressum</span></a></li>
-	   <li ID="menukundenbereich"><a href='#'><span>Kundenbereich</span></a></li>
+	   <li ID="menukundenbereich"><a href='customercenter/index.php'><span>Kundenbereich</span></a></li>
 	</ul>
 </div>

@@ -120,5 +120,18 @@ $(function() {
 		return false;
 	});	
 	
-	
+	// logout customer and redirect to main page
+	$("body").on("click", "a[id=logout]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "../logic/process_usermanagement.php",
+			data: { action: "logout_backend" }
+		}).done(function( msg ) {
+			$('#messagearea').html( msg );
+			window.location.href = "../index.php";
+		});
+		
+		return false;
+	});	
 });
