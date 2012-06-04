@@ -38,4 +38,6 @@ function get_setup_date() {
 	return $result_array['setup_date'];
 }
 
+
+
 ?>

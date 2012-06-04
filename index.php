@@ -1,23 +1,13 @@
 <?php 
 // 	Header
-	include("View/header_view.php");
+	include("header.php");
 	
 // 	Menu
-// 	include("View/menu_view.php");
+	include("menu.php");
 	
 // 	Content
-	include("View/home_view.php");
+	include("home.php");
 	
 // 	Footer
-	include("View/footer_view.php");
+	include("footer.php");
 ?>
-
-<div class="content_container">huhu
-	<div class="content"></div>
-	<div class="advertisment"></div>
-</div>
-
-
-
-</body>
-</html>

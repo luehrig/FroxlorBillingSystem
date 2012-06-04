@@ -1,8 +1,10 @@
 <?php
 
 // set up a database connection to server
-function db_connect($db_server, $db_user, $db_password) {
-	return mysql_connect($db_server,$db_user,$db_password) OR die(mysql_error());;
+function db_connect($db_server, $db_user, $db_password, $db_name) {
+	$connection = mysql_connect($db_server,$db_user,$db_password) OR die(mysql_error());
+	mysql_select_db($db_name, $connection) or die(mysql_error());
+	return $connection;
 }
 
 

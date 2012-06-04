@@ -12,5 +12,6 @@
 <body>
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
+	<div ID="warenkorb"><a href"#">Warenkorb (0)</a></div>
 
 </div>
