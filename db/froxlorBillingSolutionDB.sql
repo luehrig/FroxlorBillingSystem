@@ -49,9 +49,9 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_customer_address` (
   `post_code` VARCHAR(10) NOT NULL ,
   `city` VARCHAR(100) NOT NULL ,
   `country_code` INT NOT NULL ,
+  INDEX `fk_customer_address_country_id` (`country_code` ASC) ,
   PRIMARY KEY (`customer_address_id`) ,
   UNIQUE INDEX `customer_address_id_UNIQUE` (`customer_address_id` ASC) ,
-  INDEX `fk_customer_address_country_id` (`country_code` ASC) ,
   CONSTRAINT `fk_customer_address_country_id`
     FOREIGN KEY (`country_code` )
     REFERENCES `froxlor_billing`.`tbl_country` (`language_id` )
@@ -256,6 +256,7 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product` (
   `contract_periode` TIME NOT NULL ,
   `description` MEDIUMTEXT NULL ,
   `quantity` INT NOT NULL ,
+  `price` DOUBLE NOT NULL ,
   PRIMARY KEY (`product_id`, `language_id`) ,
   UNIQUE INDEX `product_id_UNIQUE` (`product_id` ASC) ,
   INDEX `fk_product_language_id` (`language_id` ASC) ,
@@ -538,7 +539,6 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_content` (
   `title` VARCHAR(255) NULL ,
   `text` MEDIUMTEXT NULL ,
   PRIMARY KEY (`content_id`, `language_id`) ,
-  UNIQUE INDEX `content_id_UNIQUE` (`content_id` ASC) ,
   INDEX `fk_content_language_id` (`language_id` ASC) ,
   CONSTRAINT `fk_content_language_id`
     FOREIGN KEY (`language_id` )
@@ -694,5 +694,17 @@ INSERT INTO `froxlor_billing`.`tbl_reminder_type` (`reminder_type_id`, `language
 INSERT INTO `froxlor_billing`.`tbl_reminder_type` (`reminder_type_id`, `language_id`, `title`) VALUES (1, 2, 'first reminder');
 INSERT INTO `froxlor_billing`.`tbl_reminder_type` (`reminder_type_id`, `language_id`, `title`) VALUES (2, 1, 'Zweite Mahnung');
 INSERT INTO `froxlor_billing`.`tbl_reminder_type` (`reminder_type_id`, `language_id`, `title`) VALUES (2, 2, 'second reminder');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `froxlor_billing`.`tbl_content`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `froxlor_billing`;
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 1, 'Impressum', 'Hier kommt ein Impressum hin!');
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 2, 'imprint', 'This will be the imprint');
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 1, 'Startseite', 'Eine ganz tolle Startseite');
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 2, 'home', 'This will be the landing page');
 
 COMMIT;
