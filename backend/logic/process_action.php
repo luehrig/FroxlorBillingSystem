@@ -67,10 +67,13 @@ switch($action) {
 			
 			$data = db_fetch_array($single_content_query);
 			
-			$echo_string = '<form><div id="edit_content_title"><input id="title" value="'. $data['title'] .'"/></div>';
+			$echo_string = '<form><div id="edit_content_title"><input type="text" id="title" value="'. $data['title'] .'"/></div>';
 			$echo_string = $echo_string .'<div id="edit_content_text"><textarea id="text" class="editor">'. $data['text'] .'</textarea></div>';
 			
 			$echo_string = $echo_string .'<div id="edit_content_buttons"><input type="submit" id="save_content" value="'. BUTTON_SAVE .'"></div></form>';
+			
+			$echo_string = $echo_string .'<input type="hidden" id="content_id" value="'. $content_id .'">';
+			$echo_string = $echo_string .'<input type="hidden" id="language_id" value="'. $language_id .'">';
 			
 			echo $echo_string;
 		}
@@ -78,6 +81,18 @@ switch($action) {
 			echo sprintf(ERROR_NO_CONTENT_ENTRY_FOUND, $content_id, $language_id);
 		}
 	
+	break;
+	
+	case 'update_content':
+		
+		$content_id = $_POST['content_id'];
+		$language_id = $_POST['language_id'];
+		$title = $_POST['title'];
+		$text = $_POST['text'];
+		
+		$content = new content($content_id);
+		$content->update($title, $text, $language_id);
+		
 	break;
 	
 	case 'get_statistic_overview':
