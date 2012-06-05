@@ -68,9 +68,14 @@ class shoppingcart {
 	
 	// returns number of products in shopping cart
 	public function getNumberOfProducts() {
-		$sql_statement = 'SELECT SUM( sc.quantity ) FROM '. TBL_SHOPPING_CART .' WHERE sc.session_id = "'. $this->session_id .'"';
-		$productcount_query = db_query($sql_statement);
-		return db_num_results($productcount_query);
+		if(!$this->isEmpty()) { 
+			$sql_statement = 'SELECT SUM( sc.quantity ) FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $this->session_id .'"';
+			$productcount_query = db_query($sql_statement);
+			return db_num_results($productcount_query);
+		}
+		else {
+			return 0;
+		}
 	}
 	
 	// clear shopping cart for expired session
@@ -88,8 +93,21 @@ class shoppingcart {
 		}
 		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.title FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
 		$query = db_query($sql_statement);
-		$this->products = db_fetch_result($query);
+		$this->products = db_fetch_array($query);
 		$this->product_counter = db_num_results($query);
+	}
+	
+	// check if shopping cart is empty
+	private function isEmpty() {
+		$sql_statement = 'SELECT sc.product_id FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $this->session_id .'"';
+		$cart_products_query = db_query($sql_statement);
+		// no products in cart -> empty
+		if(db_num_results($cart_products_query) == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	// check if product exists in shopping cart
