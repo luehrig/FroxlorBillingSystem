@@ -15,24 +15,21 @@ class customer {
 	private $customer_data;
 	
 	/* constructor */
-	public function __construct($customer_id = NULL) {
-		// constructor with customer data or empty constructor?
-		if($customer_id != NULL) {
-			$customer_data = $this->getCustomerFromDB($customer_id);
-			
-			$this->customer_data = $customer_data;
-			
-			$this->gender = $customer_data['gender'];
-			$this->title = $customer_data['title'];
-			$this->first_name = $customer_data['first_name'];
-			$this->last_name = $customer_data['last_name'];
-			$this->shipping_address = $customer_data['shipping_address'];
-			$this->billing_address = $customer_data['billing_address'];
-			$this->telephone = $customer_data['telephone'];
-			$this->fax = $customer_data['fax'];
-			$this->email = $customer_data['email'];
-			$this->customer_number = $customer_data['customer_number'];
-		}
+	public function __construct($customer_id) {
+		$customer_data = $this->getCustomerFromDB($customer_id);
+		
+		$this->customer_data = $customer_data;
+		
+		$this->gender = $customer_data['gender'];
+		$this->title = $customer_data['title'];
+		$this->first_name = $customer_data['first_name'];
+		$this->last_name = $customer_data['last_name'];
+		$this->shipping_address = $customer_data['shipping_address'];
+		$this->billing_address = $customer_data['billing_address'];
+		$this->telephone = $customer_data['telephone'];
+		$this->fax = $customer_data['fax'];
+		$this->email = $customer_data['email'];
+		$this->customer_number = $customer_data['customer_number'];
 	}
 	
 	/* public section */
@@ -40,7 +37,7 @@ class customer {
 		return $this->customer_data;
 	}
 	
-	public function create($customerData) {
+	public static function create($customerData) {
 		
 		if($customerData != NULL) {
 		

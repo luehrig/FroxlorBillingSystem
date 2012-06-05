@@ -19,12 +19,9 @@ $action = $_POST['action'];
 switch($action) {
 	
 	case 'create_customer':
-		// create empty customer object
-		$customer = new customer();
-		
 		$customerData = $_POST['customerData'];
 		
-		$customer->create($customerData);
+		customer::create($customerData);
 		
 	break;
 	

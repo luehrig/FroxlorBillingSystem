@@ -1,5 +1,10 @@
 // append to every textarea with class editor a CKEditor
 function initCKEditor() {
+	// if old instance exists destroy it!
+	if(CKEDITOR.instances.text) {
+		CKEDITOR.instances.text.destroy(true);	
+	}
+	
 	$( 'textarea.editor' ).ckeditor();
 }
 
@@ -78,6 +83,20 @@ $(function() {
 		return false;
 	});	
 	
+	// get overview page with all servers
+	$("body").on("click", "a[id=myservers]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_server_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
 	// get overview page with all customers
 	$("body").on("click", "a[id=mycustomers]", function() {
 		
@@ -101,12 +120,30 @@ $(function() {
 			data: { action: "get_content_overview" }
 		}).done(function( msg ) {
 			$('.content').html( msg );
-			
-			initCKEditor();
 		});
 		
 		return false;
 	});	
+	
+	// open editor for content
+	$("body").on("click", "a[id=edit_content]", function() {
+
+		var information = $(this).attr('rel');
+		var stringParts = information.split('_');
+		var content_id = stringParts[0];
+		var language_id = stringParts[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_content_editor", content_id: content_id, language_id: language_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+			initCKEditor();
+		});
+		
+		return false;
+	});		
 	
 	 // get overview page with shop statistics
 	$("body").on("click", "a[id=mystatistics]", function() {
