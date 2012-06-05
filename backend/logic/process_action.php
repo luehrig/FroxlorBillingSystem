@@ -47,6 +47,15 @@ switch($action) {
 		echo 'Mein Inhalt!';
 	break;
 	
+	case 'get_single_content_page':
+		$content_id = $_POST['content_id'];
+		$language = $_POST['language'];
+		
+		$sql_statement = 'SELECT FROM '. TBL_CONTENT .'';
+		
+		echo '<textarea class="editor"></textarea>';
+	break;
+	
 	case 'get_statistic_overview':
 		echo 'Shopstatistiken!';
 		break;

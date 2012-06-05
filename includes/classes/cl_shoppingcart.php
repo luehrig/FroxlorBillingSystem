@@ -3,25 +3,112 @@
 class shoppingcart {
 	
 	private $session_id;
-	private $create_date;
 	private $products;
 	private $product_counter;
 	
 	/* constructor */
 	public function __construct($session_id, $language_id = NULL) {
+		$this->session_id = $session_id;
+		$this->loadProducts($language_id);
 		
 	}
 	
-	public function getProducts($language_id = NULL) {
+	/* pulic section */
+	// add given product to shopping cart (default quantity = 1)
+	public function addProduct($product_id, $quantity = 1) {
+		// check if given quantity is greater than 1. If not: return false!
+		if($quantity >= 1) {
+			// check if product is already in cart
+			$check_result = $this->productExists($product_id);
+		
+			// product is already in shopping cart
+			// just update quantity
+			if($check_result != false ) {
+				$update_statement = 'UPDATE '. TBL_SHOPPING_CART .' AS sc SET sc.quantity = sc.quantity + '. $quantity .' WHERE sc.session_id = "'. $this->session_id .'" AND sc.product_id = '. (int) $product_id;
+				db_query($update_statement);
+			}
+			// product does not exist in shopping cart -> add entry now
+			else {
+				$insert_statement = 'INSERT INTO '. TBL_SHOPPING_CART .' (session_id, product_id, quantity) VALUES ("'. $this->session_id .'", '. (int) $product_id .', '. (int) $quantity .')';
+				db_query($insert_statement);
+			}
+		}
+		else {
+			return false;
+		}	 
+	}
+	
+	// remove product from shopping cart
+	public function removeProduct($product_id, $quantity = NULL) {
+		// check that quantity is greater than 0 (we do NOT delete a negative quantity which would cause in adding a product)
+		if($quantity > 0 || $quantity == NULL) {
+			// check if product exists in shopping cart
+			$check_result = $this->productExists($product_id);
+		
+			// product exists in shopping cart and cart quantity is greater than quantity that should be deleted 
+			// OR product exists and no quantity was given (which means whole product should be deleted)
+			if($check_result != false && $check_result >= $quantity || $check_result != false && $quantity == NULL) {
+				// delete products with given quantity (if quantity is greater than whole quantity of product)
+				if($quantity != NULL || $check_result > $quantity) {
+					$delete_statement = 'UPDATE '. TBL_SHOPPING_CART .' AS sc SET sc.quantity = sc.quantity - '. $quantity .' WHERE sc.session_id = "'. $this->session_id .'" AND sc.product_id = '. (int) $product_id;
+				}
+				else {
+					$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $this->session_id .'" AND sc.product_id = '. (int) $product_id;
+				}
+				db_query($delete_statement);
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// returns number of products in shopping cart
+	public function getNumberOfProducts() {
+		$sql_statement = 'SELECT SUM( sc.quantity ) FROM '. TBL_SHOPPING_CART .' WHERE sc.session_id = "'. $this->session_id .'"';
+		$productcount_query = db_query($sql_statement);
+		return db_num_results($productcount_query);
+	}
+	
+	// clear shopping cart for expired session
+	public static function deleteCart($session_id) {
+		$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $session_id .'"';
+		db_query($delete_statement);
+	}
+	
+	/* private section */
+	// load all products from shopping cart
+	private function loadProducts($language_id = NULL) {
 		// read default language from customizing if no language id was given
 		if($language_id == null) {
 			$language_id = get_default_language();
 		}
-		$sql_statement = 'SELECT sc.product_id, p.title, p.quantity FROM '. TBL_SHOPPING_CART .' INNER JOIN '. TBL_PRODUCT .' WHERE language_id = '. $language_id;
+		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.title FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
 		$query = db_query($sql_statement);
 		$this->products = db_fetch_result($query);
 		$this->product_counter = db_num_results($query);
 	}
+	
+	// check if product exists in shopping cart
+	// If product exists in cart return quantity for product
+	private function productExists($product_id) {
+		$sql_statement = 'SELECT sc.product_id, sc.quantity FROM '. TBL_SHOPPING_CART .' WHERE sc.session_id = "'. $this->session_id .'"';
+		$productincart_query = db_query($sql_statement);
+		
+		// product was found in shopping cart
+		if(db_num_results($productincart_query) == 1) {
+			$check_result = db_fetch_array($productincart_query);
+			return $check_result['quantity'];
+		}
+		// products does not exist in shopping cart!
+		else {
+			return false;
+		}
+	}
+	
 }
 
 ?>

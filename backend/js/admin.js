@@ -101,6 +101,8 @@ $(function() {
 			data: { action: "get_content_overview" }
 		}).done(function( msg ) {
 			$('.content').html( msg );
+			
+			initCKEditor();
 		});
 		
 		return false;

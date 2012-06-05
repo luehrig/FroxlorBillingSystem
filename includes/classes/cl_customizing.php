@@ -43,6 +43,26 @@ class customizing {
 		return $return_string;
 	}
 	
+	// save one customizing entry
+	public function saveEntry($key, $value, $language) {		
+		// check if entry is language dependent
+		$sql_statement = 'SELECT language_id FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.key = "'. $key .'"';
+		$query_result = db_query($sql_statement);
+		
+		$result_set = db_fetch_array($query_result);
+		
+		// customizing entry is language dependent
+		if($result_set['language_id'] != '') {
+			$update_statement = 'UPDATE '. TBL_CUSTOMIZING .' AS cust SET cust.value = "'. $value .'" WHERE cust.key = "'. $key .'" AND cust.language_id = '. (int) $language;
+		}
+		// entry is language independent
+		else {
+			$update_statement = 'UPDATE '. TBL_CUSTOMIZING .' AS cust SET cust.value = "'. $value .'" WHERE cust.key = "'. $key .'"';
+		}
+		
+		db_query($update_statement);
+	}
+	
 	/* private section */
 	
 	// read language depended and language independent customizing entries from db

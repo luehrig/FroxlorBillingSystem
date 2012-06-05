@@ -556,9 +556,9 @@ DROP TABLE IF EXISTS `froxlor_billing`.`tbl_shopping_cart` ;
 CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_shopping_cart` (
   `session_id` CHAR(32) NOT NULL ,
   `product_id` INT NOT NULL ,
-  `create_date` TIMESTAMP NOT NULL ,
-  PRIMARY KEY (`session_id`) ,
+  `quantity` INT NOT NULL ,
   INDEX `fk_shopping_cart_product_id` (`product_id` ASC) ,
+  PRIMARY KEY (`session_id`, `product_id`) ,
   CONSTRAINT `fk_shopping_cart_product_id`
     FOREIGN KEY (`product_id` )
     REFERENCES `froxlor_billing`.`tbl_product` (`product_id` )
