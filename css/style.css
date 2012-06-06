@@ -20,15 +20,42 @@ body {
 	margin: 5px;
 }
 
-.menu {
+/*.menu {
 	background-color: #C0C0C0;
-}
+}*/
 
 .content_container {
 	background-color: #C0C0C0;
 	width: 900px;
 	height: 600px;
 }
+
+		/* Style of selected contents	*/
+		.product {
+			background-color: black;
+			width: 100px;
+			height: 100px;
+		}
+
+		.home {
+			background-color: blue;
+			width: 100px;
+			height: 100px;
+		}
+		
+		.imprint {
+			background-color: green;
+			width: 100px;
+			height: 100px;
+		}
+		
+		.help {
+			background-color: black;
+			opacity: 0.5;
+			width: 400px;
+			height: 400px;
+		}
+
 
 .cssmenu ul
 {
@@ -86,8 +113,15 @@ body {
 {
 	float: right;
 }
-.product {
-	background-color: black;
-	
-	
-}
+
+
+
+
+
+
+
+
+
+
+
+

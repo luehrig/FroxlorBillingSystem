@@ -1,6 +1,6 @@
-<div class="content_container">Home
+<div class="content_container">Hilfe
 
-	<div class="home">
+	<div class="help">
 	
 	</div>
 	

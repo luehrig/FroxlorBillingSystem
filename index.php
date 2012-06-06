@@ -1,4 +1,6 @@
 <?php
+
+// Get selected menu
 $content = $_GET['content'];
 
 // 	Header
@@ -7,24 +9,26 @@ $content = $_GET['content'];
 // 	Menu
 	include("menu.php");
 	
-// 	Content
+	
+/* Show selected content */
 	switch ($content) {
+		
+// Home
 		case 'home': 
-			echo "Heimat!";
 			include("home.php");
-		break;
+			break;
+// Products
 		case 'products':
-			echo "Produkte!"; 
 			include("product.php");
-		break;
+			break;
+// Help
 		case 'help':
-			echo "Hilfe!";
+			include ("help.php");
 			break;
+// Imprint
 		case 'imprint':
-			echo "Impressium!";
+			include ("imprint.php");
 			break;
-		
-		
 	}
 	
 	
