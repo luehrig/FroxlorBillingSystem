@@ -1,6 +1,7 @@
 <?php
 
 require '../../includes/classes/cl_customizing.php';
+require '../../includes/classes/cl_language.php';
 require '../../includes/classes/cl_content.php';
 
 session_start();
@@ -63,9 +64,9 @@ switch($action) {
 		$echo_string = '<form><div id="new_content_title"><input type="text" id="title" /></div>';
 		$echo_string = $echo_string .'<div id="new_content_text"><textarea id="text" class="editor"></textarea></div>';
 			
+		$echo_string = $echo_string . language::printLanguages();
+		
 		$echo_string = $echo_string .'<div id="new_content_buttons"><input type="submit" id="create_content" value="'. BUTTON_SAVE .'"></div></form>';
-			
-		$echo_string = $echo_string .'<input type="hidden" id="language_id" value="'. get_default_language() .'">';
 			
 		echo $echo_string;
 		
