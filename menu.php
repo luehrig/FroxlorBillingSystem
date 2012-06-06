@@ -8,30 +8,4 @@
 	   <li><a href='index.php?content=imprint'><span><?php echo VIEW_MENU_IMPRINT; ?></span></a></li>
 	   <li ID="menukundenbereich"><a href='customercenter/index.php'><span><?php echo VIEW_MENU_CUSTOMERCENTER?></span></a></li>
 	</ul>
-	<?php 
-	// Get selected menu
-	$content = $_GET['content'];
-	
-	/* Show selected content */
-	switch ($content) {
-	
-		// Home
-		case 'home':
-			include("home.php");
-			break;
-			// Products
-		case 'products':
-			include("product.php");
-			break;
-			// Help
-		case 'help':
-			include ("help.php");
-			break;
-			// Imprint
-		case 'imprint':
-			include ("imprint.php");
-			break;
-	}
-	
-	?>
 </div>
