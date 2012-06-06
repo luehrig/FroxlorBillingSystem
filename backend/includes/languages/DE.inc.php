@@ -8,6 +8,7 @@ define('BUTTON_LOGIN_BACKEND','Einloggen');
 define('BUTTON_MODIFY_CUSTOMIZING_BACKEND','Customizing ändern');
 define('BUTTON_SAVE_CUSTOMIZING_BACKEND','Customizing speichern');
 define('BUTTON_SAVE','Speichern');
+define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 
 define('LABEL_MY_SHOP','Mein Shop');
 define('LABEL_MY_PRODUCTS','Meine Produkte');
