@@ -50,7 +50,18 @@ class product {
 	}
 	
 	public function updateProduct($product_id, $product_data) {
-	
+		if($product_data != NULL){
+			$sql_delete_statement = 'UPDATE'. TBL_PRODUCT .'SET
+				language_id='. $product_data['language_id'] .', 
+				title='. $product_data['title'] .', 
+				contract_periode='. $product_data['contract_periode'] .', 
+				describtion='. $product_data['describtion']. ', 
+				quantity='. $product_data['quantity'] .', 
+				price='. $product_data['price'] .'
+				WHERE product_id="'. $product_data['product_id'] .'"';
+			
+			db_query($sql_delete_statement);
+		}
 	}
 	
 	public function getProductData($product_id){
