@@ -143,7 +143,59 @@ $(function() {
 		});
 		
 		return false;
-	});		
+	});
+	
+	// open editor for new content
+	$("body").on("click", "a[id=create_new_content]", function() {
+	
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_new_content_editor" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+			initCKEditor();
+		});
+		
+		return false;
+	});
+	
+	// open editor for content
+	$("body").on("click", "input[type=submit][id=save_content]", function() {
+
+		var content_id = $('input[type=hidden][id=content_id]').val();
+		var language_id = $('input[type=hidden][id=language_id]').val();
+		var title = $('input[type=text][id=title]').val();
+		var text = $('textarea[id=text]').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "update_content", content_id: content_id, language_id: language_id, title: title, text: text }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// open editor for content
+	$("body").on("click", "input[type=submit][id=create_content]", function() {
+
+		var language_id = $('input[type=hidden][id=language_id]').val();
+		var title = $('input[type=text][id=title]').val();
+		var text = $('textarea[id=text]').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "create_content", language_id: language_id, title: title, text: text }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
 	
 	 // get overview page with shop statistics
 	$("body").on("click", "a[id=mystatistics]", function() {

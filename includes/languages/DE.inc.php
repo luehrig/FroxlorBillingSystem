@@ -8,7 +8,7 @@ define('PAGE_TITLE_LOGIN_CUSTOMER','Kundenanmeldung');
 
 /* general texts */
 define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
-define('TEXT_SHOPPING_CART','Warenkorb');
+
 
 /* registration process */
 define('LABEL_GENDER','Geschlecht');
@@ -47,5 +47,14 @@ define('SELECT_GENDER_FEMALE','Frau');
 define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
 define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');
 define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
+
+/* menu texts */
+define('VIEW_MENU_HELP','Hilfe');
+define('VIEW_MENU_IMPRINT', 'Impressum');
+define('VIEW_MENU_HOME', 'Home');
+define('VIEW_MENU_PRODUCTS', 'Produkte');
+define('VIEW_MENU_CUSTOMERCENTER', 'Kundenbereich');
+define('VIEW_MENU_SHOPPING_CART','Warenkorb');
+
 
 ?>

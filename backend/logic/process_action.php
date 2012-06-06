@@ -54,7 +54,22 @@ switch($action) {
 		
 		echo content::printOverview();
 		
+		echo '<div id="new_content_buttons"><a href="#" id="create_new_content">'. BUTTON_CREATE_CONTENT .'</a></div>';
+		
 	break;
+	
+	case 'open_new_content_editor':
+		
+		$echo_string = '<form><div id="new_content_title"><input type="text" id="title" /></div>';
+		$echo_string = $echo_string .'<div id="new_content_text"><textarea id="text" class="editor"></textarea></div>';
+			
+		$echo_string = $echo_string .'<div id="new_content_buttons"><input type="submit" id="create_content" value="'. BUTTON_SAVE .'"></div></form>';
+			
+		$echo_string = $echo_string .'<input type="hidden" id="language_id" value="'. get_default_language() .'">';
+			
+		echo $echo_string;
+		
+	break;	
 	
 	case 'open_content_editor':
 		$content_id = $_POST['content_id'];
@@ -67,10 +82,13 @@ switch($action) {
 			
 			$data = db_fetch_array($single_content_query);
 			
-			$echo_string = '<form><div id="edit_content_title"><input id="title" value="'. $data['title'] .'"/></div>';
+			$echo_string = '<form><div id="edit_content_title"><input type="text" id="title" value="'. $data['title'] .'"/></div>';
 			$echo_string = $echo_string .'<div id="edit_content_text"><textarea id="text" class="editor">'. $data['text'] .'</textarea></div>';
 			
 			$echo_string = $echo_string .'<div id="edit_content_buttons"><input type="submit" id="save_content" value="'. BUTTON_SAVE .'"></div></form>';
+			
+			$echo_string = $echo_string .'<input type="hidden" id="content_id" value="'. $content_id .'">';
+			$echo_string = $echo_string .'<input type="hidden" id="language_id" value="'. $language_id .'">';
 			
 			echo $echo_string;
 		}
@@ -79,6 +97,28 @@ switch($action) {
 		}
 	
 	break;
+	
+	case 'update_content':
+		
+		$content_id = $_POST['content_id'];
+		$language_id = $_POST['language_id'];
+		$title = $_POST['title'];
+		$text = $_POST['text'];
+		
+		$content = new content($content_id);
+		$content->update($title, $text, $language_id);
+		
+	break;
+	
+	case 'create_content':
+	
+		$language_id = $_POST['language_id'];
+		$title = $_POST['title'];
+		$text = $_POST['text'];
+	
+		content::create($title, $text, $language_id);
+	
+		break;
 	
 	case 'get_statistic_overview':
 		echo 'Shopstatistiken!';

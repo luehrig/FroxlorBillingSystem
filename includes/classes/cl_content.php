@@ -8,16 +8,13 @@ class content {
 	private $text;
 	
 	/* constructor */
-	public function __construct($content_id = NULL, $language = NULL) {
-		// create specific content object or empty?
-		if($content_id != NULL) {
-			// try to load specific content
-			$loading_result = $this->load($content_id, $language);
-			
-			// if content was not able to load return null object to caller
-			if($loading_result == false) {
-				return NULL;
-			}
+	public function __construct($content_id, $language = NULL) {
+		// try to load specific content
+		$loading_result = $this->load($content_id, $language);
+		
+		// if content was not able to load return null object to caller
+		if($loading_result == false) {
+			return NULL;
 		}
 	}
 	
@@ -108,7 +105,7 @@ class content {
 	// update content
 	public function update($title, $text, $language) {
 		if($this->content_id != NULL) {
-			$update_statement = 'UPDATE '. TBL_CONTENT .' AS c SET c.title = "'. $title .'" c.text = "'. $text .'" WHERE c.content_id = '. (int) $this->content_id .' AND c.language_id = '. (int) $language;
+			$update_statement = 'UPDATE '. TBL_CONTENT .' AS c SET c.title = "'. $title .'", c.text = "'. $text .'" WHERE c.content_id = '. (int) $this->content_id .' AND c.language_id = '. (int) $language;
 			db_query($update_statement);
 			
 			// reload content in object
@@ -146,13 +143,13 @@ class content {
 			$language = get_default_language();
 		}
 		
-		$this->language = $language_id;
+		$this->language = $language;
 		$sql_statement = 'SELECT c.content_id, c.title, c.text FROM '. TBL_CONTENT .' AS c WHERE c.content_id = '. (int) $content_id .' AND c.language_id = '. (int) $language;
 		$content_query = db_query($sql_statement);
 		
 		// content was found
 		if(db_num_results($content_query) == 1) {
-			$result_data = db_fetch_array($content_queryn);
+			$result_data = db_fetch_array($content_query);
 			$this->content_id = $result_data['content_id'];
 			$this->title = $result_data['title'];
 			$this->text = $result_data['text'];
