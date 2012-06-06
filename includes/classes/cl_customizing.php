@@ -31,10 +31,10 @@ class customizing {
 	// display customizing entries table like with readonly input fields
 	public function printCustomizingEntries($div_container_id = 'customizing_entries', $div_single_entry_id = 'customizing_entry') {
 
-		$return_string = '<div id="customizing_entries">';
+		$return_string = '<div id="'. $div_container_id .'">';
 
 		while (list($key,$value) = each($this->customzing_entries)) {
-			$return_string = $return_string . '<div id="' . $key .'"><label for="'. $key .'">'. $key .'</label><input type="text" id="'. $key .'" readonly="readonly" value="'. $value .'"/>';
+			$return_string = $return_string . '<div id="' . $div_single_entry_id .'"><label for="'. $key .'">'. $key .'</label><input type="text" id="'. $key .'" readonly="readonly" value="'. $value .'"/>';
 		}
 		
 		$return_string = $return_string . '</div>';
