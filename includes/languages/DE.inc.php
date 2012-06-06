@@ -48,4 +48,13 @@ define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
 define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');
 define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
 
+/* menu texts */
+define('VIEW_MENU_HELP','Hilfe');
+define('VIEW MENU_IMPRINT', 'Impressum')
+define('VIEW_MENU_HOME', 'Home')
+deinfe('VIEW_MENU_PRODUCTS', 'Produkte')
+define('VIEW_MENU_HOME', 'Home')
+deinfe('VIEW_MENU_PRODUCTS', 'Produkte')
+
+
 ?>

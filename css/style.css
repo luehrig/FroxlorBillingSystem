@@ -6,8 +6,7 @@ body {
 }
 
 .header {
-	background-color: #F0F0F0;
-	
+	background-color: #C0C0C0;
 /*	text-align: center;	*/
 }
 
@@ -17,17 +16,18 @@ body {
 }
 
 #logo {
-	width: 700px;
-	height: 120px;
+	width: 400px;
 	margin: 5px;
 }
 
 .menu {
-	background-color: #F0F0F0;
+	background-color: #C0C0C0;
 }
 
 .content_container {
-	background-color: #F0F0F0;
+	background-color: #C0C0C0;
+	width: 900px;
+	height: 600px;
 }
 
 .cssmenu ul
@@ -85,4 +85,9 @@ body {
 #menukundenbereich
 {
 	float: right;
+}
+.product {
+	background-color: black;
+	
+	
 }
