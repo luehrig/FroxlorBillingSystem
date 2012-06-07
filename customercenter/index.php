@@ -2,8 +2,11 @@
 // 	Header
 	include("header.php");
 	
-// 	Menu
-	include("menu.php");
+// 	Main menu
+	include("../menu.php");
+	
+//  Customer menu
+	include("custommenu.php");
 	
 // 	Content
 	include("home.php");

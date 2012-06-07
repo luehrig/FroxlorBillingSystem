@@ -11,7 +11,8 @@ define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
 
 
 /* registration process */
-define('LABEL_GENDER','Geschlecht');
+define('HEADER_REGISTRATION','Registrierung');
+define('LABEL_GENDER','Anrede');
 define('LABEL_TITLE','Titel');
 define('LABEL_FIRST_NAME','Vorname');
 define('LABEL_LAST_NAME','Nachname');
@@ -22,6 +23,7 @@ define('LABEL_TELEPHONE','Telefon');
 define('LABEL_FAX','Fax');
 define('LABEL_EMAIL','eMail Adresse');
 define('LABEL_PASSWORD','Passwort');
+define('LABEL_PASSWORDAGAIN','Passwort wiederholen');
 define('LABEL_STREET','Straße');
 define('LABEL_STREETNUMBER','Hausnummer');
 define('LABEL_POSTCODE','Postleitzahl');
@@ -30,6 +32,7 @@ define('LABEL_COUNTRY','Land');
 
 /* Login process */
 define('FIELDSET_LOGIN_FORM_CUSTOMER','Kundenanmeldung');
+define('LINK_REGISTRATION','Registrieren');
 
 
 define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
@@ -56,5 +59,9 @@ define('VIEW_MENU_PRODUCTS', 'Produkte');
 define('VIEW_MENU_CUSTOMERCENTER', 'Kundenbereich');
 define('VIEW_MENU_SHOPPING_CART','Warenkorb');
 
+/* customer menu texts */
+define('VIEW_CMENU_MYDATA', 'Meine Daten');
+define('VIEW_CMENU_MYPRODUCTS', 'Meine Produkte');
+define('VIEW_CMENU_MYINVOICES', 'Meine Rechnungen');
 
 ?>

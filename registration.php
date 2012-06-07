@@ -36,53 +36,61 @@ require 'includes/classes/cl_customizing.php';
 <script>!window.jQuery && document.write(unescape('%3Cscript src="../js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
 
 <script language="javascript" src="js/general.js"></script>
+
+<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
+<h1><?php echo HEADER_REGISTRATION; ?></h1>
 <div id="messagearea"></div>    
 <form method="post" action="#" id="registrationform" accept-charset=utf-8>
+    <div class="registrationform">
     <fieldset>
-    <legend><?php echo FIELDSET_GENERAL_INFORMATION; ?></legend>
-    	<label for="gender"><?php echo LABEL_GENDER; ?></label>
+    <legend id="bla"><?php echo FIELDSET_GENERAL_INFORMATION; ?></legend>
+    	<p><label for="gender"><?php echo LABEL_GENDER; ?></label>
     	<select name="gender" id="gender" size="1" rel="mandatory">
       		<option value="" style="display:none;"></option>
       		<option id="<?php echo $customizing->getCustomizingValue('sys_gender_male'); ?>" name="gender"><?php echo SELECT_GENDER_MALE; ?></option>
       		<option id="<?php echo $customizing->getCustomizingValue('sys_gender_female'); ?>" name="gender"><?php echo SELECT_GENDER_FEMALE; ?></option>
-    	</select>
-    	<label for="title"><?php echo LABEL_TITLE; ?></label>
-    	<input type="text" id="title" name="title">
-    	<label for="company"><?php echo LABEL_COMPANY; ?></label>
-    	<input type="text" id="company" name="company">
-    	<label for="first_name"><?php echo LABEL_FIRST_NAME; ?></label>
-    	<input type="text" id="first_name" name="first_name" rel="mandatory">
-    	<label for="last_name"><?php echo LABEL_LAST_NAME; ?></label>
-    	<input type="text" id="last_name" name="last_name" rel="mandatory">
-    	<label for="password"><?php echo LABEL_PASSWORD; ?></label>
-    	<input type="password" id="password" name="password" rel="mandatory">
+    	</select></p>
+    	<p><label for="title"><?php echo LABEL_TITLE; ?></label>
+    	<input type="text" id="title" name="title"></p>
+    	<p><label for="company"><?php echo LABEL_COMPANY; ?></label>
+    	<input type="text" id="company" name="company"></p>
+    	<p><label for="first_name"><?php echo LABEL_FIRST_NAME; ?></label>
+    	<input type="text" id="first_name" name="first_name" rel="mandatory"></p>
+    	<p><label for="last_name"><?php echo LABEL_LAST_NAME; ?></label>
+    	<input type="text" id="last_name" name="last_name" rel="mandatory"></p>
+    	<br>
+    	<p><label for="password"><?php echo LABEL_PASSWORD; ?></label>
+    	<input type="password" id="password" name="password" rel="mandatory"></p>
+    	<p><label for="password"><?php echo LABEL_PASSWORDAGAIN; ?></label>
+    	<input type="password" id="passwordagain" name="passwordagain" rel="mandatory"></p>
     </fieldset>
     <fieldset>
     <legend><?php echo FIELDSET_CONTACT_INFORMATION; ?></legend>
-    	<label for="email"><?php echo LABEL_EMAIL; ?></label>
-    	<input type="text" id="email" name="email" rel="mandatory">
-    	<label for="telephone"><?php echo LABEL_TELEPHONE; ?></label>
-    	<input type="text" id="telephone" name="telephone">
-    	<label for="fax"><?php echo LABEL_FAX; ?></label>
-    	<input type="text" id="fax" name="fax">
+    	<p><label for="email"><?php echo LABEL_EMAIL; ?></label>
+    	<input type="text" id="email" name="email" rel="mandatory"></p>
+    	<p><label for="telephone"><?php echo LABEL_TELEPHONE; ?></label>
+    	<input type="text" id="telephone" name="telephone"></p>
+    	<p><label for="fax"><?php echo LABEL_FAX; ?></label>
+    	<input type="text" id="fax" name="fax"></p>
     </fieldset>
     <fieldset>
     <legend><?php echo FIELDSET_ADDRESS_INFORMATION; ?></legend>
     	<div id="shippingaddress">
-    		<label for="shippingstreet"><?php echo LABEL_STREET; ?></label>
-    		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory">
-    		<label for="shippingstreetnumber"><?php echo LABEL_STREETNUMBER; ?></label>
-    		<input type="text" id="shippingstreetnumber" name="shippingstreetnumber" rel="mandatory">
-    		<label for="shippingpostcode"><?php echo LABEL_POSTCODE; ?></label>
-    		<input type="text" id="shippingpostcode" name="shippingpostcode" rel="mandatory">
-    		<label for="shippingcity"><?php echo LABEL_CITY; ?></label>
-    		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory">
-    		<label for="shippingcountry"><?php echo LABEL_COUNTRY; ?></label>
-    		<?php $country->printSelectBox("shippingcountry","shippingcountry"); ?>
+    		<p><label for="shippingstreet"><?php echo LABEL_STREET; ?></label>
+    		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory"></p>
+    		<p><label for="shippingstreetnumber"><?php echo LABEL_STREETNUMBER; ?></label>
+    		<input type="text" id="shippingstreetnumber" name="shippingstreetnumber" rel="mandatory"></p>
+    		<p><label for="shippingpostcode"><?php echo LABEL_POSTCODE; ?></label>
+    		<input type="text" id="shippingpostcode" name="shippingpostcode" rel="mandatory"></p>
+    		<p><label for="shippingcity"><?php echo LABEL_CITY; ?></label>
+    		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory"></p>
+    		<p><label for="shippingcountry"><?php echo LABEL_COUNTRY; ?></label>
+    		<?php $country->printSelectBox("shippingcountry","shippingcountry"); ?></p>
     	</div>
     	<div id="billingaddress"></div>
+    </div>
     </fieldset>	
     
     <input type="reset" id="reset" name="reset">

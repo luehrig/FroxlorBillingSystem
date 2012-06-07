@@ -5,14 +5,56 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Headers */
+.h1{
+	
+}
+
+.h2{
+	
+}
+
+/* Hyperlinks */
+a:link {
+	 color:black; text-decoration:none;
+}
+a:visited {
+	 color:black; text-decoration:none; 
+}
+a:focus { 
+	font-weight:bold; color:black; text-decoration:underline; 
+}
+a:hover { 
+	font-weight:bold; color:black; text-decoration:none; 
+}
+a:active {
+	color:black; text-decoration:underline; 
+}
+
+/* Header area */
 .header {
-	background-color: #C0C0C0;
-/*	text-align: center;	*/
+	background-color: #F0F0F0;
 }
 
 #warenkorb {
 	float: right;
-	margin: 5px;
+	margin: 10px;
+	font-weight:bold;
+}
+#warenkorb a:link {
+	 color:#A0A0A0; text-decoration:none;
+}
+#warenkorb a:visited {
+	 color:#A0A0A0; text-decoration:none; 
+}
+#warenkorb a:focus { 
+	font-weight:bold; color:black; text-decoration:underline; 
+}
+#warenkorb a:hover { 
+	font-weight:bold; color:black; text-decoration:none; 
+}
+#warenkorb a:active {
+	font-weight:bold; color:black; text-decoration:underline; 
 }
 
 #logo {
@@ -20,44 +62,40 @@ body {
 	margin: 5px;
 }
 
-/*.menu {
-	background-color: #C0C0C0;
-}*/
-
 .content_container {
 	background-color: #C0C0C0;
 	width: 900px;
 	height: 600px;
 }
 
-		/* Style of selected contents	*/
-		.product {
-			background-color: black;
-			width: 100px;
-			height: 100px;
-		}
+/* Style of selected contents	*/
+.product {
+	background-color: black;
+	width: 100px;
+	height: 100px;
+}
 
-		.home {
-			background-color: blue;
-			width: 100px;
-			height: 100px;
-		}
-		
-		.imprint {
-			background-color: green;
-			width: 100px;
-			height: 100px;
-		}
-		
-		.help {
-			background-color: black;
-			opacity: 0.5;
-			width: 400px;
-			height: 400px;
-		}
+.home {
+	background-color: blue;
+	width: 100px;
+	height: 100px;
+}
 
+.imprint {
+	background-color: green;
+	width: 100px;
+	height: 100px;
+}
 
-.cssmenu ul
+.help {
+	background-color: black;
+	opacity: 0.5;
+	width: 400px;
+	height: 400px;
+}
+
+/* Main Menu */
+.mainmenu ul
 {
 	margin:0;
 	padding:0;
@@ -74,7 +112,7 @@ body {
 	border-top:1px solid #000000;
 }
 
-.cssmenu li
+.mainmenu li
 {
 	display:block;
 	float:left;
@@ -82,7 +120,7 @@ body {
 	padding:0;
 }
 	
-.cssmenu li a
+.mainmenu li a
 {
 	display:block;
 	float:left;
@@ -92,15 +130,14 @@ body {
 	padding:8px 20px 0 20px;
 }
 	
-.cssmenu li a:hover
+.mainmenu li a:hover
 {	
 	color:#FFFFFF;
 	height:22px;
 	background:transparent url(../images/nav_bg.png) 0px -30px no-repeat;		
 }
 	
-
-.cssmenu li.active a
+.mainmenu li.active a
 {
 	display:inline;
 	height:22px;
@@ -109,11 +146,64 @@ body {
 	margin:0;
 }
 
-#menukundenbereich
+#customercenter
 {
 	float: right;
 }
 
+/* Customer Menu */
+.customermenu {
+	background: #333;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 12em;
+}
+.customermenu li {
+	font: 67.5% 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+.customermenu a {
+	background: #333;
+	border-bottom: 1px solid #393939;
+	color: #ccc;
+	display: block;
+	margin: 0;
+	padding: 8px 12px;
+	text-decoration: none;
+	font-weight:normal;
+}
+.customermenu a:hover {
+	background: #2580a2 url('images/hover.gif') left center no-repeat;
+	color: #fff;
+	padding-bottom: 8px;
+}
+
+/* registration formular */
+.registrationform label{
+	margin-left: 10px;
+	 width: 10em;
+    display: block;
+    float: left;
+	
+}
+
+.registrationform input{
+
+}
+
+.registrationform select{
+	
+}
+
+.registrationform legend{
+	font-weight: bold;
+}
+
+.registrationform fieldset{
+	margin-top: 1em;
+}
 
 
 

@@ -1,7 +1,7 @@
 <?php
 
 // Get selected menu
-$content = $_GET['content'];
+	$content = $_GET['content'];
 
 // 	Header
 	include("header.php");

@@ -44,6 +44,9 @@ require '../includes/classes/cl_customizing.php';
     
     <input type="submit" id="login" name="login" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">    
 </form>
+<p>
+<a href='index.php?content=regsitration'><span><?php echo LINK_REGISTRATION; ?></span></a>
+</p>
     
 </body>
 </html>
