@@ -182,9 +182,11 @@ $(function() {
 	// open editor for content
 	$("body").on("click", "input[type=submit][id=create_content]", function() {
 
-		var language_id = $('input[type=hidden][id=language_id]').val();
 		var title = $('input[type=text][id=title]').val();
 		var text = $('textarea[id=text]').val();
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
+		
+		alert(language_id);
 		
 		$.ajax({
 			type: "POST",
