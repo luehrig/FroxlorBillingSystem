@@ -29,9 +29,7 @@ class language {
 				$return_string = $return_string .'<option id="'. $data['language_id'] .'">'. $data['language_name'] .'</option>';
 			}
 		
-		
 			$return_string = $return_string . '</select></div>';
-		
 		}
 		else {
 			return false;

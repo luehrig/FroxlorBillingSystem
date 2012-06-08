@@ -6,7 +6,10 @@ class customizing {
 	private $language;
 	
 	/* constructor */
-	public function __construct($language_id) {
+	public function __construct($language_id = NULL) {
+		if($language_id == NULL) {
+			$language_id = get_default_language();
+		}
 		$this->getCustomzingEntries($language_id);
 		$this->language = $language_id;	
 	}

@@ -3,6 +3,8 @@
 require '../../includes/classes/cl_customizing.php';
 require '../../includes/classes/cl_language.php';
 require '../../includes/classes/cl_content.php';
+require '../../includes/classes/cl_customer.php';
+require '../../includes/classes/cl_country.php';
 
 session_start();
 
@@ -27,7 +29,7 @@ switch($action) {
 							
 		echo $customizing->printCustomizingEntries();
 		
-		echo '<a href="#" id="modify_customizing">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
+		echo '<a href="#" id="edit_customizing">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
 			  <a href="#" id="save_customizing">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
 	break;
 	
@@ -46,7 +48,20 @@ switch($action) {
 		break;
 	
 	case 'get_customers_overview':
-		echo 'Meine Kunden!';
+		
+		
+		echo customer::printOverview();
+		
+		
+	break;
+	
+	case 'open_customer_editor':
+		$customer_id = $_POST['customer_id'];
+		
+		$customer = new customer($customer_id);
+		
+		echo $customer->printForm();
+		
 	break;
 	
 	case 'get_content_overview':
