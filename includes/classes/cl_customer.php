@@ -29,12 +29,97 @@ class customer {
 		$this->telephone = $customer_data['telephone'];
 		$this->fax = $customer_data['fax'];
 		$this->email = $customer_data['email'];
+		$this->company = $customer_data['company'];
 		$this->customer_number = $customer_data['customer_number'];
 	}
 	
 	/* public section */
 	public function getCustomerData() {
 		return $this->customer_data;
+	}
+	
+	// returns customer data as HTML form
+	public function printForm($container_id = 'customer_editor') {
+		$customizing = new customizing();
+		$country = new country();
+		
+		// query shipping address
+		$sql_statement = 'SELECT sa.street, sa.street_number, sa.post_code, sa.city, sa.country_code FROM '. TBL_CUSTOMER_ADDRESS .' AS sa WHERE sa.customer_address_id = '. (int) $this->shipping_address;
+		$shipping_address_query = db_query($sql_statement);
+		$shipping_address_data = db_fetch_array($shipping_address_query);
+		
+		$return_string = '<div id="'. $container_id .'"><form>';
+		
+		$return_string = $return_string .'<fieldset>
+    										<legend>'. FIELDSET_CUSTOMER_GENERAL_INFORMATION .'</legend>
+    											<label for="gender">'. LABEL_GENDER .'</label>
+    												<select name="gender" id="gender" size="1" rel="mandatory">';
+      													if( $this->gender == $customizing->getCustomizingValue('sys_gender_male') ) {
+      														$return_string = $return_string .'<option id="'. $customizing->getCustomizingValue('sys_gender_male') .'" name="gender" selected>'. SELECT_CUSTOMER_GENDER_MALE .'</option>
+      														<option id="'. $customizing->getCustomizingValue('sys_gender_female') .'" name="gender">'. SELECT_CUSTOMER_GENDER_FEMALE .'</option>';
+      													}
+      													else {
+      														$return_string = $return_string .'<option id="'. $customizing->getCustomizingValue('sys_gender_male') .'" name="gender">'. SELECT_CUSTOMER_GENDER_MALE .'</option>
+      														<option id="'. $customizing->getCustomizingValue('sys_gender_female') .'" name="gender" selected>'. SELECT_CUSTOMER_GENDER_FEMALE .'</option>';
+      													}
+    												$return_string = $return_string .'</select>
+											    	<label for="title">'. LABEL_TITLE .'</label>
+											    	<input type="text" id="title" name="title" value="'. $this->title .'">
+											    	<label for="company">'. LABEL_COMPANY .'</label>
+											    	<input type="text" id="company" name="company" value="'. $this->company .'">
+											    	<label for="first_name">'. LABEL_FIRST_NAME .'</label>
+											    	<input type="text" id="first_name" name="first_name" rel="mandatory" value="'. $this->first_name .'">
+											    	<label for="last_name">'. LABEL_LAST_NAME .'</label>
+											    	<input type="text" id="last_name" name="last_name" rel="mandatory" value="'. $this->last_name .'">
+											    </fieldset>
+											    <fieldset>
+											    <legend>'. FIELDSET_CUSTOMER_CONTACT_INFORMATION .'</legend>
+											    	<label for="email">'. LABEL_EMAIL .'</label>
+											    	<input type="text" id="email" name="email" rel="mandatory" value="'. $this->email .'">
+											    	<label for="telephone">'. LABEL_TELEPHONE .'</label>
+											    	<input type="text" id="telephone" name="telephone" value="'. $this->telephone .'">
+											    	<label for="fax">'. LABEL_FAX .'</label>
+											    	<input type="text" id="fax" name="fax" value="'. $this->fax .'">
+											    </fieldset>
+											    <fieldset>
+											    <legend>'. FIELDSET_CUSTOMER_ADDRESS_INFORMATION .'</legend>
+											    	<fieldset>
+											    	<legend>'. FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION .'</legend>
+											    	<div id="shippingaddress">
+											    		<label for="shippingstreet">'. LABEL_STREET .'</label>
+											    		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'">
+											    		<label for="shippingstreetnumber">'. LABEL_STREETNUMBER .'</label>
+											    		<input type="text" id="shippingstreetnumber" name="shippingstreetnumber" rel="mandatory" value="'. $shipping_address_data['street_number'] .'">
+											    		<label for="shippingpostcode">'. LABEL_POSTCODE .'</label>
+											    		<input type="text" id="shippingpostcode" name="shippingpostcode" rel="mandatory" value="'. $shipping_address_data['post_code'] .'">
+											    		<label for="shippingcity">'. LABEL_CITY .'</label>
+											    		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'">
+											    		<label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
+											    		$country->printSelectBox("shippingcountry","shippingcountry") .'
+											    	</div>
+											    	</fieldset>
+											    	<fieldset>
+											    	<legend>'. FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION .'</legend>
+											    	<div id="billingaddress">
+											    		<label for="billingstreet">'. LABEL_STREET .'</label>
+											    		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'">
+											    		<label for="billingstreetnumber">'. LABEL_STREETNUMBER .'</label>
+											    		<input type="text" id="billingstreetnumber" name="billingstreetnumber" rel="mandatory" value="'. $shipping_address_data['street_number'] .'">
+											    		<label for="billingpostcode">'. LABEL_POSTCODE .'</label>
+											    		<input type="text" id="billingpostcode" name="billingpostcode" rel="mandatory" value="'. $shipping_address_data['post_code'] .'">
+											    		<label for="billingcity">'. LABEL_CITY .'</label>
+											    		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'">
+											    		<label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
+											    		$country->printSelectBox("billingcountry","billingcountry") .'
+											    	</div>
+											    	</fieldset>
+											    </fieldset>';
+		
+												
+		
+		$return_string = $return_string .'</form></div>';
+		
+		return $return_string;
 	}
 	
 	public static function create($customerData) {
@@ -106,6 +191,36 @@ class customer {
 		else {
 			return false;
 		}
+	}
+	
+	public static function printOverview($container_id = 'customer_overview') {
+		$sql_statement = 'SELECT c.customer_id, c.customer_number, c.first_name, c.last_name FROM '. TBL_CUSTOMER .' AS c ORDER BY c.last_name ASC, c.first_name ASC';
+		$customer_query = db_query($sql_statement);
+		
+		$number_of_customers = db_num_results($customer_query);
+		
+		$return_string = '<div id="'. $container_id .'">';
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_CUSTOMERS, $number_of_customers);
+		
+		$return_string = $return_string .'<table>
+					<tr>
+					 <th>'. TABLE_HEADING_CUSTOMER_CUSTOMER_NUMBER .'</th>
+					 <th>'. TABLE_HEADING_CUSTOMER_FIRST_NAME .'</th>
+					 <th>'. TABLE_HEADING_CUSTOMER_LAST_NAME .'</th>
+					</tr>';
+		
+		while($data = db_fetch_array($customer_query)) {
+			$return_string = $return_string .'<tr>
+					<td>'. $data['customer_number'] .'</td>
+					<td>'. $data['first_name'] .'</td>
+					<td>'. $data['last_name'] .'</td>
+					<td><a href="#" id="edit_customer" rel="'. $data['customer_id'] .'">Icon</a></td>
+				  </tr>';
+		}
+
+		$return_string = $return_string .'</table></div>';
+
+		return $return_string;
 	}
 	
 	/* private section */

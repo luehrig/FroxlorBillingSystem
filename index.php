@@ -1,7 +1,12 @@
 <?php
 
 // Get selected menu
-$content = $_GET['content'];
+if(!isset( $_GET['content'] )) {
+	$content = 'home';
+}
+else {
+	$content = $_GET['content'];
+}
 
 // 	Header
 	include("header.php");
