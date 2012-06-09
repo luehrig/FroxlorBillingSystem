@@ -40,7 +40,7 @@ require 'includes/classes/cl_customizing.php';
 <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-<h1><?php echo HEADER_REGISTRATION; ?></h1>
+<h1><?php echo PAGE_TITLE_REGISTRATION; ?></h1>
 <div id="messagearea"></div>    
 <form method="post" action="#" id="registrationform" accept-charset=utf-8>
     <div class="registrationform">

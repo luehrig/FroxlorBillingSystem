@@ -35,25 +35,20 @@ a:active {
 .header {
 	background-color: #F0F0F0;
 }
-
-#warenkorb {
+#shoppingcart {
 	float: right;
 	margin: 10px;
 	font-weight:bold;
+	font-size: 0.8em;
+	color:#A0A0A0;
 }
-#warenkorb a:link {
-	 color:#A0A0A0; text-decoration:none;
-}
-#warenkorb a:visited {
-	 color:#A0A0A0; text-decoration:none; 
-}
-#warenkorb a:focus { 
+#shoppingcart a:focus { 
 	font-weight:bold; color:black; text-decoration:underline; 
 }
-#warenkorb a:hover { 
-	font-weight:bold; color:black; text-decoration:none; 
+#shoppingcart a:hover { 
+	font-weight:bold; color:black; text-decoration:underline; 
 }
-#warenkorb a:active {
+#shoppingcart a:active {
 	font-weight:bold; color:black; text-decoration:underline; 
 }
 
@@ -66,6 +61,13 @@ a:active {
 	background-color: #C0C0C0;
 	width: 900px;
 	height: 600px;
+}
+
+.customer_content_container {
+	background-color: #C0C0C0;
+	width: 730px;
+	height: 600px;
+	float: right;
 }
 
 /* Style of selected contents	*/
@@ -146,39 +148,11 @@ a:active {
 	margin:0;
 }
 
-#customercenter
-{
+#mainmenuelement{
 	float: right;
 }
 
-/* Customer Menu */
-.customermenu {
-	background: #333;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	width: 12em;
-}
-.customermenu li {
-	font: 67.5% 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
-	margin: 0;
-	padding: 0;
-}
-.customermenu a {
-	background: #333;
-	border-bottom: 1px solid #393939;
-	color: #ccc;
-	display: block;
-	margin: 0;
-	padding: 8px 12px;
-	text-decoration: none;
-	font-weight:normal;
-}
-.customermenu a:hover {
-	background: #2580a2 url('images/hover.gif') left center no-repeat;
-	color: #fff;
-	padding-bottom: 8px;
-}
+
 
 /* registration formular */
 .registrationform label{
@@ -204,6 +178,65 @@ a:active {
 .registrationform fieldset{
 	margin-top: 1em;
 }
+/* --------------- Customer Center -------------------------------------- */
+
+
+
+#logout {
+	float: right;
+	margin: 10px;
+	font-weight:bold;
+	font-size: 0.8em;
+	color:#A0A0A0
+}
+#logout a:focus { 
+	font-weight:bold; color:black; text-decoration:underline; 
+}
+#logout a:hover { 
+	font-weight:bold; color:black; text-decoration:underline; 
+}
+
+
+.custdata{
+	background-color: #F0F0F0;
+}
+
+/* Customer Menu */
+.customermenu {
+	background: #333;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 170px;
+	float: left;
+}
+.customermenu ul {
+	list-style-type:none;
+}
+.customermenu li {
+	font: 67.5% 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+.customermenu a {
+	background: #333;
+	border-bottom: 1px solid #393939;
+	color: #ccc;
+	display: block;
+	margin: 0;
+	padding: 8px 12px;
+	text-decoration: none;
+	font-weight:normal;
+}
+.customermenu a:hover {
+	background: #2580a2 url('../images/hover.gif') left center no-repeat;
+	color: #fff;
+	padding-bottom: 8px;
+}
+
+
+
+
 
 
 

@@ -36,6 +36,6 @@ $cart = new shoppingcart(session_id());
 <body>
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
-	<div ID="warenkorb"><a href="#"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<?php echo $cart->getNumberOfProducts(); ?>)</a></div>
+	<a href="#" ID="shoppingcart"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<?php echo $cart->getNumberOfProducts(); ?>)</a>
 
 </div>

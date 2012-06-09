@@ -2,6 +2,7 @@
 
 require '../includes/classes/cl_customizing.php';
 
+
 session_start();
 
 include_once '../configuration.inc.php';
@@ -41,7 +42,10 @@ else {
 <body>
 <div class="header">
 	<img ID="logo" src="../images/fcloud.png">
-
 	<a href="#" id="logout"><?php echo BUTTON_LOGOUT_CUSTOMER; ?></a>
+	
+	
+<!-- !!!!!!!!!!!!!!! TODO: Anzahl der Postionen im Warenkorb ausgeben!!!!!!!!!! -->
+	<a href="#" ID="shoppingcart"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<?php echo "X"; ?>)</a> 
 	
 </div>

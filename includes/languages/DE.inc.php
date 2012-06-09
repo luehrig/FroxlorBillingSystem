@@ -11,7 +11,6 @@ define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
 
 
 /* registration process */
-define('HEADER_REGISTRATION','Registrierung');
 define('LABEL_GENDER','Anrede');
 define('LABEL_TITLE','Titel');
 define('LABEL_FIRST_NAME','Vorname');
