@@ -91,7 +91,7 @@ class content {
 		
 		$return_string = '<div id="'. $container_id .'">';
 
-		$return_string = $return_string . '<table><th>'. TABLE_HEADING_CONTENT_TITLE .'</th>';
+		$return_string = $return_string . '<table><tr><th>'. TABLE_HEADING_CONTENT_TITLE .'</th></tr>';
 		
 		while($data = db_fetch_array($content_query)) {
 			$return_string = $return_string . '<tr id="'. $data['content_id'] .'_'. $data['language_id'] .'"><td name="title"><a href="#" id="edit_content" rel="'. $data['content_id'] .'_'. $data['language_id'] .'">'  . $data['title'] .'</a></td></tr>';

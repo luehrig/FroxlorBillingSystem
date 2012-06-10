@@ -31,7 +31,7 @@ $(function() {
 	});	
 	
 	// set customizing fields editable
-	$('body').on("click","a[id=modify_customizing]", function() {
+	$('body').on("click","a[id=edit_customizing]", function() {
 		// set all input fields as editable
 		$('input[type=text]').each(function() {
 			$(this).attr('readonly', false);
@@ -109,6 +109,22 @@ $(function() {
 		});
 		
 		return false;
+	});	
+	
+	// set customizing fields editable
+	$('body').on("click","a[id=edit_customer]", function() {
+		var customer_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_customer_editor", customer_id: customer_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
 	});	
 	
     // get overview page with all contents
