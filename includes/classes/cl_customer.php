@@ -48,6 +48,18 @@ class customer {
 		$shipping_address_query = db_query($sql_statement);
 		$shipping_address_data = db_fetch_array($shipping_address_query);
 		
+		// query billing address if shipping & billing address is different
+		if($this->shipping_address != $this->billing_address) {
+			// query billing address
+			$sql_statement = 'SELECT sa.street, sa.street_number, sa.post_code, sa.city, sa.country_code FROM '. TBL_CUSTOMER_ADDRESS .' AS sa WHERE sa.customer_address_id = '. (int) $this->billing_address;
+			$billing_address_query = db_query($sql_statement);
+			$billing_address_data = db_fetch_array($billing_address_query);
+		}
+		// if not, set shipping address as billing address
+		else {
+			$billing_address_data = $shipping_address_data;
+		}
+			
 		$return_string = '<div id="'. $container_id .'"><form>';
 		
 		$return_string = $return_string .'<fieldset>
@@ -95,22 +107,22 @@ class customer {
 											    		<label for="shippingcity">'. LABEL_CITY .'</label>
 											    		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'">
 											    		<label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
-											    		$country->printSelectBox("shippingcountry","shippingcountry") .'
+											    		$country->printSelectBox("shippingcountry","shippingcountry", $shipping_address_data['country_code']) .'
 											    	</div>
 											    	</fieldset>
 											    	<fieldset>
 											    	<legend>'. FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION .'</legend>
 											    	<div id="billingaddress">
 											    		<label for="billingstreet">'. LABEL_STREET .'</label>
-											    		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'">
+											    		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $billing_address_data['street'] .'">
 											    		<label for="billingstreetnumber">'. LABEL_STREETNUMBER .'</label>
-											    		<input type="text" id="billingstreetnumber" name="billingstreetnumber" rel="mandatory" value="'. $shipping_address_data['street_number'] .'">
+											    		<input type="text" id="billingstreetnumber" name="billingstreetnumber" rel="mandatory" value="'. $billing_address_data['street_number'] .'">
 											    		<label for="billingpostcode">'. LABEL_POSTCODE .'</label>
-											    		<input type="text" id="billingpostcode" name="billingpostcode" rel="mandatory" value="'. $shipping_address_data['post_code'] .'">
+											    		<input type="text" id="billingpostcode" name="billingpostcode" rel="mandatory" value="'. $billing_address_data['post_code'] .'">
 											    		<label for="billingcity">'. LABEL_CITY .'</label>
-											    		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'">
+											    		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'">
 											    		<label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
-											    		$country->printSelectBox("billingcountry","billingcountry") .'
+											    		$country->printSelectBox("billingcountry","billingcountry",$billing_address_data['country_code']) .'
 											    	</div>
 											    	</fieldset>
 											    </fieldset>';

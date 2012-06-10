@@ -12,14 +12,19 @@ class country {
 	}
 	
 	// print html select box
-	public function printSelectBox($selectbox_id,$name = 'country') {
+	public function printSelectBox($selectbox_id, $name = 'country', $default_value = NULL) {
 		$result = '<select name="'. $selectbox_id .'" id="'. $selectbox_id .'" size="1" rel="mandatory">';
 				
 		$result = $result . '<option value="" style="display:none;"></option>';
 		
 		
 		for($i=0; $i < count($this->available_countries); $i++) {
-			$result = $result . '<option id="'. $this->available_countries[$i]['country_id'] .'" name="'. $name .'">'. $this->available_countries[$i]['country_name'] . '</option>';
+			if($default_value != NULL && $this->available_countries[$i]['country_id'] == $default_value) {
+				$result = $result . '<option id="'. $this->available_countries[$i]['country_id'] .'" name="'. $name .'" selected>'. $this->available_countries[$i]['country_name'] . '</option>';
+			}
+			else {
+				$result = $result . '<option id="'. $this->available_countries[$i]['country_id'] .'" name="'. $name .'">'. $this->available_countries[$i]['country_name'] . '</option>';
+			}
 		}
 		
 		$result = $result . '</select>';
