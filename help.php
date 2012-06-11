@@ -1,11 +1,12 @@
-<div class="content_container">Hilfe
+<div class="backdrop"></div>
 
-	<div class="help">
-	
-	</div>
-	
-	<div class="advertisment">
-	
-	</div>
-	
+<div class="box">
+
+	<div class="close">X</div>
+	Please enter a question...
+	<br>
+	<input />
+	<button>Senden</button>
+	<button>Abbrechen</button>
+
 </div>
