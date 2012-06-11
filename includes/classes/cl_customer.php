@@ -127,11 +127,33 @@ class customer {
 											    	</fieldset>
 											    </fieldset>';
 		
-												
+												$return_string = $return_string . '<input type="submit" name="save_customer" id="save_customer" value="'. BUTTON_SAVE .'">';
 		
 		$return_string = $return_string .'</form></div>';
 		
 		return $return_string;
+	}
+	
+	// update customer
+	public function update($customer_id, $customerData) {
+		// build sql update string from data array
+		$update_statement = 'UPDATE '. TBL_CUSTOMER .' AS cust SET ';
+		
+		foreach ($customerData as $key => $value) {
+			$update_statement = $update_statement .'cust.'. $key .' = '. $value .' ';
+		}
+		
+		$update_statement = $update_statement .'WHERE cust.customer_id = '. (int) $customer_id;
+		
+		db_query($update_statement);
+	}
+	
+	// delete customer from DB
+	public function delete($customer_id) {
+		$delete_statement = 'DELETE * FROM '. TBL_CUSTOMER .' AS cust WHERE cust.customer_id = '. (int) $customer_id;
+		$delete_query_result = db_query($delete_statement);
+		return $delete_query_result;
+		
 	}
 	
 	public static function create($customerData) {

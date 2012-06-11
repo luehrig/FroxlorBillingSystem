@@ -27,9 +27,11 @@ $cart = new shoppingcart(session_id());
 <title>Froxcloud</title>
 
 <link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/colorbox.css" type="text/css">
 
 <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>!window.jQuery && document.write(unescape('%3Cscript src="../js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
+<script language="javascript" src="js/jquery.colorbox-min.js"></script>
 
 
 </head>
