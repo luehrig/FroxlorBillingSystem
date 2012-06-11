@@ -111,4 +111,10 @@ $(function() {
 		return false;
 	});	
 	
+	$("body").on("click","a[class=lightbox]", function() {
+		$.colorbox({href:"faq.php"});
+		
+		return false;
+	});
+	
 });
