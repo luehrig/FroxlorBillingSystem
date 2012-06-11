@@ -111,10 +111,19 @@ $(function() {
 		return false;
 	});	
 	
+	// overlay for help menu
 	$("body").on("click","a[class=lightbox]", function() {
-		$.colorbox({href:"faq.php"});
+		$.colorbox({href:"help.php"});
 		
 		return false;
 	});
+	
+	//overlay for customercenter (doesnt work yet)
+	$("body").on("click","a[class=customercenter]", function() {
+		$.colorbox({href:"customercenter/index.php"});
+		
+		return false;
+	});
+	
 	
 });

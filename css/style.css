@@ -70,13 +70,84 @@ a:active {
 	float: right;
 }
 
-/* Style of selected contents	*/
-.product {
-	background-color: black;
-	width: 100px;
-	height: 100px;
+/* Style of contents	*/
+.content_head
+{
+	height: 50px;
 }
 
+/*Style of the tree products*/
+.product {
+	
+	background-color: white;
+	width: 250px;
+	height: 300px;
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 1px 1px 2px black;
+}
+
+#product_left
+{
+	margin-left: 20px;
+	float: left;
+}
+
+#product_center
+{
+	
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#product_right
+{
+	margin-right: 20px;
+	float: right;
+}
+
+#littlelogo
+{
+	width: 120px;
+	margin: 5px 5px;
+}
+
+.textbox
+{
+	width: 170px;
+	height: 100px;
+	border:#000000 1px solid;
+	margin: 10px auto 10px auto;
+	border-radius: 10px;
+	padding: 10px;
+	
+	
+}
+
+#buttonlayout
+{
+
+	width: 250px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-top:27px;
+	color: white;
+
+	
+	/*Gradient color like logo color with "ultimate css gradient generator" */
+	background: #02def7; /* Old browsers */
+	background: -moz-linear-gradient(top,  #02def7 0%, #02def7 7%, #027cff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#02def7), color-stop(7%,#02def7), color-stop(100%,#027cff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #02def7 0%,#02def7 7%,#027cff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #02def7 0%,#02def7 7%,#027cff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #02def7 0%,#02def7 7%,#027cff 100%); /* IE10+ */
+	background: linear-gradient(top,  #02def7 0%,#02def7 7%,#027cff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#02def7', endColorstr='#027cff',GradientType=0 ); /* IE6-9 */
+	
+
+}
+
+/*                                    */
 .home {
 	background-color: blue;
 	width: 100px;
@@ -226,57 +297,4 @@ a:active {
 	color: #fff;
 	padding-bottom: 8px;
 }
-
-.backdrop
-{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	background: #000;
-	opacity: .0;
-	z-index: 50;
-	display: none;
-}
-
-.box
-{
-	position: absolute;
-	top: 20%;
-	left: 30%;
-	width: 500px;
-	height: 300px;
-	display: block;
-	background: #ffffff;
-	z-index: 51;
-	padding: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-moz-box-shadow: 0px 0px 10px #444444;
-	-webkit-box-shadow: 0px 0px 10px #444444;
-	box-shadow: 0px 0px 10px #444444;
-	display: none;
-}
-
-.close
-{
-	float: right;
-	margin-right: 6px;
-	cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
