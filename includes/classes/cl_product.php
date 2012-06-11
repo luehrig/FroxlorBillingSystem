@@ -44,12 +44,12 @@ class product {
 		}
 	}
 	 
-	public function deleteProduct($product_id) {
+	public function delete($product_id) {
 		$sql_delete_statement = 'DELETE FROM'. TBL_PRODUCT .'WHERE product_id = '. (int) $product_id;
 		db_query($sql_delete_statement);
 	}
 	
-	public function updateProduct($product_id, $product_data) {
+	public function update($product_id, $product_data) {
 		if($product_data != NULL){
 			$sql_delete_statement = 'UPDATE'. TBL_PRODUCT .'SET
 				language_id='. $product_data['language_id'] .', 
@@ -64,7 +64,38 @@ class product {
 		}
 	}
 	
-	public function getProductData($product_id){
+	public static function printOverview($container_id = 'product_overview'){
+		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.describtion, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
+		$product_query = db_query($sql_statement);
+		
+		$number_of_products = db_num_results($product_query);
+		$return_string = '<div id="'. $container_id .'">';
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products);
+		
+		$return_string = $return_string .'<table>
+		<tr>
+		<th>'. TABLE_HEADING_PRODUCT_LANGUAGE .'</th>
+		<th>'. TABLE_HEADING_PRODUCT_TITLE .'</th>
+		<th>'. TABLE_HEADING_PRODUCT_CONTRACT_PERIODE.'</th>
+		<th>'. TABLE_HEADING_PRODUCT_DESCRIBTION.'</th>
+		<th>'. TABLE_HEADING_PRODUCT_QUANTITY .'</th>
+		<th>'. TABLE_HEADING_PRODUCT_PRICE .'</th>
+		</tr>';
+		
+		while($data = db_fetch_array($product_query)) {
+			$return_string = $return_string .'<tr>
+			<td>'. $data['language'] .'</td>
+			<td>'. $data['title'] .'</td>
+			<td>'. $data['contract_periode'] .'</td>
+			<td>'. $data['describtion'] .'</td>
+			<td>'. $data['quantity'] .'</td>
+			<td>'. $data['price'] .'</td>
+			<td><a href="#" id="edit_product" rel="'. $data['product_id'] .'">Icon</a></td>
+			</tr>';
+		}
+	}
+	
+	public function getData($product_id){
 		return $this->getProductFromDb($product_id);
 	}
 	
