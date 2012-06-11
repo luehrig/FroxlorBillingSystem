@@ -1,11 +1,12 @@
 <?php 
 
 require '../includes/classes/cl_customizing.php';
-
+require '../includes/classes/cl_shoppingcart.php';
 
 session_start();
 
 include_once '../configuration.inc.php';
+include_once '../functions/general.php';
 
 require '../functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
@@ -21,6 +22,9 @@ if(!db_user_is_logged_in( session_id() )) {
 else {
 	echo 'Herzlich Willkommen im internen Bereich!';
 }
+
+$customizing = new customizing();
+$cart = new shoppingcart(session_id());
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
@@ -44,8 +48,6 @@ else {
 	<img ID="logo" src="../images/fcloud.png">
 	<a href="#" id="logout"><?php echo BUTTON_LOGOUT_CUSTOMER; ?></a>
 	
-	
-<!-- !!!!!!!!!!!!!!! TODO: Anzahl der Postionen im Warenkorb ausgeben!!!!!!!!!! -->
-	<a href="#" ID="shoppingcart"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<?php echo "X"; ?>)</a> 
+	<a href="#" ID="shoppingcart"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<?php echo $cart->getNumberOfProducts(); ?>)</a> 
 	
 </div>
