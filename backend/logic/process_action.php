@@ -60,7 +60,7 @@ switch($action) {
 		
 		$customer = new customer($customer_id);
 		
-		echo $customer->printForm();
+		echo $customer->printFormEdit();
 		
 	break;
 	

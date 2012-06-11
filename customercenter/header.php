@@ -41,6 +41,7 @@ $cart = new shoppingcart(session_id());
 
 
 <script language="javascript" src="../js/customercenter.js"></script>
+<script language="javascript" src="js/customercenter.js"></script>
 
 </head>
 <body>

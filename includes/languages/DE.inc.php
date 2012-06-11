@@ -37,11 +37,20 @@ define('LINK_REGISTRATION','Registrieren');
 define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
 define('BUTTON_LOGIN_CUSTOMER','Einloggen');
 define('BUTTON_LOGOUT_CUSTOMER','Abmelden');
+define('BUTTON_EDIT_CUSTOMER','Meine Daten bearbeiten');
+define('BUTTON_SAVE','Speichern');
 
 
 define('FIELDSET_GENERAL_INFORMATION','Allgemeine Daten');
 define('FIELDSET_CONTACT_INFORMATION','Kontaktdaten');
 define('FIELDSET_ADDRESS_INFORMATION','Lieferadresse');
+define('FIELDSET_CUSTOMER_GENERAL_INFORMATION','Allgemeine Daten');
+define('FIELDSET_CUSTOMER_CONTACT_INFORMATION','Kontaktdaten');
+define('FIELDSET_CUSTOMER_ADDRESS_INFORMATION','Adressdaten');
+define('FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION','Lieferadresse');
+define('FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION','Rechnungsadresse');
+define('SELECT_CUSTOMER_GENDER_MALE','Herr');
+define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('SELECT_GENDER_MALE','Herr');
 define('SELECT_GENDER_FEMALE','Frau');
 
