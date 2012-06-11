@@ -79,7 +79,7 @@ $(function() {
 			data: { action: "login_customer", email: email, password: password }
 		}).done(function( msg ) {
 			$('#messagearea').html( msg );
-			window.location.href = "../customercenter/index.php";
+			window.location.href = "../customercenter/index.php?content=customercenter";
 		});
 		
 		// reset input fields
