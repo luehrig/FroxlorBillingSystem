@@ -16,22 +16,23 @@ class productAttribute{
 		}
 	}
 	
-	public static function create_product_attribute(){
+	public static function create(){
 		if($product_attribute_data != NULL){
 			$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT_ATTRIBUTE .'(language_id, description)
 			VALUES (
 			"'. $product_attribute_data['language_id'] .'",
 			"'. $product_attribute_data['describtion'] .'",)';
 			db_query($sql_insert_statement);
-		
+		}
 	}
-	public getProductAttributeData(){
+	
+	public function getData(){
 		return $this->getProductAttributeFromDB();
 	}
 	
 	
-	
-	private getProductAttributeFromDB(){
+	/*private section*/
+	private function getProductAttributeFromDB(){
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id = '. (int) $product_attribute_id;
 		$info_query = db_query($sql_select_statement);
 		return db_fetch_array($info_query);

@@ -34,7 +34,7 @@ class customer {
 	}
 	
 	/* public section */
-	public function getCustomerData() {
+	public function getData() {
 		return $this->customer_data;
 	}
 	
