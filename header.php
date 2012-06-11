@@ -32,6 +32,7 @@ $cart = new shoppingcart(session_id());
 <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
 <script language="javascript" src="js/jquery.colorbox-min.js"></script>
+<script language="javascript" src="js/general.js"></script>
 
 
 </head>
