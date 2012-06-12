@@ -78,6 +78,29 @@ class shoppingcart {
 		}
 	}
 	
+	// returns shopping cart as html form with table
+	public function printCart() {
+		
+		$return_string = '<form id="shoppingcart">
+							<table>
+								<tr>
+									<th>'. HEADING_PRODUCT .'</th>
+									<th>'. HEADING_QUANTITY .'</th>
+									<th>'. HEADING_AMOUNT .'</th>
+								</tr>';
+		
+		$return_string = $return_string . print_r($this->products);
+		
+		
+		$return_string = $return_string .'</table></form>';
+		
+		$return_string = $return_string .'<div id="buttons">
+											<a href="#" id="start_checkout"><?php echo BUTTON_CHECKOUT; ?></a>
+										  </div>';
+		
+		return $return_string;
+	}
+	
 	// clear shopping cart for expired session
 	public static function deleteCart($session_id) {
 		$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $session_id .'"';
