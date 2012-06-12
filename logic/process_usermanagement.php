@@ -33,6 +33,7 @@ switch($action) {
 			}
 			else {
 				db_customer_login( $user_information['customer_id'], session_id() );
+				$_SESSION['customer_id'] = $user_information['customer_id'];
 			}	
 		}
 		

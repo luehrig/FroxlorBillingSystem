@@ -1,11 +1,4 @@
-<div class="content_container">Hilfe
+<?php 
+echo "Hier kommt die Hilfe hin!"
 
-	<div class="help">
-	
-	</div>
-	
-	<div class="advertisment">
-	
-	</div>
-	
-</div>
+?>

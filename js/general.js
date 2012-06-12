@@ -79,7 +79,7 @@ $(function() {
 			data: { action: "login_customer", email: email, password: password }
 		}).done(function( msg ) {
 			$('#messagearea').html( msg );
-			window.location.href = "../customercenter/index.php";
+			window.location.href = "../customercenter/index.php?content=customercenter";
 		});
 		
 		// reset input fields
@@ -111,4 +111,21 @@ $(function() {
 		return false;
 	});	
 	
+	// overlay for help menu
+	$("body").on("click","a[class=lightbox]", function() {
+		$.colorbox({href:"help.php"});
+		
+		return false;
+	});
+	
+
+	//overlay for customercenter (doesnt work yet)
+	$("body").on("click","a[class=customercenter]", function() {
+		$.colorbox({href:"customercenter/index.php"});
+		
+		return false;
+	});
+	
+	
 });
+
