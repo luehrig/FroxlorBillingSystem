@@ -26,10 +26,6 @@ else {
 		case 'products':
 			include("product.php");
 			break;
-// Help
-		case 'help':
-			include ("help.php");
-			break;
 // Imprint
 		case 'imprint':
 			include ("imprint.php");

@@ -2,7 +2,7 @@ $(function(){
 	
 	$(document).ready(function(){
 		
-		$('.lightbox').click(function(){
+		$('a.lightbox').click(function(){
 			$('.backdrop, .box').animate({'opacity':'.70'}, 300, 'linear');
 			$('.box').animate({'opacity':'1.00'}, 300, 'linear');
 			$('.backdrop, .box').css('display', 'block');
@@ -15,6 +15,7 @@ $(function(){
 		$('.backdrop').click(function(){
 			close_box();
 		});
+		
 		
 	});
 	

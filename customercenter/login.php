@@ -42,7 +42,7 @@ require '../includes/classes/cl_customizing.php';
     	<input type="password" id="password" name="password" rel="mandatory">    	
     </fieldset>
     
-    <input type="submit" id="login" name="login" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">    
+    <input type="submit" id="login" name="login" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">  
 </form>
 <p>
 <a href='../registration.php'><span><?php echo LINK_REGISTRATION; ?></span></a>

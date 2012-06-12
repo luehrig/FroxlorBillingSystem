@@ -4,6 +4,8 @@
 /* page titles */
 define('PAGE_TITLE_REGISTRATION','Neukundenregistrierung');
 define('PAGE_TITLE_LOGIN_CUSTOMER','Kundenanmeldung');
+define('PAGE_TITLE_SHOPPINGCART','Warenkorb');
+define('PAGE_TITLE_CHECKOUT','Kasse');
 
 
 /* general texts */
@@ -33,15 +35,29 @@ define('LABEL_COUNTRY','Land');
 define('FIELDSET_LOGIN_FORM_CUSTOMER','Kundenanmeldung');
 define('LINK_REGISTRATION','Registrieren');
 
+/* shopping cart */
+define('HEADING_PRODUCT','Produkt');
+define('HEADING_QUANTITY','Menge');
+define('HEADING_AMOUNT','Summe');
 
 define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
 define('BUTTON_LOGIN_CUSTOMER','Einloggen');
 define('BUTTON_LOGOUT_CUSTOMER','Abmelden');
+define('BUTTON_EDIT_CUSTOMER','Meine Daten bearbeiten');
+define('BUTTON_SAVE','Speichern');
+define('BUTTON_CHECKOUT','Kasse');
 
 
 define('FIELDSET_GENERAL_INFORMATION','Allgemeine Daten');
 define('FIELDSET_CONTACT_INFORMATION','Kontaktdaten');
 define('FIELDSET_ADDRESS_INFORMATION','Lieferadresse');
+define('FIELDSET_CUSTOMER_GENERAL_INFORMATION','Allgemeine Daten');
+define('FIELDSET_CUSTOMER_CONTACT_INFORMATION','Kontaktdaten');
+define('FIELDSET_CUSTOMER_ADDRESS_INFORMATION','Adressdaten');
+define('FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION','Lieferadresse');
+define('FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION','Rechnungsadresse');
+define('SELECT_CUSTOMER_GENDER_MALE','Herr');
+define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('SELECT_GENDER_MALE','Herr');
 define('SELECT_GENDER_FEMALE','Frau');
 

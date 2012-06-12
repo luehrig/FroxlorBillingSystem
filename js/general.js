@@ -79,7 +79,7 @@ $(function() {
 			data: { action: "login_customer", email: email, password: password }
 		}).done(function( msg ) {
 			$('#messagearea').html( msg );
-			window.location.href = "../customercenter/index.php";
+			window.location.href = "../customercenter/index.php?content=customercenter";
 		});
 		
 		// reset input fields
@@ -111,4 +111,36 @@ $(function() {
 		return false;
 	});	
 	
+	// open shopping cart
+	// TODO: This is maybe a candidate for another colorbox
+	$("body").on("click","a[id=shoppingcart]", function() {
+		$.ajax({
+			type: "POST",
+			url: "logic/process_content_handling.php",
+			data: { action: "show_shoppingcart" }
+		}).done(function( msg ) {
+			$('.content_container').html( msg );
+		});
+		
+		return false;
+	});
+	
+	
+	// overlay for help menu
+	$("body").on("click","a[class=lightbox]", function() {
+		$.colorbox({href:"help.php"});
+		
+		return false;
+	});
+	
+
+	//overlay for customercenter (doesnt work yet)
+	$("body").on("click","a[class=customercenter]", function() {
+		$.colorbox({href:"customercenter/index.php"});
+		
+		return false;
+	});
+	
+	
 });
+
