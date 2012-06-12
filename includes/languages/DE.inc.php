@@ -4,6 +4,9 @@
 /* page titles */
 define('PAGE_TITLE_REGISTRATION','Neukundenregistrierung');
 define('PAGE_TITLE_LOGIN_CUSTOMER','Kundenanmeldung');
+define('PAGE_TITLE_CUSTOMERDATA', 'Meine Daten');
+define('PAGE_TITLE_CUSTOMERPRODUCTS', 'Meine Produkte');
+define('PAGE_TITLE_CUSTOMERINVOICES', 'Meine Rechnungen');
 
 
 /* general texts */
@@ -50,7 +53,7 @@ define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
 define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');
 define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
 
-/* menu texts */
+/* main menu texts */
 define('VIEW_MENU_HELP','Hilfe');
 define('VIEW_MENU_IMPRINT', 'Impressum');
 define('VIEW_MENU_HOME', 'Home');
@@ -62,5 +65,11 @@ define('VIEW_MENU_SHOPPING_CART','Warenkorb');
 define('VIEW_CMENU_MYDATA', 'Meine Daten');
 define('VIEW_CMENU_MYPRODUCTS', 'Meine Produkte');
 define('VIEW_CMENU_MYINVOICES', 'Meine Rechnungen');
+
+/* customer data view */
+define('LABLE_LOGIN_DATA', 'Anmeldedaten');
+define('LABLE_ADRESS', 'Anschrift');
+
+
 
 ?>

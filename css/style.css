@@ -58,13 +58,13 @@ a:active {
 }
 
 .content_container {
-	background-color: #C0C0C0;
+	background-color: #F0F0F0;
 	width: 900px;
 	height: 600px;
 }
 
 .customer_content_container {
-	background-color: #C0C0C0;
+	background-color: #F0F0F0;
 	width: 730px;
 	height: 600px;
 	float: right;
@@ -208,6 +208,7 @@ a:active {
 	margin: 0;
 	padding: 0;
 	width: 170px;
+	height: 100%;
 	float: left;
 }
 .customermenu ul {

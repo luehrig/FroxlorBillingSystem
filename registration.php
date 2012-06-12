@@ -45,7 +45,7 @@ require 'includes/classes/cl_customizing.php';
 <form method="post" action="#" id="registrationform" accept-charset=utf-8>
     <div class="registrationform">
     <fieldset>
-    <legend id="bla"><?php echo FIELDSET_GENERAL_INFORMATION; ?></legend>
+    <legend><?php echo FIELDSET_GENERAL_INFORMATION; ?></legend>
     	<p><label for="gender"><?php echo LABEL_GENDER; ?></label>
     	<select name="gender" id="gender" size="1" rel="mandatory">
       		<option value="" style="display:none;"></option>
