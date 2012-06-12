@@ -4,6 +4,7 @@
 		Produkte
 	</div>
 
+	<div class="productwrapper">
 	<div class="product" ID="product_left">
 		<img ID="littlelogo" src="images/logos/logo.png">
 		<br>
@@ -33,5 +34,5 @@
 		</div>
 		<button ID="buttonlayout">more</button>
 	</div>
-	
+	</div>
 </div>
