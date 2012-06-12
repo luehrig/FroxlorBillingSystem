@@ -136,7 +136,7 @@ class shoppingcart {
 	// check if product exists in shopping cart
 	// If product exists in cart return quantity for product
 	private function productExists($product_id) {
-		$sql_statement = 'SELECT sc.product_id, sc.quantity FROM '. TBL_SHOPPING_CART .' WHERE sc.session_id = "'. $this->session_id .'"';
+		$sql_statement = 'SELECT sc.quantity FROM '. TBL_SHOPPING_CART .' WHERE sc.session_id = "'. $this->session_id .'" AND sc.products_id = '. (int) $product_id;
 		$productincart_query = db_query($sql_statement);
 		
 		// product was found in shopping cart

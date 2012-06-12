@@ -5,6 +5,7 @@ require '../../includes/classes/cl_language.php';
 require '../../includes/classes/cl_content.php';
 require '../../includes/classes/cl_customer.php';
 require '../../includes/classes/cl_country.php';
+require '../../includes/classes/cl_product.php';
 
 session_start();
 
@@ -34,12 +35,8 @@ switch($action) {
 	break;
 	
 	case 'get_products_overview':
-		$sql_products = 'SELECT p.title FROM '. TBL_PRODUCT .' AS p WHERE p.language_id = '. (int) get_default_language();
-		$products_query = db_query($sql_products);
 		
-		$number_of_products = db_num_results($products_query);
-		
-		echo sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products);
+		echo product::printOverview();
 		
 	break;
 	
