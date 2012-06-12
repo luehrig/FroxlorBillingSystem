@@ -79,4 +79,8 @@ define('VIEW_CMENU_MYDATA', 'Meine Daten');
 define('VIEW_CMENU_MYPRODUCTS', 'Meine Produkte');
 define('VIEW_CMENU_MYINVOICES', 'Meine Rechnungen');
 
+/* button texts	*/
+define('BUTTON_MORE', 'Mehr');
+define('BUTTON_ADD_TO_CART', 'In den Einkaufswagen')
+
 ?>

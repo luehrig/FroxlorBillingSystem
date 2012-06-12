@@ -85,41 +85,27 @@ a:active {
 }
 
 /*Style of the tree products*/
-.productwrapper {
+.boxwrapper 
+{
 	margin: 0 auto;
 	width: 810px;
 }
 
-/* #product_left
+.whitebox 
 {
-	margin-left: 20px;
-	float: left;
-}
-
-#product_center
-{
-	
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#product_right
-{
-	margin-right: 20px;
-	float: right;
-}
-*/
-
-.product {
 	float: left;
 	background-color: white;
-	width: 250px;
-	height: 300px;
 	border-radius: 10px;
 	text-align: center;
 	box-shadow: 1px 1px 2px black;
 	margin-left: 10px;
 	margin-right: 10px;
+}
+
+.productbox
+{
+	width: 250px;
+	height: auto;
 }
 
 #littlelogo
@@ -130,23 +116,22 @@ a:active {
 
 .textbox
 {
-	width: 170px;
 	height: 100px;
 	border:#000000 1px solid;
-	margin: 10px auto 10px auto;
+	margin: 10px 10px 10px 10px;
 	border-radius: 10px;
 	padding: 10px;
-	
-	
 }
 
-#buttonlayout
-{
+.slidebox{
+	height: 150px;
+}
 
+.buttonlayout_more
+{
 	width: 250px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	margin-top:27px;
 	color: white;
 
 	
@@ -159,8 +144,17 @@ a:active {
 	background: -ms-linear-gradient(top,  #02def7 0%,#02def7 7%,#027cff 100%); /* IE10+ */
 	background: linear-gradient(top,  #02def7 0%,#02def7 7%,#027cff 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#02def7', endColorstr='#027cff',GradientType=0 ); /* IE6-9 */
-	
 
+}
+
+.buttonlayout_buy
+{
+	width: 250px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	color: white;
+	background:transparent url(../images/nav_bg.png) repeat-x top left;
+	
 }
 
 /*                                    */
