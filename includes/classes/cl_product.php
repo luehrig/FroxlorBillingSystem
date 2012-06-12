@@ -93,6 +93,7 @@ class product {
 			<td><a href="#" id="edit_product" rel="'. $data['product_id'] .'">Icon</a></td>
 			</tr>';
 		}
+		return $return_string;
 	}
 	
 	public function getData($product_id){

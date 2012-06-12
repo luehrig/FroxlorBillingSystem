@@ -5,6 +5,7 @@ require '../../includes/classes/cl_language.php';
 require '../../includes/classes/cl_content.php';
 require '../../includes/classes/cl_customer.php';
 require '../../includes/classes/cl_country.php';
+require '../../includes/classes/cl_product.php';
 
 session_start();
 
@@ -38,6 +39,8 @@ switch($action) {
 		$products_query = db_query($sql_products);
 		
 		$number_of_products = db_num_results($products_query);
+		
+		echo product::printOverview();
 		
 		echo sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products);
 		
