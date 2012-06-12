@@ -35,10 +35,19 @@ define('LABEL_POSTCODE','Postleitzahl');
 define('LABEL_CITY','Ort');
 define('LABEL_COUNTRY','Land');
 
+
 define('TABLE_HEADING_CONTENT_TITLE','Titel');
 define('TABLE_HEADING_CUSTOMER_CUSTOMER_NUMBER','Kundennummer');
 define('TABLE_HEADING_CUSTOMER_FIRST_NAME','Vorname');
 define('TABLE_HEADING_CUSTOMER_LAST_NAME','Nachname');
+
+define('TABLE_HEADING_PRODUCT_LANGUAGE', 'Sprache');
+define('TABLE_HEADING_PRODUCT_TITLE', 'Titel');
+define('TABLE_HEADING_PRODUCT_CONTRACT_PERIODE', 'Vertragslaufzeit');
+define('TABLE_HEADING_PRODUCT_DESCRIBTION', 'Beschreibung');
+define('TABLE_HEADING_PRODUCT_QUANTITY', 'Menge');
+define('TABLE_HEADING_PRODUCT_PRICE', 'Preis');
+
 
 define('FIELDSET_LOGIN_FORM_BACKEND','Shopzugang');
 

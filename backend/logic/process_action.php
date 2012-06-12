@@ -35,14 +35,8 @@ switch($action) {
 	break;
 	
 	case 'get_products_overview':
-		$sql_products = 'SELECT p.title FROM '. TBL_PRODUCT .' AS p WHERE p.language_id = '. (int) get_default_language();
-		$products_query = db_query($sql_products);
-		
-		$number_of_products = db_num_results($products_query);
 		
 		echo product::printOverview();
-		
-		echo sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products);
 		
 	break;
 	

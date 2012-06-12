@@ -6,7 +6,7 @@ class product {
 	private $language_id;
 	private $title;
 	private $contract_periode;
-	private $describtion;
+	private $description;
 	private $quantity;
 	private $price;
 	private $product_data;
@@ -20,7 +20,7 @@ class product {
 			$this->language_id = $product_data['language_id'];
 			$this->title = $product_data['title'];
 			$this->contract_periode = $product_data['contract_periode'];
-			$this->describtion = $product_data['description'];
+			$this->description = $product_data['description'];
 			$this->quantity = $product_data['quantity'];
 			$this->price = $product_data['price'];
 		}	
@@ -37,7 +37,7 @@ class product {
 			"'. $product_data['language_id'] .'",
 			"'. $product_data['title'] .'",
 			"'. $product_data['contract_periode'] .'",
-			"'. $product_data['describtion'] .'",
+			"'. $product_data['description'] .'",
 			"'. $product_data['quantity'] .'",
 			"'. $product_data['price'] .'")';
 			db_query($sql_insert_statement);
@@ -55,7 +55,7 @@ class product {
 				language_id='. $product_data['language_id'] .', 
 				title='. $product_data['title'] .', 
 				contract_periode='. $product_data['contract_periode'] .', 
-				describtion='. $product_data['describtion']. ', 
+				description='. $product_data['description']. ', 
 				quantity='. $product_data['quantity'] .', 
 				price='. $product_data['price'] .'
 				WHERE product_id="'. $product_data['product_id'] .'"';
@@ -65,14 +65,23 @@ class product {
 	}
 	
 	public static function printOverview($container_id = 'product_overview'){
-		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.describtion, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
+		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
 		$product_query = db_query($sql_statement);
 		
 		$number_of_products = db_num_results($product_query);
 		$return_string = '<div id="'. $container_id .'">';
 		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products);
 		
-		$return_string = $return_string .'<table>
+		$table_header = '<table border = "0">
+		<colgroup>
+			<col width = "80">
+			<col width = "300">
+			<col width = "300">
+			<col width = "300">
+			<col width = "100">
+			<col width = "100">
+			
+		</colgroup>
 		<tr>
 		<th>'. TABLE_HEADING_PRODUCT_LANGUAGE .'</th>
 		<th>'. TABLE_HEADING_PRODUCT_TITLE .'</th>
@@ -82,22 +91,27 @@ class product {
 		<th>'. TABLE_HEADING_PRODUCT_PRICE .'</th>
 		</tr>';
 		
+		$table_content = '';
 		while($data = db_fetch_array($product_query)) {
-			$return_string = $return_string .'<tr>
-			<td>'. $data['language'] .'</td>
+			$table_content = $table_content .'<tr>
+			<td>'. $data['language_id'] .'</td>
 			<td>'. $data['title'] .'</td>
 			<td>'. $data['contract_periode'] .'</td>
-			<td>'. $data['describtion'] .'</td>
+			<td>'. $data['description'] .'</td>
 			<td>'. $data['quantity'] .'</td>
 			<td>'. $data['price'] .'</td>
 			<td><a href="#" id="edit_product" rel="'. $data['product_id'] .'">Icon</a></td>
 			</tr>';
 		}
-		return $return_string;
+		return $return_string . $table_header . $table_content;
 	}
 	
 	public function getData($product_id){
 		return $this->getProductFromDb($product_id);
+	}
+	
+	public function entryExists($product_data){
+		return $this->productExists($product_data);
 	}
 	
 	
@@ -107,6 +121,22 @@ class product {
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = '. (int) $product_id;
 		$info_query = db_query($sql_select_statement);
 		return db_fetch_array($info_query);
+	}
+	
+	private function productExists($product_data){
+		
+		$sql_select_statement = 'SELECT * FROM'. TBL_PRODUCT .' WHERE 
+																language_id = '. $product_data['language_id'] .' AND 
+																title = '. $product_data['title'] .' AND 
+																contract_periode = '. $product_data['contract_periode'] .' AND 
+																description = '. $product_data['description'] .' AND 
+																quantity = '. $product_data['quantity'] .' AND 
+																price = '. $product_data['price'];
+		$info_query = db_query($sql_statement);
+		if(!$info_query){
+			return false;
+		}
+		else return true;
 	}
 	
 }
