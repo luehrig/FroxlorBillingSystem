@@ -40,6 +40,8 @@ define('HEADING_PRODUCT','Produkt');
 define('HEADING_QUANTITY','Menge');
 define('HEADING_AMOUNT','Summe');
 
+define('BUTTON_MORE', 'Mehr');
+define('BUTTON_ADD_TO_CART', 'In den Einkaufswagen');
 define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
 define('BUTTON_LOGIN_CUSTOMER','Einloggen');
 define('BUTTON_LOGOUT_CUSTOMER','Abmelden');
@@ -79,8 +81,5 @@ define('VIEW_CMENU_MYDATA', 'Meine Daten');
 define('VIEW_CMENU_MYPRODUCTS', 'Meine Produkte');
 define('VIEW_CMENU_MYINVOICES', 'Meine Rechnungen');
 
-/* button texts	*/
-define('BUTTON_MORE', 'Mehr');
-define('BUTTON_ADD_TO_CART', 'In den Einkaufswagen')
 
 ?>
