@@ -66,7 +66,7 @@ a:active {
 }
 
 .content_container {
-	background-color: #C0C0C0;
+	background-color: #F0F0F0;
 	width: 900px;
 	height: 600px;
 }
@@ -151,8 +151,6 @@ a:active {
 .buttonlayout_buy
 {
 	width: 250px;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
 	color: white;
 	background:transparent url(../images/nav_bg.png) repeat-x top left;
 	
