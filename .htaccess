@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule page-([a-zA-z]+)\.html$ index.php?content=$1
+RewriteRule product-([0-9]+)\.html$ productdetail.php?product=$1
