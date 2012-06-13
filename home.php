@@ -1,11 +1,7 @@
 <div class="content_container">Home
 
-	<div class="home">
+	<div class="wrapperbeispiel">
 	
 	</div>
-	
-	<div class="advertisment">
-	
-	</div>
-	
+
 </div>
