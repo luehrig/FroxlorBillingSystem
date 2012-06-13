@@ -142,7 +142,7 @@ $(function() {
 	});
 	
 	
-	// should work with one function (see functions below)
+	// display details for product in product overview
 	$("body").on("click","button[class=buttonlayout_more]", function() {		
 		// get product id from rel tag
 		var product_id = $(this).attr('rel');
@@ -156,5 +156,32 @@ $(function() {
 			}
 	});	
 	
+	// add product from product overview to cart
+	$("body").on("click","button[class=buttonlayout_buy]", function() {		
+		// get product id from rel tag
+		var product_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_business_logic.php",
+			data: { action: "add_product_to_cart", product_id: product_id }
+		}).done(function( msg ) {
+			getProductCountInCart();
+		});
+		
+		return false;
+		
+	});	
+	
 });
 
+function getProductCountInCart() {
+	// update shopping cart quantity
+	$.ajax({
+		type: "POST",
+		url: "logic/process_business_logic.php",
+		data: { action: "get_product_count_in_cart" }
+	}).done(function( msg ) {
+		$('#current_cart_quantity').html( msg );
+	});
+}

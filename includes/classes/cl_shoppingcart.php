@@ -36,6 +36,8 @@ class shoppingcart {
 		else {
 			return false;
 		}	 
+		
+		$this->loadProducts();
 	}
 	
 	// remove product from shopping cart
@@ -64,14 +66,17 @@ class shoppingcart {
 		else {
 			return false;
 		}
+		
+		$this->loadProducts();
 	}
 	
 	// returns number of products in shopping cart
 	public function getNumberOfProducts() {
 		if(!$this->isEmpty()) { 
-			$sql_statement = 'SELECT SUM( sc.quantity ) FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $this->session_id .'"';
+			$sql_statement = 'SELECT SUM( sc.quantity ) AS number_of_products FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $this->session_id .'"';
 			$productcount_query = db_query($sql_statement);
-			return db_num_results($productcount_query);
+			$result_data = db_fetch_array($productcount_query);
+			return $result_data['number_of_products'];
 		}
 		else {
 			return 0;
@@ -79,7 +84,15 @@ class shoppingcart {
 	}
 	
 	// returns shopping cart as html form with table
-	public function printCart() {
+	public function printCart($language_id = NULL) {
+		
+		// read default language from customizing if no language id was given
+		if($language_id == null) {
+			$language_id = get_default_language();
+		}
+		
+		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.title, p.price, (sc.quantity * p.price) AS amount FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
+		$query = db_query($sql_statement);
 		
 		$return_string = '<form id="shoppingcart">
 							<table>
@@ -89,13 +102,18 @@ class shoppingcart {
 									<th>'. HEADING_AMOUNT .'</th>
 								</tr>';
 		
-		$return_string = $return_string . print_r($this->products);
+		while($result_data = db_fetch_array($query)) {
+			$return_string = $return_string .'<tr><td>'. $result_data['title'] .'</td><td><span id="decrease_'. $result_data['product_id'] .'">minusicon</span><input type="text" id="quantity_'. $result_data['product_id'] .'" value="'. $result_data['quantity'] .'"><span id="increase_'. $result_data['product_id'] .'">plusicon</span></td><td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td></tr>';
+		}
 		
+		//for($i=0; $i < count($this->products); $i++) {
+		//	$return_string = $return_string .'<tr><td>'. $this->products[$i]['title'] .'</td><td>'. $this->products[$i]['quantity'] .'</td></tr>';
+		//}
 		
 		$return_string = $return_string .'</table></form>';
 		
 		$return_string = $return_string .'<div id="buttons">
-											<a href="#" id="start_checkout"><?php echo BUTTON_CHECKOUT; ?></a>
+											<a href="#" id="start_checkout">'. BUTTON_CHECKOUT .'</a>
 										  </div>';
 		
 		return $return_string;
@@ -105,6 +123,8 @@ class shoppingcart {
 	public static function deleteCart($session_id) {
 		$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $session_id .'"';
 		db_query($delete_statement);
+		
+		$this->loadProducts();
 	}
 	
 	/* private section */
@@ -116,7 +136,14 @@ class shoppingcart {
 		}
 		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.title FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
 		$query = db_query($sql_statement);
-		$this->products = db_fetch_array($query);
+		
+		// append single products to products array in object
+		$this->products = array();
+		
+		while($row = db_fetch_array($query)) {
+			array_push($this->products, $row);
+		}
+		
 		$this->product_counter = db_num_results($query);
 	}
 	
@@ -136,7 +163,7 @@ class shoppingcart {
 	// check if product exists in shopping cart
 	// If product exists in cart return quantity for product
 	private function productExists($product_id) {
-		$sql_statement = 'SELECT sc.quantity FROM '. TBL_SHOPPING_CART .' WHERE sc.session_id = "'. $this->session_id .'" AND sc.products_id = '. (int) $product_id;
+		$sql_statement = 'SELECT sc.quantity FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $this->session_id .'" AND sc.product_id = '. (int) $product_id;
 		$productincart_query = db_query($sql_statement);
 		
 		// product was found in shopping cart
