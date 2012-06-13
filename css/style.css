@@ -125,6 +125,7 @@ a:active {
 
 .slidebox{
 	height: 150px;
+	display: none;
 }
 
 .buttonlayout_more

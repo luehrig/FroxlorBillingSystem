@@ -16,7 +16,8 @@
 					<div class="textbox" >
 						Das ist das beste Produkt!!!
 					</div>
-				<button ID="clickme1" class="buttonlayout_more"><?php echo BUTTON_MORE; ?></button>
+<!-- TODO: rel tag has to content the product id! -->
+				<button class="buttonlayout_more" rel="1"><?php echo BUTTON_MORE; ?></button>
 			</div>
 			<div id="book1" class="slidebox">
 				<div class="textbox">
@@ -37,7 +38,7 @@
 					<div class="textbox">
 						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
 					</div>
-				<button ID="clickme2" class="buttonlayout_more"><?php echo BUTTON_MORE; ?></button>
+				<button class="buttonlayout_more" rel="2"><?php echo BUTTON_MORE; ?></button>
 			</div>
 			<div id="book2" class="slidebox">
 				<div class="textbox">
@@ -57,13 +58,14 @@
 					<div class="textbox">
 						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
 					</div>
-				<button ID="clickme3" class="buttonlayout_more"><?php echo BUTTON_MORE; ?></button>
-			</div>
-			<div id="book3" class="slidebox">
+					<div id="book3" class="slidebox">
 				<div class="textbox">
 					das ist ein test
 				</div>
+				
+			</div>
 				<button class="buttonlayout_buy"><?php echo BUTTON_ADD_TO_CART; ?></button>
+				<button class="buttonlayout_more" rel="3"><?php echo BUTTON_MORE; ?></button>
 			</div>
 		</div>
 		

@@ -141,41 +141,20 @@ $(function() {
 		return false;
 	});
 	
-	//doesnt work
-//	$("body").on("click", "a[class=clickme]", function() {
-//		if ($("#book").is(":hidden")) {
-//			$("#book").slideDown("slow");
-//			} else {
-//			$("#book").slideUp();
-//			
-//		}
-//	});
 	
 	// should work with one function (see functions below)
-	$('#clickme1').click(function() {
-		if ($("#book1").is(":hidden")) {
-			$("#book1").slideDown("slow");
+	$("body").on("click","button[class=buttonlayout_more]", function() {		
+		// get product id from rel tag
+		var product_id = $(this).attr('rel');
+		
+		var detailboxid = '#book'+product_id;
+		
+		if ($(detailboxid).is(":hidden")) {
+			$(detailboxid).slideDown("slow");
 			} else {
-			$("#book1").slideUp();
+			$(detailboxid).slideUp();
 			}
-	});
-	
-	$('#clickme2').click(function() {
-		if ($("#book2").is(":hidden")) {
-			$("#book2").slideDown("slow");
-			} else {
-			$("#book2").slideUp("slow");
-			}
-	});
-	
-	$('#clickme3').click(function() {
-		if ($("#book3").is(":hidden")) {
-			$("#book3").slideDown("slow");
-			} else {
-			$("#book3").slideUp();
-			}
-	});
-	
+	});	
 	
 });
 
