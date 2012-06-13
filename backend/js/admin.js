@@ -83,6 +83,37 @@ $(function() {
 		return false;
 	});	
 	
+	// set customizing fields editable for products
+	$('body').on("click","a[id=edit_product]", function() {
+		var product_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_product_editor", product_id: product_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
+	// set customizing fields editable for creating a new product
+	$('body').on("click","a[id=create_new_product]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_create_product_form"}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {
 
@@ -111,7 +142,7 @@ $(function() {
 		return false;
 	});	
 	
-	// set customizing fields editable
+	// set customizing fields editable for customer
 	$('body').on("click","a[id=edit_customer]", function() {
 		var customer_id = $(this).attr('rel');
 		
