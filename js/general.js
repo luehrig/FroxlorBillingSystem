@@ -89,6 +89,32 @@ $(function() {
 		return false;
 	});	
 	
+	// process login procedure via ajax form
+	$("body").on("click","form[id=loginform] input[type=submit][id=ajaxlogin]", function() {
+		var email = $('input[type=text][id=email]').val();
+		var password = $('input[type=password][id=password]').val();
+		
+		// do ajax call. If login was successful redirect to customer center
+		$.ajax({
+			type: "POST",
+			url: "logic/process_usermanagement.php",
+			data: { action: "login_customer", email: email, password: password }
+		}).done(function( msg ) {
+			if(msg == 'true') {
+				$.colorbox.close();
+			}
+			else {
+				$('#messagearea').html( msg );
+			}
+		});
+		
+		// reset input fields
+		$('input[type=text][id=email]').val('');
+		$('input[type=password][id=password]').val('');
+		
+		return false;
+	});	
+	
 	// process login procedure for shop backend
 	$("body").on("click","form[id=loginformbackend] input[type=submit][id=login]", function() {
 		var email = $('input[type=text][id=email]').val();
@@ -147,6 +173,24 @@ $(function() {
 		
 	});
 	
+	// first step in checkout process
+	$("body").on("click","a[id=start_checkout]", function() {
+		$.ajax({
+			type: "POST",
+			url: "logic/process_usermanagement.php",
+			data: { action: "isLoggedIn" }
+		}).done(function( result ) {
+			//$('.content_container').html( msg );
+			if(result == 'true') {
+				alert('next checkout step please!');
+			}
+			else {
+				$.colorbox({href:"customercenter/index.php"});
+			}
+		});
+		
+		return false;
+	});
 	
 	// overlay for help menu
 	$("body").on("click","a[class=lightbox]", function() {
@@ -155,7 +199,25 @@ $(function() {
 		return false;
 	});
 	
-
+	// start customer center or open colorbox with login form
+	$("body").on("click","a[id=start_customercenter]", function() {
+		$.ajax({
+			type: "POST",
+			url: "logic/process_usermanagement.php",
+			data: { action: "isLoggedIn" }
+		}).done(function( result ) {
+			if(result == 'true') {
+				alert('Please show me my customer center');
+			}
+			else {
+				$.colorbox({href:"customercenter/loginajax.php"});
+			}
+		});
+		
+		return false;
+		
+	});
+	
 	//overlay for customercenter (doesnt work yet)
 	$("body").on("click","a[class=customercenter]", function() {
 		$.colorbox({href:"customercenter/index.php"});
