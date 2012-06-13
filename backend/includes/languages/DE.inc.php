@@ -9,6 +9,8 @@ define('BUTTON_MODIFY_CUSTOMIZING_BACKEND','Customizing ändern');
 define('BUTTON_SAVE_CUSTOMIZING_BACKEND','Customizing speichern');
 define('BUTTON_SAVE','Speichern');
 define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
+define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
+define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');
 define('LABEL_MY_PRODUCTS','Meine Produkte');
@@ -35,6 +37,14 @@ define('LABEL_POSTCODE','Postleitzahl');
 define('LABEL_CITY','Ort');
 define('LABEL_COUNTRY','Land');
 
+define('LABEL_PRODUCT_ID', 'Produkt Nr. ');
+define('LABEL_PRODUCT_LANGUAGE', 'Sprache');
+define('LABEL_PRODUCT_TITLE', 'Titel');
+define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'Vertragslaufzeit');
+define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
+define('LABEL_PRODUCT_QUANTITY', 'Menge');
+define('LABEL_PRODUCT_PRICE', 'Preis');
+
 
 define('TABLE_HEADING_CONTENT_TITLE','Titel');
 define('TABLE_HEADING_CUSTOMER_CUSTOMER_NUMBER','Kundennummer');
@@ -44,7 +54,7 @@ define('TABLE_HEADING_CUSTOMER_LAST_NAME','Nachname');
 define('TABLE_HEADING_PRODUCT_LANGUAGE', 'Sprache');
 define('TABLE_HEADING_PRODUCT_TITLE', 'Titel');
 define('TABLE_HEADING_PRODUCT_CONTRACT_PERIODE', 'Vertragslaufzeit');
-define('TABLE_HEADING_PRODUCT_DESCRIBTION', 'Beschreibung');
+define('TABLE_HEADING_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('TABLE_HEADING_PRODUCT_QUANTITY', 'Menge');
 define('TABLE_HEADING_PRODUCT_PRICE', 'Preis');
 

@@ -40,6 +40,22 @@ switch($action) {
 		
 	break;
 	
+	case 'open_product_editor':
+		$product_id = $_POST['product_id'];
+	
+		$product = new product($product_id);
+	
+		echo $product->printFormEdit();
+	
+		break;
+		
+	case 'open_create_product_form':
+		
+		echo product::printCreateProductForm();
+		
+		break;
+		
+		
 	case 'get_server_overview':
 		echo 'Meine Server!';
 		break;
