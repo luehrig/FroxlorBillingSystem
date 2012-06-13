@@ -253,7 +253,7 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product` (
   `product_id` INT NOT NULL AUTO_INCREMENT ,
   `language_id` INT NOT NULL ,
   `title` VARCHAR(50) NOT NULL ,
-  `contract_periode` TIME NOT NULL ,
+  `contract_periode` TINYINT NOT NULL ,
   `description` MEDIUMTEXT NULL ,
   `quantity` INT NOT NULL ,
   `price` DOUBLE NOT NULL ,
@@ -657,6 +657,15 @@ START TRANSACTION;
 USE `froxlor_billing`;
 INSERT INTO `froxlor_billing`.`tbl_tax` (`tax_id`, `tax_rate`) VALUES (1, 0.0);
 INSERT INTO `froxlor_billing`.`tbl_tax` (`tax_id`, `tax_rate`) VALUES (2, 19.0);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `froxlor_billing`.`tbl_product`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `froxlor_billing`;
+INSERT INTO `froxlor_billing`.`tbl_product` (`product_id`, `language_id`, `title`, `contract_periode`, `description`, `quantity`, `price`) VALUES (1, 1, 'Beispielprodukt', 12, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam', 100, 10.0);
 
 COMMIT;
 
