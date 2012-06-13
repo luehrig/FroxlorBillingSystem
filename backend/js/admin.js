@@ -161,6 +161,32 @@ $(function() {
 		return false;
 	});
 	
+	// delete content
+	$("body").on("click", "a[id=delete_content]", function() {
+
+		var information = $(this).attr('rel');
+		var stringParts = information.split('_');
+		var content_id = stringParts[0];
+		var language_id = stringParts[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "delete_content", content_id: content_id, language_id: language_id }
+		}).done(function( msg ) {
+			// reload content area
+			$.ajax({
+				type: "POST",
+				url: "logic/process_action.php",
+				data: { action: "get_content_overview" }
+			}).done(function( msg ) {
+				$('.content').html( msg );
+			});
+		});
+		
+		return false;
+	});
+	
 	// open editor for new content
 	$("body").on("click", "a[id=create_new_content]", function() {
 	
@@ -201,8 +227,6 @@ $(function() {
 		var title = $('input[type=text][id=title]').val();
 		var text = $('textarea[id=text]').val();
 		var language_id = $('select[name=language_selection] option:selected').attr('id');
-		
-		alert(language_id);
 		
 		$.ajax({
 			type: "POST",

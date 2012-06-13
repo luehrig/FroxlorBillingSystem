@@ -118,7 +118,7 @@ switch($action) {
 		$title = $_POST['title'];
 		$text = $_POST['text'];
 		
-		$content = new content($content_id);
+		$content = new content($content_id, $language_id);
 		$content->update($title, $text, $language_id);
 		
 	break;
@@ -133,10 +133,20 @@ switch($action) {
 	
 		break;
 	
+	case 'delete_content':
+
+		$content_id = $_POST['content_id'];
+		$language_id = $_POST['language_id'];
+		
+		$content = new content($content_id, $language_id);
+		$content->delete($language_id);
+		
+		break;
+		
 	case 'get_statistic_overview':
 		echo 'Shopstatistiken!';
-		break;
-
+		break;	
+		
 }	
 
 ?>
