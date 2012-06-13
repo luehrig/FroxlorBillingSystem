@@ -4,7 +4,7 @@
 		Produkt
 	</div>
 
-	<div class="boxwrapper">
+	<div class="productboxwrapper">
 	
 		<!-- Product No.1 -->
 		<div class="whitebox">
@@ -14,7 +14,7 @@
 				<br>
 				Produktname
 					<div class="textbox">
-						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
+						ie brauchen dies und das? Dann ist das das richtige!
 					</div>
 					<button class="buttonlayout_buy"><?php echo BUTTON_ADD_TO_CART; ?></button>
 					<div id="book1" class="slidebox">
