@@ -125,6 +125,28 @@ $(function() {
 		return false;
 	});
 	
+	// remove product from shopping cart
+	$("body").on("click","a[id^=removeproduct_]", function() {
+		var product_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_business_logic.php",
+			data: { action: "remove_product_from_cart", product_id: product_id }
+		}).done(function( msg ) {
+			getProductCountInCart();
+			
+			$.ajax({
+				type: "POST",
+				url: "logic/process_content_handling.php",
+				data: { action: "show_shoppingcart" }
+			}).done(function( msg ) {
+				$('.content_container').html( msg );
+			});
+		});
+		
+	});
+	
 	
 	// overlay for help menu
 	$("body").on("click","a[class=lightbox]", function() {

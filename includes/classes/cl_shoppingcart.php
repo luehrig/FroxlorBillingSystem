@@ -51,11 +51,11 @@ class shoppingcart {
 			// OR product exists and no quantity was given (which means whole product should be deleted)
 			if($check_result != false && $check_result >= $quantity || $check_result != false && $quantity == NULL) {
 				// delete products with given quantity (if quantity is greater than whole quantity of product)
-				if($quantity != NULL || $check_result > $quantity) {
+				if($quantity != NULL && $check_result > $quantity) {
 					$delete_statement = 'UPDATE '. TBL_SHOPPING_CART .' AS sc SET sc.quantity = sc.quantity - '. $quantity .' WHERE sc.session_id = "'. $this->session_id .'" AND sc.product_id = '. (int) $product_id;
 				}
 				else {
-					$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $this->session_id .'" AND sc.product_id = '. (int) $product_id;
+					$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' WHERE session_id = "'. $this->session_id .'" AND product_id = '. (int) $product_id;
 				}
 				db_query($delete_statement);
 			}
@@ -103,7 +103,7 @@ class shoppingcart {
 								</tr>';
 		
 		while($result_data = db_fetch_array($query)) {
-			$return_string = $return_string .'<tr><td>'. $result_data['title'] .'</td><td><span id="decrease_'. $result_data['product_id'] .'">minusicon</span><input type="text" id="quantity_'. $result_data['product_id'] .'" value="'. $result_data['quantity'] .'"><span id="increase_'. $result_data['product_id'] .'">plusicon</span></td><td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td></tr>';
+			$return_string = $return_string .'<tr><td>'. $result_data['title'] .'</td><td><span id="decrease_'. $result_data['product_id'] .'">minusicon</span><input type="text" id="quantity_'. $result_data['product_id'] .'" value="'. $result_data['quantity'] .'"><span id="increase_'. $result_data['product_id'] .'">plusicon</span></td><td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td><td><a href="#" id="removeproduct_'. $result_data['product_id'] .'" rel="'. $result_data['product_id'] .'">removeicon</a></td></tr>';
 		}
 		
 		//for($i=0; $i < count($this->products); $i++) {

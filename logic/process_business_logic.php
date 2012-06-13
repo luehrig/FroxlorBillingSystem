@@ -36,6 +36,15 @@ switch($action) {
 		
 	break;
 	
+	case 'remove_product_from_cart':
+		
+		$product_id = $_POST['product_id'];
+		
+		$cart = new shoppingcart(session_id());
+		$cart->removeProduct($product_id);
+		
+	break;
+	
 }
 
 
