@@ -141,7 +141,7 @@ class product {
 		return $this->productExists($product_data);
 	}
 	
-	public static function printCreateProductForm(){
+	public static function printCreateProductForm($container_id = 'new_product_editor'){
 		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
 		$product_query = db_query($sql_statement);
 		$number_of_products = db_num_results($product_query);
@@ -170,6 +170,7 @@ class product {
 		$return_string = $return_string . '<input type="submit" name="save_product" id="save_product" value="'. BUTTON_SAVE .'">';
 		$return_string = $return_string . '</form></div>';
 		return $return_string;
+		//return 'gugugs';
 		
 	} 
 	
