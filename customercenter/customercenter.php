@@ -1,23 +1,18 @@
-<?php
-// get selected customer menu element
-$custcontent = $_GET['custcontent'];
+<div class="content_container">
 
-include("customermenu.php");
+<div class='customermenu'>
+	<ul>
+	   <li class='active '><a href='#' id="mydata" rel="<?php echo $_SESSION['customer_id'];?>"><span><?php echo VIEW_CMENU_MYDATA; ?></span></a></li>
+	   <li><a href='#'><span><?php echo VIEW_CMENU_MYPRODUCTS; ?></span></a></li>
+	   <li><a href='#'><span><?php echo VIEW_CMENU_MYINVOICES; ?></span></a></li>
+	</ul>
+</div>
 
-/* Show selected content */
-switch ($custcontent) {
-	// Customer's Data
-	case 'mydata':
-		include("custdata.php");
-		break;
-		// Customer's Products
-	case 'myproducts':
-		include("custproducts.php");
-		break;
-		// Customer's Invoices
-	case 'myinvoices':
-		include("custinvoices.php");
-		break;
-}
 
-?>
+<div class='customer_content_container'>
+
+
+</div>
+
+
+</div>

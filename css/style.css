@@ -285,24 +285,26 @@ a:active {
 .customermenu {
 	background: #333;
 	list-style: none;
-	margin: 0;
+	margin: 15px;
 	padding: 0;
-	width: 170px;
-	height: 100%;
 	float: left;
+	border:1px solid #000000;
 }
 .customermenu ul {
 	list-style-type:none;
+	padding: 0;
+	margin: 5px;
 }
 .customermenu li {
 	font: 67.5% 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
+	color:#999999;
 	margin: 0;
 	padding: 0;
 }
 .customermenu a {
 	background: #333;
 	border-bottom: 1px solid #393939;
-	color: #ccc;
+	color:#999999;
 	display: block;
 	margin: 0;
 	padding: 8px 12px;
@@ -310,8 +312,12 @@ a:active {
 	font-weight:normal;
 }
 .customermenu a:hover {
-	background: #2580a2 url('../images/hover.gif') left center no-repeat;
+	background:  url('../images/cmenu_hover_blue.png') left center no-repeat;
 	color: #fff;
 	padding-bottom: 8px;
+}
+
+.customermenu li.active a {
+	background:  url('../images/cmenu_hover_blue.png') left center no-repeat;
 }
 

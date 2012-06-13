@@ -76,8 +76,12 @@ define('VIEW_CMENU_MYPRODUCTS', 'Meine Produkte');
 define('VIEW_CMENU_MYINVOICES', 'Meine Rechnungen');
 
 /* customer data view */
-define('LABLE_LOGIN_DATA', 'Anmeldedaten');
-define('LABLE_ADRESS', 'Anschrift');
+define('LABEL_LOGIN_DATA', 'Anmeldedaten');
+define('LABEL_B_ADDRESS', 'Rechnungsanschrift');
+define('LABEL_S_ADDRESS', 'Lieferanschrift');
+define('LABEL_TEL', 'Tel.');
+define('LABEL_SAME_ADRESS', 'Selbe Rechnungs- und Lieferanschrift');
+
 
 
 

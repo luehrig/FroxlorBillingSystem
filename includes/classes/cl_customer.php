@@ -68,7 +68,37 @@ class customer {
 			
 		$return_string = '<div id="'. $container_id .'"><form>';
 		
-		$return_string = $return_string .'<fieldset>
+		
+		$return_string = $return_string .'<table><tr><th>'.LABEL_LOGIN_DATA.': </th><td>'.LABEL_EMAIL.': '.$this->email. // eMail
+																		'<br>'.LABEL_PASSWORD.': '.'</td></tr>'. //Password
+												'<tr><th>'.LABEL_B_ADDRESS.': </th><td>';
+																		$this->is_adress_equal=true;
+																		 if($this->gender == $customizing->getCustomizingValue('sys_gender_male') ){ // Gender
+																		 	$return_string = $return_string .SELECT_CUSTOMER_GENDER_MALE;
+																		 }
+																		 else{
+																		 	$return_string = $return_string .SELECT_CUSTOMER_GENDER_FEMALE;
+																		 }
+																		 $return_string = $return_string.' '.$this->first_name.' '.$this->last_name. // name
+									 								  	'<br>'.$billing_address_data['street'].' '.$billing_address_data['street_number']. // street + number
+									 								  	'<br>'.$billing_address_data['post_code'].' '.$billing_address_data['city']. // post code + city
+									 								  	'<br>'.$billing_address_data['country_code'].'</td></tr>'. // country
+									 			'<tr><th>'.LABEL_S_ADDRESS.': </th><td>';
+																		 if($billingaddress_id = $shippingaddress_id){ // if billing address equals shipping address show checked checkbox
+																		 	$return_string = $return_string.'<input type="checkbox" name="same_adress" readonly checked> LABEL_SAME_ADRESS<br>';
+																		 }
+																		 else{ // if not show shipping address
+																		 	
+																		 }
+																		 $return_string = $return_string.
+									 			'<tr><th>'.LABEL_TELEPHONE.': </th><td>'.LABEL_TEL.': '.$this->telephone.
+									 									'<br>'.LABEL_FAX.': '.$this->fax.'</td></tr>'.								 																		 
+										'</table>';
+
+		
+		
+		
+		/* $return_string = $return_string .'<fieldset>
     										<legend>'. FIELDSET_CUSTOMER_GENERAL_INFORMATION .'</legend>
     											<label for="gender">'. LABEL_GENDER .'</label>
     												<select name="gender" id="gender" size="1" rel="mandatory" readonly>';
@@ -132,7 +162,7 @@ class customer {
 											    	</div>
 											    	</fieldset>
 											    </fieldset>';
-		
+	 */	
 												$return_string = $return_string . '<input type="submit" name="edit_customer" id="edit_customer" rel="'. $this->customer_id .'" value="'. BUTTON_EDIT_CUSTOMER .'">';
 		
 		$return_string = $return_string .'</form></div>';
