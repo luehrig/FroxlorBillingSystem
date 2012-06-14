@@ -128,6 +128,7 @@ $(function() {
 		}).done(function( msg ) {
 			if(msg == 'true') {
 				$.colorbox.close();
+				$('a[id=customercenter]').addClass('nav');
 			}
 			else {
 				$('#messagearea').html( msg );
@@ -206,7 +207,7 @@ $(function() {
 	});
 	
 	// start customer center or open colorbox with login form
-	$("body").on("click","a[id=start_customercenter]", function() {
+	$("body").on("click","a[id=customercenter]", function() {
 		$.ajax({
 			type: "POST",
 			url: "logic/process_usermanagement.php",

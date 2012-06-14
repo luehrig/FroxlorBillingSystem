@@ -5,7 +5,7 @@
 	   <li><a href="#!page=help" class="lightbox"><span><?php echo VIEW_MENU_HELP; ?></span></a></li>
 	   <li><a href='#!page=imprint' id="imprint" class="nav"><span><?php echo VIEW_MENU_IMPRINT; ?></span></a></li>
 	   
-	   <li id="mainmenuelement"><a href="customercenter.html" id="start_customercenter"><span><?php echo VIEW_MENU_CUSTOMERCENTER?></span></a></li>
+	   <li id="mainmenuelement"><a href="#!page=customercenter" id="customercenter"><span><?php echo VIEW_MENU_CUSTOMERCENTER?></span></a></li>
 	   
 	</ul>
 </div>
