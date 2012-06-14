@@ -138,15 +138,16 @@ $(function() {
 	});	
 	
 	
-	// open editor for product
+	// create new product
 	$("body").on("click", "input[type=submit][id=save_product]", function() {
 
-		var language_id = $('input[type=hidden][id=language_id]').val();
+		var language_id = $('input[type=text][id=language_id]').val();
+		alert('trigger me');
 		var title = $('input[type=text][id=title]').val();
-		var contract_periode = $('input[type=hidden][id=contract_periode]').val();
+		var contract_periode = $('input[type=text][id=contract_periode]').val();
 		var description = $('textarea[id=description]').val();
-		var quantity = $('input[type=hidden][id=quantity]').val();
-		var price = $('input[type=hidden][id=price]').val();
+		var quantity = $('input[type=text][id=quantity]').val();
+		var price = $('input[type=text][id=price]').val();
 		
 		$.ajax({
 			type: "POST",

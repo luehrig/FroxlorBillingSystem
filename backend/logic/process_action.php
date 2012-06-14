@@ -59,22 +59,27 @@ switch($action) {
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
 		$contract_periode = $_POST['contract_periode'];
-		$describtion = $_POST['describtion'];
+		$description = $_POST['description'];
 		$quantity = $_POST['quantity'];
 		$price = $_POST['price'];
 		
 		$product_data = array("language_id"=>$language_id, 
 							  "title"=>$title,
 							  "contract_periode"=>$contract_periode,
-							  "describtion"=>$describtion,
+							  "description"=>$description,
 							  "quantity"=>$quantity,
 							  "price"=>$price);
 		
 		if(product::productExists($product_data)){
-			echo "Dieses Product existiert bereits";
+			echo "Dieses Product existiert bereits!";
 		}
 		else{ 
-			product::create($product_data);
+			if(product::create($product_data)){
+				echo INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL;
+			}
+			else{
+				alert(INFO_MESSAGE_DB_INSERT_FAILED);
+			}	
 		}
 	
 		break;

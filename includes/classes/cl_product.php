@@ -41,24 +41,24 @@ class product {
 			"'. $product_data['description'] .'",
 			"'. $product_data['quantity'] .'",
 			"'. $product_data['price'] .'")';
-			db_query($sql_insert_statement);
+			return db_query($sql_insert_statement);
 		}
 	}
 	 
 	public function delete($product_id) {
-		$sql_delete_statement = 'DELETE FROM'. TBL_PRODUCT .'WHERE product_id = '. (int) $product_id;
+		$sql_delete_statement = 'DELETE FROM'. TBL_PRODUCT .'WHERE product_id = "'. (int) $product_id.'"';
 		db_query($sql_delete_statement);
 	}
 	
 	public function update($product_id, $product_data) {
 		if($product_data != NULL){
 			$sql_delete_statement = 'UPDATE'. TBL_PRODUCT .'SET
-				language_id='. $product_data['language_id'] .', 
-				title='. $product_data['title'] .', 
-				contract_periode='. $product_data['contract_periode'] .', 
-				description='. $product_data['description']. ', 
-				quantity='. $product_data['quantity'] .', 
-				price='. $product_data['price'] .'
+				language_id="'. $product_data['language_id'] .'", 
+				title="'. $product_data['title'] .'", 
+				contract_periode="'. $product_data['contract_periode'] .'", 
+				description="'. $product_data['description']. '", 
+				quantity="'. $product_data['quantity'] .'", 
+				price="'. $product_data['price'] .'"
 				WHERE product_id="'. $product_data['product_id'] .'"';
 			
 			db_query($sql_delete_statement);
@@ -177,15 +177,16 @@ class product {
 	
 	public static function productExists($product_data){
 	
-		$sql_select_statement = 'SELECT * FROM'. TBL_PRODUCT .' WHERE
-		language_id = '. $product_data['language_id'] .' AND
-		title = '. $product_data['title'] .' AND
-		contract_periode = '. $product_data['contract_periode'] .' AND
-		description = '. $product_data['description'] .' AND
-		quantity = '. $product_data['quantity'] .' AND
-		price = '. $product_data['price'];
+		$sql_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE
+		language_id = "'. $product_data['language_id'] .'" AND
+		title = "'. $product_data['title'] .'" AND
+		contract_periode = "'. $product_data['contract_periode'] .'" AND
+		description = "'. $product_data['description'] .'" AND
+		quantity = "'. $product_data['quantity'] .'" AND
+		price = "'. $product_data['price'].'"';
 		$info_query = db_query($sql_statement);
-		if(!$info_query){
+		$db_content = db_fetch_array($info_query);
+		if($db_content == ""){
 			return false;
 		}
 		else return true;
@@ -194,7 +195,7 @@ class product {
 	
 	// private section
 	private function getProductFromDb($product_id) {
-		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = '. (int) $product_id;
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'"';
 		$info_query = db_query($sql_select_statement);
 		return db_fetch_array($info_query);
 	}
