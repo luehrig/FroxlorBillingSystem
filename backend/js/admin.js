@@ -114,6 +114,35 @@ $(function() {
 		
 	});	
 	
+	
+	// open editor for product
+	$("body").on("click", "input[type=submit][id=save_product]", function() {
+
+		var language_id = $('input[type=hidden][id=language_id]').val();
+		var title = $('input[type=text][id=title]').val();
+		var contract_periode = $('input[type=hidden][id=contract_periode]').val();
+		var description = $('textarea[id=description]').val();
+		var quantity = $('input[type=hidden][id=quantity]').val();
+		var price = $('input[type=hidden][id=price]').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "create_new_product", language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});
+	
+	
+	
+	
+	
+	
+	
+	
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {
 
@@ -297,5 +326,9 @@ $(function() {
 		});
 		
 		return false;
-	});	
+	});
+	
+	// alert message with
 });
+
+	

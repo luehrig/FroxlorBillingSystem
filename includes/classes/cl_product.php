@@ -148,7 +148,7 @@ class product {
 		$new_product_id = $number_of_products + 1;
 		
 		$return_string = '<div id="'.$container_id.'">.
-		<form>'.'<fieldset>'.
+		<form method="post">'.'<fieldset>'.
 		'<legend>'.
 		'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
 		'<label for="product_id">'. $new_product_id.' </label>'.
@@ -172,7 +172,25 @@ class product {
 		return $return_string;
 		//return 'gugugs';
 		
-	} 
+	}
+
+	
+	public static function productExists($product_data){
+	
+		$sql_select_statement = 'SELECT * FROM'. TBL_PRODUCT .' WHERE
+		language_id = '. $product_data['language_id'] .' AND
+		title = '. $product_data['title'] .' AND
+		contract_periode = '. $product_data['contract_periode'] .' AND
+		description = '. $product_data['description'] .' AND
+		quantity = '. $product_data['quantity'] .' AND
+		price = '. $product_data['price'];
+		$info_query = db_query($sql_statement);
+		if(!$info_query){
+			return false;
+		}
+		else return true;
+	}
+	
 	
 	// private section
 	private function getProductFromDb($product_id) {
@@ -181,22 +199,7 @@ class product {
 		return db_fetch_array($info_query);
 	}
 	
-	private function productExists($product_data){
 		
-		$sql_select_statement = 'SELECT * FROM'. TBL_PRODUCT .' WHERE 
-																language_id = '. $product_data['language_id'] .' AND 
-																title = '. $product_data['title'] .' AND 
-																contract_periode = '. $product_data['contract_periode'] .' AND 
-																description = '. $product_data['description'] .' AND 
-																quantity = '. $product_data['quantity'] .' AND 
-																price = '. $product_data['price'];
-		$info_query = db_query($sql_statement);
-		if(!$info_query){
-			return false;
-		}
-		else return true;
-	}
-	
 }
 
 ?>
