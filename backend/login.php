@@ -9,7 +9,7 @@ db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 
 include_once PATH_INCLUDES .'database_tables.php';
-include_once PATH_CUSTOMERCENTER_LANGUAGES .'DE.inc.php';
+include_once PATH_BACKEND_LANGUAGES .'DE.inc.php';
 
 
 require PATH_FUNCTIONS .'general.php';
@@ -30,7 +30,7 @@ require PATH_CLASSES .'cl_customizing.php';
 <title><?php echo PAGE_TITLE_LOGIN_BACKEND; ?></title>
 <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>!window.jQuery && document.write(unescape('%3Cscript src="../js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
-<script language="javascript" src="../js/general.js"></script>
+<script language="javascript" src="js/admin.js"></script>
 </head>
 <body>
 <div id="messagearea"></div>    

@@ -10,6 +10,8 @@ define('PATH_IMAGES', BASE_DIR .'images/');
 
 define('PATH_CUSTOMERCENTER_INCLUDES', BASE_DIR .'customercenter/includes/');
 define('PATH_CUSTOMERCENTER_LANGUAGES', BASE_DIR . PATH_CUSTOMERCENTER_INCLUDES . 'languages/');
+define('PATH_BACKEND_INCLUDES', BASE_DIR .'backend/includes/');
+define('PATH_BACKEND_LANGUAGES', PATH_BACKEND_INCLUDES . 'languages/');
 
 
 /* database section */
