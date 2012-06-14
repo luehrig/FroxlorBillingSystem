@@ -45,13 +45,13 @@ switch($action) {
 	
 		$product = new product($product_id);
 	
-		echo $product->printFormEdit();
+		echo $product->printFormEdit(language::printLanguages());
 	
 		break;
 		
 	case 'open_create_product_form':
 		
-		echo product::printCreateProductForm();
+		echo product::printCreateProductForm(language::printLanguages());
 		
 		break;
 

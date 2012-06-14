@@ -141,8 +141,8 @@ $(function() {
 	// create new product
 	$("body").on("click", "input[type=submit][id=save_product]", function() {
 
-		var language_id = $('input[type=text][id=language_id]').val();
-		alert('trigger me');
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
+		alert(language_id);
 		var title = $('input[type=text][id=title]').val();
 		var contract_periode = $('input[type=text][id=contract_periode]').val();
 		var description = $('textarea[id=description]').val();

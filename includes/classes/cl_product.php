@@ -106,7 +106,7 @@ class product {
 		return $return_string;
 	}
 	
-	public function printFormEdit($container_id = 'product_editor'){
+	public function printFormEdit($language_select_box, $container_id = 'product_editor'){
 		$return_string = '<div id="'.$container_id.'">.
 				<form>'.'<fieldset>'.
 					'<legend>'.
@@ -114,7 +114,8 @@ class product {
 						'<label for="product_id">'. $this->product_id.' </label>'.
 					'</legend>'.
 					'<label for="language_id">'. LABEL_PRODUCT_LANGUAGE. '</label> '.
-					'<input type="text" id="language_id" name="language" value="'. $this->language_id .'"><br>'.
+					$language_select_box.
+		//'<input type="text" id="language_id" name="language" value="'. $this->language_id .'"><br>'.
 					'<label for="title">'. LABEL_PRODUCT_TITLE .'</label>'.
 					'<input type="text" id="title" name="title" value="'. $this->title .'"><br>'.
 					'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
@@ -127,7 +128,7 @@ class product {
 					'<input type="text" id="price" name="price" value="'. $this->price .'"><br>';
 		
 		$return_string = $return_string . '</fieldset>';
-		$return_string = $return_string . '<input type="submit" name="save_product" id="save_product" value="'. BUTTON_CREATE_PRODUCT .'">';
+		$return_string = $return_string . '<input type="submit" name="save_product" id="save_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
 		$return_string = $return_string . '</form></div>';
 		return $return_string;
 		
@@ -141,7 +142,7 @@ class product {
 		return $this->productExists($product_data);
 	}
 	
-	public static function printCreateProductForm($container_id = 'new_product_editor'){
+	public static function printCreateProductForm($language_select_box, $container_id = 'new_product_editor'){
 		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
 		$product_query = db_query($sql_statement);
 		$number_of_products = db_num_results($product_query);
@@ -154,7 +155,7 @@ class product {
 		'<label for="product_id">'. $new_product_id.' </label>'.
 		'</legend>'.
 		'<label for="language_id">'. LABEL_PRODUCT_LANGUAGE. '</label> '.
-		'<input type="text" id="language_id" name="language"><br>'.
+		$language_select_box . 
 		'<label for="title">'. LABEL_PRODUCT_TITLE .'</label>'.
 		'<input type="text" id="title" name="title"><br>'.
 		'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
@@ -170,7 +171,6 @@ class product {
 		$return_string = $return_string . '<input type="submit" name="save_product" id="save_product" value="'. BUTTON_SAVE .'">';
 		$return_string = $return_string . '</form></div>';
 		return $return_string;
-		//return 'gugugs';
 		
 	}
 

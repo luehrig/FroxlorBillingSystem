@@ -10,7 +10,7 @@ define('BUTTON_SAVE_CUSTOMIZING_BACKEND','Customizing speichern');
 define('BUTTON_SAVE','Speichern');
 define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
-define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
+define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
 
 define('LABEL_MY_SHOP','Mein Shop');
 define('LABEL_MY_PRODUCTS','Meine Produkte');
