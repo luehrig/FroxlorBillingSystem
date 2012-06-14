@@ -1,5 +1,31 @@
 $(function() {
 
+	// SEO friendly URLS begin
+	
+	// Override the default behavior of all hyperlinks that are part of the nav class so that, when
+	// clicked, their `id` value is pushed onto the history hash instead of being navigated to directly.
+	$("body").on("click","a[class=nav]", function() {
+		var state = $(this).attr('id');
+	    $.bbq.pushState({ page: state });
+
+	    return false;
+	});  	
+	  
+	// Bind a callback that executes when document.location.hash changes.
+	$(window).bind( "hashchange", function(e) {
+	    var url = $.bbq.getState( "page" );
+
+	    // dynamic content loading
+	    loadContent(url, 1);
+	});
+
+	// Since the event is only triggered when the hash changes, we need to trigger the event now, to handle 
+	// the hash the page may have loaded with.
+	$(window).trigger( "hashchange" );  
+	
+	// SEO friendly URLS end
+	
+	
 	$(document).ready(function() {
 		// code that is executed if page was loaded
 	});
@@ -137,9 +163,9 @@ $(function() {
 		return false;
 	});	
 	
-	// open shopping cart
+	// open shopping cart -> obsolete since jquery bbq plugin
 	// TODO: This is maybe a candidate for another colorbox
-	$("body").on("click","a[id=shoppingcart]", function() {
+	/* $("body").on("click","a[id=shoppingcart]", function() {
 		$.ajax({
 			type: "POST",
 			url: "logic/process_content_handling.php",
@@ -149,7 +175,7 @@ $(function() {
 		});
 		
 		return false;
-	});
+	}); */
 	
 	// remove product from shopping cart
 	$("body").on("click","a[id^=removeproduct_]", function() {
@@ -160,7 +186,7 @@ $(function() {
 			url: "logic/process_business_logic.php",
 			data: { action: "remove_product_from_cart", product_id: product_id }
 		}).done(function( msg ) {
-			getProductCountInCart();
+			setProductCountInCart();
 			
 			$.ajax({
 				type: "POST",
@@ -250,7 +276,7 @@ $(function() {
 			url: "logic/process_business_logic.php",
 			data: { action: "add_product_to_cart", product_id: product_id }
 		}).done(function( msg ) {
-			getProductCountInCart();
+			setProductCountInCart();
 		});
 		
 		return false;
@@ -259,7 +285,8 @@ $(function() {
 	
 });
 
-function getProductCountInCart() {
+// update cart quantity
+function setProductCountInCart() {
 	// update shopping cart quantity
 	$.ajax({
 		type: "POST",
@@ -267,5 +294,18 @@ function getProductCountInCart() {
 		data: { action: "get_product_count_in_cart" }
 	}).done(function( msg ) {
 		$('#current_cart_quantity').html( msg );
+	});
+}
+
+// load specific content in content container
+function loadContent(areacode, language_id) {
+	var action = "show_"+areacode;
+	
+	$.ajax({
+		type: "POST",
+		url: "logic/process_content_handling.php",
+		data: { action: action, language_id: language_id }
+	}).done(function( msg ) {
+		$('.content_container').html( msg );
 	});
 }

@@ -33,12 +33,13 @@ $cart = new shoppingcart(session_id());
 <script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
 <script language="javascript" src="js/jquery.colorbox-min.js"></script>
 <script language="javascript" src="js/general.js"></script>
+<script language="javascript" src="js/jquery.ba-bbq.min.js"></script>
 
 
 </head>
 <body>
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
-	<a href="shoppingcart" ID="shoppingcart"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
+	<a href="shoppingcart.html" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 
 </div>
