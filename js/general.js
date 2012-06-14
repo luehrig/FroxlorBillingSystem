@@ -1,5 +1,31 @@
 $(function() {
 
+	// SEO friendly URLS begin
+	
+	// Override the default behavior of all hyperlinks that are part of the nav class so that, when
+	// clicked, their `id` value is pushed onto the history hash instead of being navigated to directly.
+	$("body").on("click","a[class=nav]", function() {
+		var state = $(this).attr('id');
+	    $.bbq.pushState( '#!page='+ state );
+
+	    return false;
+	});  	
+	  
+	// Bind a callback that executes when document.location.hash changes.
+	$(window).bind( "hashchange", function(e) {
+	    var url = $.bbq.getState( "!page" );
+
+	    // dynamic content loading
+	    loadContent(url, 1);
+	});
+
+	// Since the event is only triggered when the hash changes, we need to trigger the event now, to handle 
+	// the hash the page may have loaded with.
+	$(window).trigger( "hashchange" );  
+	
+	// SEO friendly URLS end
+	
+	
 	$(document).ready(function() {
 		// code that is executed if page was loaded
 	});
@@ -89,6 +115,32 @@ $(function() {
 		return false;
 	});	
 	
+	// process login procedure via ajax form
+	$("body").on("click","form[id=loginform] input[type=submit][id=ajaxlogin]", function() {
+		var email = $('input[type=text][id=email]').val();
+		var password = $('input[type=password][id=password]').val();
+		
+		// do ajax call. If login was successful redirect to customer center
+		$.ajax({
+			type: "POST",
+			url: "logic/process_usermanagement.php",
+			data: { action: "login_customer", email: email, password: password }
+		}).done(function( msg ) {
+			if(msg == 'true') {
+				$.colorbox.close();
+			}
+			else {
+				$('#messagearea').html( msg );
+			}
+		});
+		
+		// reset input fields
+		$('input[type=text][id=email]').val('');
+		$('input[type=password][id=password]').val('');
+		
+		return false;
+	});	
+	
 	// process login procedure for shop backend
 	$("body").on("click","form[id=loginformbackend] input[type=submit][id=login]", function() {
 		var email = $('input[type=text][id=email]').val();
@@ -111,9 +163,9 @@ $(function() {
 		return false;
 	});	
 	
-	// open shopping cart
+	// open shopping cart -> obsolete since jquery bbq plugin
 	// TODO: This is maybe a candidate for another colorbox
-	$("body").on("click","a[id=shoppingcart]", function() {
+	/* $("body").on("click","a[id=shoppingcart]", function() {
 		$.ajax({
 			type: "POST",
 			url: "logic/process_content_handling.php",
@@ -123,8 +175,48 @@ $(function() {
 		});
 		
 		return false;
+	}); */
+	
+	// remove product from shopping cart
+	$("body").on("click","a[id^=removeproduct_]", function() {
+		var product_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_business_logic.php",
+			data: { action: "remove_product_from_cart", product_id: product_id }
+		}).done(function( msg ) {
+			setProductCountInCart();
+			
+			$.ajax({
+				type: "POST",
+				url: "logic/process_content_handling.php",
+				data: { action: "show_shoppingcart" }
+			}).done(function( msg ) {
+				$('.content_container').html( msg );
+			});
+		});
+		
 	});
 	
+	// first step in checkout process
+	$("body").on("click","a[id=start_checkout]", function() {
+		$.ajax({
+			type: "POST",
+			url: "logic/process_usermanagement.php",
+			data: { action: "isLoggedIn" }
+		}).done(function( result ) {
+			//$('.content_container').html( msg );
+			if(result == 'true') {
+				alert('next checkout step please!');
+			}
+			else {
+				$.colorbox({href:"customercenter/index.php"});
+			}
+		});
+		
+		return false;
+	});
 	
 	// overlay for help menu
 	$("body").on("click","a[class=lightbox]", function() {
@@ -133,7 +225,25 @@ $(function() {
 		return false;
 	});
 	
-
+	// start customer center or open colorbox with login form
+	$("body").on("click","a[id=start_customercenter]", function() {
+		$.ajax({
+			type: "POST",
+			url: "logic/process_usermanagement.php",
+			data: { action: "isLoggedIn" }
+		}).done(function( result ) {
+			if(result == 'true') {
+				alert('Please show me my customer center');
+			}
+			else {
+				$.colorbox({href:"customercenter/loginajax.php"});
+			}
+		});
+		
+		return false;
+		
+	});
+	
 	//overlay for customercenter (doesnt work yet)
 	$("body").on("click","a[class=customercenter]", function() {
 		$.colorbox({href:"customercenter/index.php"});
@@ -142,7 +252,7 @@ $(function() {
 	});
 	
 	
-	// should work with one function (see functions below)
+	// display details for product in product overview
 	$("body").on("click","button[class=buttonlayout_more]", function() {		
 		// get product id from rel tag
 		var product_id = $(this).attr('rel');
@@ -156,5 +266,46 @@ $(function() {
 			}
 	});	
 	
+	// add product from product overview to cart
+	$("body").on("click","button[class=buttonlayout_buy]", function() {		
+		// get product id from rel tag
+		var product_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_business_logic.php",
+			data: { action: "add_product_to_cart", product_id: product_id }
+		}).done(function( msg ) {
+			setProductCountInCart();
+		});
+		
+		return false;
+		
+	});	
+	
 });
 
+// update cart quantity
+function setProductCountInCart() {
+	// update shopping cart quantity
+	$.ajax({
+		type: "POST",
+		url: "logic/process_business_logic.php",
+		data: { action: "get_product_count_in_cart" }
+	}).done(function( msg ) {
+		$('#current_cart_quantity').html( msg );
+	});
+}
+
+// load specific content in content container
+function loadContent(areacode, language_id) {
+	var action = "show_"+areacode;
+	
+	$.ajax({
+		type: "POST",
+		url: "logic/process_content_handling.php",
+		data: { action: action, language_id: language_id }
+	}).done(function( msg ) {
+		$('.content_container').html( msg );
+	});
+}

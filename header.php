@@ -1,13 +1,13 @@
 <?php 
-
-require 'includes/classes/cl_customizing.php';
-require 'includes/classes/cl_shoppingcart.php';
+include_once 'configuration.inc.php';
 
 session_start();
 
+require PATH_CLASSES .'cl_customizing.php';
+require PATH_CLASSES .'cl_shoppingcart.php';
+require PATH_CLASSES .'cl_content.php';
 
 
-include_once 'configuration.inc.php';
 
 require 'functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
@@ -33,12 +33,13 @@ $cart = new shoppingcart(session_id());
 <script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
 <script language="javascript" src="js/jquery.colorbox-min.js"></script>
 <script language="javascript" src="js/general.js"></script>
+<script language="javascript" src="js/jquery.ba-bbq.min.js"></script>
 
 
 </head>
 <body>
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
-	<a href="#" ID="shoppingcart"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<?php echo $cart->getNumberOfProducts(); ?>)</a>
+	<a href="#!page=shoppingcart" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 
 </div>

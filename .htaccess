@@ -1,0 +1,3 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ([a-zA-z]+)\.html$ #!page=$1

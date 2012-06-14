@@ -260,6 +260,19 @@ class customer {
 		
 	}
 	
+	// check if customer is still logged in
+	public static function isLoggedIn($session_id) {
+		$sql_statement = 'SELECT ac.customer_id FROM '. TBL_ACTIVE_CUSTOMER .' AS ac WHERE ac.session_id = "'. $session_id .'" AND ac.expiration_date > NOW()';
+		$query = db_query($sql_statement);
+
+		if(db_num_results($query) == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public static function create($customerData) {
 		
 		if($customerData != NULL) {

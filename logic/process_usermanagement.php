@@ -1,17 +1,18 @@
 <?php
 
-require '../includes/classes/cl_customizing.php';
+include_once '../configuration.inc.php';
+
+require PATH_CLASSES .'cl_customizing.php';
+require PATH_CLASSES .'cl_customer.php';
 
 session_start();
 
-include_once '../configuration.inc.php';
-
-require '../functions/database.php';
+require PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
-include_once '../includes/database_tables.php';
-include_once '../includes/languages/DE.inc.php';
-include_once '../functions/user_management.php';
+include_once PATH_INCLUDES .'database_tables.php';
+include_once PATH_LANGUAGES .'DE.inc.php';
+include_once PATH_FUNCTIONS .'user_management.php';
 
 
 
@@ -34,7 +35,11 @@ switch($action) {
 			else {
 				db_customer_login( $user_information['customer_id'], session_id() );
 				$_SESSION['customer_id'] = $user_information['customer_id'];
+				echo 'true';
 			}	
+		}
+		else {
+			echo WARNING_WRONG_CREDENTIALS;
 		}
 		
 	break;
@@ -72,6 +77,16 @@ switch($action) {
 	
 		break;
 	
+	// check if user is still logged in	
+	case 'isLoggedIn':
+		if(customer::isLoggedIn(session_id()) == true) {
+			echo 'true';
+		}
+		else {
+			echo 'false';
+		}
+		
+		break;
 }
 
 ?>
