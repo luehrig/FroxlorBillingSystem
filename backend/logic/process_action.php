@@ -54,7 +54,30 @@ switch($action) {
 		echo product::printCreateProductForm();
 		
 		break;
+
+	case 'create_new_product':
+		$language_id = $_POST['language_id'];
+		$title = $_POST['title'];
+		$contract_periode = $_POST['contract_periode'];
+		$describtion = $_POST['describtion'];
+		$quantity = $_POST['quantity'];
+		$price = $_POST['price'];
 		
+		$product_data = array("language_id"=>$language_id, 
+							  "title"=>$title,
+							  "contract_periode"=>$contract_periode,
+							  "describtion"=>$describtion,
+							  "quantity"=>$quantity,
+							  "price"=>$price);
+		
+		if(product::productExists($product_data)){
+			echo "Dieses Product existiert bereits";
+		}
+		else{ 
+			product::create($product_data);
+		}
+	
+		break;
 		
 	case 'get_server_overview':
 		echo 'Meine Server!';
