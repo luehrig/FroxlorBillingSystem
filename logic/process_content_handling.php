@@ -66,7 +66,7 @@ switch($action) {
 					<div class="textbox">
 						ie brauchen dies und das? Dann ist das das richtige!
 					</div>
-					<button class="buttonlayout_buy" rel="1"><?php echo BUTTON_ADD_TO_CART; ?></button>
+					<button class="buttonlayout_buy" rel="1">'. BUTTON_ADD_TO_CART .'</button>
 					<div id="book1" class="slidebox">
 				<div class="textbox">
 					das ist ein test
@@ -74,7 +74,7 @@ switch($action) {
 				
 			</div>
 <!-- TODO: rel tag has to content the product id! -->			
-				<button class="buttonlayout_more" rel="1"><?php echo BUTTON_MORE; ?></button>
+				<button class="buttonlayout_more" rel="1">'. BUTTON_MORE .'</button>
 			</div>
 		</div>
 		
@@ -90,7 +90,7 @@ switch($action) {
 						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
 					</div>
 					<!-- TODO: later rel -> product id -->
-					<button class="buttonlayout_buy" rel="2"><?php echo BUTTON_ADD_TO_CART; ?></button>
+					<button class="buttonlayout_buy" rel="2">'. BUTTON_ADD_TO_CART .'</button>
 					<div id="book2" class="slidebox">
 				<div class="textbox">
 					das ist ein test
@@ -98,7 +98,7 @@ switch($action) {
 				
 			</div>
 				
-				<button class="buttonlayout_more" rel="2"><?php echo BUTTON_MORE; ?></button>
+				<button class="buttonlayout_more" rel="2">'. BUTTON_MORE .'</button>
 			</div>
 		</div>
 		
@@ -112,7 +112,7 @@ switch($action) {
 					<div class="textbox">
 						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
 					</div>
-					<button class="buttonlayout_buy" rel="3"><?php echo BUTTON_ADD_TO_CART; ?></button>
+					<button class="buttonlayout_buy" rel="3">'. BUTTON_ADD_TO_CART .'</button>
 					<div id="book3" class="slidebox">
 				<div class="textbox">
 					das ist ein test
@@ -120,7 +120,7 @@ switch($action) {
 				
 			</div>
 				
-				<button class="buttonlayout_more" rel="3"><?php echo BUTTON_MORE; ?></button>
+				<button class="buttonlayout_more" rel="3">'. BUTTON_MORE .'</button>
 			</div>
 		</div>
 		

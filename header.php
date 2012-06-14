@@ -40,6 +40,6 @@ $cart = new shoppingcart(session_id());
 <body>
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
-	<a href="shoppingcart.html" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
+	<a href="#!page=shoppingcart" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 
 </div>

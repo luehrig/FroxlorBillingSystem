@@ -6,14 +6,14 @@ $(function() {
 	// clicked, their `id` value is pushed onto the history hash instead of being navigated to directly.
 	$("body").on("click","a[class=nav]", function() {
 		var state = $(this).attr('id');
-	    $.bbq.pushState({ page: state });
+	    $.bbq.pushState( '#!page='+ state );
 
 	    return false;
 	});  	
 	  
 	// Bind a callback that executes when document.location.hash changes.
 	$(window).bind( "hashchange", function(e) {
-	    var url = $.bbq.getState( "page" );
+	    var url = $.bbq.getState( "!page" );
 
 	    // dynamic content loading
 	    loadContent(url, 1);
