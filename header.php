@@ -46,5 +46,4 @@ $cart = new shoppingcart(session_id());
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
 	<a href="#!page=shoppingcart&lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
-
 </div>
