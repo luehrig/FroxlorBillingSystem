@@ -34,98 +34,114 @@ switch($action) {
 	
 	case 'show_imprint':
 	
-		$content = new content(1);
-			
-		echo $content->getTitle();
-			
-		echo $content->getText();
-		
+		include PATH_BODYS .'imprint.php';	
 	break;
 
+	// content of home
 	case 'show_home':
-		
 		$content = new content(2);
-			
-		echo $content->getTitle();
-			
-		echo $content->getText();
+		
+	echo '	
+	<div class"content_container">
+		<h1>'.$content->getTitle() .'</h1>
+		<div class="boxwrapper">
+			<div class=" whitebox box_1inRow">
+				<img ID="minilogo" src="images/logos/logo.png">
+				<h3>Herzlich Willkommen</h3>
+				<div class="textbox">'. $content->getText() .'</div>
+			</div>
+
+			<div class="whitebox box_2inRow">
+				<img ID="minilogo" src="images/logos/logo.png">
+				<h3>Info</h3>
+				<div class="textbox">'. $content->getText() .'</div>
+			</div>
+			<div class="whitebox box_2inRow">
+				<img ID="minilogo" src="images/logos/logo.png">
+				<h3>Zusatz</h3>
+				<div class="textbox">'. $content->getText() .'</div>
+			</div>
+	
+			<div class=" whitebox box_4inRow">
+				<img ID="minilogo" src="images/logos/logo.png">
+				<h3>News</h3>
+				<div class="textbox">'. $content->getText() .'</div>
+			</div>
+			<div class="whitebox box_4inRow">
+				<img ID="minilogo" src="images/logos/logo.png">
+				<h3>News</h3>
+				<div class="textbox">'. $content->getText() .'</div>
+			</div>
+			<div class="whitebox box_4inRow">
+				<img ID="minilogo" src="images/logos/logo.png">
+				<h3>News</h3>
+				<div class="textbox">'. $content->getText() .'</div>
+			</div>
+			<div class="whitebox box_4inRow">
+				<img ID="minilogo" src="images/logos/logo.png">
+				<h3>News</h3>
+				<div class="textbox">'. $content->getText() .'</div>
+			</div>
+		</div>
+	<div>';
 		
 	break;
 		
+	//content of products
 	case 'show_products':
+		$content = new content(1);
 		
-		echo '<div class="productboxwrapper">
-	
+		echo '
+		
+		<h1>'.$content->getTitle() .'</h1>
+		<div class="boxwrapper">
+		
 		<!-- Product No.1 -->
-		<div class="whitebox">
-			<div class="productbox">
-		
-				<img ID="littlelogo" src="images/logos/logo.png">
-				<br>
-				Produktname
-					<div class="textbox">
-						ie brauchen dies und das? Dann ist das das richtige!
-					</div>
-					<button class="buttonlayout_buy" rel="1">'. BUTTON_ADD_TO_CART .'</button>
+		<div class="whitebox box_3inRow">
+		<img ID="littlelogo" src="images/logos/logo.png">
+		<br>
+		Produktname
+		<div class="textbox">'. $content->getText() .'</div>
+		<button class="buttonlayout_buy" rel="1">'. BUTTON_ADD_TO_CART .'</button>
 					<div id="book1" class="slidebox">
-				<div class="textbox">
-					das ist ein test
+						<div class="textbox">'. $content->getText() .'</div>
+					</div>
+		<!-- TODO: rel tag has to content the product id! -->			
+					<button class="buttonlayout_more" rel="1">'. BUTTON_MORE .'</button>
 				</div>
 				
-			</div>
-<!-- TODO: rel tag has to content the product id! -->			
-				<button class="buttonlayout_more" rel="1">'. BUTTON_MORE .'</button>
-			</div>
-		</div>
-		
-		
-		<!-- Product No.2 -->
-		<div class="whitebox">
-			<div class="productbox">
-		
-				<img ID="littlelogo" src="images/logos/logo.png">
-				<br>
-				Produktname
-					<div class="textbox">
-						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
-					</div>
-					<!-- TODO: later rel -> product id -->
+				
+				<!-- Product No.2 -->
+				<div class="whitebox box_3inRow">
+					<img ID="littlelogo" src="images/logos/logo.png">
+					<br>
+					Produktname
+					<div class="textbox">'. $content->getText() .'</div>
 					<button class="buttonlayout_buy" rel="2">'. BUTTON_ADD_TO_CART .'</button>
 					<div id="book2" class="slidebox">
-				<div class="textbox">
-					das ist ein test
+						<div class="textbox">'. $content->getText() .'</div>
+					</div>
+		<!-- TODO: rel tag has to content the product id! -->			
+					<button class="buttonlayout_more" rel="2">'. BUTTON_MORE .'</button>
 				</div>
 				
-			</div>
-				
-				<button class="buttonlayout_more" rel="2">'. BUTTON_MORE .'</button>
-			</div>
-		</div>
-		
-		<!-- Product No.3 -->
-		<div class="whitebox">
-			<div class="productbox">
-		
-				<img ID="littlelogo" src="images/logos/logo.png">
-				<br>
-				Produktname
-					<div class="textbox">
-						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
-					</div>
+				<!-- Product No.3 -->
+				<div class="whitebox box_3inRow">
+					<img ID="littlelogo" src="images/logos/logo.png">
+					<br>
+					Produktname
+					<div class="textbox">'. $content->getText() .'</div>
 					<button class="buttonlayout_buy" rel="3">'. BUTTON_ADD_TO_CART .'</button>
 					<div id="book3" class="slidebox">
-				<div class="textbox">
-					das ist ein test
+						<div class="textbox">'. $content->getText() .'</div>
+						
+					</div>
+		<!-- TODO: rel tag has to content the product id! -->			
+					<button class="buttonlayout_more" rel="3">'. BUTTON_MORE .'</button>
 				</div>
 				
-			</div>
 				
-				<button class="buttonlayout_more" rel="3">'. BUTTON_MORE .'</button>
-			</div>
-		</div>
-		
-		
-	</div>';
+			</div>';
 		
 	break;
 	

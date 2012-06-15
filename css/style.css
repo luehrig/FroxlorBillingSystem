@@ -68,7 +68,10 @@ a:active {
 .content_container {
 	background-color: #F0F0F0;
 	width: 900px;
-	height: 600px;
+	height: 700px;
+	margin-bottom: 0;
+	text-align:center;
+	position: absolute;
 }
 
 .customer_content_container {
@@ -79,16 +82,13 @@ a:active {
 }
 
 /* Style of contents	*/
-.content_head
-{
-	height: 50px;
-}
+
 
 /*Style of the tree products*/
 .boxwrapper 
 {
-	margin: 0 auto;
-	width: 810px;
+	margin: 40px auto;
+	width: 780px;
 }
 
 .whitebox 
@@ -99,12 +99,29 @@ a:active {
 	text-align: center;
 	box-shadow: 1px 1px 2px black;
 	margin: 10px;
-	
 }
 
-.productbox
+.box_3inRow
 {
-	width: 250px;
+	width: 240px;
+	height: auto;
+}
+
+.box_4inRow
+{
+	width: 175px;
+	height: auto;
+}
+
+.box_2inRow
+{
+	width: 370px;
+	height: auto;
+}
+
+.box_1inRow
+{
+	width: 760px;
 	height: auto;
 }
 
@@ -121,33 +138,35 @@ a:active {
 	width: auto;
 }
 
-.wrapperbeispiel
-{
-	text-align: center;
-	padding: 20px;
-}
-
 #littlelogo
 {
 	width: 120px;
-	margin: 5px 5px;
+	margin: 5px;
+}
+
+#minilogo
+{
+	width:40px;
+	margin: 5px 20px;
+	float:left;
+	margin-bottom:5px;
 }
 
 .textbox
 {
-	min-height: 100px;
-	max-height: 500px;
+	clear: both;
 	border:#000000 1px solid;
 	margin: 10px 10px 10px 10px;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 10px 30px;
+	text-align: center;
 }
 
 
 
 .buttonlayout_more
 {
-	width: 250px;
+	width: 100%;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	color: white;
@@ -167,7 +186,7 @@ a:active {
 
 .buttonlayout_buy
 {
-	width: 250px;
+	width: 100%;
 	color: white;
 	background: rgb(127,127,127); /* Old browsers */
 	background: -moz-linear-gradient(top,  rgba(127,127,127,1) 1%, rgba(56,56,56,1) 51%, rgba(19,19,19,1) 100%); /* FF3.6+ */
