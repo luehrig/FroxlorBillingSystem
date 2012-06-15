@@ -49,6 +49,38 @@ switch($action) {
 	
 		break;
 		
+	case 'edit_product':
+		
+		$product_id = $_POST['product_id'];
+		$language_id = $_POST['language_id'];
+		$title = $_POST['title'];
+		$contract_periode = $_POST['contract_periode'];
+		$description = $_POST['description'];
+		$quantity = $_POST['quantity'];
+		$price = $_POST['price'];
+		
+		$product_data = array("language_id"=>$language_id,
+							  "title"=>$title,
+							  "contract_periode"=>$contract_periode,
+							  "description"=>$description,
+							  "quantity"=>$quantity,
+							  "price"=>$price);
+		
+		if(product::productExists($product_data)){
+			echo "Dieses Product existiert bereits!";
+		}
+		else{
+			$product = new product($product_id);
+			if($product->update($product_id, $product_data)){
+				echo INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL;
+			}
+			else{
+				alert(INFO_MESSAGE_PRODUCT_UPDATE_FAILED);
+			}
+				
+		}
+		break;
+		
 	case 'open_create_product_form':
 		
 		echo product::printCreateProductForm(language::printLanguages());

@@ -52,16 +52,16 @@ class product {
 	
 	public function update($product_id, $product_data) {
 		if($product_data != NULL){
-			$sql_delete_statement = 'UPDATE'. TBL_PRODUCT .'SET
+			$sql_delete_statement = 'UPDATE '. TBL_PRODUCT .' SET
 				language_id="'. $product_data['language_id'] .'", 
 				title="'. $product_data['title'] .'", 
 				contract_periode="'. $product_data['contract_periode'] .'", 
-				description="'. $product_data['description']. '", 
+				description="'. $product_data['description'].'", 
 				quantity="'. $product_data['quantity'] .'", 
 				price="'. $product_data['price'] .'"
-				WHERE product_id="'. $product_data['product_id'] .'"';
+				WHERE product_id="'. $product_id .'"';
 			
-			db_query($sql_delete_statement);
+			return db_query($sql_delete_statement);
 		}
 	}
 	
@@ -113,6 +113,7 @@ class product {
 						'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
 						'<label for="product_id">'. $this->product_id.' </label>'.
 					'</legend>'.
+					'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>'.
 					'<label for="language_id">'. LABEL_PRODUCT_LANGUAGE. '</label> '.
 					$language_select_box.
 		//'<input type="text" id="language_id" name="language" value="'. $this->language_id .'"><br>'.
@@ -128,7 +129,7 @@ class product {
 					'<input type="text" id="price" name="price" value="'. $this->price .'"><br>';
 		
 		$return_string = $return_string . '</fieldset>';
-		$return_string = $return_string . '<input type="submit" name="save_product" id="save_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
+		$return_string = $return_string . '<input type="submit" name="submit_edit_product" id="submit_edit_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
 		$return_string = $return_string . '</form></div>';
 		return $return_string;
 		
