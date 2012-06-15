@@ -14,6 +14,7 @@ define('PATH_BACKEND_INCLUDES', BASE_DIR .'backend/includes/');
 define('PATH_BACKEND_LANGUAGES', PATH_BACKEND_INCLUDES . 'languages/');
 
 
+
 /* database section */
 define('DB_SERVER','localhost');
 define('DB_USER','root');
@@ -24,5 +25,7 @@ define('DB_NAME','froxlor_billing');
 define('SMTP_SERVER','');
 define('SMTP_USER','');
 define('SMTP_PASSWORD','');
+
+define('PATH_BODYS', BASE_DIR .'bodys/');
 
 ?>

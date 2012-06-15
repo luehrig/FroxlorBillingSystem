@@ -76,6 +76,13 @@ define('EXPLANATION_NUMBER_OF_PRODUCTS','Aktuell stehen %d Produkte zum Verkauf.
 define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
 
 
+define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Das Produkt wurde erfolgreich angelegt.');
+define('INFO_MESSAGE_DB_INSERT_FAILED', 'Es ist ein Fehler beim Anlegen des Datenbankeintrages aufgetreten.');
+
+define('INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL', 'Das Produkt wurde erfolgreich geändert.');
+define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
+
+
 define('ERROR_NO_CONTENT_ENTRY_FOUND','Es konnte kein Inhalt mit der ID %d für die Sprache %d gefunden werden!');
 
 ?>
