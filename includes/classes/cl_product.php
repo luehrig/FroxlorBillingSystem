@@ -177,11 +177,11 @@ class product {
 	
 	public static function productExists($product_data){
 	
-		$sql_select_statement = 'SELECT * FROM'. TBL_PRODUCT .' WHERE
+		$sql_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE
 		language_id = '. $product_data['language_id'] .' AND
-		title = '. $product_data['title'] .' AND
+		title = "'. $product_data['title'] .'" AND
 		contract_periode = '. $product_data['contract_periode'] .' AND
-		description = '. $product_data['description'] .' AND
+		description = "'. $product_data['description'] .'" AND
 		quantity = '. $product_data['quantity'] .' AND
 		price = '. $product_data['price'];
 		$info_query = db_query($sql_statement);

@@ -8,7 +8,7 @@ class customizing {
 	/* constructor */
 	public function __construct($language_id = NULL) {
 		if($language_id == NULL) {
-			$language_id = get_default_language();
+			$language_id = customizing::get_default_language();
 		}
 		$this->getCustomzingEntries($language_id);
 		$this->language = $language_id;	
@@ -29,6 +29,15 @@ class customizing {
 		else {
 			return NULL;
 		}
+	}
+	
+	// return default language id in internal format
+	public static function get_default_language() {
+		$sql_statement = 'SELECT cust.value AS default_language FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.key = "default_language"';
+		$query = db_query($sql_statement);
+		$default_language = db_fetch_array($query);
+	
+		return $default_language['default_language'];
 	}
 	
 	// display customizing entries table like with readonly input fields

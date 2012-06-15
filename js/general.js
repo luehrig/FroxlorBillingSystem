@@ -6,7 +6,8 @@ $(function() {
 	// clicked, their `id` value is pushed onto the history hash instead of being navigated to directly.
 	$("body").on("click","a[class=nav]", function() {
 		var state = $(this).attr('id');
-	    $.bbq.pushState( '#!page='+ state );
+		var lang = $('input[type=hidden][id=site_language]').val();
+	    $.bbq.pushState( '#!page='+ state +'&lang='+ lang );
 
 	    return false;
 	});  	
@@ -14,9 +15,10 @@ $(function() {
 	// Bind a callback that executes when document.location.hash changes.
 	$(window).bind( "hashchange", function(e) {
 	    var url = $.bbq.getState( "!page" );
-
+	    var lang = $.bbq.getState( "lang" );
+	    
 	    // dynamic content loading
-	    loadContent(url, 1);
+	    loadContent(url, lang);
 	});
 
 	// Since the event is only triggered when the hash changes, we need to trigger the event now, to handle 
@@ -213,10 +215,7 @@ $(function() {
 			url: "logic/process_usermanagement.php",
 			data: { action: "isLoggedIn" }
 		}).done(function( result ) {
-			if(result == 'true') {
-				alert('Please show me my customer center');
-			}
-			else {
+			if(result != 'true') {
 				$.colorbox({href:"customercenter/loginajax.php"});
 			}
 		});

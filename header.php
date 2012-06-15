@@ -4,18 +4,23 @@ include_once 'configuration.inc.php';
 session_start();
 
 require PATH_CLASSES .'cl_customizing.php';
+require PATH_CLASSES .'cl_language.php';
 require PATH_CLASSES .'cl_shoppingcart.php';
 require PATH_CLASSES .'cl_content.php';
-
-
+require PATH_CLASSES .'cl_customer.php';
 
 require 'functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
+include_once 'includes/database_tables.php';
+
+
 require 'functions/general.php';
 
-include_once 'includes/database_tables.php';
-include_once 'includes/languages/DE.inc.php';
+// detect preferred browser language if language is not available use the default language from shop customizing
+$site_language = language::getBrowserLanguage();
+
+include_once 'includes/languages/'. strtoupper($site_language) .'.inc.php';
 
 $cart = new shoppingcart(session_id());
 
@@ -40,6 +45,6 @@ $cart = new shoppingcart(session_id());
 <body>
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
-	<a href="#!page=shoppingcart" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
+	<a href="#!page=shoppingcart&lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 
 </div>
