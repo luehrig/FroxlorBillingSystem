@@ -79,7 +79,7 @@ define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
 define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Das Produkt wurde erfolgreich angelegt.');
 define('INFO_MESSAGE_DB_INSERT_FAILED', 'Es ist ein Fehler beim Anlegen des Datenbankeintrages aufgetreten.');
 
-define('INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL', 'Das Produkt wurde erfolgreich geändert.');
+define('INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL', 'Änderungen wurden erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
 
 

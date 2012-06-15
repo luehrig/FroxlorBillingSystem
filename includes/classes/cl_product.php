@@ -176,7 +176,7 @@ class product {
 	}
 
 	
-	public static function productExists($product_data){
+	public static function productExists($product_data, $compareable_product_id){
 	
 		$sql_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE
 		language_id = "'. $product_data['language_id'] .'" AND
@@ -187,11 +187,18 @@ class product {
 		price = "'. $product_data['price'].'"';
 		$info_query = db_query($sql_statement);
 		$db_content = db_fetch_array($info_query);
+		if($db_content['product_id'] == $compareable_product_id){
+			return false;
+		}
 		if($db_content == ""){
 			return false;
 		}
 		else return true;
 	}
+	
+// 	public static function isSameProduct($product_id, $compareable_product_data){
+		
+// 	}
 	
 	
 	// private section

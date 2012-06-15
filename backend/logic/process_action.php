@@ -66,7 +66,7 @@ switch($action) {
 							  "quantity"=>$quantity,
 							  "price"=>$price);
 		
-		if(product::productExists($product_data)){
+		if(product::productExists($product_data, $product_id)){
 			echo "Dieses Product existiert bereits!";
 		}
 		else{
@@ -88,6 +88,7 @@ switch($action) {
 		break;
 
 	case 'create_new_product':
+		$product_id = null;
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
 		$contract_periode = $_POST['contract_periode'];
@@ -102,7 +103,7 @@ switch($action) {
 							  "quantity"=>$quantity,
 							  "price"=>$price);
 		
-		if(product::productExists($product_data)){
+		if(product::productExists($product_data, $product_id)){
 			echo "Dieses Product existiert bereits!";
 		}
 		else{ 
