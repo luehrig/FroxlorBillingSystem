@@ -258,6 +258,7 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product` (
   `description` MEDIUMTEXT NULL ,
   `quantity` INT NOT NULL ,
   `price` DOUBLE NOT NULL ,
+  `active` CHAR(1) NULL ,
   PRIMARY KEY (`product_id`, `language_id`) ,
   UNIQUE INDEX `product_id_UNIQUE` (`product_id` ASC) ,
   INDEX `fk_product_language_id` (`language_id` ASC) ,
@@ -671,7 +672,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `froxlor_billing`;
-INSERT INTO `froxlor_billing`.`tbl_product` (`product_id`, `language_id`, `title`, `contract_periode`, `description`, `quantity`, `price`) VALUES (1, 1, 'Beispielprodukt', 12, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam', 100, 10.0);
+INSERT INTO `froxlor_billing`.`tbl_product` (`product_id`, `language_id`, `title`, `contract_periode`, `description`, `quantity`, `price`, `active`) VALUES (1, 1, 'Beispielprodukt', 12, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam', 100, 10.0, NULL);
 
 COMMIT;
 

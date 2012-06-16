@@ -1,31 +1,37 @@
 <?php
 
-include_once '../configuration.inc.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/FroxlorBillingSystem/configuration.inc.php';
 
-require PATH_CLASSES .'cl_customizing.php';
-require PATH_CLASSES .'cl_language.php';
-require PATH_CLASSES .'cl_shoppingcart.php';
-require PATH_CLASSES .'cl_content.php';
+require_once PATH_CLASSES .'cl_customizing.php';
+require_once PATH_CLASSES .'cl_language.php';
+require_once PATH_CLASSES .'cl_shoppingcart.php';
+require_once PATH_CLASSES .'cl_content.php';
 
-session_start();
+if(session_id() == '') {
+	session_start();
+}
 
-require PATH_FUNCTIONS .'database.php';
+require_once PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
-require PATH_FUNCTIONS .'general.php';
+require_once PATH_FUNCTIONS .'general.php';
 
 include_once PATH_INCLUDES .'database_tables.php';
 include_once PATH_LANGUAGES .'DE.inc.php';
 include_once PATH_FUNCTIONS .'user_management.php';
 
+if(!isset($action)) {
 $action = $_POST['action'];
+}
 
+if(!isset($language_id)) {
 // check if language was handed over
 if(isset($_POST['language_id'])) {
 	$language_id = language::ISOTointernal($_POST['language_id']);
 }
 else {
 	$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+}
 }
 
 switch($action) {
