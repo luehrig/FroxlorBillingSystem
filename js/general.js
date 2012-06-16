@@ -224,7 +224,7 @@ $(function() {
 		
 	});
 	
-	//overlay for customercenter (doesnt work yet)
+	//overlay for customercenter 
 	$("body").on("click","a[class=customercenter]", function() {
 		$.colorbox({href:"customercenter/index.php"});
 		

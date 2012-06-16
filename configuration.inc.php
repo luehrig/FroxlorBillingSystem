@@ -7,6 +7,7 @@ define('PATH_FUNCTIONS', BASE_DIR .'functions/');
 define('PATH_CLASSES', PATH_INCLUDES . 'classes/');
 define('PATH_LANGUAGES', PATH_INCLUDES . 'languages/');
 define('PATH_IMAGES', BASE_DIR .'images/');
+define('PATH_BODYS', BASE_DIR .'bodys/');
 
 define('PATH_CUSTOMERCENTER_INCLUDES', BASE_DIR .'customercenter/includes/');
 define('PATH_CUSTOMERCENTER_LANGUAGES', BASE_DIR . PATH_CUSTOMERCENTER_INCLUDES . 'languages/');
@@ -26,6 +27,6 @@ define('SMTP_SERVER','');
 define('SMTP_USER','');
 define('SMTP_PASSWORD','');
 
-define('PATH_BODYS', BASE_DIR .'bodys/');
+
 
 ?>
