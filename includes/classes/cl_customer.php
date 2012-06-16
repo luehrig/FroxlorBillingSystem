@@ -69,8 +69,8 @@ class customer {
 		$return_string = '<div id="'. $container_id .'"><form>';
 		
 		
-		$return_string = $return_string .'<table><tr><th>'.LABEL_LOGIN_DATA.': </th><td>'.LABEL_EMAIL.': '.$this->email. // eMail
-																		'<br>'.LABEL_PASSWORD.': '.'</td></tr>'. //Password
+		$return_string = $return_string .'<table class="customer_data"><tr><th>'.LABEL_LOGIN_DATA.': </th><td>'.LABEL_EMAIL.': '.$this->email. // eMail
+														
 												'<tr><th>'.LABEL_B_ADDRESS.': </th><td>';
 																		$this->is_adress_equal=true;
 																		 if($this->gender == $customizing->getCustomizingValue('sys_gender_male') ){ // Gender
@@ -82,13 +82,16 @@ class customer {
 																		 $return_string = $return_string.' '.$this->first_name.' '.$this->last_name. // name
 									 								  	'<br>'.$billing_address_data['street'].' '.$billing_address_data['street_number']. // street + number
 									 								  	'<br>'.$billing_address_data['post_code'].' '.$billing_address_data['city']. // post code + city
-									 								  	'<br>'.$billing_address_data['country_code'].'</td></tr>'. // country
+									 								  	'<br>'.'</td></tr>'. // country
 									 			'<tr><th>'.LABEL_S_ADDRESS.': </th><td>';
-																		 if($billingaddress_id = $shippingaddress_id){ // if billing address equals shipping address show checked checkbox
-																		 	$return_string = $return_string.'<input type="checkbox" name="same_adress" readonly checked> LABEL_SAME_ADRESS<br>';
+																		 if($shipping_address_data == $shipping_address_data){ // if billing address equals shipping address show checked checkbox
+																		 	$return_string = $return_string.'<input type="checkbox" name="same_adress" readonly checked>'. LABEL_SAME_ADRESS;
 																		 }
 																		 else{ // if not show shipping address
-																		 	
+																		 	$return_string = $return_string.
+																		 	$shipping_address_data['street'].' '.$shipping_address_data['street_number']. // street + number
+																		 	'<br>'.$shipping_address_data['post_code'].' '.$shipping_address_data['city']. // post code + city
+																		 	'<br>'.'</td></tr>'; // country
 																		 }
 																		 $return_string = $return_string.
 									 			'<tr><th>'.LABEL_TELEPHONE.': </th><td>'.LABEL_TEL.': '.$this->telephone.
@@ -163,7 +166,7 @@ class customer {
 											    	</fieldset>
 											    </fieldset>';
 	 */	
-												$return_string = $return_string . '<input type="submit" name="edit_customer" id="edit_customer" rel="'. $this->customer_id .'" value="'. BUTTON_EDIT_CUSTOMER .'">';
+		$return_string = $return_string . '<input type="submit" name="edit_customer" id="edit_customer" rel="'. $this->customer_id .'" value="'. BUTTON_EDIT_CUSTOMER .'">';
 		
 		$return_string = $return_string .'</form></div>';
 		
@@ -193,11 +196,19 @@ class customer {
 			$billing_address_data = $shipping_address_data;
 		}
 			
-		$return_string = '<div id="'. $container_id .'"><form>';
+		$return_string = '<div id="'. $container_id .'"><form><div class="edit_cust_data">';
 	
-		$return_string = $return_string .'<fieldset>
-		<legend>'. FIELDSET_CUSTOMER_GENERAL_INFORMATION .'</legend>
-		<label for="gender">'. LABEL_GENDER .'</label>
+		$return_string = $return_string .'<fieldset>'.
+		//Login Data		
+		'<legend>'. LABEL_LOGIN_DATA .'</legend>
+		<p><label for="email">'. LABEL_EMAIL .'</label>
+		<input type="text" id="email" name="email" rel="mandatory" value="'. $this->email .'"></p>
+		<a href="#" id="change_pw"><'. BUTTON_CHANGE_PW. '></a>
+    	</fieldset>'.
+    	
+		// General Inforamtion
+		'<fieldset><legend>'. FIELDSET_GENERAL_INFORMATION .'</legend>
+		<p><label for="gender">'. LABEL_GENDER .'</label>
 		<select name="gender" id="gender" size="1" rel="mandatory">';
 		if( $this->gender == $customizing->getCustomizingValue('sys_gender_male') ) {
 			$return_string = $return_string .'<option id="'. $customizing->getCustomizingValue('sys_gender_male') .'" name="gender" selected>'. SELECT_CUSTOMER_GENDER_MALE .'</option>
@@ -207,62 +218,75 @@ class customer {
 			$return_string = $return_string .'<option id="'. $customizing->getCustomizingValue('sys_gender_male') .'" name="gender">'. SELECT_CUSTOMER_GENDER_MALE .'</option>
 			<option id="'. $customizing->getCustomizingValue('sys_gender_female') .'" name="gender" selected>'. SELECT_CUSTOMER_GENDER_FEMALE .'</option>';
 		}
-		$return_string = $return_string .'</select>
-		<label for="title">'. LABEL_TITLE .'</label>
-		<input type="text" id="title" name="title" value="'. $this->title .'">
-		<label for="company">'. LABEL_COMPANY .'</label>
-		<input type="text" id="company" name="company" value="'. $this->company .'">
-		<label for="first_name">'. LABEL_FIRST_NAME .'</label>
-		<input type="text" id="first_name" name="first_name" rel="mandatory" value="'. $this->first_name .'">
-		<label for="last_name">'. LABEL_LAST_NAME .'</label>
-		<input type="text" id="last_name" name="last_name" rel="mandatory" value="'. $this->last_name .'">
-		</fieldset>
-		<fieldset>
+		$return_string = $return_string .'</select></p>
+		<p><label for="title">'. LABEL_TITLE .'</label>
+		<input type="text" id="title" name="title" value="'. $this->title .'"></p>
+		<p><label for="company">'. LABEL_COMPANY .'</label>
+		<input type="text" id="company" name="company" value="'. $this->company .'"></p>
+		<p><label for="first_name">'. LABEL_FIRST_NAME .'</label>
+		<input type="text" id="first_name" name="first_name" rel="mandatory" value="'. $this->first_name .'"></p>
+		<p><label for="last_name">'. LABEL_LAST_NAME .'</label>
+		<input type="text" id="last_name" name="last_name" rel="mandatory" value="'. $this->last_name .'"></p>
+		</fieldset>'.
+		
+		// Contact Information
+		'<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_CONTACT_INFORMATION .'</legend>
-		<label for="email">'. LABEL_EMAIL .'</label>
-		<input type="text" id="email" name="email" rel="mandatory" value="'. $this->email .'">
-		<label for="telephone">'. LABEL_TELEPHONE .'</label>
-		<input type="text" id="telephone" name="telephone" value="'. $this->telephone .'">
-		<label for="fax">'. LABEL_FAX .'</label>
-		<input type="text" id="fax" name="fax" value="'. $this->fax .'">
-		</fieldset>
-		<fieldset>
+		<p><label for="telephone">'. LABEL_TELEPHONE .'</label>
+		<input type="text" id="telephone" name="telephone" value="'. $this->telephone .'"></p>
+		<p><label for="fax">'. LABEL_FAX .'</label>
+		<input type="text" id="fax" name="fax" value="'. $this->fax .'"></p>
+		</fieldset>'.
+		
+		// Address
+		'<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_ADDRESS_INFORMATION .'</legend>
 		<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION .'</legend>
 		<div id="shippingaddress">
-		<label for="shippingstreet">'. LABEL_STREET .'</label>
-		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'">
-		<label for="shippingstreetnumber">'. LABEL_STREETNUMBER .'</label>
-		<input type="text" id="shippingstreetnumber" name="shippingstreetnumber" rel="mandatory" value="'. $shipping_address_data['street_number'] .'">
-		<label for="shippingpostcode">'. LABEL_POSTCODE .'</label>
-		<input type="text" id="shippingpostcode" name="shippingpostcode" rel="mandatory" value="'. $shipping_address_data['post_code'] .'">
-		<label for="shippingcity">'. LABEL_CITY .'</label>
-		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'">
-		<label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
-		$country->printSelectBox("shippingcountry","shippingcountry", $shipping_address_data['country_code']) .'
+		<p><label for="shippingstreet">'. LABEL_STREET .'</label>
+		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'"></p>
+		<p><label for="shippingstreetnumber">'. LABEL_STREETNUMBER .'</label>
+		<input type="text" id="shippingstreetnumber" name="shippingstreetnumber" rel="mandatory" value="'. $shipping_address_data['street_number'] .'"></p>
+		<p><label for="shippingpostcode">'. LABEL_POSTCODE .'</label>
+		<input type="text" id="shippingpostcode" name="shippingpostcode" rel="mandatory" value="'. $shipping_address_data['post_code'] .'"></p>
+		<p><label for="shippingcity">'. LABEL_CITY .'</label>
+		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'"></p>
+		<p><label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
+		$country->printSelectBox("shippingcountry","shippingcountry", $shipping_address_data['country_code']) .'</p>
 		</div>
-		</fieldset>
+		</fieldset>';
+		
+		// Checkbox for same shipping and billing address
+		 if($shipping_address_data == $shipping_address_data){ // if billing address equals shipping address show checked checkbox
+			$return_string = $return_string.'<input type="checkbox" name="same_adress" checked>'. LABEL_SAME_ADRESS;
+		 }
+		 else{
+		 	$return_string = $return_string.'<input type="checkbox" name="same_adress">'. LABEL_SAME_ADRESS;
+		 }
+		
+		
+		$return_string = $return_string.'
 		<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION .'</legend>
 		<div id="billingaddress">
-		<label for="billingstreet">'. LABEL_STREET .'</label>
-		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $billing_address_data['street'] .'">
-		<label for="billingstreetnumber">'. LABEL_STREETNUMBER .'</label>
-		<input type="text" id="billingstreetnumber" name="billingstreetnumber" rel="mandatory" value="'. $billing_address_data['street_number'] .'">
-		<label for="billingpostcode">'. LABEL_POSTCODE .'</label>
-		<input type="text" id="billingpostcode" name="billingpostcode" rel="mandatory" value="'. $billing_address_data['post_code'] .'">
-		<label for="billingcity">'. LABEL_CITY .'</label>
-		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'">
-		<label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
-		$country->printSelectBox("billingcountry","billingcountry",$billing_address_data['country_code']) .'
+		<p><label for="billingstreet">'. LABEL_STREET .'</label>
+		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $billing_address_data['street'] .'"></p>
+		<p><label for="billingstreetnumber">'. LABEL_STREETNUMBER .'</label>
+		<input type="text" id="billingstreetnumber" name="billingstreetnumber" rel="mandatory" value="'. $billing_address_data['street_number'] .'"></p>
+		<p><label for="billingpostcode">'. LABEL_POSTCODE .'</label>
+		<input type="text" id="billingpostcode" name="billingpostcode" rel="mandatory" value="'. $billing_address_data['post_code'] .'"></p>
+		<p><label for="billingcity">'. LABEL_CITY .'</label>
+		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'"></p>
+		<p><label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
+		$country->printSelectBox("billingcountry","billingcountry",$billing_address_data['country_code']) .'</p>
 		</div>
 		</fieldset>
 		</fieldset>';
 	
 		$return_string = $return_string . '<input type="submit" name="save_customer" id="save_customer" value="'. BUTTON_SAVE .'">';
 	
-		$return_string = $return_string .'</form></div>';
+		$return_string = $return_string .'</div></form></div>';
 	
 		return $return_string;
 	}

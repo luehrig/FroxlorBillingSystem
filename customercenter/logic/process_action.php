@@ -28,12 +28,19 @@ switch($action) {
 		
 		$customer_id = $_POST['customer_id'];
 		
+		echo '<div class="boxwrapper">';
+		echo '<div class="whitebox">';
+		
 		echo '<div class="customer_content_container">';
+		
+		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
 							
 		$customer = new customer($customer_id);
 		
 		echo $customer->printForm();
 		
+		echo '</div>';
+		echo '</div>';
 		echo '</div>';
 		
 	break;
@@ -42,9 +49,20 @@ switch($action) {
 		
 		$customer_id = $_POST['customer_id'];
 		
+		echo '<div class="boxwrapper">';
+		echo '<div class="whitebox">';
+		
+		echo '<div class="customer_content_container">';
+		
+		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
+		
 		$customer = new customer($customer_id);
 		
 		echo $customer->printFormEdit();
+		
+		echo '</div>';
+		echo '</div>';
+		echo '</div>';
 		
 	break;
 

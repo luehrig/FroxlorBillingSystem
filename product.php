@@ -1,38 +1,74 @@
 <div class="content_container">
 	
 	<div class="content_head"> 
-		Produkte
+		Produkt
 	</div>
 
-	<div class="productwrapper">
-	<div class="product" ID="product_left">
-		<img ID="littlelogo" src="images/logos/logo.png">
-		<br>
-		Produktname
-		<div class="textbox">
-		Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
-		</div>
-		<button ID="buttonlayout">more</button>
-	</div>
+	<div class="boxwrapper">
 	
-	<div class="product" ID="product_center">
-		<img ID="littlelogo" src="images/logos/logo.png">
-		<br>
-		Produktname
-		<div class="textbox">
-		Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
+		<!-- Product No.1 -->
+		<div class="whitebox">
+			<div class="productbox">
+		
+				<img ID="littlelogo" src="images/logos/logo.png">
+				<br>
+				Produktname
+					<div class="textbox" >
+						Das ist das beste Produkt!!!
+					</div>
+<!-- TODO: rel tag has to content the product id! -->
+				<button class="buttonlayout_more" rel="1"><?php echo BUTTON_MORE; ?></button>
+			</div>
+			<div id="book1" class="slidebox">
+				<div class="textbox">
+					das ist ein test
+				</div>
+				<button class="buttonlayout_buy"><?php echo BUTTON_ADD_TO_CART; ?></button>
+			</div>
 		</div>
-		<button ID="buttonlayout">more</button>
-	</div>
-	
-	<div class="product" ID="product_right">
-		<img ID="littlelogo" src="images/logos/logo.png">
-		<br>
-		Produktname
-		<div class="textbox">
-		Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
+		
+		
+		<!-- Product No.2 -->
+		<div class="whitebox">
+			<div class="productbox">
+		
+				<img ID="littlelogo" src="images/logos/logo.png">
+				<br>
+				Produktname
+					<div class="textbox">
+						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
+					</div>
+				<button class="buttonlayout_more" rel="2"><?php echo BUTTON_MORE; ?></button>
+			</div>
+			<div id="book2" class="slidebox">
+				<div class="textbox">
+					das ist ein test
+				</div>
+				<button class="buttonlayout_buy"><?php echo BUTTON_ADD_TO_CART; ?></button>
+			</div>
 		</div>
-		<button ID="buttonlayout">more</button>
-	</div>
+		
+		<!-- Product No.3 -->
+		<div class="whitebox">
+			<div class="productbox">
+		
+				<img ID="littlelogo" src="images/logos/logo.png">
+				<br>
+				Produktname
+					<div class="textbox">
+						Hier kommt ein kleiner Text rein. Bsp: Sie brauchen dies und das? Dann ist das das richtige!
+					</div>
+					<div id="book3" class="slidebox">
+				<div class="textbox">
+					das ist ein test
+				</div>
+				
+			</div>
+				<button class="buttonlayout_buy"><?php echo BUTTON_ADD_TO_CART; ?></button>
+				<button class="buttonlayout_more" rel="3"><?php echo BUTTON_MORE; ?></button>
+			</div>
+		</div>
+		
+		
 	</div>
 </div>

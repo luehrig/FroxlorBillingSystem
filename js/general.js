@@ -111,6 +111,21 @@ $(function() {
 		return false;
 	});	
 	
+	// open shopping cart
+	// TODO: This is maybe a candidate for another colorbox
+	$("body").on("click","a[id=shoppingcart]", function() {
+		$.ajax({
+			type: "POST",
+			url: "logic/process_content_handling.php",
+			data: { action: "show_shoppingcart" }
+		}).done(function( msg ) {
+			$('.content_container').html( msg );
+		});
+		
+		return false;
+	});
+	
+	
 	// overlay for help menu
 	$("body").on("click","a[class=lightbox]", function() {
 		$.colorbox({href:"help.php"});
@@ -126,6 +141,20 @@ $(function() {
 		return false;
 	});
 	
+	
+	// should work with one function (see functions below)
+	$("body").on("click","button[class=buttonlayout_more]", function() {		
+		// get product id from rel tag
+		var product_id = $(this).attr('rel');
+		
+		var detailboxid = '#book'+product_id;
+		
+		if ($(detailboxid).is(":hidden")) {
+			$(detailboxid).slideDown("slow");
+			} else {
+			$(detailboxid).slideUp();
+			}
+	});	
 	
 });
 
