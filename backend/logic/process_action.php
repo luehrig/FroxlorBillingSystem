@@ -67,7 +67,7 @@ switch($action) {
 							  "price"=>$price);
 		
 		if(product::productExists($product_data, $product_id)){
-			echo "Dieses Product existiert bereits!";
+			echo INFO_MESSAGE_PRODUCT_ALREADY_EXISTS;
 		}
 		else{
 			$product = new product($product_id);
@@ -81,6 +81,50 @@ switch($action) {
 		}
 		break;
 		
+		
+	case 'open_translate_product_form':
+		$product_id = $_POST['product_id'];
+	
+		$product = new product($product_id);
+	
+		echo $product->printFormTranslate(language::printLanguages());
+	
+		break;
+		
+	case 'translate_product':
+		$product_id = $_POST['product_id'];
+		$language_id = $_POST['language_id'];
+		$title = $_POST['title'];
+		$contract_periode = $_POST['contract_periode'];
+		$description = $_POST['description'];
+		$quantity = $_POST['quantity'];
+		$price = $_POST['price'];
+		
+		$product_data = array(
+				"product_id"=>$product_id,
+				"language_id"=>$language_id,
+				"title"=>$title,
+				"contract_periode"=>$contract_periode,
+				"description"=>$description,
+				"quantity"=>$quantity,
+				"price"=>$price);
+		
+		if(product::translatedProductExists($product_data)){
+			echo sprintf(INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS, $product_id);
+		}
+		else{
+			$product = new product();
+			if($product->saveTranslatedProduct($product_data) == 0){
+				echo sprintf(INFO_MESSAGE_TRANSLATION_SUCCEEDED, $product_id);
+			}
+			else{
+				alert(INFO_MESSAGE_PRODUCT_UPDATE_FAILED);
+			}
+		
+		}
+		break;
+				
+				
 	case 'open_create_product_form':
 		
 		echo product::printCreateProductForm(language::printLanguages());
@@ -96,7 +140,8 @@ switch($action) {
 		$quantity = $_POST['quantity'];
 		$price = $_POST['price'];
 		
-		$product_data = array("language_id"=>$language_id, 
+		$product_data = array("product_id" =>$product_id,
+							  "language_id"=>$language_id, 
 							  "title"=>$title,
 							  "contract_periode"=>$contract_periode,
 							  "description"=>$description,
