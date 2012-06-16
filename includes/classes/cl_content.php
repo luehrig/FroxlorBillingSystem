@@ -140,7 +140,7 @@ class content {
 	private function load($content_id, $language = NULL) {
 		// if no language was given use default language from customizing
 		if($language == NULL) {
-			$language = get_default_language();
+			$language = customizing::get_default_language();
 		}
 		
 		$this->language = $language;

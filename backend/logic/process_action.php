@@ -149,7 +149,7 @@ switch($action) {
 							  "price"=>$price);
 		
 		if(product::productExists($product_data, $product_id)){
-			echo "Dieses Product existiert bereits!";
+			echo INFO_MESSAGE_PRODUCT_ALREADY_EXISTS;
 		}
 		else{ 
 			if(product::create($product_data)){

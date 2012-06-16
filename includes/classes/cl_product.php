@@ -188,6 +188,7 @@ class product {
 	
 	public static function productExists($product_data, $compareable_product_id){
 	
+		
 		$sql_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE
 		language_id = "'. $product_data['language_id'] .'" AND
 		title = "'. $product_data['title'] .'" AND

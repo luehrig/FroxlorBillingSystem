@@ -45,7 +45,7 @@ $_SESSION['customizing'] = $customizing;
     <input type="submit" id="ajaxlogin" name="ajaxlogin" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">  
 </form>
 <p>
-<a href='../registration.php'><span><?php echo LINK_REGISTRATION; ?></span></a>
+<a href="registration.php"><span><?php echo LINK_REGISTRATION; ?></span></a>
 </p>
     
 </body>
