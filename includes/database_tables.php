@@ -16,6 +16,7 @@ define('TBL_PRODUCT_ATTRIBUTE','tbl_product_attribute');
 define('TBL_PRODUCT_INFO','tbl_product_info');
 define('TBL_ORDER','tbl_order');
 define('TBL_ORDER_POSITION','tbl_order_position');
+define('TBL_ORDER_POSITION_DETAIL','tbl_order_position_detail');
 define('TBL_ORDER_STATUS','tbl_order_status');
 define('TBL_CONTRACT','tbl_contract');
 define('TBL_INVOICE','tbl_invoice');

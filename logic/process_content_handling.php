@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/FroxlorBillingSystem/configuration.inc.php';
+include_once '../configuration.inc.php';
 
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
@@ -17,7 +17,7 @@ db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 require_once PATH_FUNCTIONS .'general.php';
 
 include_once PATH_INCLUDES .'database_tables.php';
-include_once PATH_LANGUAGES .'DE.inc.php';
+//include_once PATH_LANGUAGES .'DE.inc.php';
 include_once PATH_FUNCTIONS .'user_management.php';
 
 if(!isset($action)) {
@@ -28,11 +28,16 @@ if(!isset($language_id)) {
 // check if language was handed over
 if(isset($_POST['language_id'])) {
 	$language_id = language::ISOTointernal($_POST['language_id']);
+	if($language_id == null) {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() ); 
+	}
 }
 else {
 	$language_id = language::ISOTointernal( language::getBrowserLanguage() );
 }
 }
+
+include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
 switch($action) {
 	
@@ -54,7 +59,14 @@ switch($action) {
 	
 	case 'show_checkout_step1':
 		
+		echo 'Melden Sie sich an oder erstellen Sie ein neues Kundenkonto um zu bestellen.';
 		
+	break;
+	
+	case 'show_checkout_step2':
+		
+		echo 'Sie können sofort weitermachen, weil Sie bereits als Kunde angemeldet sind.';
+	
 	break;
 	
 	case 'show_imprint':

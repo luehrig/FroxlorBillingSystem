@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once '../configuration.inc.php';
+include_once 'configuration.inc.php';
 
 require PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);

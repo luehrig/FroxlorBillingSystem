@@ -189,12 +189,27 @@ $(function() {
 			url: "logic/process_usermanagement.php",
 			data: { action: "isLoggedIn" }
 		}).done(function( result ) {
-			//$('.content_container').html( msg );
+			// user is logged in as customer
 			if(result == 'true') {
-				alert('next checkout step please!');
+
+				$.ajax({
+					type: "POST",
+					url: "logic/process_content_handling.php",
+					data: { action: "show_checkout_step2" }
+				}).done(function( msg ) {	
+					$('.content_container').html( msg );
+				});	
 			}
+			// user is not logged in as customer
 			else {
-				$.colorbox({href:"customercenter/index.php"});
+				
+				$.ajax({
+					type: "POST",
+					url: "logic/process_content_handling.php",
+					data: { action: "show_checkout_step1" }
+				}).done(function( msg ) {
+					$('.content_container').html( msg );
+				});	
 			}
 		});
 		
@@ -216,7 +231,7 @@ $(function() {
 			data: { action: "isLoggedIn" }
 		}).done(function( result ) {
 			if(result != 'true') {
-				$.colorbox({href:"customercenter/loginajax.php"});
+				$.colorbox({href:"logincustomer.php"});
 			}
 		});
 		
