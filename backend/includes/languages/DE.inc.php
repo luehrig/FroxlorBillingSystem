@@ -10,6 +10,11 @@ define('BUTTON_SAVE_CUSTOMIZING_BACKEND','Customizing speichern');
 define('BUTTON_SAVE','Speichern');
 define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
+
+define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
+
+define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
+
 define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');
@@ -82,7 +87,9 @@ define('INFO_MESSAGE_DB_INSERT_FAILED', 'Es ist ein Fehler beim Anlegen des Date
 define('INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL', 'Änderungen wurden erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
 
+define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
+define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
+define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
 
-define('ERROR_NO_CONTENT_ENTRY_FOUND','Es konnte kein Inhalt mit der ID %d für die Sprache %d gefunden werden!');
 
 ?>

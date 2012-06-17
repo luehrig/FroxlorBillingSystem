@@ -1,5 +1,6 @@
 <?php
 $content = new content(1,$language_id); 
+
 echo'
 <h1>'.$content->getTitle() .'</h1>
 	<div class="boxwrapper">
@@ -9,6 +10,5 @@ echo'
 			<div class="textbox">'. $content->getText() .'</div>
 		</div>
 	</div>
-</div>
-'
+</div>';
 ?>
