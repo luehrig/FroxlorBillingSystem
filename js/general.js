@@ -88,7 +88,7 @@ $(function() {
 				data: { action: "create_customer", customerData: customerData }
 			}).done(function( msg ) {
 				//$('#messagearea').html( msg );
-				window.location.href = "customercenter/index.php";
+				window.location.href = "index.php#!page=customercenter";
 			});
 		}
 		

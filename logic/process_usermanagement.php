@@ -4,6 +4,7 @@ include_once '../configuration.inc.php';
 
 require PATH_CLASSES .'cl_customizing.php';
 require PATH_CLASSES .'cl_customer.php';
+require PATH_CLASSES .'cl_language.php';
 
 session_start();
 
@@ -11,9 +12,21 @@ require PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 include_once PATH_INCLUDES .'database_tables.php';
-include_once PATH_LANGUAGES .'DE.inc.php';
+//include_once PATH_LANGUAGES .'DE.inc.php';
 include_once PATH_FUNCTIONS .'user_management.php';
 
+if(!isset($language_id)) {
+	// check if language was handed over
+	if(isset($_POST['language_id'])) {
+		$language_id = language::ISOTointernal($_POST['language_id']);
+		if($language_id == null) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
+	}
+	else {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+	}
+}
 
 
 $action = $_POST['action'];

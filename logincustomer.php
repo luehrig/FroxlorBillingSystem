@@ -9,18 +9,35 @@ db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 
 include_once PATH_INCLUDES .'database_tables.php';
-include_once PATH_LANGUAGES .'DE.inc.php';
+//include_once PATH_LANGUAGES .'DE.inc.php';
 
 
 require PATH_FUNCTIONS .'general.php';
 
 
 require PATH_CLASSES .'cl_customizing.php';
+require_once PATH_CLASSES .'cl_language.php';
 
 /* if(!isset($_SESSION['customizing'])) { */
 $customizing = new customizing( get_default_language() );
 $_SESSION['customizing'] = $customizing;
 /* } */
+
+if(!isset($language_id)) {
+	// check if language was handed over
+	if(isset($_POST['language_id'])) {
+		$language_id = language::ISOTointernal($_POST['language_id']);
+		if($language_id == null) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
+	}
+	else {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+	}
+}
+
+include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
+
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
