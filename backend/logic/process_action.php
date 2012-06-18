@@ -118,7 +118,7 @@ switch($action) {
 				echo sprintf(INFO_MESSAGE_TRANSLATION_SUCCEEDED, $product_id);
 			}
 			else{
-				alert(INFO_MESSAGE_PRODUCT_UPDATE_FAILED);
+				echo INFO_MESSAGE_PRODUCT_UPDATE_FAILED;
 			}
 		
 		}
