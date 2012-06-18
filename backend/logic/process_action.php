@@ -251,7 +251,16 @@ switch($action) {
 
 		$server = new server($server_id);
 		$server->update($server_data);
+
+		break;
+
+	case 'delete_server':
+
+		$server_id = $_POST['server_id'];
 		
+		$server = new server($server_id);
+		$server->delete();
+
 		break;
 
 

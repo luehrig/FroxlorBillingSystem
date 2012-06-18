@@ -350,6 +350,32 @@ $(function() {
 	});
 	
 	
+	// set customizing fields editable for products
+	$('body').on("click","a[id=delete_server]", function() {
+		var server_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "delete_server", server_id: server_id }
+		}).done(function( msg ) {
+			if(msg == '') {
+				// reload server area
+				$.ajax({
+					type: "POST",
+					url: "logic/process_action.php",
+					data: { action: "get_server_overview" }
+				}).done(function( msg ) {
+					$('.content').html( msg );
+				});
+			}	
+		});
+		
+		return false;
+		
+	});	
+	
+	
 	// get overview page with all customers
 	$("body").on("click", "a[id=mycustomers]", function() {
 		
