@@ -7,6 +7,7 @@ require '../../includes/classes/cl_customer.php';
 require '../../includes/classes/cl_country.php';
 require '../../includes/classes/cl_product.php';
 require '../../includes/classes/cl_server.php';
+require '../../includes/classes/cl_product_attribute.php';
 
 session_start();
 
@@ -43,9 +44,9 @@ switch($action) {
 
 	case 'open_product_editor':
 		$product_id = $_POST['product_id'];
-
-		$product = new product($product_id);
-
+		$language_id = $_POST['language_id'];	
+		$product = new product($product_id, $language_id);
+	
 		echo $product->printFormEdit(language::printLanguages());
 
 		break;
@@ -72,11 +73,11 @@ switch($action) {
 		}
 		else{
 			$product = new product($product_id);
-			if($product->update($product_id, $product_data)){
+			if($product->update($product_id, $language_id, $product_data)){
 				echo INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL;
 			}
 			else{
-				alert(INFO_MESSAGE_PRODUCT_UPDATE_FAILED);
+				echo INFO_MESSAGE_PRODUCT_UPDATE_FAILED;
 			}
 
 		}
@@ -85,9 +86,10 @@ switch($action) {
 
 	case 'open_translate_product_form':
 		$product_id = $_POST['product_id'];
-
-		$product = new product($product_id);
-
+		$language_id = $_POST['language_id'];	
+	
+		$product = new product($product_id, $language_id);
+	
 		echo $product->printFormTranslate(language::printLanguages());
 
 		break;
@@ -115,7 +117,7 @@ switch($action) {
 		}
 		else{
 			$product = new product();
-			if($product->saveTranslatedProduct($product_data) == 0){
+			if($product->saveTranslatedProduct($product_data)){
 				echo sprintf(INFO_MESSAGE_TRANSLATION_SUCCEEDED, $product_id);
 			}
 			else{
@@ -157,12 +159,61 @@ switch($action) {
 				echo INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL;
 			}
 			else{
-				echo INFO_MESSAGE_DB_INSERT_FAILED;
-			}
+				echo INFO_MESSAGE_DB_ACTION_FAILED;
+			}	
 		}
 
 		break;
-
+		
+	case 'change_product_state':
+		$product_id = $_POST['product_id'];
+		$language_id = $_POST['language_id'];
+		$product = new product($product_id, $language_id);
+		$product_data = $product->getProductData();
+		
+		$current_state = $product_data['active'];
+		$new_state;
+		if($current_state == 1){
+			$new_state = 0;
+		}
+		else {
+			$new_state = 1;
+		}
+		
+		$product_data['active'] = $new_state;
+		if($product->changeProductState($product_data)){
+			echo INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL;
+		}
+		else{
+			echo INFO_MESSAGE_DB_ACTION_FAILED;
+		}
+		break;
+		
+		
+	case 'delete_product':
+		$product_id = $_POST['product_id'];
+		$language_id = $_POST['language_id'];
+		$product = new product($product_id, $language_id);
+	
+		if($product->delete($product_id, $language_id)){
+			echo INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED;
+		}
+		else{
+			echo INFO_MESSAGE_DB_ACTION_FAILED;
+		}
+			
+		break;
+		
+		
+		
+		
+		case 'get_product_attributes_overview':
+			
+			echo productattribute::printOverview();
+				
+			break;
+			
+		
 	case 'get_server_overview':
 
 		echo server::printOverview();
