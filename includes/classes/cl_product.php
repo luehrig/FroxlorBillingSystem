@@ -83,7 +83,7 @@ class product {
 	}
 	
 	public static function printOverview($container_id = 'product_overview'){
-		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
+		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
 		$product_query = db_query($sql_statement);
 		$number_of_products = db_num_results($product_query);
 		
@@ -109,6 +109,14 @@ class product {
 		
 		$table_content = '';
 		while($data = db_fetch_array($product_query)) {
+			$state = $data['active'];
+			$change_state;
+			if($state==1){
+				$change_state = LINK_DEACTIVATE_PRODUCT;
+			}
+			elseif($state==0){
+				$change_state = LINK_ACTIVATE_PRODUCT;
+			}
 			$table_content = $table_content .'<tr>
 			<td>'. $data['language_id'] .'</td>
 			<td>'. $data['title'] .'</td>
@@ -118,6 +126,7 @@ class product {
 			<td>'. $data['price'] .'</td>
 			<td><a href="#" id="edit_product" rel="'. $data['product_id'] .'">Icon</a></td>
 			<td><a href="#" id="translate_product" rel="'. $data['product_id'] .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
+			<td><a href="#" id="change_pproduct_state" rel="'. $data['active'] .'">'. $change_state . '</a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';

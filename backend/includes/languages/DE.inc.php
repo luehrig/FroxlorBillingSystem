@@ -11,9 +11,12 @@ define('BUTTON_SAVE','Speichern');
 define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
 
+
 define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
 
 define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
+define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
+define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
 
 define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
 
