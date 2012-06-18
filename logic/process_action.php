@@ -1,22 +1,22 @@
 <?php
 
-require '../../includes/classes/cl_customizing.php';
-require '../../includes/classes/cl_language.php';
-require '../../includes/classes/cl_content.php';
-require '../../includes/classes/cl_customer.php';
-require '../../includes/classes/cl_country.php';
+require '../includes/classes/cl_customizing.php';
+require '../includes/classes/cl_language.php';
+require '../includes/classes/cl_content.php';
+require '../includes/classes/cl_customer.php';
+require '../includes/classes/cl_country.php';
 
 session_start();
 
-include_once '../../configuration.inc.php';
+include_once '../configuration.inc.php';
 
-require '../../functions/database.php';
+require '../functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
-require '../../functions/general.php';
+require '../functions/general.php';
 
-include_once '../../includes/database_tables.php';
-include_once '../../includes/languages/DE.inc.php';
+include_once '../includes/database_tables.php';
+include_once '../includes/languages/DE.inc.php';
 
 $customizing = new customizing( get_default_language() );
 
@@ -28,10 +28,8 @@ switch($action) {
 		
 		$customer_id = $_POST['customer_id'];
 		
-		echo '<div class="boxwrapper">';
 		echo '<div class="whitebox">';
-		
-		echo '<div class="customer_content_container">';
+		echo '<div class="cust_data">';
 		
 		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
 							
@@ -41,7 +39,6 @@ switch($action) {
 		
 		echo '</div>';
 		echo '</div>';
-		echo '</div>';
 		
 	break;
 	
@@ -49,10 +46,8 @@ switch($action) {
 		
 		$customer_id = $_POST['customer_id'];
 		
-		echo '<div class="boxwrapper">';
-		echo '<div class="whitebox">';
-		
-		echo '<div class="customer_content_container">';
+		echo '<div class="whitebox">';		
+		echo '<div class="cust_data">';
 		
 		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
 		
@@ -60,7 +55,6 @@ switch($action) {
 		
 		echo $customer->printFormEdit();
 		
-		echo '</div>';
 		echo '</div>';
 		echo '</div>';
 		

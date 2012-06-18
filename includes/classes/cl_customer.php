@@ -72,14 +72,14 @@ class customer {
 		$return_string = $return_string .'<table class="customer_data"><tr><th>'.LABEL_LOGIN_DATA.': </th><td>'.LABEL_EMAIL.': '.$this->email. // eMail
 														
 												'<tr><th>'.LABEL_B_ADDRESS.': </th><td>';
-																		$this->is_adress_equal=true;
+																		 $return_string = $return_string.' '.$this->company.'<br>';
 																		 if($this->gender == $customizing->getCustomizingValue('sys_gender_male') ){ // Gender
 																		 	$return_string = $return_string .SELECT_CUSTOMER_GENDER_MALE;
 																		 }
 																		 else{
 																		 	$return_string = $return_string .SELECT_CUSTOMER_GENDER_FEMALE;
 																		 }
-																		 $return_string = $return_string.' '.$this->first_name.' '.$this->last_name. // name
+																		 $return_string = $return_string.' '.$this->title.' '.$this->first_name.' '.$this->last_name. // name
 									 								  	'<br>'.$billing_address_data['street'].' '.$billing_address_data['street_number']. // street + number
 									 								  	'<br>'.$billing_address_data['post_code'].' '.$billing_address_data['city']. // post code + city
 									 								  	'<br>'.'</td></tr>'. // country
@@ -259,7 +259,7 @@ class customer {
 		
 		// Checkbox for same shipping and billing address
 		 if($shipping_address_data == $shipping_address_data){ // if billing address equals shipping address show checked checkbox
-			$return_string = $return_string.'<input type="checkbox" name="same_adress" checked>'. LABEL_SAME_ADRESS;
+			$return_string = $return_string.'<input id="checkbox_same_address" type="checkbox" name="same_adress" checked>'. LABEL_SAME_ADRESS;
 		 }
 		 else{
 		 	$return_string = $return_string.'<input type="checkbox" name="same_adress">'. LABEL_SAME_ADRESS;
@@ -312,6 +312,19 @@ class customer {
 		$delete_query_result = db_query($delete_statement);
 		return $delete_query_result;
 		
+	}
+	
+	// check if customer is still logged in
+	public static function isLoggedIn($session_id) {
+		$sql_statement = 'SELECT ac.customer_id FROM '. TBL_ACTIVE_CUSTOMER .' AS ac WHERE ac.session_id = "'. $session_id .'" AND ac.expiration_date > NOW()';
+		$query = db_query($sql_statement);
+
+		if(db_num_results($query) == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public static function create($customerData) {

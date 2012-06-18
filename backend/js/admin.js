@@ -15,6 +15,29 @@ $(function() {
 	});
 
 	
+	// process login procedure for shop backend
+	$("body").on("click","form[id=loginformbackend] input[type=submit][id=login]", function() {
+		var email = $('input[type=text][id=email]').val();
+		var password = $('input[type=password][id=password]').val();
+		
+		// do ajax call. If login was successful redirect to customer center
+		$.ajax({
+			type: "POST",
+			url: "../logic/process_usermanagement.php",
+			data: { action: "login_backend", email: email, password: password }
+		}).done(function( msg ) {
+			$('#messagearea').html( msg );
+			window.location.href = "../backend/index.php";
+		});
+		
+		// reset input fields
+		$('input[type=text][id=email]').val('');
+		$('input[type=password][id=password]').val('');
+		
+		return false;
+	});	
+	
+	
 	// get overview page with all customizing entries
 	$("body").on("click", "a[id=myshop]", function() {
 
@@ -83,6 +106,126 @@ $(function() {
 		return false;
 	});	
 	
+	// set customizing fields editable for products
+	$('body').on("click","a[id=edit_product]", function() {
+		var product_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_product_editor", product_id: product_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
+	// edit product
+	$("body").on("click", "input[type=submit][id=submit_edit_product]", function() {
+		
+		var product_id = $('input[type=hidden][id=product_id]').val();
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
+		var title = $('input[type=text][id=title]').val();
+		var contract_periode = $('input[type=text][id=contract_periode]').val();
+		var description = $('textarea[id=description]').val();
+		var quantity = $('input[type=text][id=quantity]').val();
+		var price = $('input[type=text][id=price]').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "edit_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});
+	
+	// open translate Product form
+	$("body").on("click","a[id=translate_product]", function() {
+		var product_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_translate_product_form", product_id: product_id}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});
+	
+	// translate product
+	$("body").on("click", "input[type=submit][id=submit_translate_product]", function() {
+		
+		var product_id = $('input[type=hidden][id=product_id]').val();
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
+		var title = $('input[type=text][id=title]').val();
+		var contract_periode = $('input[type=text][id=contract_periode]').val();
+		var description = $('textarea[id=description]').val();
+		var quantity = $('input[type=text][id=quantity]').val();
+		var price = $('input[type=text][id=price]').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "translate_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});
+	
+	
+	// set customizing fields editable for creating a new product
+	$('body').on("click","a[id=create_new_product]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_create_product_form"}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
+	
+	// open editor for product
+	$("body").on("click", "input[type=submit][id=save_product]", function() {
+		
+		var language_id = $('input[type=text][id=language_id]').val();
+		var title = $('input[type=text][id=title]').val();
+		var contract_periode = $('input[type=text][id=contract_periode]').val();
+		var description = $('textarea[id=description]').val();
+		var quantity = $('input[type=text][id=quantity]').val();
+		var price = $('input[type=text][id=price]').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "create_new_product", language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});
+	
+	
+	
+	
+	
+	
+	
+	
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {
 
@@ -111,7 +254,7 @@ $(function() {
 		return false;
 	});	
 	
-	// set customizing fields editable
+	// set customizing fields editable for customer
 	$('body').on("click","a[id=edit_customer]", function() {
 		var customer_id = $(this).attr('rel');
 		
@@ -161,6 +304,32 @@ $(function() {
 		return false;
 	});
 	
+	// delete content
+	$("body").on("click", "a[id=delete_content]", function() {
+
+		var information = $(this).attr('rel');
+		var stringParts = information.split('_');
+		var content_id = stringParts[0];
+		var language_id = stringParts[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "delete_content", content_id: content_id, language_id: language_id }
+		}).done(function( msg ) {
+			// reload content area
+			$.ajax({
+				type: "POST",
+				url: "logic/process_action.php",
+				data: { action: "get_content_overview" }
+			}).done(function( msg ) {
+				$('.content').html( msg );
+			});
+		});
+		
+		return false;
+	});
+	
 	// open editor for new content
 	$("body").on("click", "a[id=create_new_content]", function() {
 	
@@ -202,8 +371,6 @@ $(function() {
 		var text = $('textarea[id=text]').val();
 		var language_id = $('select[name=language_selection] option:selected').attr('id');
 		
-		alert(language_id);
-		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
@@ -242,5 +409,9 @@ $(function() {
 		});
 		
 		return false;
-	});	
+	});
+	
+	// alert message with
 });
+
+	

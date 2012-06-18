@@ -9,12 +9,13 @@ class product {
 	private $description;
 	private $quantity;
 	private $price;
+	private $product_attributes;
 	private $product_data;
 	
 	/* constructor */
-	public function __construct($product_id = NULL) {
+	public function __construct($product_id = NULL){
 		if($product_id != NULL){
-			$product_data = $this->getProductData($product_id);
+			$product_data = $this->getData($product_id);
 			$this->product_data = $product_data;
 			$this->product_id = $product_data['product_id'];
 			$this->language_id = $product_data['language_id'];
@@ -32,61 +33,76 @@ class product {
 	
 	public static function create($product_data) {
 		if($product_data != NULL){
-			$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .'(language_id, title, contract_periode, description, quantity, price)
-			VALUES (
-			"'. $product_data['language_id'] .'",
-			"'. $product_data['title'] .'",
-			"'. $product_data['contract_periode'] .'",
-			"'. $product_data['description'] .'",
-			"'. $product_data['quantity'] .'",
-			"'. $product_data['price'] .'")';
-			db_query($sql_insert_statement);
+			
+			// create new product
+			if($product_data['product_id'] == null){
+				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .'(language_id, title, contract_periode, description, quantity, price)
+				VALUES (
+				"'. $product_data['language_id'] .'",
+				"'. $product_data['title'] .'",
+				"'. $product_data['contract_periode'] .'",
+				"'. $product_data['description'] .'",
+				"'. $product_data['quantity'] .'",
+				"'. $product_data['price'] .'")';
+				return db_query($sql_insert_statement);
+			}
+			// translate product with same product_id
+			else{
+				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .'(product_id, language_id, title, contract_periode, description, quantity, price)
+				VALUES (
+				"'. $product_data['product_id'] .'",
+				"'. $product_data['language_id'] .'",
+				"'. $product_data['title'] .'",
+				"'. $product_data['contract_periode'] .'",
+				"'. $product_data['description'] .'",
+				"'. $product_data['quantity'] .'",
+				"'. $product_data['price'] .'")';
+				return db_query($sql_insert_statement);
+			}
 		}
 	}
 	 
 	public function delete($product_id) {
-		$sql_delete_statement = 'DELETE FROM'. TBL_PRODUCT .'WHERE product_id = '. (int) $product_id;
+		$sql_delete_statement = 'DELETE FROM'. TBL_PRODUCT .'WHERE product_id = "'. (int) $product_id.'"';
 		db_query($sql_delete_statement);
 	}
 	
 	public function update($product_id, $product_data) {
 		if($product_data != NULL){
-			$sql_delete_statement = 'UPDATE'. TBL_PRODUCT .'SET
-				language_id='. $product_data['language_id'] .', 
-				title='. $product_data['title'] .', 
-				contract_periode='. $product_data['contract_periode'] .', 
-				description='. $product_data['description']. ', 
-				quantity='. $product_data['quantity'] .', 
-				price='. $product_data['price'] .'
-				WHERE product_id="'. $product_data['product_id'] .'"';
+			$sql_delete_statement = 'UPDATE '. TBL_PRODUCT .' SET
+				language_id="'. $product_data['language_id'] .'", 
+				title="'. $product_data['title'] .'", 
+				contract_periode="'. $product_data['contract_periode'] .'", 
+				description="'. $product_data['description'].'", 
+				quantity="'. $product_data['quantity'] .'", 
+				price="'. $product_data['price'] .'"
+				WHERE product_id="'. $product_id .'"';
 			
-			db_query($sql_delete_statement);
+			return db_query($sql_delete_statement);
 		}
 	}
 	
 	public static function printOverview($container_id = 'product_overview'){
 		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
 		$product_query = db_query($sql_statement);
-		
 		$number_of_products = db_num_results($product_query);
+		
 		$return_string = '<div id="'. $container_id .'">';
 		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products);
 		
+		
+		$create_button = '<a href="#" id="create_new_product">'.BUTTON_CREATE_NEW_PRODUCT.'</a></td>';
+		
+		
+		$return_string = $return_string . $create_button;
+		
+		
 		$table_header = '<table border = "0">
-		<colgroup>
-			<col width = "80">
-			<col width = "300">
-			<col width = "300">
-			<col width = "300">
-			<col width = "100">
-			<col width = "100">
-			
-		</colgroup>
 		<tr>
 		<th>'. TABLE_HEADING_PRODUCT_LANGUAGE .'</th>
 		<th>'. TABLE_HEADING_PRODUCT_TITLE .'</th>
 		<th>'. TABLE_HEADING_PRODUCT_CONTRACT_PERIODE.'</th>
-		<th>'. TABLE_HEADING_PRODUCT_DESCRIBTION.'</th>
+		<th>'. TABLE_HEADING_PRODUCT_DESCRIPTION.'</th>
 		<th>'. TABLE_HEADING_PRODUCT_QUANTITY .'</th>
 		<th>'. TABLE_HEADING_PRODUCT_PRICE .'</th>
 		</tr>';
@@ -101,9 +117,32 @@ class product {
 			<td>'. $data['quantity'] .'</td>
 			<td>'. $data['price'] .'</td>
 			<td><a href="#" id="edit_product" rel="'. $data['product_id'] .'">Icon</a></td>
+			<td><a href="#" id="translate_product" rel="'. $data['product_id'] .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
 			</tr>';
 		}
-		return $return_string . $table_header . $table_content;
+		$return_string = $return_string . $table_header . $table_content. '</table><br>';
+		return $return_string;
+	}
+	
+	public function printFormEdit($language_select_box, $container_id = 'product_editor'){
+		$return_string = '<div id="'.$container_id.'">.
+				<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
+		$return_string = $return_string . '<input type="submit" name="submit_edit_product" id="submit_edit_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
+		$return_string = $return_string . '</form></div>';
+		return $return_string;
+		
+	}
+	
+	public function printFormTranslate($language_select_box, $container_id = 'product_editor'){
+		$return_string = '<div id="'.$container_id.'">.
+		<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
+		$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
+		$return_string = $return_string . '</form></div>';
+		return $return_string;
+	}
+	
+	public function saveTranslatedProduct($product_data){
+		return $this->create($product_data);
 	}
 	
 	public function getData($product_id){
@@ -114,31 +153,110 @@ class product {
 		return $this->productExists($product_data);
 	}
 	
-	
-	/*private section*/
-	
-	private function getProductFromDb($product_id) {
-		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = '. (int) $product_id;
-		$info_query = db_query($sql_select_statement);
-		return db_fetch_array($info_query);
-	}
-	
-	private function productExists($product_data){
+	public static function printCreateProductForm($language_select_box, $container_id = 'new_product_editor'){
+		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
+		$product_query = db_query($sql_statement);
+		$number_of_products = db_num_results($product_query);
+		$new_product_id = $number_of_products + 1;
 		
-		$sql_select_statement = 'SELECT * FROM'. TBL_PRODUCT .' WHERE 
-																language_id = '. $product_data['language_id'] .' AND 
-																title = '. $product_data['title'] .' AND 
-																contract_periode = '. $product_data['contract_periode'] .' AND 
-																description = '. $product_data['description'] .' AND 
-																quantity = '. $product_data['quantity'] .' AND 
-																price = '. $product_data['price'];
+		$return_string = '<div id="'.$container_id.'">.
+		<form method="post">'.'<fieldset>'.
+		'<legend>'.
+		'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
+		'<label for="product_id">'. $new_product_id.' </label>'.
+		'</legend>'.
+		'<label for="language_id">'. LABEL_PRODUCT_LANGUAGE. '</label> '.
+		$language_select_box . 
+		'<label for="title">'. LABEL_PRODUCT_TITLE .'</label>'.
+		'<input type="text" id="title" name="title"><br>'.
+		'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
+		'<input type="text" id="contract_periode" name="contract_periode"><br>'.
+		'<label for="describtion">'. LABEL_PRODUCT_DESCRIPTION .'</label><br>'.
+		'<textarea cols="20" rows="4" id="description" name="description" ></textarea><br>'.
+		'<label for="quantity">'. LABEL_PRODUCT_QUANTITY .'</label>'.
+		'<input type="text" id="quantity" name="quantity"><br>'.
+		'<label for="price">'. LABEL_PRODUCT_PRICE .'</label>'.
+		'<input type="text" id="price" name="price"><br>';
+		
+		$return_string = $return_string . '</fieldset>';
+		$return_string = $return_string . '<input type="submit" name="save_product" id="save_product" value="'. BUTTON_SAVE .'">';
+		$return_string = $return_string . '</form></div>';
+		return $return_string;
+		
+	}
+
+	
+	public static function productExists($product_data, $compareable_product_id){
+	
+		
+		$sql_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE
+		language_id = "'. $product_data['language_id'] .'" AND
+		title = "'. $product_data['title'] .'" AND
+		contract_periode = "'. $product_data['contract_periode'] .'" AND
+		description = "'. $product_data['description'] .'" AND
+		quantity = "'. $product_data['quantity'] .'" AND
+		price = "'. $product_data['price'].'"';
 		$info_query = db_query($sql_statement);
-		if(!$info_query){
+		$db_content = db_fetch_array($info_query);
+		if($db_content['product_id'] == $compareable_product_id){
+			return false;
+		}
+		if($db_content == ""){
 			return false;
 		}
 		else return true;
 	}
 	
+	public static function translatedProductExists($product_data){
+		$sql_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE
+		product_id = "'. $product_data['product_id'].'" AND 
+		language_id = "'. $product_data['language_id'] .'" AND
+		title = "'. $product_data['title'] .'" AND
+		contract_periode = "'. $product_data['contract_periode'] .'" AND
+		description = "'. $product_data['description'] .'" AND
+		quantity = "'. $product_data['quantity'] .'" AND
+		price = "'. $product_data['price'].'"';
+		$info_query = db_query($sql_statement);
+		$db_content = db_fetch_array($info_query);
+		if($db_content != ''){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+	}
+	
+	// private section
+	private function getProductFromDb($product_id) {
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'"';
+		$info_query = db_query($sql_select_statement);
+		return db_fetch_array($info_query);
+	}
+	
+	private function getFilledProductEditForm($language_select_box){
+		$return_string = '<form>'.'<fieldset>'.
+					'<legend>'.
+						'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
+						'<label for="product_id">'. $this->product_id.' </label>'.
+					'</legend>'.
+					'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>'.
+					'<label for="language_id">'. LABEL_PRODUCT_LANGUAGE. '</label> '.
+					$language_select_box.
+					'<label for="title">'. LABEL_PRODUCT_TITLE .'</label>'.
+					'<input type="text" id="title" name="title" value="'. $this->title .'"><br>'.
+					'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
+					'<input type="text" id="contract_periode" name="contract_periode" value="'. $this->contract_periode .'"><br>'.
+					'<label for="describtion">'. LABEL_PRODUCT_DESCRIPTION .'</label><br>'.
+					'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>'.
+					'<label for="quantity">'. LABEL_PRODUCT_QUANTITY .'</label>'.
+					'<input type="text" id="quantity" name="quantity" value="'. $this->quantity .'"><br>'.
+					'<label for="price">'. LABEL_PRODUCT_PRICE .'</label>'.
+					'<input type="text" id="price" name="price" value="'. $this->price .'"><br>';
+		
+		$return_string = $return_string . '</fieldset>';
+		return $return_string;
+	}
 }
 
 ?>

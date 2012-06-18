@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS `froxlor_billing`.`tbl_language` ;
 CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_language` (
   `language_id` INT NOT NULL AUTO_INCREMENT ,
   `language_name` VARCHAR(50) NOT NULL ,
+  `iso_code` CHAR(2) NOT NULL ,
   PRIMARY KEY (`language_id`) )
 ENGINE = MyISAM;
 
@@ -253,14 +254,34 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product` (
   `product_id` INT NOT NULL AUTO_INCREMENT ,
   `language_id` INT NOT NULL ,
   `title` VARCHAR(50) NOT NULL ,
-  `contract_periode` TIME NOT NULL ,
+  `contract_periode` TINYINT NOT NULL ,
   `description` MEDIUMTEXT NULL ,
   `quantity` INT NOT NULL ,
   `price` DOUBLE NOT NULL ,
+  `active` CHAR(1) NULL ,
   PRIMARY KEY (`product_id`, `language_id`) ,
   UNIQUE INDEX `product_id_UNIQUE` (`product_id` ASC) ,
   INDEX `fk_product_language_id` (`language_id` ASC) ,
   CONSTRAINT `fk_product_language_id`
+    FOREIGN KEY (`language_id` )
+    REFERENCES `froxlor_billing`.`tbl_language` (`language_id` )
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `froxlor_billing`.`tbl_product_attribute`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `froxlor_billing`.`tbl_product_attribute` ;
+
+CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product_attribute` (
+  `product_attribute_id` INT NOT NULL AUTO_INCREMENT ,
+  `language_id` INT NOT NULL ,
+  `description` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`product_attribute_id`, `language_id`) ,
+  INDEX `fk_product_attribute_language_id` (`language_id` ASC) ,
+  CONSTRAINT `fk_product_attribute_language_id`
     FOREIGN KEY (`language_id` )
     REFERENCES `froxlor_billing`.`tbl_language` (`language_id` )
     ON DELETE CASCADE
@@ -281,6 +302,7 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product_info` (
   PRIMARY KEY (`product_id`, `attribute_id`, `language_id`) ,
   INDEX `fk_product_info_language_id` (`language_id` ASC) ,
   INDEX `fk_product_info_product_id` (`product_id` ASC) ,
+  INDEX `fk_product_info_attribute_id` (`attribute_id` ASC) ,
   CONSTRAINT `fk_product_info_language_id`
     FOREIGN KEY (`language_id` )
     REFERENCES `froxlor_billing`.`tbl_language` (`language_id` )
@@ -290,26 +312,11 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product_info` (
     FOREIGN KEY (`product_id` )
     REFERENCES `froxlor_billing`.`tbl_product` (`product_id` )
     ON DELETE RESTRICT
-    ON UPDATE CASCADE)
-ENGINE = MyISAM;
-
-
--- -----------------------------------------------------
--- Table `froxlor_billing`.`tbl_product_attribute`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `froxlor_billing`.`tbl_product_attribute` ;
-
-CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product_attribute` (
-  `product_attribute_id` INT NOT NULL AUTO_INCREMENT ,
-  `language_id` INT NOT NULL ,
-  `description` VARCHAR(255) NOT NULL ,
-  PRIMARY KEY (`product_attribute_id`, `language_id`) ,
-  UNIQUE INDEX `product_attribute_id_UNIQUE` (`product_attribute_id` ASC) ,
-  INDEX `fk_product_attribute_language_id` (`language_id` ASC) ,
-  CONSTRAINT `fk_product_attribute_language_id`
-    FOREIGN KEY (`language_id` )
-    REFERENCES `froxlor_billing`.`tbl_language` (`language_id` )
-    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_info_attribute_id`
+    FOREIGN KEY (`attribute_id` )
+    REFERENCES `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id` )
+    ON DELETE RESTRICT
     ON UPDATE CASCADE)
 ENGINE = MyISAM;
 
@@ -597,8 +604,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `froxlor_billing`;
-INSERT INTO `froxlor_billing`.`tbl_language` (`language_id`, `language_name`) VALUES (1, 'Deutsch');
-INSERT INTO `froxlor_billing`.`tbl_language` (`language_id`, `language_name`) VALUES (2, 'English');
+INSERT INTO `froxlor_billing`.`tbl_language` (`language_id`, `language_name`, `iso_code`) VALUES (1, 'Deutsch', 'de');
+INSERT INTO `froxlor_billing`.`tbl_language` (`language_id`, `language_name`, `iso_code`) VALUES (2, 'English', 'en');
 
 COMMIT;
 
@@ -657,6 +664,29 @@ START TRANSACTION;
 USE `froxlor_billing`;
 INSERT INTO `froxlor_billing`.`tbl_tax` (`tax_id`, `tax_rate`) VALUES (1, 0.0);
 INSERT INTO `froxlor_billing`.`tbl_tax` (`tax_id`, `tax_rate`) VALUES (2, 19.0);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `froxlor_billing`.`tbl_product`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `froxlor_billing`;
+INSERT INTO `froxlor_billing`.`tbl_product` (`product_id`, `language_id`, `title`, `contract_periode`, `description`, `quantity`, `price`, `active`) VALUES (1, 1, 'Beispielprodukt', 12, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam', 100, 10.0, NULL);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `froxlor_billing`.`tbl_product_attribute`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `froxlor_billing`;
+INSERT INTO `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id`, `language_id`, `description`) VALUES (1, 1, 'Speicherplatz');
+INSERT INTO `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id`, `language_id`, `description`) VALUES (1, 2, 'Disk Space');
+INSERT INTO `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id`, `language_id`, `description`) VALUES (2, 1, 'E-Mail Postfächer');
+INSERT INTO `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id`, `language_id`, `description`) VALUES (2, 2, 'eMail Inboxes');
+INSERT INTO `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id`, `language_id`, `description`) VALUES (3, 1, 'Inklusivvolumen');
+INSERT INTO `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id`, `language_id`, `description`) VALUES (3, 2, 'Traffic');
 
 COMMIT;
 

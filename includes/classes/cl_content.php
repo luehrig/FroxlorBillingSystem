@@ -94,7 +94,7 @@ class content {
 		$return_string = $return_string . '<table><tr><th>'. TABLE_HEADING_CONTENT_TITLE .'</th></tr>';
 		
 		while($data = db_fetch_array($content_query)) {
-			$return_string = $return_string . '<tr id="'. $data['content_id'] .'_'. $data['language_id'] .'"><td name="title"><a href="#" id="edit_content" rel="'. $data['content_id'] .'_'. $data['language_id'] .'">'  . $data['title'] .'</a></td></tr>';
+			$return_string = $return_string . '<tr id="'. $data['content_id'] .'_'. $data['language_id'] .'"><td name="title" title="'. $data['content_id'] .'">'. $data['title'] .'</td><td><a href="#" id="edit_content" rel="'. $data['content_id'] .'_'. $data['language_id'] .'">editicon</a></td><td><a href="#" id="delete_content" rel="'. $data['content_id'] .'_'. $data['language_id'] .'">deleteicon</td></tr>';
 		}
 		
 		$return_string = $return_string . '</table></div>';
@@ -123,10 +123,10 @@ class content {
 			
 			// delete content with all languages
 			if($alllanguages == true) {
-				$delete_statement = 'DELETE FROM '. TBL_CONTENT .' AS c WHERE c.content_id = '. (int) $this->content_id;
+				$delete_statement = 'DELETE FROM '. TBL_CONTENT .' WHERE content_id = '. (int) $this->content_id;
 			}
 			else {
-				$delete_statement = 'DELETE FROM '. TBL_CONTENT .' AS c WHERE c.content_id = '. (int) $this->content_id .' AND c.language_id = '. (int) $language;
+				$delete_statement = 'DELETE FROM '. TBL_CONTENT .' WHERE content_id = '. (int) $this->content_id .' AND language_id = '. (int) $language;
 			}	
 			// execute delete statement
 			db_query($delete_statement);
@@ -140,7 +140,7 @@ class content {
 	private function load($content_id, $language = NULL) {
 		// if no language was given use default language from customizing
 		if($language == NULL) {
-			$language = get_default_language();
+			$language = customizing::get_default_language();
 		}
 		
 		$this->language = $language;
