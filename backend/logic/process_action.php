@@ -114,7 +114,7 @@ switch($action) {
 		}
 		else{
 			$product = new product();
-			if($product->saveTranslatedProduct($product_data) == 0){
+			if($product->saveTranslatedProduct($product_data)){
 				echo sprintf(INFO_MESSAGE_TRANSLATION_SUCCEEDED, $product_id);
 			}
 			else{
