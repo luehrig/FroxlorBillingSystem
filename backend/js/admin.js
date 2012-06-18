@@ -108,12 +108,16 @@ $(function() {
 	
 	// set customizing fields editable for products
 	$('body').on("click","a[id=edit_product]", function() {
-		var product_id = $(this).attr('rel');
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
 		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "open_product_editor", product_id: product_id }
+			data: { action: "open_product_editor", product_id: product_id , language_id: language_id}
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -146,12 +150,16 @@ $(function() {
 	
 	// open translate Product form
 	$("body").on("click","a[id=translate_product]", function() {
-		var product_id = $(this).attr('rel');
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
 		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "open_translate_product_form", product_id: product_id}
+			data: { action: "open_translate_product_form", product_id: product_id, language_id: language_id}
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -181,6 +189,25 @@ $(function() {
 		return false;
 	});
 	
+	// change product-state
+	$('body').on("click","a[id=change_product_state]", function() {
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "change_product_state", product_id: product_id, language_id: language_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
 	
 	// set customizing fields editable for creating a new product
 	$('body').on("click","a[id=create_new_product]", function() {
@@ -201,7 +228,7 @@ $(function() {
 	// open editor for product
 	$("body").on("click", "input[type=submit][id=save_product]", function() {
 		
-		var language_id = $('input[type=text][id=language_id]').val();
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
 		var title = $('input[type=text][id=title]').val();
 		var contract_periode = $('input[type=text][id=contract_periode]').val();
 		var description = $('textarea[id=description]').val();
