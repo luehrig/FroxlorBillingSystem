@@ -17,6 +17,7 @@ define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
 define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
 define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
+define('LINK_DELETE_PRODUCT', 'Löschen');
 
 define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
 
@@ -85,7 +86,7 @@ define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
 
 
 define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Das Produkt wurde erfolgreich angelegt.');
-define('INFO_MESSAGE_DB_INSERT_FAILED', 'Es ist ein Fehler beim Anlegen des Datenbankeintrages aufgetreten.');
+define('INFO_MESSAGE_DB_ACTION_FAILED', 'Es ist ein Fehler beim Ändern der Datenbank aufgetreten.');
 
 define('INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL', 'Änderungen wurden erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
@@ -95,6 +96,7 @@ define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt 
 define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
 
 define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Status von dem Produkt wurde erfolgreich geändert.');
+define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht');
 
 
 ?>

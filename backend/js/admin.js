@@ -224,6 +224,26 @@ $(function() {
 		
 	});	
 	
+	// delete product
+	$('body').on("click","a[id=delete_product]", function() {
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "delete_product", product_id: product_id, language_id: language_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
 	
 	// open editor for product
 	$("body").on("click", "input[type=submit][id=save_product]", function() {

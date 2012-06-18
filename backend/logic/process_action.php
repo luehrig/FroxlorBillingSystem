@@ -157,7 +157,7 @@ switch($action) {
 				echo INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL;
 			}
 			else{
-				echo INFO_MESSAGE_DB_INSERT_FAILED;
+				echo INFO_MESSAGE_DB_ACTION_FAILED;
 			}	
 		}
 	
@@ -183,9 +183,26 @@ switch($action) {
 			echo INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL;
 		}
 		else{
-			echo INFO_MESSAGE_DB_INSERT_FAILED;
+			echo INFO_MESSAGE_DB_ACTION_FAILED;
 		}
 		break;
+		
+		
+	case 'delete_product':
+		$product_id = $_POST['product_id'];
+		$language_id = $_POST['language_id'];
+		$product = new product($product_id, $language_id);
+	
+		if($product->delete($product_id, $language_id)){
+			echo INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED;
+		}
+		else{
+			echo INFO_MESSAGE_DB_ACTION_FAILED;
+		}
+			
+		break;
+		
+			
 		
 	case 'get_server_overview':
 		echo 'Meine Server!';

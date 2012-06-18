@@ -10,7 +10,6 @@ class product {
 	private $quantity;
 	private $price;
 	private $state;
-	private $primary_keys;
 	private $product_attributes;
 	private $product_data;
 	
@@ -27,13 +26,10 @@ class product {
 			$this->quantity = $product_data['quantity'];
 			$this->price = $product_data['price'];
 			$this->active = $product_data['active'];
-			$this->primary_keys = array('product_id'=>$product_id, 'language_id');
 			
 		}	
 		
 	}
-	
-	
 	/* public section */
 	
 	public static function create($product_data) {
@@ -66,11 +62,11 @@ class product {
 			}
 		}
 	}
-	public function delete($product_id, $language_id) {
-		$sql_delete_statement = 'DELETE FROM'. TBL_PRODUCT .'WHERE product_id = "'. (int) $product_id.'" AND language_id = "'. $language_id. '"' ;
-		db_query($sql_delete_statement);
-	}
 	
+	public function delete($product_id, $language_id) {
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'" AND language_id = "'. $language_id. '"' ;
+		return db_query($sql_delete_statement);
+	}
 	
 	public function update($product_id, $language_id, $product_data) {
 		if($product_data != NULL){
@@ -136,6 +132,7 @@ class product {
 			<td><a href="#" id="edit_product" rel="'. $primary_keys .'">Icon</a></td>
 			<td><a href="#" id="translate_product" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
 			<td><a href="#" id="change_product_state" rel="'. $primary_keys .'">'. $change_state . '</a></td>
+			<td><a href="#" id="delete_product" rel="'. $primary_keys .'">'. LINK_DELETE_PRODUCT . '</a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
@@ -198,7 +195,6 @@ class product {
 		return $return_string;
 		
 	}
-
 	
 	public static function productExists($product_data, $compareable_product_id){
 	
@@ -249,7 +245,6 @@ class product {
 	
 	// getter 
 	
-	// TODO PRIMARY KEYS
 	public function getDataFromDB($product_id, $language_id){
 		return $this->getProductFromDb($product_id, $language_id);
 	}
@@ -258,9 +253,6 @@ class product {
 		return $this->product_data;
 	}
 	
-	public function getPrimaryKeys(){
-		return $this->primary_keys;
-	}
 
 	// private section
 	
