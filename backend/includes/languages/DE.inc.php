@@ -12,10 +12,12 @@ define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
 
 define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
+define('BUTTON_CHANGE_SERVER', 'Server ändern');
 
 define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
 
-define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
+define('BUTTON_CREATE_PRODUCT', 'Produkt anlegen');
+define('BUTTON_CREATE_SERVER', 'Server anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');
 define('LABEL_MY_PRODUCTS','Meine Produkte');
@@ -26,6 +28,9 @@ define('LABEL_MY_STATISTICS','Meine Shopstatistiken');
 
 define('LABEL_EMAIL','eMail Adresse');
 define('LABEL_PASSWORD','Passwort');
+
+define('LABEL_ACTIVE','aktiv');
+define('LABEL_INACTIVE','inaktiv');
 
 define('LABEL_GENDER','Anrede');
 define('LABEL_TITLE','Titel');
@@ -50,6 +55,18 @@ define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('LABEL_PRODUCT_QUANTITY', 'Menge');
 define('LABEL_PRODUCT_PRICE', 'Preis');
 
+define('LABEL_SERVER_NAME','Servername');
+define('LABEL_SERVER_MNGMNT_UI','Verwaltungsoberfläche');
+define('LABEL_SERVER_IPV4','IPv4 Adresse');
+define('LABEL_SERVER_IPV6','IPv6 Adresse');
+define('LABEL_SERVER_TOTAL_SPACE','Speicherkapazität (gesamt)');
+define('LABEL_SERVER_FREE_SPACE','Speicherkapazität (frei)');
+define('LABEL_SERVER_AVAILABLE','Server aktiv im Verkaufspool');
+define('LABEL_SERVER_FROXLOR_USERNAME','Froxlor Verwaltungsbenutzer');
+define('LABEL_SERVER_FROXLOR_PASSWORD','Froxlor Passwort');
+define('LABEL_SERVER_FROXLOR_DB','Froxlor Datenbank');
+define('LABEL_SERVER_FROXLOR_DB_HOST','Froxlor Datenbankserver');
+
 
 define('TABLE_HEADING_CONTENT_TITLE','Titel');
 define('TABLE_HEADING_CUSTOMER_CUSTOMER_NUMBER','Kundennummer');
@@ -63,8 +80,14 @@ define('TABLE_HEADING_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('TABLE_HEADING_PRODUCT_QUANTITY', 'Menge');
 define('TABLE_HEADING_PRODUCT_PRICE', 'Preis');
 
+define('TABLE_HEADING_SERVER_NAME', 'Servername');
+define('TABLE_HEADING_SERVER_DISK_SPACE', 'Speicherplatz');
+define('TABLE_HEADING_SERVER_STATUS','Status');
 
 define('FIELDSET_LOGIN_FORM_BACKEND','Shopzugang');
+
+define('FIELDSET_SERVER_SERVER_DATA','Server Informationen');
+define('FIELDSET_SERVER_FROXLOR_DATA','Froxlor Informationen');
 
 define('FIELDSET_CUSTOMER_GENERAL_INFORMATION','Allgemeine Daten');
 define('FIELDSET_CUSTOMER_CONTACT_INFORMATION','Kontaktdaten');
@@ -77,8 +100,8 @@ define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('EXPLANATION_CUSTOMIZING_ENTRIES','Mit Hilfe der folgenden Einträge können Sie das Verhalten ihres Shops ganz einfach anpassen und bei eigenen Erweiterungen zusätzliche Einträge hinzufügen.');
 
 define('EXPLANATION_NUMBER_OF_PRODUCTS','Aktuell stehen %d Produkte zum Verkauf.');
-
 define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
+define('EXPLANATION_NUMBER_OF_SERVERS','Aktuell befinden sich %d Server im Verkaufspool.');
 
 
 define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Das Produkt wurde erfolgreich angelegt.');
@@ -90,6 +113,8 @@ define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des
 define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
 define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
+
+define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server mit dieser IP-Adresse!');
 
 
 ?>

@@ -221,11 +221,6 @@ $(function() {
 	
 	
 	
-	
-	
-	
-	
-	
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {
 
@@ -239,6 +234,121 @@ $(function() {
 		
 		return false;
 	});	
+	
+	// get form to enter new server
+	$('body').on("click","a[id=create_new_server]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_create_server_form"}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
+	
+	// open editor for product
+	$("body").on("click", "input[type=submit][id=create_server]", function() {
+		
+		var name = $('input[type=text][id=name]').val();
+		var mngmnt_ui = $('input[type=text][id=mngmnt_ui]').val();
+		var ipv4 = $('input[type=text][id=ipv4]').val();
+		var ipv6 = $('input[type=text][id=ipv6]').val();
+		var froxlor_username = $('input[type=text][id=froxlor_username]').val();
+		var froxlor_password = $('input[type=password][id=froxlor_password]').val();
+		var froxlor_db = $('input[type=text][id=froxlor_db]').val();
+		var froxlor_db_host = $('input[type=text][id=froxlor_db_host]').val();
+		var total_space = $('input[type=text][id=total_space]').val();
+		var free_space = $('input[type=text][id=free_space]').val();
+		var active = $('input[type=checkbox][id=active]').val();
+	
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "create_new_server", name: name, mngmnt_ui: mngmnt_ui, ipv4: ipv4, ipv6:ipv6, froxlor_username: froxlor_username, froxlor_password: froxlor_password, froxlor_db: froxlor_db, froxlor_db_host: froxlor_db_host, total_space: total_space, free_space: free_space, active: active }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+			
+			if(msg == '') {
+				// reload server area
+				$.ajax({
+					type: "POST",
+					url: "logic/process_action.php",
+					data: { action: "get_server_overview" }
+				}).done(function( msg ) {
+					$('.content').html( msg );
+				});
+			}	
+			
+		});
+		
+		return false;
+	});
+	
+	// set customizing fields editable for products
+	$('body').on("click","a[id=edit_server]", function() {
+		var server_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_server_editor", server_id: server_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
+	// edit product
+	$("body").on("click", "input[type=submit][id=edit_server]", function() {
+		
+		var server_id = $('input[type=hidden][id=server_id]').val();
+		var name = $('input[type=text][id=name]').val();
+		var mngmnt_ui = $('input[type=text][id=mngmnt_ui]').val();
+		var ipv4 = $('input[type=text][id=ipv4]').val();
+		var ipv6 = $('input[type=text][id=ipv6]').val();
+		var froxlor_username = $('input[type=text][id=froxlor_username]').val();
+		var froxlor_password = $('input[type=password][id=froxlor_password]').val();
+		var froxlor_db = $('input[type=text][id=froxlor_db]').val();
+		var froxlor_db_host = $('input[type=text][id=froxlor_db_host]').val();
+		var total_space = $('input[type=text][id=total_space]').val();
+		var free_space = $('input[type=text][id=free_space]').val();
+		
+		var active;
+		if($('input[type=checkbox][id=active]').attr('checked') == 'checked') {
+			active = 1;
+		}
+		else {
+			active = 0;
+		}
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "edit_server", server_id: server_id, name: name, mngmnt_ui: mngmnt_ui, ipv4: ipv4, ipv6:ipv6, froxlor_username: froxlor_username, froxlor_password: froxlor_password, froxlor_db: froxlor_db, froxlor_db_host: froxlor_db_host, total_space: total_space, free_space: free_space, active: active }
+		}).done(function( msg ) {
+			if(msg == '') {
+				// reload server area
+				$.ajax({
+					type: "POST",
+					url: "logic/process_action.php",
+					data: { action: "get_server_overview" }
+				}).done(function( msg ) {
+					$('.content').html( msg );
+				});
+			}	
+		});
+		
+		return false;
+	});
+	
 	
 	// get overview page with all customers
 	$("body").on("click", "a[id=mycustomers]", function() {

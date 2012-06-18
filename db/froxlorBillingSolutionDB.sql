@@ -329,15 +329,19 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_server` (
   `server_id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(255) NOT NULL ,
   `mngmnt_ui` VARCHAR(45) NULL ,
-  `ipv4` INT(10) UNSIGNED NOT NULL ,
+  `ipv4` VARCHAR(15) NULL ,
   `ipv6` VARCHAR(40) NULL ,
   `froxlor_username` VARCHAR(50) NOT NULL ,
   `froxlor_password` VARCHAR(40) NOT NULL ,
   `froxlor_db` VARCHAR(50) NOT NULL ,
   `froxlor_db_host` VARCHAR(255) NULL ,
+  `total_space` DOUBLE NULL ,
   `free_space` DOUBLE NULL ,
+  `active` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`server_id`) ,
-  UNIQUE INDEX `server_id_UNIQUE` (`server_id` ASC) )
+  UNIQUE INDEX `server_id_UNIQUE` (`server_id` ASC) ,
+  UNIQUE INDEX `ipv4_UNIQUE` (`ipv4` ASC) ,
+  UNIQUE INDEX `ipv6_UNIQUE` (`ipv6` ASC) )
 ENGINE = MyISAM;
 
 

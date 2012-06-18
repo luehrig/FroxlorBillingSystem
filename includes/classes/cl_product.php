@@ -36,7 +36,7 @@ class product {
 			
 			// create new product
 			if($product_data['product_id'] == null){
-				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .'(language_id, title, contract_periode, description, quantity, price)
+				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .' (language_id, title, contract_periode, description, quantity, price)
 				VALUES (
 				"'. $product_data['language_id'] .'",
 				"'. $product_data['title'] .'",
@@ -48,7 +48,7 @@ class product {
 			}
 			// translate product with same product_id
 			else{
-				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .'(product_id, language_id, title, contract_periode, description, quantity, price)
+				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .' (product_id, language_id, title, contract_periode, description, quantity, price)
 				VALUES (
 				"'. $product_data['product_id'] .'",
 				"'. $product_data['language_id'] .'",
@@ -63,7 +63,7 @@ class product {
 	}
 	 
 	public function delete($product_id) {
-		$sql_delete_statement = 'DELETE FROM'. TBL_PRODUCT .'WHERE product_id = "'. (int) $product_id.'"';
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'"';
 		db_query($sql_delete_statement);
 	}
 	
