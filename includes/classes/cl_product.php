@@ -16,7 +16,7 @@ class product {
 	/* constructor */
 	public function __construct($product_id = NULL, $language_id = NULL) {
 		if($product_id != NULL and $language_id != NULL){ // TODO PRIMARY KEYS
-			$product_data = $this->getDataFromDB($product_id, $language_id);
+			$product_data = $this->getData($product_id, $language_id);
 			$this->product_data = $product_data;
 			$this->product_id = $product_data['product_id'];
 			$this->language_id = $product_data['language_id'];
@@ -85,7 +85,7 @@ class product {
 	}
 	
 	public static function printOverview($container_id = 'product_overview'){
-		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
+		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p ORDER BY p.product_id ASC';
 		$product_query = db_query($sql_statement);
 		$number_of_products = db_num_results($product_query);
 		
@@ -96,7 +96,7 @@ class product {
 		$create_button = '<a href="#" id="create_new_product">'.BUTTON_CREATE_NEW_PRODUCT.'</a></td>';
 		
 		
-		$return_string = $return_string . $create_button;
+		$return_string = $return_string . $create_button . '<br><br>';
 		
 		
 		$table_header = '<table border = "0">
@@ -129,7 +129,7 @@ class product {
 			<td>'. $data['description'] .'</td>
 			<td>'. $data['quantity'] .'</td>
 			<td>'. $data['price'] .'</td>
-			<td><a href="#" id="edit_product" rel="'. $primary_keys .'">Icon</a></td>
+			<td><a href="#" id="edit_product" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
 			<td><a href="#" id="translate_product" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
 			<td><a href="#" id="change_product_state" rel="'. $primary_keys .'">'. $change_state . '</a></td>
 			<td><a href="#" id="delete_product" rel="'. $primary_keys .'">'. LINK_DELETE_PRODUCT . '</a></td>
@@ -245,7 +245,7 @@ class product {
 	
 	// getter 
 	
-	public function getDataFromDB($product_id, $language_id){
+	public function getData($product_id, $language_id){
 		return $this->getProductFromDb($product_id, $language_id);
 	}
 	

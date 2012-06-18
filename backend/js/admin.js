@@ -245,7 +245,7 @@ $(function() {
 	});	
 	
 	
-	// open editor for product
+	// save product
 	$("body").on("click", "input[type=submit][id=save_product]", function() {
 		
 		var language_id = $('select[name=language_selection] option:selected').attr('id');
@@ -266,12 +266,34 @@ $(function() {
 		return false;
 	});
 	
+	// get overview page with all product attributes.
+	$("body").on("click", "a[id=myproductattributes]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_product_attributes_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
 	
-	
-	
-	
-	
-	
+//	// set customizing fields editable for product attributes
+//	$("body").on("click", "a[id=edit_product_atrribute]", function() {
+//		
+//		$.ajax({
+//			type: "POST",
+//			url: "logic/process_action.php",
+//			data: { action: "get_product_attributes_overview" }
+//		}).done(function( msg ) {
+//			$('.content').html( msg );
+//		});
+//		
+//		return false;
+//	});	
+
 	
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {

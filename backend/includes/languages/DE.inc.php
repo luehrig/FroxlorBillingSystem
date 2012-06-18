@@ -10,6 +10,7 @@ define('BUTTON_SAVE_CUSTOMIZING_BACKEND','Customizing speichern');
 define('BUTTON_SAVE','Speichern');
 define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
+define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 
 
 define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
@@ -23,6 +24,7 @@ define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');
 define('LABEL_MY_PRODUCTS','Meine Produkte');
+define('LABEL_MY_PRODUCTATTRIBUTES', 'Meine Produktattribute');
 define('LABEL_MY_SERVERS','Meine Server');
 define('LABEL_MY_CUSTOMERS','Meine Kunden');
 define('LABEL_MY_CONTENT','Mein Inhalt');
@@ -67,6 +69,8 @@ define('TABLE_HEADING_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('TABLE_HEADING_PRODUCT_QUANTITY', 'Menge');
 define('TABLE_HEADING_PRODUCT_PRICE', 'Preis');
 
+define('TABLE_HEADING_PRODUCT_ATTRIBUTE_LANGUAGE', 'Sprache');
+define('TABLE_HEADING_PRODUCT_ATTRIBUTE_DESCRIPTION', 'Beschreibung');
 
 define('FIELDSET_LOGIN_FORM_BACKEND','Shopzugang');
 
@@ -81,6 +85,7 @@ define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('EXPLANATION_CUSTOMIZING_ENTRIES','Mit Hilfe der folgenden Einträge können Sie das Verhalten ihres Shops ganz einfach anpassen und bei eigenen Erweiterungen zusätzliche Einträge hinzufügen.');
 
 define('EXPLANATION_NUMBER_OF_PRODUCTS','Aktuell stehen %d Produkte zum Verkauf.');
+define('EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES', 'Aktuell sind derzeit %d Produktattribute im System eingepflegt.');
 
 define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
 

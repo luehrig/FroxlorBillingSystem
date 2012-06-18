@@ -6,6 +6,7 @@ require '../../includes/classes/cl_content.php';
 require '../../includes/classes/cl_customer.php';
 require '../../includes/classes/cl_country.php';
 require '../../includes/classes/cl_product.php';
+require '../../includes/classes/cl_product_attribute.php';
 
 session_start();
 
@@ -202,6 +203,14 @@ switch($action) {
 			
 		break;
 		
+		
+		
+		
+		case 'get_product_attributes_overview':
+			
+			echo productattribute::printOverview();
+				
+			break;
 			
 		
 	case 'get_server_overview':
