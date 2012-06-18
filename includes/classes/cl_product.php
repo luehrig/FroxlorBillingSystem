@@ -9,13 +9,14 @@ class product {
 	private $description;
 	private $quantity;
 	private $price;
+	private $state;
 	private $product_attributes;
 	private $product_data;
 	
 	/* constructor */
-	public function __construct($product_id = NULL){
-		if($product_id != NULL){
-			$product_data = $this->getData($product_id);
+	public function __construct($product_id = NULL, $language_id = NULL) {
+		if($product_id != NULL and $language_id != NULL){ // TODO PRIMARY KEYS
+			$product_data = $this->getData($product_id, $language_id);
 			$this->product_data = $product_data;
 			$this->product_id = $product_data['product_id'];
 			$this->language_id = $product_data['language_id'];
@@ -24,11 +25,11 @@ class product {
 			$this->description = $product_data['description'];
 			$this->quantity = $product_data['quantity'];
 			$this->price = $product_data['price'];
+			$this->active = $product_data['active'];
+			
 		}	
 		
 	}
-	
-	
 	/* public section */
 	
 	public static function create($product_data) {
@@ -36,7 +37,7 @@ class product {
 			
 			// create new product
 			if($product_data['product_id'] == null){
-				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .'(language_id, title, contract_periode, description, quantity, price)
+				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .' (language_id, title, contract_periode, description, quantity, price)
 				VALUES (
 				"'. $product_data['language_id'] .'",
 				"'. $product_data['title'] .'",
@@ -48,7 +49,7 @@ class product {
 			}
 			// translate product with same product_id
 			else{
-				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .'(product_id, language_id, title, contract_periode, description, quantity, price)
+				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .' (product_id, language_id, title, contract_periode, description, quantity, price)
 				VALUES (
 				"'. $product_data['product_id'] .'",
 				"'. $product_data['language_id'] .'",
@@ -61,29 +62,30 @@ class product {
 			}
 		}
 	}
-	 
-	public function delete($product_id) {
-		$sql_delete_statement = 'DELETE FROM'. TBL_PRODUCT .'WHERE product_id = "'. (int) $product_id.'"';
-		db_query($sql_delete_statement);
+	
+	public function delete($product_id, $language_id) {
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'" AND language_id = "'. $language_id. '"';
+		return db_query($sql_delete_statement);
 	}
 	
-	public function update($product_id, $product_data) {
+	public function update($product_id, $language_id, $product_data) {
 		if($product_data != NULL){
-			$sql_delete_statement = 'UPDATE '. TBL_PRODUCT .' SET
+			$sql_update_statement = 'UPDATE '. TBL_PRODUCT .' SET
 				language_id="'. $product_data['language_id'] .'", 
 				title="'. $product_data['title'] .'", 
 				contract_periode="'. $product_data['contract_periode'] .'", 
 				description="'. $product_data['description'].'", 
 				quantity="'. $product_data['quantity'] .'", 
-				price="'. $product_data['price'] .'"
-				WHERE product_id="'. $product_id .'"';
+				price="'. $product_data['price'] .'", 
+				active="'. $product_data['active'] .'" 
+				WHERE product_id="'. $product_id .'" AND language_id = "'. $language_id. '"' ;
 			
-			return db_query($sql_delete_statement);
+			return db_query($sql_update_statement);
 		}
 	}
 	
 	public static function printOverview($container_id = 'product_overview'){
-		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price FROM '. TBL_PRODUCT .' AS p ORDER BY p.title ASC';
+		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p ORDER BY p.product_id ASC';
 		$product_query = db_query($sql_statement);
 		$number_of_products = db_num_results($product_query);
 		
@@ -94,7 +96,7 @@ class product {
 		$create_button = '<a href="#" id="create_new_product">'.BUTTON_CREATE_NEW_PRODUCT.'</a></td>';
 		
 		
-		$return_string = $return_string . $create_button;
+		$return_string = $return_string . $create_button . '<br><br>';
 		
 		
 		$table_header = '<table border = "0">
@@ -109,6 +111,17 @@ class product {
 		
 		$table_content = '';
 		while($data = db_fetch_array($product_query)) {
+			
+			$primary_keys = $data['product_id'].','.$data['language_id'];
+			
+			$state = $data['active'];
+			$change_state;
+			if($state==1){
+				$change_state = LINK_DEACTIVATE_PRODUCT;
+			}
+			elseif($state==0){
+				$change_state = LINK_ACTIVATE_PRODUCT;
+			}
 			$table_content = $table_content .'<tr>
 			<td>'. $data['language_id'] .'</td>
 			<td>'. $data['title'] .'</td>
@@ -116,8 +129,10 @@ class product {
 			<td>'. $data['description'] .'</td>
 			<td>'. $data['quantity'] .'</td>
 			<td>'. $data['price'] .'</td>
-			<td><a href="#" id="edit_product" rel="'. $data['product_id'] .'">Icon</a></td>
-			<td><a href="#" id="translate_product" rel="'. $data['product_id'] .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
+			<td><a href="#" id="edit_product" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
+			<td><a href="#" id="translate_product" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
+			<td><a href="#" id="change_product_state" rel="'. $primary_keys .'">'. $change_state . '</a></td>
+			<td><a href="#" id="delete_product" rel="'. $primary_keys .'">'. LINK_DELETE_PRODUCT . '</a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
@@ -143,10 +158,6 @@ class product {
 	
 	public function saveTranslatedProduct($product_data){
 		return $this->create($product_data);
-	}
-	
-	public function getData($product_id){
-		return $this->getProductFromDb($product_id);
 	}
 	
 	public function entryExists($product_data){
@@ -184,7 +195,6 @@ class product {
 		return $return_string;
 		
 	}
-
 	
 	public static function productExists($product_data, $compareable_product_id){
 	
@@ -227,9 +237,28 @@ class product {
 		
 	}
 	
+	public function changeProductState($product_data){		
+		$sql_update_statement = 'UPDATE '. TBL_PRODUCT .' SET active="' . $product_data['active'] . '" WHERE
+		product_id="' . $product_data['product_id'] . '" AND language_id="' . $product_data['language_id']  . '"';  
+		return db_query($sql_update_statement);
+	}
+	
+	// getter 
+	
+	public function getData($product_id, $language_id){
+		return $this->getProductFromDb($product_id, $language_id);
+	}
+	
+	public function getProductData(){
+		return $this->product_data;
+	}
+	
+
 	// private section
-	private function getProductFromDb($product_id) {
-		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'"';
+	
+	// TODO PRIMARY KEYS
+	private function getProductFromDb($product_id, $language_id) {
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'" AND language_id = "'. $language_id. '"' ;
 		$info_query = db_query($sql_select_statement);
 		return db_fetch_array($info_query);
 	}

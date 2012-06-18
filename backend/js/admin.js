@@ -108,12 +108,16 @@ $(function() {
 	
 	// set customizing fields editable for products
 	$('body').on("click","a[id=edit_product]", function() {
-		var product_id = $(this).attr('rel');
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
 		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "open_product_editor", product_id: product_id }
+			data: { action: "open_product_editor", product_id: product_id , language_id: language_id}
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -146,12 +150,16 @@ $(function() {
 	
 	// open translate Product form
 	$("body").on("click","a[id=translate_product]", function() {
-		var product_id = $(this).attr('rel');
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
 		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "open_translate_product_form", product_id: product_id}
+			data: { action: "open_translate_product_form", product_id: product_id, language_id: language_id}
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -181,6 +189,25 @@ $(function() {
 		return false;
 	});
 	
+	// change product-state
+	$('body').on("click","a[id=change_product_state]", function() {
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "change_product_state", product_id: product_id, language_id: language_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
 	
 	// set customizing fields editable for creating a new product
 	$('body').on("click","a[id=create_new_product]", function() {
@@ -197,11 +224,31 @@ $(function() {
 		
 	});	
 	
+	// delete product
+	$('body').on("click","a[id=delete_product]", function() {
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "delete_product", product_id: product_id, language_id: language_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
 	
-	// open editor for product
+	
+	// save product
 	$("body").on("click", "input[type=submit][id=save_product]", function() {
 		
-		var language_id = $('input[type=text][id=language_id]').val();
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
 		var title = $('input[type=text][id=title]').val();
 		var contract_periode = $('input[type=text][id=contract_periode]').val();
 		var description = $('textarea[id=description]').val();
@@ -219,12 +266,33 @@ $(function() {
 		return false;
 	});
 	
-	
-	
-	
-	
-	
-	
+	// get overview page with all product attributes.
+	$("body").on("click", "a[id=myproductattributes]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_product_attributes_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+
+//	// set customizing fields editable for product attributes
+//	$("body").on("click", "a[id=edit_product_atrribute]", function() {
+//		
+//		$.ajax({
+//			type: "POST",
+//			url: "logic/process_action.php",
+//			data: { action: "get_product_attributes_overview" }
+//		}).done(function( msg ) {
+//			$('.content').html( msg );
+//		});
+//		
+//		return false;
+//	});	
 	
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {
@@ -239,6 +307,147 @@ $(function() {
 		
 		return false;
 	});	
+	
+	// get form to enter new server
+	$('body').on("click","a[id=create_new_server]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_create_server_form"}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
+	
+	// trigger creation of new server
+	$("body").on("click", "input[type=submit][id=create_server]", function() {
+		
+		var name = $('input[type=text][id=name]').val();
+		var mngmnt_ui = $('input[type=text][id=mngmnt_ui]').val();
+		var ipv4 = $('input[type=text][id=ipv4]').val();
+		var ipv6 = $('input[type=text][id=ipv6]').val();
+		var froxlor_username = $('input[type=text][id=froxlor_username]').val();
+		var froxlor_password = $('input[type=password][id=froxlor_password]').val();
+		var froxlor_db = $('input[type=text][id=froxlor_db]').val();
+		var froxlor_db_host = $('input[type=text][id=froxlor_db_host]').val();
+		var total_space = $('input[type=text][id=total_space]').val();
+		var free_space = $('input[type=text][id=free_space]').val();
+		var active = $('input[type=checkbox][id=active]').val();
+	
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "create_new_server", name: name, mngmnt_ui: mngmnt_ui, ipv4: ipv4, ipv6:ipv6, froxlor_username: froxlor_username, froxlor_password: froxlor_password, froxlor_db: froxlor_db, froxlor_db_host: froxlor_db_host, total_space: total_space, free_space: free_space, active: active }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+			
+			if(msg == '') {
+				// reload server area
+				$.ajax({
+					type: "POST",
+					url: "logic/process_action.php",
+					data: { action: "get_server_overview" }
+				}).done(function( msg ) {
+					$('.content').html( msg );
+				});
+			}	
+			
+		});
+		
+		return false;
+	});
+	
+	// update server on DB
+	$('body').on("click","a[id=edit_server]", function() {
+		var server_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_server_editor", server_id: server_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
+	// trigger server update
+	$("body").on("click", "input[type=submit][id=edit_server]", function() {
+		
+		var server_id = $('input[type=hidden][id=server_id]').val();
+		var name = $('input[type=text][id=name]').val();
+		var mngmnt_ui = $('input[type=text][id=mngmnt_ui]').val();
+		var ipv4 = $('input[type=text][id=ipv4]').val();
+		var ipv6 = $('input[type=text][id=ipv6]').val();
+		var froxlor_username = $('input[type=text][id=froxlor_username]').val();
+		var froxlor_password = $('input[type=password][id=froxlor_password]').val();
+		var froxlor_db = $('input[type=text][id=froxlor_db]').val();
+		var froxlor_db_host = $('input[type=text][id=froxlor_db_host]').val();
+		var total_space = $('input[type=text][id=total_space]').val();
+		var free_space = $('input[type=text][id=free_space]').val();
+		
+		var active;
+		if($('input[type=checkbox][id=active]').attr('checked') == 'checked') {
+			active = 1;
+		}
+		else {
+			active = 0;
+		}
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "edit_server", server_id: server_id, name: name, mngmnt_ui: mngmnt_ui, ipv4: ipv4, ipv6:ipv6, froxlor_username: froxlor_username, froxlor_password: froxlor_password, froxlor_db: froxlor_db, froxlor_db_host: froxlor_db_host, total_space: total_space, free_space: free_space, active: active }
+		}).done(function( msg ) {
+			if(msg == '') {
+				// reload server area
+				$.ajax({
+					type: "POST",
+					url: "logic/process_action.php",
+					data: { action: "get_server_overview" }
+				}).done(function( msg ) {
+					$('.content').html( msg );
+				});
+			}	
+		});
+		
+		return false;
+	});
+	
+	
+	// delete server on DB
+	$('body').on("click","a[id=delete_server]", function() {
+		var server_id = $(this).attr('rel');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "delete_server", server_id: server_id }
+		}).done(function( msg ) {
+			if(msg == '') {
+				// reload server area
+				$.ajax({
+					type: "POST",
+					url: "logic/process_action.php",
+					data: { action: "get_server_overview" }
+				}).done(function( msg ) {
+					$('.content').html( msg );
+				});
+			}	
+		});
+		
+		return false;
+		
+	});	
+	
 	
 	// get overview page with all customers
 	$("body").on("click", "a[id=mycustomers]", function() {

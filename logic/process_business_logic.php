@@ -1,20 +1,38 @@
 <?php
 
-require '../includes/classes/cl_customizing.php';
-require '../includes/classes/cl_shoppingcart.php';
-
-session_start();
-
 include_once '../configuration.inc.php';
 
-require '../functions/database.php';
+require_once PATH_CLASSES .'cl_customizing.php';
+require_once PATH_CLASSES .'cl_language.php';
+require_once PATH_CLASSES .'cl_shoppingcart.php';
+
+
+if(session_id() == '') {
+	session_start();
+}
+
+require PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
-require '../functions/general.php';
+require PATH_FUNCTIONS .'general.php';
 
-include_once '../includes/database_tables.php';
-include_once '../includes/languages/DE.inc.php';
-include_once '../functions/user_management.php';
+include_once PATH_INCLUDES .'database_tables.php';
+include_once PATH_FUNCTIONS .'user_management.php';
+
+if(!isset($language_id)) {
+// check if language was handed over
+if(isset($_POST['language_id'])) {
+	$language_id = language::ISOTointernal($_POST['language_id']);
+	if($language_id == null) {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() ); 
+	}
+}
+else {
+	$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+}
+}
+
+include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
 $action = $_POST['action'];
 

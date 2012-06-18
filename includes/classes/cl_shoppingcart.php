@@ -113,7 +113,7 @@ class shoppingcart {
 		$return_string = $return_string .'</table></form>';
 		
 		$return_string = $return_string .'<div id="buttons">
-											<a href="#" id="start_checkout">'. BUTTON_CHECKOUT .'</a>
+											<a href="#!start_checkout" id="start_checkout">'. BUTTON_CHECKOUT .'</a>
 										  </div>';
 		
 		return $return_string;

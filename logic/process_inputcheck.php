@@ -1,10 +1,35 @@
 <?php
 
-include '../includes/languages/DE.inc.php';
-
-require '../includes/classes/cl_customizing.php';
-
 session_start();
+
+include '../configuration.inc.php';
+
+require_once PATH_CLASSES .'cl_customizing.php';
+require_once PATH_CLASSES .'cl_language.php';
+
+require PATH_FUNCTIONS .'database.php';
+db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
+
+include_once PATH_INCLUDES .'database_tables.php';
+
+$customizing = new customizing( language::ISOTointernal(language::getBrowserLanguage()) );
+$_SESSION['customizing'] = $customizing;
+
+
+if(!isset($language_id)) {
+	// check if language was handed over
+	if(isset($_POST['language_id'])) {
+		$language_id = language::ISOTointernal($_POST['language_id']);
+		if($language_id == null) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
+	}
+	else {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+	}
+}
+
+include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
 $action = $_POST['action'];
 
