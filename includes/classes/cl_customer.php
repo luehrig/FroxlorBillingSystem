@@ -65,6 +65,7 @@ class customer {
 		else {
 			$billing_address_data = $shipping_address_data;
 		}
+		
 			
 		$return_string = '<div id="'. $container_id .'"><form>';
 		
@@ -82,7 +83,7 @@ class customer {
 																		 $return_string = $return_string.' '.$this->title.' '.$this->first_name.' '.$this->last_name. // name
 									 								  	'<br>'.$billing_address_data['street'].' '.$billing_address_data['street_number']. // street + number
 									 								  	'<br>'.$billing_address_data['post_code'].' '.$billing_address_data['city']. // post code + city
-									 								  	'<br>'.'</td></tr>'. // country
+									 								  	'<br>'. $billing_address_data['country_code'] .'</td></tr>'. // country
 									 			'<tr><th>'.LABEL_S_ADDRESS.': </th><td>';
 																		 if($shipping_address_data == $shipping_address_data){ // if billing address equals shipping address show checked checkbox
 																		 	$return_string = $return_string.'<input type="checkbox" name="same_adress" readonly checked>'. LABEL_SAME_ADRESS;
@@ -195,7 +196,7 @@ class customer {
 		else {
 			$billing_address_data = $shipping_address_data;
 		}
-			
+		
 		$return_string = '<div id="'. $container_id .'"><form><div class="edit_cust_data">';
 	
 		$return_string = $return_string .'<fieldset>'.
@@ -253,8 +254,8 @@ class customer {
 		<p><label for="shippingcity">'. LABEL_CITY .'</label>
 		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'"></p>
 		<p><label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
-		$country->printSelectBox("shippingcountry","shippingcountry", $shipping_address_data['country_code']) .'</p>
-		</div>
+		'<div class="country">'. $country->printSelectBox("shippingcountry","shippingcountry", $shipping_address_data['country_code']).
+		'</div></p>
 		</fieldset>';
 		
 		// Checkbox for same shipping and billing address

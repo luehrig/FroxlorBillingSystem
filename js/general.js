@@ -241,7 +241,7 @@ $(function() {
 	
 	//overlay for customercenter 
 	$("body").on("click","a[class=customercenter]", function() {
-		$.colorbox({href:"customercenter/index.php"});
+//		$.colorbox({href:"customercenter/index.php"});
 		
 		return false;
 	});

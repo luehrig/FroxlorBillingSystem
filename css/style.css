@@ -37,6 +37,12 @@ body
 	box-shadow: inset 0 0 10px #000000;
 }
 
+.header_right {
+	float: right;
+	width: 400px;
+	height: 100px;
+}
+
 .content_container {
 	background-color: #F0F0F0;
 	width: 900px;
@@ -344,20 +350,32 @@ legend
 	margin: 5px;	
 }
 
-#logout {
-	float: right;
-	margin: 10px;
+
+#customer_header {
 	font-weight:bold;
 	font-size: 0.8em;
-	color:#A0A0A0
+	vertical-align: bottom;
+	text-align: right;
+	position: absolute;
+	top: 75px;
+	left: 790px;
 }
-#logout a:focus { 
-	font-weight:bold; color:black; text-decoration:underline; 
+#customer_header a:link{
+	margin-left: 5px;
+	color:#A0A0A0; text-decoration:none; 
 }
-#logout a:hover { 
-	font-weight:bold; color:black; text-decoration:underline; 
+#customer_header a:focus { 
+	color:black; text-decoration:none; 
 }
-
+#customer_header a:hover { 
+	color:black; text-decoration:underline; 
+}
+#customer_header a:active {
+	color:#A0A0A0; text-decoration:none; 
+}
+#customer_header a:visited {
+	color:#A0A0A0; text-decoration:none; 
+}
 
 .cust_data{
 	width: 680px;
@@ -459,4 +477,8 @@ legend
 #checkbox_same_address{
 	width: 10px;
 	margin: 10px;
+}
+
+#shippingcountry{
+	
 }
