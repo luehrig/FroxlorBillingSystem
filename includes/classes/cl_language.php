@@ -14,7 +14,7 @@ class language {
 	}
 	
 	/* public section */
-	public static function printLanguages($div_containerid = 'languages') {
+	public static function printLanguages($pre_selected = NULL, $div_containerid = 'languages') {
 		
 		$sql_statement = 'SELECT l.language_id, l.language_name FROM '. TBL_LANGUAGE .' AS l';
 		$language_query = db_query($sql_statement);
@@ -26,7 +26,12 @@ class language {
 			$return_string = $return_string .'<select id="language_selection" name="language_selection" size="1">';
 		
 			while($data = db_fetch_array($language_query)) {
-				$return_string = $return_string .'<option id="'. $data['language_id'] .'">'. $data['language_name'] .'</option>';
+				if($data['language_id']==$pre_selected){
+					$return_string = $return_string .'<option id="'. $data['language_id'] . '" selected = "selected">'. $data['language_name'] .'</option>';
+				}
+				else{
+					$return_string = $return_string .'<option id="'. $data['language_id'] .'">'. $data['language_name'] .'</option>';
+				}
 			}
 		
 			$return_string = $return_string . '</select></div>';
@@ -96,6 +101,18 @@ class language {
 		else {
 			return null;
 		}
+	}
+	
+	// get array (id->language)
+	public static function getIdLanguageMap(){
+		$result_array = array();
+		$sql_statement = 'SELECT l.language_id, l.language_name FROM '. TBL_LANGUAGE .' AS l ORDER BY l.language_id ASC';
+		$language_query = db_query($sql_statement);
+		
+		while($data = db_fetch_array($language_query)) {
+			$result_array[$data['language_id']] = $data['language_name'];
+		}	
+		return $result_array;
 	}
 	
 	/* private section */

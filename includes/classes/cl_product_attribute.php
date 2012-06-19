@@ -7,11 +7,12 @@ class productAttribute{
 	
 	public function _construct($product_attribute_id = NULL, $language_id = NULL){
 		if($product_attribute_id != NULL AND $language_id != NULL){
-			$product_attribute_data = $this->getProductData($product_id);
+			$product_attribute_data = $this->getData($product_attribute_id, $language_id);
 			$this->product_attribute_data = $product_attribute_data;
 			$this->product_attribute_id = $product_attribute_data['product_attribute_id'];
 			$this->language_id = $product_attribute_data['language_id'];
 			$this->description = $product_attribute_data['description'];
+	
 			
 		}
 	}
@@ -39,7 +40,7 @@ class productAttribute{
 		}
 	}
 	
-	public static function printOverview($container_id = 'product_attribute_overview'){
+	public static function printOverview($id_language_map, $container_id='product_attribute_overview'){
 		
 		
 		$sql_statement = 'SELECT p.product_attribute_id, p.language_id, p.description FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p ORDER BY p.product_attribute_id ASC';
@@ -68,7 +69,7 @@ class productAttribute{
 			$primary_keys = $data['product_attribute_id'].','.$data['language_id'];
 				
 			$table_content = $table_content .'<tr>
-			<td>'. $data['language_id'] .'</td>
+			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['description'] .'</td>
 			<td><a href="#" id="edit_product_atrribute" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
 			<td><a href="#" id="translate_product_attribute" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
@@ -80,8 +81,19 @@ class productAttribute{
 		
 	}
 	
-	public function getData(){
-		return $this->getProductAttributeFromDB();
+	public function printFormEdit($language_select_box, $language_id, $container_id = 'product_attribute_editor'){
+		$return_string = '<div id="'.$container_id.'">.
+							<form>'.'<fieldset>'. $language_select_box. '
+							<label for="describtion">'. LABEL_DESCRIPTION .'</label><br>'. '
+							<textarea cols="20" rows="4" id="description" name="description" >'. $this->description .'</textarea><br>';
+							
+		$return_string = $return_string . '<input type="submit" name="submit_edit_product_attribute" id="submit_edit_product_attribute" value="'. BUTTON_CHANGE_PRODUCT_ATTRIBUTE .'">';
+		$return_string = $return_string . '</form></div>';
+		return $return_string;
+	}
+	
+	public function getData($product_attribute_id, $language_id){
+		return $this->getProductAttributeFromDB($product_attribute_id, $language_id);
 	}
 	
 	

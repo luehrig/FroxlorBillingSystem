@@ -36,8 +36,8 @@ switch($action) {
 	break;
 	
 	case 'get_products_overview':
-		
-		echo product::printOverview();
+		$id_language_map = language::getIdLanguageMap();
+		echo product::printOverview($id_language_map);
 		
 	break;
 	
@@ -46,7 +46,7 @@ switch($action) {
 		$language_id = $_POST['language_id'];	
 		$product = new product($product_id, $language_id);
 	
-		echo $product->printFormEdit(language::printLanguages());
+		echo $product->printFormEdit(language::printLanguages($language_id), $language_id);
 	
 		break;
 		
@@ -206,12 +206,21 @@ switch($action) {
 		
 		
 		
-		case 'get_product_attributes_overview':
+	case 'get_product_attributes_overview':
+		$id_language_map = language::getIdLanguageMap();
+		echo productattribute::printOverview($id_language_map);
 			
-			echo productattribute::printOverview();
-				
-			break;
+		break;
 			
+		
+	case 'open_product_attribute_editor':
+		$product_attribute_id = $_POST['product_attribute_id'];
+		$language_id = $_POST['language_id'];
+		$product_attribute = new productAttribute($product_attribute_id, $language_id);
+		
+		echo $product_attribute->printFormEdit(language::printLanguages($language_id), $language_id);
+		
+		break;
 		
 	case 'get_server_overview':
 		echo 'Meine Server!';

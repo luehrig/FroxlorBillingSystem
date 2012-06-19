@@ -68,7 +68,7 @@ class product {
 		return db_query($sql_delete_statement);
 	}
 	
-	public function update($product_id, $language_id, $product_data) {
+	public function update($product_id, $product_data) {
 		if($product_data != NULL){
 			$sql_update_statement = 'UPDATE '. TBL_PRODUCT .' SET
 				language_id="'. $product_data['language_id'] .'", 
@@ -84,7 +84,7 @@ class product {
 		}
 	}
 	
-	public static function printOverview($container_id = 'product_overview'){
+	public static function printOverview($id_language_map, $container_id = 'product_overview'){
 		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p ORDER BY p.product_id ASC';
 		$product_query = db_query($sql_statement);
 		$number_of_products = db_num_results($product_query);
@@ -123,7 +123,7 @@ class product {
 				$change_state = LINK_ACTIVATE_PRODUCT;
 			}
 			$table_content = $table_content .'<tr>
-			<td>'. $data['language_id'] .'</td>
+			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['title'] .'</td>
 			<td>'. $data['contract_periode'] .'</td>
 			<td>'. $data['description'] .'</td>
@@ -139,7 +139,7 @@ class product {
 		return $return_string;
 	}
 	
-	public function printFormEdit($language_select_box, $container_id = 'product_editor'){
+	public function printFormEdit($language_select_box, $language_id, $container_id = 'product_editor'){
 		$return_string = '<div id="'.$container_id.'">.
 				<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
 		$return_string = $return_string . '<input type="submit" name="submit_edit_product" id="submit_edit_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
@@ -182,7 +182,7 @@ class product {
 		'<input type="text" id="title" name="title"><br>'.
 		'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
 		'<input type="text" id="contract_periode" name="contract_periode"><br>'.
-		'<label for="describtion">'. LABEL_PRODUCT_DESCRIPTION .'</label><br>'.
+		'<label for="describtion">'. LABEL_DESCRIPTION .'</label><br>'.
 		'<textarea cols="20" rows="4" id="description" name="description" ></textarea><br>'.
 		'<label for="quantity">'. LABEL_PRODUCT_QUANTITY .'</label>'.
 		'<input type="text" id="quantity" name="quantity"><br>'.
@@ -276,7 +276,7 @@ class product {
 					'<input type="text" id="title" name="title" value="'. $this->title .'"><br>'.
 					'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
 					'<input type="text" id="contract_periode" name="contract_periode" value="'. $this->contract_periode .'"><br>'.
-					'<label for="describtion">'. LABEL_PRODUCT_DESCRIPTION .'</label><br>'.
+					'<label for="describtion">'. LABEL_DESCRIPTION .'</label><br>'.
 					'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>'.
 					'<label for="quantity">'. LABEL_PRODUCT_QUANTITY .'</label>'.
 					'<input type="text" id="quantity" name="quantity" value="'. $this->quantity .'"><br>'.
