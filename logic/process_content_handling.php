@@ -53,8 +53,9 @@ switch($action) {
 	
 	// display shopping cart with all products
 	case 'show_shoppingcart':
-		$cart = new shoppingcart(session_id());
-		echo $cart->printCart();
+		
+		include PATH_BODYS .'shoppingcart.php';
+
 	break;
 	
 	case 'show_checkout_step1':

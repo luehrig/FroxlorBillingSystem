@@ -16,7 +16,7 @@ db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 require '../functions/general.php';
 
 include_once '../includes/database_tables.php';
-include_once '../includes/languages/DE.inc.php';
+include_once '../includes/languages/DE-DE.inc.php';
 
 $customizing = new customizing( get_default_language() );
 
