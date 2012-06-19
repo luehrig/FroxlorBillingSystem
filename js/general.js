@@ -19,6 +19,7 @@ $(function() {
 	    
 	    // dynamic content loading
 	    loadContent(url, lang);
+	    
 	});
 
 	// Since the event is only triggered when the hash changes, we need to trigger the event now, to handle 
@@ -30,6 +31,7 @@ $(function() {
 	
 	$(document).ready(function() {
 		// code that is executed if page was loaded
+		
 	});
 
 
@@ -291,6 +293,7 @@ function setProductCountInCart() {
 		$('#current_cart_quantity').html( msg );
 	});
 }
+
 
 // load specific content in content container
 function loadContent(areacode, language_id) {

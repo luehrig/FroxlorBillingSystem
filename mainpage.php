@@ -1,5 +1,4 @@
-<div class="content_container">
-
+<div class="content_container" id="content_container">
 <?php 
 /*
  * this coding is neccessary to support google ajax crawling
