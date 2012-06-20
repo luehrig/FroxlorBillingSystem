@@ -10,18 +10,18 @@ define('BUTTON_SAVE_CUSTOMIZING_BACKEND','Customizing speichern');
 define('BUTTON_SAVE','Speichern');
 define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
-define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
-
-
 define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
-define('BUTTON_CHANGE_SERVER', 'Server ändern');
+define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
 
+define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
+define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
+
+
+define('BUTTON_CHANGE_SERVER', 'Server ändern');
 define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
 define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
 define('LINK_DELETE_PRODUCT', 'Löschen');
-
-define('BUTTON_CREATE_PRODUCT', 'Produkt anlegen');
 define('BUTTON_CREATE_SERVER', 'Server anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');
@@ -34,7 +34,6 @@ define('LABEL_MY_STATISTICS','Meine Shopstatistiken');
 
 define('LABEL_EMAIL','eMail Adresse');
 define('LABEL_PASSWORD','Passwort');
-
 define('LABEL_ACTIVE','aktiv');
 define('LABEL_INACTIVE','inaktiv');
 
@@ -130,5 +129,6 @@ define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server
 
 define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Status von dem Produkt wurde erfolgreich geändert.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht');
+
 
 ?>

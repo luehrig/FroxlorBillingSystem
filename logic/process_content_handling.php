@@ -68,7 +68,7 @@ switch($action) {
 		
 		echo 'Sie können sofort weitermachen, weil Sie bereits als Kunde angemeldet sind.';
 	
-		echo '<a href="#!page=checkout_step3&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nav">';
+		echo '<a href="#!page=checkout_step3&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 		
 	break;
 	
@@ -77,14 +77,12 @@ switch($action) {
 		// TODO: change content ID to AGB entry
 		$content = new content(3,$language_id);
 			
-		$return_string = $return_string . $content->getTitle();
+		echo $content->getTitle();
 			
-		$return_string = $return_string . $content->getText();
+		echo $content->getText();
 	
-		$return_string = $return_string .'<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
-		$return_string = $return_string .'<a href="#!page=checkout_step4&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">';
-		
-		echo $return_string;
+		echo '<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
+		echo '<a href="#!page=checkout_step4&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 		
 		break;
 	

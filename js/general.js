@@ -261,7 +261,7 @@ $(function() {
 			navlink.addClass('nav');
 		}
 
-		return false;
+		//return false;
 	});
 	
 	

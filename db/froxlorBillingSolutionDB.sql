@@ -742,5 +742,6 @@ INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title
 INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 2, 'imprint', 'This will be the imprint');
 INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 1, 'Startseite', 'Eine ganz tolle Startseite');
 INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 2, 'home', 'This will be the landing page');
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (3, 1, 'Allgemeine Geschäftsbedingungen', '<div align=\"center\"><b>Allgemeine Geschäftsbedingungen (AGB)</b></div><br />');
 
 COMMIT;
