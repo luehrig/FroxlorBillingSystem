@@ -13,6 +13,7 @@ define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
 define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
 define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
 define('BUTTON_CHANGE_ATTRIBUTES', 'Attribute ändern');
+define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
 
 define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
