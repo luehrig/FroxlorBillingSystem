@@ -134,6 +134,8 @@ define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung de
 define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
 
+define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt');
+
 
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server mit dieser IP-Adresse!');
 

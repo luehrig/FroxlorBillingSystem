@@ -17,6 +17,17 @@ class productInfo{
 		}	
 	}
 	
+	
+	public static function create($product_id, $language_id, $attribute_id, $value){
+		$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT_INFO .' (product_id, attribute_id, language_id, value)
+				VALUES (
+				"'. $product_id .'",
+				"'. $attribute_id .'",
+				"'. $language_id .'",
+				"'. $value .'")';
+		return db_query($sql_insert_statement);
+	}
+	
 	public function getData($product_id, $attribute_id, $language_id){
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_INFO .' WHERE product_id = "'. (int) $product_id.'" 
 																AND language_id = "'. $language_id. '"
@@ -34,7 +45,7 @@ class productInfo{
 		$return_string = '<div id="'.$container_id.'">';
 		$return_string = $return_string. '<form>'.'<fieldset>'.
 				'<input type="hidden" id = "product_id" name = product_id value = '.$product_id.'>'.
-				'<input type="hidden" id = "language_id" name = language value = '.$language_id.'>'.
+				'<input type="hidden" id = "language_id" name = language_id value = '.$language_id.'>'.
 				'<label for="label_attribute">'. LABEL_ATTRIBUTE .' </label>'.
 				'<select id="attribute_selection" name="attribute_selection" size="1">';
 				if(count($availible_attributes)!=0){

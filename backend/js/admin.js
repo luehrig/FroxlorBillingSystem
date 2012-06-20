@@ -165,6 +165,27 @@ $(function() {
 		
 		return false;
 	});
+	
+	
+	// save attribute in product info
+	$("body").on("click", "input[type=submit][id=save_new_attr_for_prod]", function() {
+		
+		var product_id = $('input[type=hidden][id=product_id]').val();
+		var language_id = $('input[type=hidden][id=language_id]').val();
+		var attribute_id = $('select[name=attribute_selection] option:selected').attr('id');
+		var value = $('input[type=text][id=value]').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "create_new_product_info", product_id: product_id, language_id: language_id, attribute_id: attribute_id, value: value}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});
+	
 		
 		
 		
