@@ -5,6 +5,8 @@ include_once '../configuration.inc.php';
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_shoppingcart.php';
+require_once PATH_CLASSES .'cl_order.php';
+require_once PATH_CLASSES .'cl_server.php';
 require_once PATH_CLASSES .'cl_content.php';
 
 if(session_id() == '') {
@@ -21,26 +23,26 @@ include_once PATH_INCLUDES .'database_tables.php';
 include_once PATH_FUNCTIONS .'user_management.php';
 
 if(!isset($action)) {
-$action = $_POST['action'];
+	$action = $_POST['action'];
 }
 
 if(!isset($language_id)) {
-// check if language was handed over
-if(isset($_POST['language_id'])) {
-	$language_id = language::ISOTointernal($_POST['language_id']);
-	if($language_id == null) {
-		$language_id = language::ISOTointernal( language::getBrowserLanguage() ); 
+	// check if language was handed over
+	if(isset($_POST['language_id'])) {
+		$language_id = language::ISOTointernal($_POST['language_id']);
+		if($language_id == null) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
 	}
-}
-else {
-	$language_id = language::ISOTointernal( language::getBrowserLanguage() );
-}
+	else {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+	}
 }
 
 include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
 switch($action) {
-	
+
 	// show home page if no specific action was handed over
 	case 'show_undefined':
 		$content = new content(2,$language_id);
@@ -48,94 +50,139 @@ switch($action) {
 		echo $content->getTitle();
 			
 		echo $content->getText();
-		
-	break;
-	
-	// display shopping cart with all products
+
+		break;
+
+		// display shopping cart with all products
 	case 'show_shoppingcart':
-		
+
 		include PATH_BODYS .'shoppingcart.php';
 
-	break;
-	
+		break;
+
 	case 'show_checkout_step1':
-		
+
 		echo 'Melden Sie sich an oder erstellen Sie ein neues Kundenkonto um zu bestellen.';
-		
-	break;
-	
+
+		break;
+
 	case 'show_checkout_step2':
-		
+
 		echo 'Sie können sofort weitermachen, weil Sie bereits als Kunde angemeldet sind.';
-	
+
 		echo '<a href="#!page=checkout_step3&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
-		
-	break;
-	
+
+		break;
+
 	case 'show_checkout_step3':
-	
+
 		// TODO: change content ID to AGB entry
 		$content = new content(3,$language_id);
 			
 		echo $content->getTitle();
 			
 		echo $content->getText();
-	
+
 		echo '<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
+
+		echo '<div class="message_box"></div>';
+		
 		echo '<a href="#!page=checkout_step4&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+
+		break;
+
+	// message that customer has to accept terms
+	case 'show_alert_accept_terms':
+
+		echo WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS;
+		
+	break;
+		
+		// show address information
+	case 'show_checkout_step4':
+
+		echo 'Auswahl der Rechnungs- und Lieferadresse!';
+		echo '<a href="#!page=checkout_step5&lang='. language::internalToISO($language_id) .'" id="checkout_step5" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+
+		break;
+
+		// show address information
+	case 'show_checkout_step5':
+
+		echo HEADING_ORDER_OVERVIEW;
+
+		echo '<a href="#!page=save_order&lang='. language::internalToISO($language_id) .'" id="save_order" class="nonav">'. BUTTON_CHECKOUT_SEND_ORDER .'</a>';
 		
 		break;
-	
+
+	// show info page to say "your order has been send successfully"
+	case 'show_order_received':
+		
+			$cart = new shoppingcart(session_id());
+			
+			print_r($cart->getProducts());
+			
+			$cart_products = $cart->getProducts();
+			
+			$order = order::create($_SESSION['customer_id'], NULL, NULL, $cart_products);
+		
+			echo 'Ihre Bestellung wurde erfolgreich an unser Team übermittelt!';
+		
+			// delete cart with ordered products
+			shoppingcart::deleteCart(session_id());
+		
+			break;
+		
 	case 'show_imprint':
-	
-		include PATH_BODYS .'imprint.php';	
 
-	break;
+		include PATH_BODYS .'imprint.php';
 
-	// content of home
+		break;
+
+		// content of home
 	case 'show_home':
 		include PATH_BODYS .'home.php';
-	break;
-		
-	//content of products
+		break;
+
+		//content of products
 	case 'show_products':
 		include PATH_BODYS .'product.php';
-	break;
-	
+		break;
+
 	case 'show_customercenter':
-		
+
 		echo '<div class="customermenu">
-			<ul>
-			   <li class="active"><a href="#!mydata&lang='. language::getBrowserLanguage() .'" id="mydata" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYDATA .'</span></a></li>
-			   <li><a href="#!myproducts&lang='. language::getBrowserLanguage() .'" id="myproducts" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYPRODUCTS .'</span></a></li>
-			   <li><a href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
-			</ul>
+		<ul>
+		<li class="active"><a href="#!mydata&lang='. language::getBrowserLanguage() .'" id="mydata" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYDATA .'</span></a></li>
+		<li><a href="#!myproducts&lang='. language::getBrowserLanguage() .'" id="myproducts" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYPRODUCTS .'</span></a></li>
+		<li><a href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
+		</ul>
 		</div>';
-		
+
 		echo '<div class="customer_content_container">'.
 	 		/* content depends on menu click */
-		'</div>'; 
+		'</div>';
 
-		
-	break;
-	
-	// TODO: is this correct?
-// 	case 'show_help':
-// 		include BASE_DIR .'help.php';
-// 	break;
+
+		break;
+
+		// TODO: is this correct?
+		// 	case 'show_help':
+		// 		include BASE_DIR .'help.php';
+		// 	break;
 
 	case 'show_registration':
-	
+
 		include PATH_BODYS .'registration.php';
 
-	break;
-	
+		break;
+
 	default:
 		echo WARNING_CONTENT_NOT_FOUND;
-	break;
-	
-	// TODO: Append other content sites like the example above
-	
+		break;
+
+		// TODO: Append other content sites like the example above
+
 }
 
 

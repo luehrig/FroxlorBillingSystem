@@ -14,6 +14,11 @@ class shoppingcart {
 	}
 	
 	/* pulic section */
+	// get products array
+	public function getProducts() {
+		return $this->products;
+	}
+	
 	// add given product to shopping cart (default quantity = 1)
 	public function addProduct($product_id, $quantity = 1) {
 		// check if given quantity is greater than 1. If not: return false!
@@ -121,10 +126,8 @@ class shoppingcart {
 	
 	// clear shopping cart for expired session
 	public static function deleteCart($session_id) {
-		$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $session_id .'"';
+		$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' WHERE session_id = "'. $session_id .'"';
 		db_query($delete_statement);
-		
-		$this->loadProducts();
 	}
 	
 	/* private section */

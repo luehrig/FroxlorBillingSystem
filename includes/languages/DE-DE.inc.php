@@ -70,6 +70,10 @@ define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder
 define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
 define('WARNING_WRONG_CREDENTIALS','Die angegebenen Zugangsdaten sind nicht korrekt! Bitte prüfen Sie ihre Eingabe.');
 define('WARNING_CONTENT_NOT_FOUND','Die angeforderte Seite wurde nicht gefunden!');
+define('WARNING_SERVER_NO_SERVER_AVAILABLE','Für das gewählte Produkt steht aktuell leider kein passender Server zur Verfügung. Bitte wenden Sie sich an den Support.');
+define('WARNING_SERVER_NOT_ABLE_TO_ALLOCATE','Bei der Buchung des Produktes auf dem Server ist ein Fehler aufgetreten!');
+define('WARNING_SERVER_NOT_ABLE_TO_FREE','Bei der Freigabe des Produktes auf dem Server ist ein Fehler aufgetreten!');
+define('WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS','Um Fortzufahren ist es nötig, dass Sie unsere allgemeinen Geschäftsbedingungen akzeptieren!');
 
 /* menu texts */
 define('VIEW_MENU_HELP','Hilfe');
@@ -80,7 +84,7 @@ define('VIEW_MENU_CUSTOMERCENTER', 'Kundenbereich');
 define('VIEW_MENU_SHOPPING_CART','Warenkorb');
 
 /* customer center */
-define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich!');
+define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
 
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');
@@ -90,6 +94,8 @@ define('VIEW_CMENU_MYINVOICES', 'Meine Rechnungen');
 
 /* checkout process */
 define('LABEL_ACCEPT_TERMS','Hiermit bestätige ich, dass ich die oben aufgeführten Geschäftsbedingungen gelesen und verstanden habe, sowie diese akzeptiere.');
+define('HEADING_ORDER_OVERVIEW','Bestellübersicht');
+define('BUTTON_CHECKOUT_SEND_ORDER','Bestellung abschicken');
 
 
 ?>

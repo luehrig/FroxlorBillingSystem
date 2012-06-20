@@ -44,14 +44,12 @@ switch($action) {
 
 	case 'show_customer_header':
 
-		echo MSG_CUSTOMER_WELCOME;
+		$customer = new customer($_SESSION['customer_id']);
+		$data = $customer->getData();
+		
+		echo MSG_CUSTOMER_WELCOME .', '. $data['first_name'] .' '. $data['last_name'] .'!';
 		echo '<a href="#" id="logout"> '. BUTTON_LOGOUT_CUSTOMER .'</a>';
 	
-		break;
-	
-	case 'show_customer_header':
-	
-		echo '';
 		break;
 		
 	case 'get_customer_data':
@@ -89,60 +87,42 @@ switch($action) {
 		echo '</div>';
 		
 	break;
-	
-	case 'get_edit_customer_data':
+		
+	case 'get_customer_products':
 	
 		$customer_id = $_POST['customer_id'];
 	
 		echo '<div class="whitebox">';
 		echo '<div class="cust_data">';
 	
-		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
+		echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
 	
 		$customer = new customer($customer_id);
 	
-		echo $customer->printFormEdit();
+		// content
 	
 		echo '</div>';
 		echo '</div>';
 	
 		break;
-		
-		case 'get_customer_products':
-		
-			$customer_id = $_POST['customer_id'];
-		
-			echo '<div class="whitebox">';
-			echo '<div class="cust_data">';
-		
-			echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
-		
-			$customer = new customer($customer_id);
-		
-			// content
-		
-			echo '</div>';
-			echo '</div>';
-		
-			break;
-		
-		case 'get_customer_invoices':
-		
-			$customer_id = $_POST['customer_id'];
-		
-			echo '<div class="whitebox">';
-			echo '<div class="cust_data">';
-		
-			echo '<h1>'.PAGE_TITLE_CUSTOMERINVOICES.'</h1>';
-		
-			$customer = new customer($customer_id);
-		
-			// content
-		
-			echo '</div>';
-			echo '</div>';
-		
-			break;
+	
+	case 'get_customer_invoices':
+	
+		$customer_id = $_POST['customer_id'];
+	
+		echo '<div class="whitebox">';
+		echo '<div class="cust_data">';
+	
+		echo '<h1>'.PAGE_TITLE_CUSTOMERINVOICES.'</h1>';
+	
+		$customer = new customer($customer_id);
+	
+		// content
+	
+		echo '</div>';
+		echo '</div>';
+	
+		break;
 }	
 
 ?>
