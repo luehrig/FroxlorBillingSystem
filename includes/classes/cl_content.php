@@ -46,10 +46,10 @@ class content {
 				$sql_statement = 'SELECT c.text FROM '. TBL_CONTENT .' AS c WHERE c.content_id = '. (int) $this->content_id .' AND c.language_id = '. (int) $language;
 			 	$text_query = db_query($sql_statement);
 			 	$result_data = db_fetch_array($text_query);
-			 	return $result_data['text'];
+			 	return htmlspecialchars_decode($result_data['text']);
 			}
 			else {
-				return $this->text;
+				return htmlspecialchars_decode($this->text);
 			}	
 		}
 		else {
@@ -105,7 +105,7 @@ class content {
 	// update content
 	public function update($title, $text, $language) {
 		if($this->content_id != NULL) {
-			$update_statement = 'UPDATE '. TBL_CONTENT .' AS c SET c.title = "'. $title .'", c.text = "'. $text .'" WHERE c.content_id = '. (int) $this->content_id .' AND c.language_id = '. (int) $language;
+			$update_statement = 'UPDATE '. TBL_CONTENT .' AS c SET c.title = "'. $title .'", c.text = "'. htmlspecialchars($text) .'" WHERE c.content_id = '. (int) $this->content_id .' AND c.language_id = '. (int) $language;
 			db_query($update_statement);
 			
 			// reload content in object

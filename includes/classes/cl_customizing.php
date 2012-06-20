@@ -79,7 +79,7 @@ class customizing {
 	
 	// read language depended and language independent customizing entries from db
 	private function getCustomzingEntries($language_id) {
-		$sql_statement = 'SELECT cust.key, cust.value FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.language_id = '. $language_id .' OR cust.language_id IS NULL';
+		$sql_statement = 'SELECT cust.key, cust.value FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.language_id = "'. $language_id .'" OR cust.language_id IS NULL';
 		$query = db_query($sql_statement);
 		
 		while($row = db_fetch_array($query)) {
