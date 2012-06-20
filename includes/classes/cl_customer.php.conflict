@@ -65,12 +65,48 @@ class customer {
 		else {
 			$billing_address_data = $shipping_address_data;
 		}
+		
 			
 		$return_string = '<div id="'. $container_id .'"><form>';
 		
+<<<<<<< HEAD
 		$return_string = $return_string .'<fieldset>
+=======
+		
 		$return_string = $return_string .'<table class="customer_data"><tr><th>'.LABEL_LOGIN_DATA.': </th><td>'.LABEL_EMAIL.': '.$this->email. // eMail
+														
+												'<tr><th>'.LABEL_B_ADDRESS.': </th><td>';
+																		 $return_string = $return_string.' '.$this->company.'<br>';
+																		 if($this->gender == $customizing->getCustomizingValue('sys_gender_male') ){ // Gender
+																		 	$return_string = $return_string .SELECT_CUSTOMER_GENDER_MALE;
+																		 }
+																		 else{
+																		 	$return_string = $return_string .SELECT_CUSTOMER_GENDER_FEMALE;
+																		 }
+																		 $return_string = $return_string.' '.$this->title.' '.$this->first_name.' '.$this->last_name. // name
+									 								  	'<br>'.$billing_address_data['street'].' '.$billing_address_data['street_number']. // street + number
+									 								  	'<br>'.$billing_address_data['post_code'].' '.$billing_address_data['city']. // post code + city
+									 								  	'<br>'. $billing_address_data['country_code'] .'</td></tr>'. // country
+									 			'<tr><th>'.LABEL_S_ADDRESS.': </th><td>';
+																		 if($shipping_address_data == $shipping_address_data){ // if billing address equals shipping address show checked checkbox
+																		 	$return_string = $return_string.'<input type="checkbox" name="same_adress" readonly checked>'. LABEL_SAME_ADRESS;
+																		 }
+																		 else{ // if not show shipping address
+																		 	$return_string = $return_string.
+																		 	$shipping_address_data['street'].' '.$shipping_address_data['street_number']. // street + number
+																		 	'<br>'.$shipping_address_data['post_code'].' '.$shipping_address_data['city']. // post code + city
+																		 	'<br>'.'</td></tr>'; // country
+																		 }
+																		 $return_string = $return_string.
+									 			'<tr><th>'.LABEL_TELEPHONE.': </th><td>'.LABEL_TEL.': '.$this->telephone.
+									 									'<br>'.LABEL_FAX.': '.$this->fax.'</td></tr>'.								 																		 
+										'</table>';
+
+		
+		
+		
 		/* $return_string = $return_string .'<fieldset>
+>>>>>>> branch 'master' of https://github.com/luehrig/FroxlorBillingSystem.git
     										<legend>'. FIELDSET_CUSTOMER_GENERAL_INFORMATION .'</legend>
     											<label for="gender">'. LABEL_GENDER .'</label>
     												<select name="gender" id="gender" size="1" rel="mandatory" readonly>';
@@ -164,9 +200,13 @@ class customer {
 		else {
 			$billing_address_data = $shipping_address_data;
 		}
+<<<<<<< HEAD
 			
 		$return_string = '<div id="'. $container_id .'"><form>';
+=======
+		
 		$return_string = '<div id="'. $container_id .'"><form><div class="edit_cust_data">';
+>>>>>>> branch 'master' of https://github.com/luehrig/FroxlorBillingSystem.git
 	
 		$return_string = $return_string .'<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_GENERAL_INFORMATION .'</legend>
@@ -204,6 +244,7 @@ class customer {
 		<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION .'</legend>
 		<div id="shippingaddress">
+<<<<<<< HEAD
 		<label for="shippingstreet">'. LABEL_STREET .'</label>
 		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'">
 		<label for="shippingstreetnumber">'. LABEL_STREETNUMBER .'</label>
@@ -216,6 +257,7 @@ class customer {
 		$country->printSelectBox("shippingcountry","shippingcountry", $shipping_address_data['country_code']) .'
 		</div>
 		</fieldset>
+=======
 		<p><label for="shippingstreet">'. LABEL_STREET .'</label>
 		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'"></p>
 		<p><label for="shippingstreetnumber">'. LABEL_STREETNUMBER .'</label>
@@ -239,6 +281,7 @@ class customer {
 		
 		
 		$return_string = $return_string.'
+>>>>>>> branch 'master' of https://github.com/luehrig/FroxlorBillingSystem.git
 		<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION .'</legend>
 		<div id="billingaddress">

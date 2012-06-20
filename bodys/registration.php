@@ -64,8 +64,10 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	<form method="post" action="#" id="registrationform"
 		accept-charset=utf-8>
 		<div class="registrationform">
+		<div class="boxwrapper">
+			<div class=" whitebox box_1inRow">
 			<fieldset>
-				<legend id="bla">
+				<legend>
 					<?php echo FIELDSET_GENERAL_INFORMATION; ?>
 				</legend>
 				<p>
@@ -111,6 +113,8 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 						rel="mandatory">
 				</p>
 			</fieldset>
+			</div>
+			<div class=" whitebox box_1inRow">
 			<fieldset>
 				<legend>
 					<?php echo FIELDSET_CONTACT_INFORMATION; ?>
@@ -128,6 +132,8 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 						type="text" id="fax" name="fax">
 				</p>
 			</fieldset>
+			</div>
+			<div class=" whitebox box_1inRow">
 			<fieldset>
 				<legend>
 					<?php echo FIELDSET_ADDRESS_INFORMATION; ?>
@@ -161,11 +167,12 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 		
 		</div>
 		</fieldset>
+		</div>
 
 		<input type="reset" id="reset" name="reset"> <input type="submit"
 			id="register" name="register"
 			value="<?php echo BUTTON_CREATE_ACCOUNT; ?>">
-
+	</div>	
 
 	</form>
 

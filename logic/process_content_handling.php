@@ -53,8 +53,9 @@ switch($action) {
 	
 	// display shopping cart with all products
 	case 'show_shoppingcart':
-		$cart = new shoppingcart(session_id());
-		echo $cart->printCart();
+		
+		include PATH_BODYS .'shoppingcart.php';
+
 	break;
 	
 	case 'show_checkout_step1':
@@ -88,12 +89,26 @@ switch($action) {
 	case 'show_customercenter':
 		
 		echo '<div class="customermenu">
+<<<<<<< HEAD
 	<ul>
 	   <li class="active"><a href="#!mydata&lang='. language::getBrowserLanguage() .'" id="mydata" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYDATA .'</span></a></li>
 	   <li><a href="#!myproducts&lang='. language::getBrowserLanguage() .'" id="myproducts"><span>'. VIEW_CMENU_MYPRODUCTS .'</span></a></li>
 	   <li><a href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
 	</ul>
 </div>';
+=======
+			<ul>
+			   <li class="active"><a href="#!mydata&lang='. language::getBrowserLanguage() .'" id="mydata" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYDATA .'</span></a></li>
+			   <li><a href="#!myproducts&lang='. language::getBrowserLanguage() .'" id="myproducts" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYPRODUCTS .'</span></a></li>
+			   <li><a href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
+			</ul>
+		</div>';
+		
+		echo '<div class="customer_content_container">'.
+	 		/* content depends on menu click */
+		'</div>'; 
+
+>>>>>>> branch 'master' of https://github.com/luehrig/FroxlorBillingSystem.git
 		
 	break;	
 	

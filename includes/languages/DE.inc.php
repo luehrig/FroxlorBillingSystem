@@ -4,6 +4,9 @@
 /* page titles */
 define('PAGE_TITLE_REGISTRATION','Neukundenregistrierung');
 define('PAGE_TITLE_LOGIN_CUSTOMER','Kundenanmeldung');
+define('PAGE_TITLE_CUSTOMERDATA', 'Meine Daten');
+define('PAGE_TITLE_CUSTOMERPRODUCTS', 'Meine Produkte');
+define('PAGE_TITLE_CUSTOMERINVOICES', 'Meine Rechnungen');
 define('PAGE_TITLE_SHOPPINGCART','Warenkorb');
 define('PAGE_TITLE_CHECKOUT','Kasse');
 
@@ -35,19 +38,6 @@ define('LABEL_COUNTRY','Land');
 define('FIELDSET_LOGIN_FORM_CUSTOMER','Kundenanmeldung');
 define('LINK_REGISTRATION','Registrieren');
 
-/* shopping cart */
-define('HEADING_PRODUCT','Produkt');
-define('HEADING_QUANTITY','Menge');
-define('HEADING_AMOUNT','Summe');
-
-define('BUTTON_MORE', 'Mehr');
-define('BUTTON_ADD_TO_CART', 'In den Einkaufswagen');
-define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
-define('BUTTON_LOGIN_CUSTOMER','Einloggen');
-define('BUTTON_LOGOUT_CUSTOMER','Abmelden');
-define('BUTTON_EDIT_CUSTOMER','Meine Daten bearbeiten');
-define('BUTTON_SAVE','Speichern');
-define('BUTTON_CHECKOUT','Kasse');
 
 
 define('FIELDSET_GENERAL_INFORMATION','Allgemeine Daten');
@@ -63,6 +53,21 @@ define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('SELECT_GENDER_MALE','Herr');
 define('SELECT_GENDER_FEMALE','Frau');
 
+/* shopping cart */
+define('HEADING_PRODUCT','Produkt');
+define('HEADING_QUANTITY','Menge');
+define('HEADING_AMOUNT','Summe');
+
+define('BUTTON_MORE', 'Mehr');
+define('BUTTON_ADD_TO_CART', 'In den Einkaufswagen');
+define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
+define('BUTTON_LOGIN_CUSTOMER','Einloggen');
+define('BUTTON_LOGOUT_CUSTOMER','Abmelden');
+define('BUTTON_EDIT_CUSTOMER','Meine Daten bearbeiten');
+define('BUTTON_SAVE','Speichern');
+define('BUTTON_CHECKOUT','Kasse');
+
+
 /* message texts */
 define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
 define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');
@@ -70,7 +75,7 @@ define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
 define('WARNING_WRONG_CREDENTIALS','Die angegebenen Zugangsdaten sind nicht korrekt! Bitte prüfen Sie ihre Eingabe.');
 define('WARNING_CONTENT_NOT_FOUND','Die angeforderte Seite wurde nicht gefunden!');
 
-/* menu texts */
+/* main menu texts */
 define('VIEW_MENU_HELP','Hilfe');
 define('VIEW_MENU_IMPRINT', 'Impressum');
 define('VIEW_MENU_HOME', 'Home');
@@ -85,6 +90,16 @@ define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich!');
 define('VIEW_CMENU_MYDATA', 'Meine Daten');
 define('VIEW_CMENU_MYPRODUCTS', 'Meine Produkte');
 define('VIEW_CMENU_MYINVOICES', 'Meine Rechnungen');
+
+/* customer data view */
+define('LABEL_LOGIN_DATA', 'Anmeldedaten');
+define('LABEL_B_ADDRESS', 'Rechnungsanschrift');
+define('LABEL_S_ADDRESS', 'Lieferanschrift');
+define('LABEL_TEL', 'Tel.');
+define('LABEL_SAME_ADRESS', 'Selbe Rechnungs- und Lieferanschrift');
+define('BUTTON_CHANGE_PW', 'Passwort ändern');
+
+
 
 
 ?>
