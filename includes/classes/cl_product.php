@@ -318,7 +318,10 @@ class product {
 			$return_string = $return_string.
 					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
 					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
-					'<input type="text" id="att_val" name="att_val" value="'. $att_val .'"><br>';
+					
+					'<input type="text" id="att_val" name="att_val" value="'. $att_val .'">'.
+					'<a href="#" id="delete_product_attribute">'. LINK_DELETE . '</a><br>';
+					
 		}
 		
 				
