@@ -1,22 +1,9 @@
 <?php
-/*>====O-------------------------------------------------O====>\
-|                    ##### t w p d f #####                     |
-|      Copyright (c) by progtw (Thomas Weise), 2005-2007       |
-|                     http://www.progtw.de                     |
-| Dieses Programm ist freie Software. Sie können es unter den  |
-| Bedingungen der GNU General Public License 3 (wie von der    |
-| Free Software Foundation herausgegeben) weitergeben und/oder |
-| modifizieren.                                                |
-| Eine Kopie der Lizenzbedingungen finden Sie in lizenz.txt.   |                                                 |
-\<====O-------------------------------------------------O====<*/
-
-
-
-///session_start();    ...(ab PHP4.3.3 nicht mehr nötig in Folgeskripten)
+// TODO: delete in productive environment
 error_reporting(E_ALL);
 
 
-class TwPdfRechnung extends FPDF {
+class invoicepdf extends FPDF {
 		
   // Variablen und Arrays
   private $twArrRechnungsdaten      = array();
@@ -36,37 +23,37 @@ class TwPdfRechnung extends FPDF {
     // Konstruktor der vererbenden Klasse (FPDF) aufrufen
     parent::__construct('P', 'mm', 'A4'); // L=Querformat(Landscape), P=Hochformat(Portrait)
 
-    // Session-Variablen aus dem aufrufenden Skript übernehmen
+    // Session-Variablen aus dem aufrufenden Skript ï¿½bernehmen
     $this->twArrRechnungsdaten      = $_SESSION['twArrRechnungsdaten'];
     $this->twArrRechnungspositionen = $_SESSION['twArrRechnungspositionen'];		
 
-    // Einstellungen für das PDF
-    $this->SetDisplayMode( 100 );         // wie groß wird Seite angezeigt(in %)
+    // Einstellungen fï¿½r das PDF
+    $this->SetDisplayMode( 100 );         // wie groï¿½ wird Seite angezeigt(in %)
     $this->SetAutoPageBreak(true, 50);    // 50mm von unten erfolgt ein Seitenumbruch
     $this->AliasNbPages();                // Anzahl der Seiten berechnen ({nb}-sache)
 
     // Seite erzeugen
     $this->AddPage();                     // PDF starten (ruft auch Header() und Footer() auf
 
-    // zusätzliche Sachen
+    // zusï¿½tzliche Sachen
     $this->twShowRechnungspositionen();   // Tabelle mit allen Rechnungspositionen
     $this->twShowLetzteSeite();           // nur auf der letzten Seite
   }	
 	
 	
 	
-  /* Funktionen von FPDF geerbt und hier überschrieben ---------------------- */	
+  /* Funktionen von FPDF geerbt und hier ï¿½berschrieben ---------------------- */	
 	
   public function Header() {
     // unterteilt in if-Abfragen, ob es eine erste Seite oder Folgeseite(n) ist
-    // für alle Seiten gilt:
+    // fï¿½r alle Seiten gilt:
     if ($this->page > 0) {
       // Farben und Schrift allgemein
       $this->SetFont('Arial','B','12');     // Schrift
       $this->SetTextColor(000, 000, 102);   // Schriftfarbe
-      $this->SetFillColor(210);             // Füllungsfarbe (Hintergrund)
+      $this->SetFillColor(210);             // Fï¿½llungsfarbe (Hintergrund)
       $this->SetDrawColor(000, 000, 102);   // Rahmenfarbe
-      $this->SetLineWidth(0.4);             // Rahmenstärke   
+      $this->SetLineWidth(0.4);             // Rahmenstï¿½rke   
 
       // Hintergrundfarbe und -rahmen des Dokumentes
       $this->SetFillColor(239);
@@ -76,7 +63,7 @@ class TwPdfRechnung extends FPDF {
       // Linie oben horizontal
       $this->SetFillColor(210);
       $this->SetLineWidth(0.4);
-      $this->twRundeckbereich(25, 16, 173, 2, 0.8, 'DF');  // (x, y, breite, höhe, radius, style(D=rahmen F=füllung)
+      $this->twRundeckbereich(25, 16, 173, 2, 0.8, 'DF');  // (x, y, breite, hï¿½he, radius, style(D=rahmen F=fï¿½llung)
        
       // Linie rechts vertikal 
       $this->twRundeckbereich(193, 13, 2, 270, 0.8, 'DF');
@@ -121,7 +108,7 @@ class TwPdfRechnung extends FPDF {
       $this->SetDrawColor(000, 000, 102); 
       $this->twRundeckbereich(24, 249, 114, 20, 2, 'DF'); 
       
-      // RundBox zur Ausgabe der berechneten Zahlbeträge
+      // RundBox zur Ausgabe der berechneten Zahlbetrï¿½ge
       $this->SetTextColor(000);
       $this->SetFillColor(255);
       $this->SetLineWidth(0.8);
@@ -130,15 +117,15 @@ class TwPdfRechnung extends FPDF {
       $this->SetY(59);   // wenn mehrseitiges Dokument
     }
     
-    // NUR für die erste Seite gilt:
+    // NUR fï¿½r die erste Seite gilt:
     if ($this->page == 1) {
-      // eigener Absender (kleine Schrift über der (Kunden-)Adresse)
+      // eigener Absender (kleine Schrift ï¿½ber der (Kunden-)Adresse)
       $this->SetFont('Times','','7');
       $this->SetXY(26, 48);
       $this->Cell(73, 3, $this->twArrRechnungsdaten['firmaAnschrift'], 0, 1, '');
       $this->SetFont('Arial','B','12');         
   
-      // Box für (Kunden-)Adresse
+      // Box fï¿½r (Kunden-)Adresse
       $this->SetTextColor(000); 
       $this->SetFillColor(255);
       $this->twRundeckbereich(25, 52, 75, 36, 2, 'DF');
@@ -194,7 +181,7 @@ class TwPdfRechnung extends FPDF {
       $this->twRundeckbereich(25, 104, 165, 142, 2, 'DF');
     }
     
-    // für ALLE Seiten AUSSER die erste Seite:    
+    // fï¿½r ALLE Seiten AUSSER die erste Seite:    
     if ($this->page > 1) {
       // die RundBox (ab der zweiten Seite weiter oben)
       $this->SetFillColor(255);
@@ -247,15 +234,15 @@ class TwPdfRechnung extends FPDF {
 	
   /**
    * Zeigt eine Tabelle mit den Rechnungspositionen an.
-   * benötigt 'twTabelleMitMultiCell'
+   * benï¿½tigt 'twTabelleMitMultiCell'
    */
   private function twShowRechnungspositionen() {  
   		
-    // Spaltenbreiten und Beschriftung der Spaltenköpfe festlegen
+    // Spaltenbreiten und Beschriftung der Spaltenkï¿½pfe festlegen
     $this->twSetSpaltenbreiten(array(8, 99, 14, 20, 20));
     $this->twSetSpaltenkoepfe(array('Pos', 'Text', 'Menge', 'Preis', 'Gesamt'));
 
-    // Tabellenköpfe (nur mit Cell) 
+    // Tabellenkï¿½pfe (nur mit Cell) 
     $this->SetFillColor(244);
     $this->SetTextColor(000);
     $this->SetLineWidth(.3);
@@ -298,24 +285,24 @@ class TwPdfRechnung extends FPDF {
     $this->SetAutoPageBreak(true, 10);    // Seitenumbruch weiter runter
     $this->MultiCell(110, 3.2, $this->twArrRechnungsdaten['zahlungsbedingungen'], 0, 'L', 0); 
 
-    // Zahlbeträge
+    // Zahlbetrï¿½ge
     //Endbetrag (brutto)
     $this->SetFont('Arial','','10');    
     $this->SetXY(141, 251); 
     $this->Cell(24, 5, 'Nettobetrag:', 0, 1, 'R'); 
     $this->SetXY(169, 251); 
-    $this->Cell(21, 5, sprintf("%9.2f €", $this->twArrRechnungsdaten['rechnungsbetragNetto']), 0, 1, 'R'); 
+    $this->Cell(21, 5, sprintf("%9.2f ï¿½", $this->twArrRechnungsdaten['rechnungsbetragNetto']), 0, 1, 'R'); 
     //Steuer
     $this->SetFont('Arial','','10');
     $this->SetXY(141, 257);
     $this->Cell(24, 5, '+19% MwSt:', 0, 1, 'R');
     $this->SetXY(169, 257);   
-		$strWegenKlammer = sprintf("%9.2f", $this->twArrRechnungsdaten['rechnungsbetragSteuer']). " €";     
+		$strWegenKlammer = sprintf("%9.2f", $this->twArrRechnungsdaten['rechnungsbetragSteuer']). " ï¿½";     
     $this->Cell(21, 5, $strWegenKlammer, 0, 1, 'R');
     //Endbetrag
     $this->SetFont('Arial','B','12');
     $this->SetXY(141, 263); 
-		$strWegenKlammer = "Zahlbetrag:". sprintf("%9.2f", $this->twArrRechnungsdaten['rechnungsbetragBrutto']). " €";    
+		$strWegenKlammer = "Zahlbetrag:". sprintf("%9.2f", $this->twArrRechnungsdaten['rechnungsbetragBrutto']). " ï¿½";    
     $this->Cell(49, 5, $strWegenKlammer, 0, 1, 'R');
     
     $this->SetFont('Arial','B','12');
@@ -359,7 +346,7 @@ class TwPdfRechnung extends FPDF {
   } 
   
   private function twRundeck($x1, $y1, $x2, $y2, $x3, $y3) { 
-    // Cubic Bézier Kurve (für Rechteck mit Runden Ecken)
+    // Cubic Bï¿½zier Kurve (fï¿½r Rechteck mit Runden Ecken)
     $h = $this->h; 
     $this->_out(sprintf('%.2f %.2f %.2f %.2f %.2f %.2f c ',
     $x1*$this->k,
@@ -391,17 +378,17 @@ class TwPdfRechnung extends FPDF {
   
   private function twShowZeileMitMultiCell($arrSpalten) {
     $anzSpalten    = count($arrSpalten);
-    $anzZeilen     = 0;   // ... ändert sich
-    $zeilenhoehe   = 5;   // hier die Zeilenhöhe setzen!
-    $hoeheGesamt   = 0;   // ... ändert sich
-    $spaltenbreite = 0;   // ... ändert sich
+    $anzZeilen     = 0;   // ... ï¿½ndert sich
+    $zeilenhoehe   = 5;   // hier die Zeilenhï¿½he setzen!
+    $hoeheGesamt   = 0;   // ... ï¿½ndert sich
+    $spaltenbreite = 0;   // ... ï¿½ndert sich
     
     for($i=0; $i<$anzSpalten; $i++) {
       $anzZeilen = max($anzZeilen, $this->twHoleAnzahlZeilen($this->twArrSpaltenbreiten[$i], $arrSpalten[$i]));
     }
     
-    $hoeheGesamt = $zeilenhoehe * $anzZeilen;   // für Gesamthöhe aller Zeilen    
-    $this->twCheckSeitenumbruch($hoeheGesamt);  // Seitenumbruch, falls nötig
+    $hoeheGesamt = $zeilenhoehe * $anzZeilen;   // fï¿½r Gesamthï¿½he aller Zeilen    
+    $this->twCheckSeitenumbruch($hoeheGesamt);  // Seitenumbruch, falls nï¿½tig
     //zeichnet die Zellen einer Zeile
     for($i=0; $i<$anzSpalten; $i++) {
       $spaltenbreite = $this->twArrSpaltenbreiten[$i];  // Spaltenbreite holen
@@ -417,7 +404,7 @@ class TwPdfRechnung extends FPDF {
       }           
       $this->SetXY($x+$spaltenbreite, $y);  // Position (rechts von MultiCell) setzen
     }    
-    $this->Ln($hoeheGesamt);                //nächste Zeile
+    $this->Ln($hoeheGesamt);                //nï¿½chste Zeile
   }
 
   private function twCheckSeitenumbruch($hoehe) {
@@ -425,7 +412,7 @@ class TwPdfRechnung extends FPDF {
     if($this->GetY()+$hoehe>$this->PageBreakTrigger) {
       // Hinweis auf Folgeseite   
       $this->SetXY(26, 251); 
-      $text01 = "Fortsetzung der Rechnung auf der nächsten Seite";
+      $text01 = "Fortsetzung der Rechnung auf der nï¿½chsten Seite";
       $this->SetAutoPageBreak(false);       // Seitenumbruch kurz raus
       $this->MultiCell(110, 3.2, $text01, 0, 'C', 0); 
       $this->SetAutoPageBreak(true, 50);    // Seitenumbruch wieder rein  
@@ -494,5 +481,4 @@ class TwPdfRechnung extends FPDF {
 	
 
 } // ENDE der Klasse PDF
-/* ACHTUNG: darf kein einziges Leerzeichen hinter '?>' sein (wegen header) !!! */
 ?>
