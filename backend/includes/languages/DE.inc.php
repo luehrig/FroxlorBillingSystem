@@ -12,6 +12,7 @@ define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
 define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
 define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
+define('BUTTON_CHANGE_ATTRIBUTES', 'Attribute ändern');
 
 define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
@@ -60,6 +61,7 @@ define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('LABEL_PRODUCT_QUANTITY', 'Menge');
 define('LABEL_PRODUCT_PRICE', 'Preis');
 
+define('LABEL_PRODUCT_ATTRIBUTE', 'Attribute für Produkt Nr. ');
 define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'Sprache');
 define('LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION', 'Beschreibung');
 

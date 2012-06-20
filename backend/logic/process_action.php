@@ -8,6 +8,7 @@ require '../../includes/classes/cl_country.php';
 require '../../includes/classes/cl_product.php';
 require '../../includes/classes/cl_server.php';
 require '../../includes/classes/cl_product_attribute.php';
+require '../../includes/classes/cl_product_info.php';
 
 session_start();
 
@@ -47,10 +48,13 @@ switch($action) {
 	case 'open_product_editor':
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];	
+		
 		$product = new product($product_id, $language_id);
 		$language_ids_for_existing_products = $product->getLanguagesForExistingProduct($product_id);
-	
-		echo $product->printFormEdit(language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
+		$product_info = productInfo::getAttributesByProductIdAndLang($product_id, $language_id);
+		
+		
+		echo $product->printFormEdit($product_info, language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
 		break;
 		
 	case 'edit_product':

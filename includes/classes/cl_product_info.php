@@ -24,4 +24,20 @@ class productInfo{
 		$info_query = db_query($sql_select_statement);
 		return db_fetch_array($info_query);
 	}
+	
+	public static function getAttributesByProductIdAndLang($product_id, $language_id){
+		$attrArray = productInfo::getAttributesByProductIdAndLangFromDB($product_id, $language_id);
+		return $attrArray;
+	}
+	
+	private static function getAttributesByProductIdAndLangFromDB($product_id, $language_id){
+		$attr_array = array();
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_INFO .' WHERE product_id = "'. $product_id .'"
+																		AND language_id = "'. $language_id .'"';
+		$attr_query = db_query($sql_select_statement);
+		while($data = db_fetch_array($attr_query)){
+			$attr_array[$data['attribute_id']] = $data['value'];
+		}
+		return $attr_array;
+	}
 }

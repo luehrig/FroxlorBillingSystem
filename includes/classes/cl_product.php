@@ -142,21 +142,25 @@ class product {
 		return $return_string;
 	}
 	
-	public function printFormEdit($language_select_box, $container_id = 'product_editor'){
-		$return_string = '<div id="'.$container_id.'">.
-				<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
+	public function printFormEdit($product_info, $language_select_box, $container_id = 'product_editor'){
+		$return_string = '<div id="'.$container_id.'">'.
+		$this->getFilledProductEditForm($language_select_box);
 		$return_string = $return_string . '<input type="submit" name="submit_edit_product" id="submit_edit_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
-		$return_string = $return_string . '</form></div>';
+		$return_string = $return_string . '</form></fieldset>';
+		
+		$return_string = $return_string . $this->getAttributeEditForm($product_info);
+		$return_string = $return_string . '<input type="submit" name="submit_edit_attributes" id="submit_edit_attributes" value="'. BUTTON_CHANGE_ATTRIBUTES .'">';
+		$return_string = $return_string . '</form></fieldset>';
+		$return_string = $return_string. '</div>';
 		return $return_string;
 		
 	}
 	
 	public function printFormTranslate($language_select_box, $container_id = 'product_editor'){
-		$return_string = '<div id="'.$container_id.'">.
-		<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
+		$return_string = '<div id="'.$container_id.'">'.
+		$this->getFilledProductEditForm($language_select_box);
 		$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
 		$return_string = $return_string . '</form>';
-		
 		$return_string = $return_string. '</div>';
 		return $return_string;
 	}
@@ -296,8 +300,25 @@ class product {
 					'<label for="price">'. LABEL_PRODUCT_PRICE .'</label>'.
 					'<input type="text" id="price" name="price" value="'. $this->price .'"><br>';
 		
-		$return_string = $return_string . '</fieldset>';
+		//$return_string = $return_string . '</fieldset>';
 		return $return_string;
+	}
+	
+	private function getAttributeEditForm($attr_for_product){
+		$return_string = '<form>'.'<fieldset>'.
+				'<legend>'.
+				'<label for="product_id_notation">'. LABEL_PRODUCT_ATTRIBUTE .' </label>'.
+				'<label for="product_id">'. $this->product_id.' </label>'.
+				'</legend>';
+		foreach($attr_for_product as $att_id=>$att_val){
+			$return_string = $return_string. '<label for="attribute_id">'. $att_id .'</label>'.
+					'<input type="text" id="att_val" name="att_val" value="'. $att_val .'"><br>';
+		}
+		
+				
+		
+					
+		return $return_string;		
 	}
 }
 
