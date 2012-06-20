@@ -321,12 +321,7 @@ class product {
 					
 					'<input type="text" id="att_val" name="att_val" value="'. $att_val .'">'.
 					'<a href="#" id="delete_product_attribute">'. LINK_DELETE . '</a><br>';
-					
 		}
-		
-				
-		
-					
 		return $return_string;		
 	}
 }
