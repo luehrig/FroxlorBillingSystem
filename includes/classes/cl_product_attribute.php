@@ -39,10 +39,11 @@ class productAttribute{
 		}
 	}
 	
-	public static function printOverview($container_id = 'product_attribute_overview'){
+
+	public static function printOverview($shown_language_id, $id_language_map, $container_id='product_attribute_overview'){
 		
 		
-		$sql_statement = 'SELECT p.product_attribute_id, p.language_id, p.description FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p ORDER BY p.product_attribute_id ASC';
+		$sql_statement = 'SELECT p.product_attribute_id, p.language_id, p.description FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p WHERE p.language_id = "'. $shown_language_id .'" ORDER BY p.product_attribute_id ASC';
 		$product_attribute_query = db_query($sql_statement);
 		$number_of_product_attributes = db_num_results($product_attribute_query);
 		
@@ -82,6 +83,16 @@ class productAttribute{
 	
 	public function getData(){
 		return $this->getProductAttributeFromDB();
+	}
+	
+	public function getLanguagesForExistingProductAttr($product_attribute_id){
+		$sql_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p WHERE p.product_attribute_id = "'. $product_attribute_id .'"';
+		$language_query = db_query($sql_statement);
+		$language_id_array = array();
+		while($data = db_fetch_array($language_query)) {
+			$language_id_array[$data['language_id']] ='';
+		}
+		return $language_id_array;
 	}
 	
 	

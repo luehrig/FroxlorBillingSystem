@@ -84,13 +84,16 @@ class product {
 		}
 	}
 	
-	public static function printOverview($container_id = 'product_overview'){
-		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p ORDER BY p.product_id ASC';
+
+	public static function printOverview($shown_language_id, $id_language_map, $container_id = 'product_overview'){
+		
+		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p WHERE p.language_id="'. $shown_language_id .'" ORDER BY p.product_id ASC';
 		$product_query = db_query($sql_statement);
 		$number_of_products = db_num_results($product_query);
 		
+		
 		$return_string = '<div id="'. $container_id .'">';
-		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products);
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products) . '<br>';
 		
 		
 		$create_button = '<a href="#" id="create_new_product">'.BUTTON_CREATE_NEW_PRODUCT.'</a></td>';
@@ -253,10 +256,18 @@ class product {
 		return $this->product_data;
 	}
 	
+	public function getLanguagesForExistingProduct($product_id){
+		$sql_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = "'. $product_id .'"';
+		$language_query = db_query($sql_statement);
+		$language_id_array = array();
+		while($data = db_fetch_array($language_query)) {
+			$language_id_array[$data['language_id']] ='';
+		}
+		return $language_id_array;
+	}
 
 	// private section
 	
-	// TODO PRIMARY KEYS
 	private function getProductFromDb($product_id, $language_id) {
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'" AND language_id = "'. $language_id. '"' ;
 		$info_query = db_query($sql_select_statement);

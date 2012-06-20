@@ -107,8 +107,8 @@ define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 
 define('EXPLANATION_CUSTOMIZING_ENTRIES','Mit Hilfe der folgenden Einträge können Sie das Verhalten ihres Shops ganz einfach anpassen und bei eigenen Erweiterungen zusätzliche Einträge hinzufügen.');
 
-define('EXPLANATION_NUMBER_OF_PRODUCTS','Aktuell stehen %d Produkte zum Verkauf.');
-define('EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES', 'Aktuell sind derzeit %d Produktattribute im System eingepflegt.');
+define('EXPLANATION_NUMBER_OF_PRODUCTS','Aktuell stehen %d Produkte in Ihrer Sprache zum Verkauf zur Verfügung.');
+define('EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES', 'Aktuell sind derzeit %d Produktattribute für Ihre Sprache im System eingepflegt.');
 
 define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
 define('EXPLANATION_NUMBER_OF_SERVERS','Aktuell befinden sich %d Server im Verkaufspool.');
