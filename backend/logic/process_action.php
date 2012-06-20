@@ -233,6 +233,16 @@ switch($action) {
 		
 		break;
 		
+		
+		
+		
+	case 'open_create_new_attribute_for_product':
+		$product_id = $_POST['product_id'];
+		$language_id = $_POST['language_id'];
+		
+		
+		break;
+		
 	case 'get_server_overview':
 
 		echo server::printOverview();

@@ -30,6 +30,12 @@ class productInfo{
 		return $attrArray;
 	}
 	
+	public static function printNewAttributeForm($availible_attributes){
+		
+	}
+	
+	
+	// private section
 	private static function getAttributesByProductIdAndLangFromDB($product_id, $language_id){
 		$attr_array = array();
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_INFO .' WHERE product_id = "'. $product_id .'"

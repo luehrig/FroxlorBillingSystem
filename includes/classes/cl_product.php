@@ -150,6 +150,7 @@ class product {
 		
 		$return_string = $return_string . $this->getAttributeEditForm($attributesForLang, $product_info);
 		$return_string = $return_string . '<input type="submit" name="submit_edit_attributes" id="submit_edit_attributes" value="'. BUTTON_CHANGE_ATTRIBUTES .'">';
+		$return_string = $return_string . '<input type="submit" name="give_prod_new_attr" id="give_prod_new_attr" value="'. BUTTON_NEW_ATTR_FOR_PROD .'">';
 		$return_string = $return_string . '</form></fieldset>';
 		$return_string = $return_string. '</div>';
 		return $return_string;
@@ -160,7 +161,6 @@ class product {
 		$return_string = '<div id="'.$container_id.'">'.
 		$this->getFilledProductEditForm($language_select_box);
 		$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
-		//$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
 		
 		$return_string = $return_string . '</form>';
 		$return_string = $return_string. '</div>';
@@ -311,12 +311,12 @@ class product {
 				'<legend>'.
 				'<label for="product_id_notation">'. LABEL_PRODUCT_ATTRIBUTE .' </label>'.
 				'<label for="product_id">'. $this->product_id.' </label>'.
-				'</legend>';
+				'</legend>'.
+				'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>'.
+				'<input type="hidden" id = "language_id" name = language_id value = '. $this->language_id .'>';
 		foreach($attr_for_product as $att_id=>$att_val){
 			$return_string = $return_string.
-					'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>'.
 					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
-					'<input type="hidden" id = "language_id" name = attribute_id value = '. $this->language_id .'>'.
 					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
 					'<input type="text" id="att_val" name="att_val" value="'. $att_val .'"><br>';
 		}
