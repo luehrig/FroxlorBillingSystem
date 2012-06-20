@@ -7,7 +7,7 @@ class productAttribute{
 	
 	public function _construct($product_attribute_id = NULL, $language_id = NULL){
 		if($product_attribute_id != NULL AND $language_id != NULL){
-			$product_attribute_data = $this->getProductData($product_id);
+			$product_attribute_data = $this->getData($product_id);
 			$this->product_attribute_data = $product_attribute_data;
 			$this->product_attribute_id = $product_attribute_data['product_attribute_id'];
 			$this->language_id = $product_attribute_data['language_id'];
@@ -85,8 +85,8 @@ class productAttribute{
 	}
 	
 	public function getLanguagesForExistingProductAttr($product_attribute_id){
-		$sql_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p WHERE p.product_attribute_id = "'. $product_attribute_id .'"';
-		$language_query = db_query($sql_statement);
+		$sql_select_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p WHERE p.product_attribute_id = "'. $product_attribute_id .'"';
+		$language_query = db_query($sql_select_statement);
 		$language_id_array = array();
 		while($data = db_fetch_array($language_query)) {
 			$language_id_array[$data['language_id']] ='';
@@ -104,6 +104,16 @@ class productAttribute{
 		$return_string = $return_string . '<input type="submit" name="submit_edit_product_attribute" id="submit_edit_product_attribute" value="'. BUTTON_CHANGE_PRODUCT_ATTRIBUTE .'">';
 		$return_string = $return_string . '</form></div>';
 		return $return_string;
+	}
+	
+	public static function getAllExistingAttrByLang($language_id){
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE language_id = "'. $language_id .'"';
+		$attribute_query = db_query($sql_select_statement);
+		$attribute_array = array();
+		while($data = db_fetch_array($attribute_query)){
+			$attribute_array[$data['product_attribute_id']] = $data['description'];
+		}
+		return $attribute_array;
 	}
 	
 	/*private section*/

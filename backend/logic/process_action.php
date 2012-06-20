@@ -52,9 +52,10 @@ switch($action) {
 		$product = new product($product_id, $language_id);
 		$language_ids_for_existing_products = $product->getLanguagesForExistingProduct($product_id);
 		$product_info = productInfo::getAttributesByProductIdAndLang($product_id, $language_id);
+		$attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
 		
 		
-		echo $product->printFormEdit($product_info, language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
+		echo $product->printFormEdit($attributes_for_lang, $product_info, language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
 		break;
 		
 	case 'edit_product':
