@@ -101,7 +101,18 @@ switch($action) {
 		'</div>'; 
 
 		
-	break;	
+	break;
+	
+	// TODO: is this correct?
+// 	case 'show_help':
+// 		include BASE_DIR .'help.php';
+// 	break;
+
+	case 'show_registration':
+	
+		include PATH_BODYS .'registration.php';
+
+	break;
 	
 	default:
 		echo WARNING_CONTENT_NOT_FOUND;
