@@ -121,10 +121,8 @@ class shoppingcart {
 	
 	// clear shopping cart for expired session
 	public static function deleteCart($session_id) {
-		$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $session_id .'"';
+		$delete_statement = 'DELETE FROM '. TBL_SHOPPING_CART .' WHERE session_id = "'. $session_id .'"';
 		db_query($delete_statement);
-		
-		$this->loadProducts();
 	}
 	
 	/* private section */

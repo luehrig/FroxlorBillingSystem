@@ -21,6 +21,11 @@ class order {
 	
 	
 	/* public section */
+	// create order with shoppingcart object
+	public static function createWithShoppingcart($cart) {
+		
+	}
+	
 	public static function create($customer_id, $order_date = NULL, $order_status = NULL, $order_positions) {
 		$customizing = new customizing();
 		

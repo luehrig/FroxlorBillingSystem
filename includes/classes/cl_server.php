@@ -87,22 +87,60 @@ class server {
 		return db_query($delete_statement);
 	}
 
-	// TODO:
+	
 	// book product on server
 	public function bookProduct($product_id) {
+		// get required disc space for product
+		$sql_statement = 'SELECT pi.value FROM '. TBL_PRODUCT_INFO .' AS pi WHERE pi.product_id = '. (int) $product_id;
+		$required_discspace_query = db_query($sql_statement);
+		
+		// if discspace is available for product update server
+		if(db_num_results($required_discspace_query) == 1) {
+			$required_discspace = db_fetch_array($required_discspace_query);
+			
+			$sql_statement = 'UPDATE '. TBL_SERVER .' SET free_space = free_space - '. (int) $required_discspace .' WHERE server_id = '. (int) $this->server_id;
+			return db_query($sql_statement);
+		}
+		else {
+			return WARNING_SERVER_NOT_ABLE_TO_ALLOCATE;
+		}		
 		
 	}
 	
-	// TODO:
 	// terminate product
 	public function terminateProduct($product_id) {
+		// get required disc space for product
+		$sql_statement = 'SELECT pi.value FROM '. TBL_PRODUCT_INFO .' AS pi WHERE pi.product_id = '. (int) $product_id;
+		$required_discspace_query = db_query($sql_statement);
 		
+		// if discspace is available for product update server
+		if(db_num_results($required_discspace_query) == 1) {
+			$required_discspace = db_fetch_array($required_discspace_query);
+				
+			$sql_statement = 'UPDATE '. TBL_SERVER .' SET free_space = free_space + '. (int) $required_discspace .' WHERE server_id = '. (int) $this->server_id;
+			return db_query($sql_statement);
+		}
+		else {
+			return WARNING_SERVER_NOT_ABLE_TO_FREE;
+		}
 	}
 	
-	// TODO:
 	// return server that fits best for product
 	public function getAppropriateServer($product_id) {
+		$customizing = new customizing();
+		$diskspace_attribute_id = $customizing->getCustomizingValue('sys_product_attribute_discspace');
 		
+		$sql_statement = 'SELECT s.server_id FROM '. TBL_SERVER .' AS s, '. TBL_PRODUCT .' AS p INNER JOIN '. TBL_PRODUCT_INFO .' AS pi ON p.product_id = pi.product_id WHERE p.product_id = '. (int) $product_id .' AND pi.attribute_id = '. $diskspace_attribute_id .' AND s.free_space > pi.value LIMIT 0,1';
+		$query = db_query($sql_statement);
+
+		// check if appropriated server exists
+		if(db_num_results($query) == 1) {
+			$result_data = db_fetch_array($query);
+			return $result_data['server_id'];
+		}
+		else {
+			return WARNING_SERVER_NO_SERVER_AVAILABLE;
+		}
 	}
 	
 	// return table with all servers
