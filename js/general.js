@@ -293,8 +293,27 @@ $(function() {
 		return false;
 
 	});
+	
+	//closes the colorbox and opens registration.php
+	$("body").on("click", "a[id=registration]", function() {
+		var language = $(this).attr('rel');
+		$.ajax({
+			type : "POST",
+			url : "logic/process_content_handling.php",
+			data : {
+				action : 'show_registration',
+				language_id : language
+				}
+		}).done(function(msg) {
+			$('.content_container').html(msg);
+		});
+		$.colorbox.close();
 
-	// overlay for customercenter
+		return false;
+	});
+	
+
+	// colorbox for customercenter
 	$("body").on("click", "a[class=customercenter]", function() {
 		// $.colorbox({href:"customercenter/index.php"});
 
@@ -333,6 +352,12 @@ $(function() {
 
 		return false;
 
+	});
+	
+	$("body").on("click", "a[class=nav]", function(){
+		
+		$("a").removeClass("active");
+		$(this).addClass("active");
 	});
 
 });

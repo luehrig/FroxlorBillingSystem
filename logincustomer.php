@@ -68,7 +68,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	    <input type="submit" id="ajaxlogin" name="ajaxlogin" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">  
 	</form>
 	<p>
-	<a href="#!page=registration&lang=<?php echo $site_language; ?>" id="registration"><span><?php echo LINK_REGISTRATION; ?></span></a>
+	<a href="#!page=registration&lang=" id="registration" rel="<?php echo $site_language; ?>"><span><?php echo LINK_REGISTRATION; ?></span></a>
 	</p>
 </div>
 </body>
