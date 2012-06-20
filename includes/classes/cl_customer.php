@@ -249,6 +249,19 @@ class customer {
 		
 	}
 	
+	// TODO:
+	// add a new address related to customer
+	public function addAddress() {
+		
+	}
+	
+	// TODO: 
+	// delete a address related to customer
+	public function deleteAddress() {
+		
+	}
+	
+	
 	// check if customer is still logged in
 	public static function isLoggedIn($session_id) {
 		$sql_statement = 'SELECT ac.customer_id FROM '. TBL_ACTIVE_CUSTOMER .' AS ac WHERE ac.session_id = "'. $session_id .'" AND ac.expiration_date > NOW()';
