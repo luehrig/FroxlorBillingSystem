@@ -21,7 +21,7 @@ define('BUTTON_CHANGE_SERVER', 'Server ändern');
 define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
 define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
-define('LINK_DELETE_PRODUCT', 'Löschen');
+define('LINK_DELETE', 'Löschen');
 define('BUTTON_CREATE_SERVER', 'Server anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');

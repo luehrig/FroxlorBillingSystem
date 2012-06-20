@@ -135,7 +135,7 @@ class product {
 			<td><a href="#" id="edit_product" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
 			<td><a href="#" id="translate_product" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
 			<td><a href="#" id="change_product_state" rel="'. $primary_keys .'">'. $change_state . '</a></td>
-			<td><a href="#" id="delete_product" rel="'. $primary_keys .'">'. LINK_DELETE_PRODUCT . '</a></td>
+			<td><a href="#" id="delete_product" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
@@ -155,7 +155,9 @@ class product {
 		$return_string = '<div id="'.$container_id.'">.
 		<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
 		$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
-		$return_string = $return_string . '</form></div>';
+		$return_string = $return_string . '</form>';
+		
+		$return_string = $return_string. '</div>';
 		return $return_string;
 	}
 	
