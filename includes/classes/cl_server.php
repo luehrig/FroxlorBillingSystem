@@ -87,6 +87,24 @@ class server {
 		return db_query($delete_statement);
 	}
 
+	// TODO:
+	// book product on server
+	public function bookProduct($product_id) {
+		
+	}
+	
+	// TODO:
+	// terminate product
+	public function terminateProduct($product_id) {
+		
+	}
+	
+	// TODO:
+	// return server that fits best for product
+	public function getAppropriateServer($product_id) {
+		
+	}
+	
 	// return table with all servers
 	public static function printOverview($container_id = 'server_overview'){
 		$sql_statement = 'SELECT s.server_id, s.name, s.free_space, s.total_space, s.active FROM '. TBL_SERVER .' AS s ORDER BY s.name ASC, s.free_space DESC';
