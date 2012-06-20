@@ -6,6 +6,7 @@ require '../../includes/classes/cl_content.php';
 require '../../includes/classes/cl_customer.php';
 require '../../includes/classes/cl_country.php';
 require '../../includes/classes/cl_product.php';
+require '../../includes/classes/cl_server.php';
 require '../../includes/classes/cl_product_attribute.php';
 
 session_start();
@@ -32,9 +33,9 @@ switch($action) {
 		echo $customizing->printCustomizingEntries();
 		
 		echo '<a href="#" id="edit_customizing">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
-			  <a href="#" id="save_customizing">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
-	break;
-	
+		<a href="#" id="save_customizing">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
+		break;
+
 	case 'get_products_overview':
 		$id_language_map = language::getIdLanguageMap();
 		echo product::printOverview($id_language_map);
@@ -72,11 +73,11 @@ switch($action) {
 		}
 		else{
 			$product = new product($product_id);
-			if($product->update($product_id, $product_data)){
+			if($product->update($product_id, $language_id, $product_data)){
 				echo INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL;
 			}
 			else{
-				alert(INFO_MESSAGE_PRODUCT_UPDATE_FAILED);
+				echo INFO_MESSAGE_PRODUCT_UPDATE_FAILED;
 			}
 				
 		}
@@ -223,9 +224,106 @@ switch($action) {
 		break;
 		
 	case 'get_server_overview':
-		echo 'Meine Server!';
+
+		echo server::printOverview();
+
 		break;
-	
+
+	case 'open_create_server_form':
+
+		echo server::printCreateServerForm();
+
+		break;
+
+	case 'create_new_server':
+		$name = $_POST['name'];
+		$mngmnt_ui = $_POST['mngmnt_ui'];
+		$ipv4 = $_POST['ipv4'];
+		$ipv6 = $_POST['ipv6'];
+		$froxlor_username = $_POST['froxlor_username'];
+		$froxlor_password = $_POST['froxlor_password'];
+		$froxlor_db = $_POST['froxlor_db'];
+		$froxlor_db_host = $_POST['froxlor_db_host'];
+		$total_space = $_POST['total_space'];
+		$free_space = $_POST['free_space'];
+		$active = $_POST['active'];
+
+		$server_data = array("name" =>$name,
+				'mngmnt_ui'=>$mngmnt_ui,
+				'ipv4'=>$ipv4,
+				'ipv6'=>$ipv6,
+				'froxlor_username'=>$froxlor_username,
+				'froxlor_password'=>md5($froxlor_password),
+				'froxlor_db'=>$froxlor_db,
+				'froxlor_db_host'=>$froxlor_db_host,
+				'total_space'=>$total_space,
+				'free_space'=>$free_space,
+				'active'=>$active);
+
+		// check if ipv4 still exists in DB
+		// TODO: in later release this is a candidate for customizing
+		if(server::serverExists($server_data['ipv4'])){
+			echo WARNING_MESSAGE_SERVER_ALREADY_EXISTS;
+		}
+		else{
+			server::create($server_data);
+		}
+
+		break;
+
+
+
+	case 'open_server_editor':
+		$server_id = $_POST['server_id'];
+
+		$server = new server($server_id);
+
+		echo $server->printEditServerForm();
+
+		break;
+
+	case 'edit_server':
+
+		$server_id = $_POST['server_id'];
+		$name = $_POST['name'];
+		$mngmnt_ui = $_POST['mngmnt_ui'];
+		$ipv4 = $_POST['ipv4'];
+		$ipv6 = $_POST['ipv6'];
+		$froxlor_username = $_POST['froxlor_username'];
+		$froxlor_password = md5($_POST['froxlor_password']);
+		$froxlor_db = $_POST['froxlor_db'];
+		$froxlor_db_host = $_POST['froxlor_db_host'];
+		$total_space = $_POST['total_space'];
+		$free_space = $_POST['free_space'];
+		$active = $_POST['active'];
+
+		$server_data = array("name" =>$name,
+				'mngmnt_ui'=>$mngmnt_ui,
+				'ipv4'=>$ipv4,
+				'ipv6'=>$ipv6,
+				'froxlor_username'=>$froxlor_username,
+				'froxlor_password'=>md5($froxlor_password),
+				'froxlor_db'=>$froxlor_db,
+				'froxlor_db_host'=>$froxlor_db_host,
+				'total_space'=>$total_space,
+				'free_space'=>$free_space,
+				'active'=>$active);
+
+		$server = new server($server_id);
+		$server->update($server_data);
+
+		break;
+
+	case 'delete_server':
+
+		$server_id = $_POST['server_id'];
+		
+		$server = new server($server_id);
+		$server->delete();
+
+		break;
+
+
 	case 'get_customers_overview':
 		
 		
