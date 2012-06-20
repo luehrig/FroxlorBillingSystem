@@ -14,6 +14,11 @@ class shoppingcart {
 	}
 	
 	/* pulic section */
+	// get products array
+	public function getProducts() {
+		return $this->products;
+	}
+	
 	// add given product to shopping cart (default quantity = 1)
 	public function addProduct($product_id, $quantity = 1) {
 		// check if given quantity is greater than 1. If not: return false!

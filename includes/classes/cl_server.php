@@ -126,11 +126,11 @@ class server {
 	}
 	
 	// return server that fits best for product
-	public function getAppropriateServer($product_id) {
+	public static function getAppropriateServer($product_id,$quantity = 1) {
 		$customizing = new customizing();
 		$diskspace_attribute_id = $customizing->getCustomizingValue('sys_product_attribute_discspace');
 		
-		$sql_statement = 'SELECT s.server_id FROM '. TBL_SERVER .' AS s, '. TBL_PRODUCT .' AS p INNER JOIN '. TBL_PRODUCT_INFO .' AS pi ON p.product_id = pi.product_id WHERE p.product_id = '. (int) $product_id .' AND pi.attribute_id = '. $diskspace_attribute_id .' AND s.free_space > pi.value LIMIT 0,1';
+		$sql_statement = 'SELECT s.server_id FROM '. TBL_SERVER .' AS s, '. TBL_PRODUCT .' AS p INNER JOIN '. TBL_PRODUCT_INFO .' AS pi ON p.product_id = pi.product_id WHERE p.product_id = '. (int) $product_id .' AND pi.attribute_id = '. $diskspace_attribute_id .' AND s.free_space > pi.value * '. $quantity .' LIMIT 0,1';
 		$query = db_query($sql_statement);
 
 		// check if appropriated server exists
@@ -139,7 +139,7 @@ class server {
 			return $result_data['server_id'];
 		}
 		else {
-			return WARNING_SERVER_NO_SERVER_AVAILABLE;
+			return NULL;
 		}
 	}
 	

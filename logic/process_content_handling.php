@@ -5,6 +5,8 @@ include_once '../configuration.inc.php';
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_shoppingcart.php';
+require_once PATH_CLASSES .'cl_order.php';
+require_once PATH_CLASSES .'cl_server.php';
 require_once PATH_CLASSES .'cl_content.php';
 
 if(session_id() == '') {
@@ -115,6 +117,14 @@ switch($action) {
 
 	// show info page to say "your order has been send successfully"
 	case 'show_order_received':
+		
+			$cart = new shoppingcart(session_id());
+			
+			print_r($cart->getProducts());
+			
+			$cart_products = $cart->getProducts();
+			
+			$order = order::create($_SESSION['customer_id'], NULL, NULL, $cart_products);
 		
 			echo 'Ihre Bestellung wurde erfolgreich an unser Team übermittelt!';
 		
