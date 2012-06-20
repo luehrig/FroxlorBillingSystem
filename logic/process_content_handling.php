@@ -68,7 +68,23 @@ switch($action) {
 		
 		echo 'Sie können sofort weitermachen, weil Sie bereits als Kunde angemeldet sind.';
 	
+		echo '<a href="#!page=checkout_step3&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		
 	break;
+	
+	case 'show_checkout_step3':
+	
+		// TODO: change content ID to AGB entry
+		$content = new content(3,$language_id);
+			
+		echo $content->getTitle();
+			
+		echo $content->getText();
+	
+		echo '<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
+		echo '<a href="#!page=checkout_step4&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		
+		break;
 	
 	case 'show_imprint':
 	
@@ -101,7 +117,18 @@ switch($action) {
 		'</div>'; 
 
 		
-	break;	
+	break;
+	
+	// TODO: is this correct?
+// 	case 'show_help':
+// 		include BASE_DIR .'help.php';
+// 	break;
+
+	case 'show_registration':
+	
+		include PATH_BODYS .'registration.php';
+
+	break;
 	
 	default:
 		echo WARNING_CONTENT_NOT_FOUND;

@@ -709,6 +709,17 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_standard_invoice_status', NULL, '1');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_standard_order_status', NULL, '1');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_standard_payment_periode', NULL, '14');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_name', NULL, 'Froxlor Hosting Company');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_president', NULL, 'Max Mustermann');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_bank_account', NULL, '12345678');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_bank_code', NULL, '09871100');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_swift_code', NULL, 'DE0111111111');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_street', NULL, 'Mustergasse 1a');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_founder_year', NULL, '2012');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_city', NULL, 'Musterstadt');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_post_code', NULL, '12345');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_tel', NULL, '49 123 456789');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_fax', NULL, '49 123 09876543');
 
 COMMIT;
 
@@ -742,5 +753,6 @@ INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title
 INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 2, 'imprint', 'This will be the imprint');
 INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 1, 'Startseite', 'Eine ganz tolle Startseite');
 INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 2, 'home', 'This will be the landing page');
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (3, 1, 'Allgemeine Geschäftsbedingungen', '<div align=\"center\"><b>Allgemeine Geschäftsbedingungen (AGB)</b></div><br />');
 
 COMMIT;

@@ -1,7 +1,13 @@
 eclipse.preferences.version=1
+encoding//bodys/registration.php=UTF-8
 encoding//css/style.css=UTF-8
+encoding//backend/includes/languages/DE.inc.php=UTF-8
+encoding//backend/js/admin.js=UTF-8
+encoding//backend/logic/process_action.php=UTF-8
 encoding//customercenter/login.php=UTF-8
 encoding//includes/classes/cl_country.php=UTF-8
+encoding//includes/classes/cl_customer.php=UTF-8
 encoding//includes/languages/DE-DE.inc.php=UTF-8
 encoding//includes/languages/DE.inc.php=UTF-8
+encoding/header.php=UTF-8
 encoding/index.php=UTF-8

@@ -6,7 +6,9 @@ require PATH_CLASSES .'cl_customizing.php';
 require PATH_CLASSES .'cl_customer.php';
 require PATH_CLASSES .'cl_language.php';
 
-session_start();
+if(session_id() == '') {
+	session_start();
+}
 
 require PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
@@ -28,6 +30,7 @@ if(!isset($language_id)) {
 	}
 }
 
+include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
 $action = $_POST['action'];
 

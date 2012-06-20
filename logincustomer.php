@@ -48,22 +48,28 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 <script language="javascript" src="<?php echo BASE_DIR; ?>js/jquery-1.7.2.min.js"></script>
 <script language="javascript" src="<?php echo BASE_DIR; ?>js/general.js"></script>
 </head>
+
+
 <body>
-<div id="messagearea"></div>    
-<form method="post" action="#" id="loginform" accept-charset=utf-8>
-    <fieldset>
-    <legend><?php echo FIELDSET_LOGIN_FORM_CUSTOMER; ?></legend>
-    	<label for="email"><?php echo LABEL_EMAIL; ?></label>
-    	<input type="text" id="email" name="email" rel="mandatory">
-    	<label for="password"><?php echo LABEL_PASSWORD; ?></label>
-    	<input type="password" id="password" name="password" rel="mandatory">    	
-    </fieldset>
-    
-    <input type="submit" id="ajaxlogin" name="ajaxlogin" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">  
-</form>
-<p>
-<a href="registration.php"><span><?php echo LINK_REGISTRATION; ?></span></a>
-</p>
-    
+<ddiv id="messagearea"></div> 
+<div class="colorboxwrapper">   
+	<form method="post" action="#" id="loginform" accept-charset=utf-8>
+	    <fieldset>
+	    	<legend>
+	    		<img ID="minilogo" src="images/logos/logo.png">
+	    		<?php echo FIELDSET_LOGIN_FORM_CUSTOMER; ?>
+	    	</legend>
+	    	<label for="email"><?php echo LABEL_EMAIL; ?></label>
+	    	<input type="text" id="email" name="email" rel="mandatory"><br>
+	    	<label for="password"><?php echo LABEL_PASSWORD; ?></label>
+	    	<input type="password" id="password" name="password" rel="mandatory">    	
+	    </fieldset>
+	    
+	    <input type="submit" id="ajaxlogin" name="ajaxlogin" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">  
+	</form>
+	<p>
+	<a href="#!page=registration&lang=<?php echo $site_language; ?>" id="registration"><span><?php echo LINK_REGISTRATION; ?></span></a>
+	</p>
+</div>
 </body>
 </html>

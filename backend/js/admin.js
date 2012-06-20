@@ -279,20 +279,27 @@ $(function() {
 		
 		return false;
 	});	
+	
+	// set customizing fields editable for product attributes
+	$("body").on("click", "a[id=edit_product_atrribute]", function() {
+		
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_attribute_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_product_attribute_editor", product_attribute_id: product_attribute_id , language_id: language_id}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
 
-//	// set customizing fields editable for product attributes
-//	$("body").on("click", "a[id=edit_product_atrribute]", function() {
-//		
-//		$.ajax({
-//			type: "POST",
-//			url: "logic/process_action.php",
-//			data: { action: "get_product_attributes_overview" }
-//		}).done(function( msg ) {
-//			$('.content').html( msg );
-//		});
-//		
-//		return false;
-//	});	
 	
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {
