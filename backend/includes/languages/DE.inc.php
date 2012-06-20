@@ -21,7 +21,7 @@ define('BUTTON_CHANGE_SERVER', 'Server ändern');
 define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
 define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
-define('LINK_DELETE_PRODUCT', 'Löschen');
+define('LINK_DELETE', 'Löschen');
 define('BUTTON_CREATE_SERVER', 'Server anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');
@@ -59,6 +59,9 @@ define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'Vertragslaufzeit');
 define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('LABEL_PRODUCT_QUANTITY', 'Menge');
 define('LABEL_PRODUCT_PRICE', 'Preis');
+
+define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'Sprache');
+define('LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION', 'Beschreibung');
 
 define('LABEL_SERVER_NAME','Servername');
 define('LABEL_SERVER_MNGMNT_UI','Verwaltungsoberfläche');
@@ -107,8 +110,8 @@ define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 
 define('EXPLANATION_CUSTOMIZING_ENTRIES','Mit Hilfe der folgenden Einträge können Sie das Verhalten ihres Shops ganz einfach anpassen und bei eigenen Erweiterungen zusätzliche Einträge hinzufügen.');
 
-define('EXPLANATION_NUMBER_OF_PRODUCTS','Aktuell stehen %d Produkte zum Verkauf.');
-define('EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES', 'Aktuell sind derzeit %d Produktattribute im System eingepflegt.');
+define('EXPLANATION_NUMBER_OF_PRODUCTS','Aktuell stehen %d Produkte in Ihrer Sprache zum Verkauf zur Verfügung.');
+define('EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES', 'Aktuell sind derzeit %d Produktattribute für Ihre Sprache im System eingepflegt.');
 
 define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
 define('EXPLANATION_NUMBER_OF_SERVERS','Aktuell befinden sich %d Server im Verkaufspool.');

@@ -84,13 +84,16 @@ class product {
 		}
 	}
 	
-	public static function printOverview($container_id = 'product_overview'){
-		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p ORDER BY p.product_id ASC';
+
+	public static function printOverview($shown_language_id, $id_language_map, $container_id = 'product_overview'){
+		
+		$sql_statement = 'SELECT p.product_id, p.language_id, p.title, p.contract_periode, p.description, p.quantity, p.price, p.active FROM '. TBL_PRODUCT .' AS p WHERE p.language_id="'. $shown_language_id .'" ORDER BY p.product_id ASC';
 		$product_query = db_query($sql_statement);
 		$number_of_products = db_num_results($product_query);
 		
+		
 		$return_string = '<div id="'. $container_id .'">';
-		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products);
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products) . '<br>';
 		
 		
 		$create_button = '<a href="#" id="create_new_product">'.BUTTON_CREATE_NEW_PRODUCT.'</a></td>';
@@ -123,7 +126,7 @@ class product {
 				$change_state = LINK_ACTIVATE_PRODUCT;
 			}
 			$table_content = $table_content .'<tr>
-			<td>'. $data['language_id'] .'</td>
+			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['title'] .'</td>
 			<td>'. $data['contract_periode'] .'</td>
 			<td>'. $data['description'] .'</td>
@@ -132,7 +135,7 @@ class product {
 			<td><a href="#" id="edit_product" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
 			<td><a href="#" id="translate_product" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
 			<td><a href="#" id="change_product_state" rel="'. $primary_keys .'">'. $change_state . '</a></td>
-			<td><a href="#" id="delete_product" rel="'. $primary_keys .'">'. LINK_DELETE_PRODUCT . '</a></td>
+			<td><a href="#" id="delete_product" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
@@ -152,7 +155,9 @@ class product {
 		$return_string = '<div id="'.$container_id.'">.
 		<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
 		$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
-		$return_string = $return_string . '</form></div>';
+		$return_string = $return_string . '</form>';
+		
+		$return_string = $return_string. '</div>';
 		return $return_string;
 	}
 	
@@ -253,10 +258,18 @@ class product {
 		return $this->product_data;
 	}
 	
+	public function getLanguagesForExistingProduct($product_id){
+		$sql_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = "'. $product_id .'"';
+		$language_query = db_query($sql_statement);
+		$language_id_array = array();
+		while($data = db_fetch_array($language_query)) {
+			$language_id_array[$data['language_id']] ='';
+		}
+		return $language_id_array;
+	}
 
 	// private section
 	
-	// TODO PRIMARY KEYS
 	private function getProductFromDb($product_id, $language_id) {
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'" AND language_id = "'. $language_id. '"' ;
 		$info_query = db_query($sql_select_statement);

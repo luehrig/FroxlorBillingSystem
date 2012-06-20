@@ -13,7 +13,7 @@ session_start();
 
 include_once '../../configuration.inc.php';
 
-require '../../functions/database.php';
+require '../../functions/database.php'; 
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 require '../../functions/general.php';
@@ -38,17 +38,19 @@ switch($action) {
 
 	case 'get_products_overview':
 
-		echo product::printOverview();
-
-		break;
-
+		$shown_language_id = language::getShownLanguageId();
+		$id_language_map = language::getIdLanguageMap();
+		echo product::printOverview($shown_language_id, $id_language_map);
+		
+	break;
+	
 	case 'open_product_editor':
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];	
 		$product = new product($product_id, $language_id);
+		$language_ids_for_existing_products = $product->getLanguagesForExistingProduct($product_id);
 	
-		echo $product->printFormEdit(language::printLanguages());
-
+		echo $product->printFormEdit(language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
 		break;
 		
 	case 'edit_product':
@@ -207,9 +209,11 @@ switch($action) {
 		
 		
 		
-		case 'get_product_attributes_overview':
-			
-			echo productattribute::printOverview();
+
+	case 'get_product_attributes_overview':
+		$shown_language_id = language::getShownLanguageId();
+		$id_language_map = language::getIdLanguageMap();
+		echo productattribute::printOverview($shown_language_id, $id_language_map);
 				
 			break;
 			
@@ -218,8 +222,9 @@ switch($action) {
 		$product_attribute_id = $_POST['product_attribute_id'];
 		$language_id = $_POST['language_id'];
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
+		$language_ids_for_existing_product_attributes = $product_attribute->getLanguagesForExistingProductAttr($product_attribute_id);
 		
-		echo $product_attribute->printFormEdit(language::printLanguages($language_id), $language_id);
+		echo $product_attribute->printFormEdit(language::printLanguages($language_ids_for_existing_product_attributes, $language_id), $language_id);
 		
 		break;
 		

@@ -39,10 +39,11 @@ class productAttribute{
 		}
 	}
 	
-	public static function printOverview($container_id = 'product_attribute_overview'){
+
+	public static function printOverview($shown_language_id, $id_language_map, $container_id='product_attribute_overview'){
 		
 		
-		$sql_statement = 'SELECT p.product_attribute_id, p.language_id, p.description FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p ORDER BY p.product_attribute_id ASC';
+		$sql_statement = 'SELECT p.product_attribute_id, p.language_id, p.description FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p WHERE p.language_id = "'. $shown_language_id .'" ORDER BY p.product_attribute_id ASC';
 		$product_attribute_query = db_query($sql_statement);
 		$number_of_product_attributes = db_num_results($product_attribute_query);
 		
@@ -68,11 +69,10 @@ class productAttribute{
 			$primary_keys = $data['product_attribute_id'].','.$data['language_id'];
 				
 			$table_content = $table_content .'<tr>
-			<td>'. $data['language_id'] .'</td>
+			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['description'] .'</td>
 			<td><a href="#" id="edit_product_atrribute" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
-			<td><a href="#" id="translate_product_attribute" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>
-			<td><a href="#" id="delete_product_attribute" rel="'. $primary_keys .'">'. LINK_DELETE_PRODUCT . '</a></td>
+			<td><a href="#" id="delete_product_attribute" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
@@ -84,6 +84,27 @@ class productAttribute{
 		return $this->getProductAttributeFromDB();
 	}
 	
+	public function getLanguagesForExistingProductAttr($product_attribute_id){
+		$sql_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p WHERE p.product_attribute_id = "'. $product_attribute_id .'"';
+		$language_query = db_query($sql_statement);
+		$language_id_array = array();
+		while($data = db_fetch_array($language_query)) {
+			$language_id_array[$data['language_id']] ='';
+		}
+		return $language_id_array;
+	}
+	
+	public function printFormEdit($language_select_box, $language_id, $container_id = 'product_attribute_editor'){
+		$return_string = '<div id="'.$container_id.'">.
+		<form>'.'<fieldset>'. 
+			'<label for="language_id">'. LABEL_PRODUCT_ATTRIBUTE_LANGUAGE .'</label><br> '.
+				$language_select_box.
+			'<label for="describtion">'. LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION .'</label><br>'.
+			'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>';
+		$return_string = $return_string . '<input type="submit" name="submit_edit_product_attribute" id="submit_edit_product_attribute" value="'. BUTTON_CHANGE_PRODUCT_ATTRIBUTE .'">';
+		$return_string = $return_string . '</form></div>';
+		return $return_string;
+	}
 	
 	/*private section*/
 	private function getProductAttributeFromDB($product_attribute_id, $language_id){
