@@ -60,6 +60,9 @@ define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('LABEL_PRODUCT_QUANTITY', 'Menge');
 define('LABEL_PRODUCT_PRICE', 'Preis');
 
+define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'Sprache');
+define('LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION', 'Beschreibung');
+
 define('LABEL_SERVER_NAME','Servername');
 define('LABEL_SERVER_MNGMNT_UI','Verwaltungsoberfläche');
 define('LABEL_SERVER_IPV4','IPv4 Adresse');

@@ -95,6 +95,17 @@ class productAttribute{
 		return $language_id_array;
 	}
 	
+	public function printFormEdit($language_select_box, $language_id, $container_id = 'product_attribute_editor'){
+		$return_string = '<div id="'.$container_id.'">.
+		<form>'.'<fieldset>'. 
+			'<label for="language_id">'. LABEL_PRODUCT_ATTRIBUTE_LANGUAGE .'</label><br> '.
+				$language_select_box.
+			'<label for="describtion">'. LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION .'</label><br>'.
+			'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>';
+		$return_string = $return_string . '<input type="submit" name="submit_edit_product_attribute" id="submit_edit_product_attribute" value="'. BUTTON_CHANGE_PRODUCT_ATTRIBUTE .'">';
+		$return_string = $return_string . '</form></div>';
+		return $return_string;
+	}
 	
 	/*private section*/
 	private function getProductAttributeFromDB($product_attribute_id, $language_id){
