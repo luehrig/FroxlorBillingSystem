@@ -99,7 +99,8 @@ define('LABEL_TEL', 'Tel.');
 define('LABEL_SAME_ADRESS', 'Selbe Rechnungs- und Lieferanschrift');
 define('BUTTON_CHANGE_PW', 'Passwort ändern');
 
-
+/* checkout process */
+define('LABEL_ACCEPT_TERMS','Hiermit bestätige ich, dass ich die oben aufgeführten Geschäftsbedingungen gelesen und verstanden habe, sowie diese akzeptiere.');
 
 
 ?>

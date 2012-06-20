@@ -6,26 +6,49 @@ $(function() {
 	
 	
 	// Login: show customer header (welcome + logout link) and direct to customer center
-	$("body").on("click", "input[id=ajaxlogin]", function() {
+	$("body").on("click", "form[id=loginform] input[type=submit][id=ajaxlogin]", function() {
 		
+		var email = $('input[type=text][id=email]').val();
+		var password = $('input[type=password][id=password]').val();
+		
+		// do ajax call. If login was successful redirect to customer center
 		$.ajax({
 			type: "POST",
-			url: "logic/process_content_handling.php",
-			data: { action: "show_customercenter"}
+			url: "logic/process_usermanagement.php",
+			data: { action: "login_customer", email: email, password: password }
 		}).done(function( msg ) {
-			$('.content_container').html( msg );
+			if(msg == 'true') {
+				$.colorbox.close();
+				$('a[id=customercenter]').addClass('nav');
+				
+				$.ajax({
+					type: "POST",
+					url: "logic/process_content_handling.php",
+					data: { action: "show_customercenter"}
+				}).done(function( msg ) {
+					$('.content_container').html( msg );
+				});
+				
+				$.ajax({
+					type: "POST",
+					url: "logic/process_action.php",
+					data: { action: "show_customer_header"}
+				}).done(function( msg ) {
+					$('#customer_header').html( msg );
+				});
+				
+			}
+			else {
+				$('#messagearea').html( msg );
+			}
 		});
 		
-		$.ajax({
-			type: "POST",
-			url: "logic/process_action.php",
-			data: { action: "show_customer_header"}
-		}).done(function( msg ) {
-			$('#customer_header').html( msg );
-		});
-		
+		// reset input fields
+		$('input[type=text][id=email]').val('');
+		$('input[type=password][id=password]').val('');
+
 		return false;
-	});	
+	});
 
     // logout customer and redirect to main page
 	$("body").on("click", "a[id=logout]", function() {
