@@ -68,9 +68,9 @@ class customer {
 			
 		$return_string = '<div id="'. $container_id .'"><form>';
 		
-		$return_string = $return_string .'<fieldset>
+		$return_string = $return_string .'<fieldset>';
 		$return_string = $return_string .'<table class="customer_data"><tr><th>'.LABEL_LOGIN_DATA.': </th><td>'.LABEL_EMAIL.': '.$this->email. // eMail
-		/* $return_string = $return_string .'<fieldset>
+		 $return_string = $return_string .'<fieldset>
     										<legend>'. FIELDSET_CUSTOMER_GENERAL_INFORMATION .'</legend>
     											<label for="gender">'. LABEL_GENDER .'</label>
     												<select name="gender" id="gender" size="1" rel="mandatory" readonly>';
@@ -399,6 +399,7 @@ class customer {
 
 		return $return_string;
 	}
+
 	
 	/* private section */
 	private function getCustomerFromDB($customer_id) {
