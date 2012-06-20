@@ -34,7 +34,7 @@ body
 .header {
 	background-color: #F0F0F0;
 	width: 900px;
-	height: 120px;
+	height: 110px;
 	
 	-moz-box-shadow: inset 0 0 10px 0 #000;
 	-webkit-box-shadow: inset 0 0 10px 0 #000;
@@ -43,8 +43,9 @@ body
 
 .header_right {
 	float: right;
-	width: 400px;
+	width: 450px;
 	height: 100px;
+	position: relative;
 }
 
 .content_container {
@@ -270,7 +271,7 @@ legend
 
 #logo {
 	width: 400px;
-	margin: 5px;
+	margin: 10px;
 }
 
 
@@ -415,17 +416,17 @@ legend
 
 
 #customer_header {
-	font-weight:bold;
-	font-size: 0.8em;
-	vertical-align: bottom;
-	text-align: right;
-	position: absolute;
-	top: 75px;
-	left: 790px;
+    font-size: 0.8em;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    text-align: right;
 }
 #customer_header a:link{
 	margin-left: 5px;
-	color:#A0A0A0; text-decoration:none; 
+	color:#A0A0A0; text-decoration:none;
+	float: 
 }
 #customer_header a:focus { 
 	color:black; text-decoration:none; 

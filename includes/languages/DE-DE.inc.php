@@ -80,7 +80,7 @@ define('VIEW_MENU_CUSTOMERCENTER', 'Kundenbereich');
 define('VIEW_MENU_SHOPPING_CART','Warenkorb');
 
 /* customer center */
-define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich!');
+define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
 
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');

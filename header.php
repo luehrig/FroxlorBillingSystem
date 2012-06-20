@@ -50,7 +50,17 @@ $cart = new shoppingcart(session_id());
 	<div class="header_right">
 		<a href="#!page=shoppingcart&lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 		<br>
-		<div ID="customer_header">
-		</div>		
+		<div ID="customer_header">	
+		<div ID="customer_header_ajax"></div>
+		<?php 
+			if(customer::isLoggedIn(session_id())) {
+				$customer = new customer($_SESSION['customer_id']);
+				$data = $customer->getData();
+				
+				echo MSG_CUSTOMER_WELCOME .', '. $data['first_name'] .' '. $data['last_name'] .'!';
+				echo '<a href="#" id="logout"> '. BUTTON_LOGOUT_CUSTOMER .'</a>';
+			}	
+		?>
+		</div>
 	</div>
 </div>
