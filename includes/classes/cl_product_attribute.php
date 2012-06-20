@@ -69,7 +69,7 @@ class productAttribute{
 			$primary_keys = $data['product_attribute_id'].','.$data['language_id'];
 				
 			$table_content = $table_content .'<tr>
-			<td>'. $data['language_id'] .'</td>
+			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['description'] .'</td>
 			<td><a href="#" id="edit_product_atrribute" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
 			<td><a href="#" id="translate_product_attribute" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a></td>

@@ -126,7 +126,7 @@ class product {
 				$change_state = LINK_ACTIVATE_PRODUCT;
 			}
 			$table_content = $table_content .'<tr>
-			<td>'. $data['language_id'] .'</td>
+			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['title'] .'</td>
 			<td>'. $data['contract_periode'] .'</td>
 			<td>'. $data['description'] .'</td>
