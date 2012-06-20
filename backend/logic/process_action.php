@@ -239,8 +239,12 @@ switch($action) {
 	case 'open_create_new_attribute_for_product':
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
+		$current_attributes_for_product = productInfo::getAttributesByProductIdAndLang($product_id, $language_id);
+		$existing_attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
+		$availible_attributes = productInfo::getAvailableAttributes($product_id, $language_id, $existing_attributes_for_lang);
 		
 		
+		echo productInfo::printNewAttributeForm($product_id, $language_id, $availible_attributes);
 		break;
 		
 	case 'get_server_overview':

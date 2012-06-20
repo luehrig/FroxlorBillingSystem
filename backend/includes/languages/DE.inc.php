@@ -14,6 +14,7 @@ define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
 define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
 define('BUTTON_CHANGE_ATTRIBUTES', 'Attribute ändern');
 define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
+define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
 
 define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
@@ -65,6 +66,9 @@ define('LABEL_PRODUCT_PRICE', 'Preis');
 define('LABEL_PRODUCT_ATTRIBUTE', 'Attribute für Produkt Nr. ');
 define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'Sprache');
 define('LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION', 'Beschreibung');
+
+define('LABEL_ATTRIBUTE', 'Attribut');
+define('LABEL_VALUE', 'Wert ');
 
 define('LABEL_SERVER_NAME','Servername');
 define('LABEL_SERVER_MNGMNT_UI','Verwaltungsoberfläche');

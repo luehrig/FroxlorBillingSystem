@@ -151,7 +151,6 @@ $(function() {
 	
 	// open create attribute for product form
 	$("body").on("click", "input[type=submit][id=give_prod_new_attr]", function() {
-		alert("gugugs");
 		
 		var product_id = $('input[type=hidden][id=product_id]').val();
 		var language_id = $('input[type=hidden][id=language_id]').val();

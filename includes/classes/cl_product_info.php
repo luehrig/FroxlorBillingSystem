@@ -30,10 +30,40 @@ class productInfo{
 		return $attrArray;
 	}
 	
-	public static function printNewAttributeForm($availible_attributes){
-		
+	public static function printNewAttributeForm($product_id, $language_id, $availible_attributes, $container_id = 'new_attribute_for_product_editor'){
+		$return_string = '<div id="'.$container_id.'">';
+		$return_string = $return_string. '<form>'.'<fieldset>'.
+				'<input type="hidden" id = "product_id" name = product_id value = '.$product_id.'>'.
+				'<input type="hidden" id = "language_id" name = language value = '.$language_id.'>'.
+				'<label for="label_attribute">'. LABEL_ATTRIBUTE .' </label>'.
+				'<select id="attribute_selection" name="attribute_selection" size="1">';
+				if(count($availible_attributes)!=0){
+					foreach ($availible_attributes as $attribute_id => $description){
+						$return_string = $return_string. '<option id="'. $attribute_id .'">'. $description .'</option>';
+					}
+				}
+				$return_string = $return_string . '</select>';
+				$return_string = $return_string .
+						'<label for="value">'. LABEL_VALUE .' </label>'.
+						'<input type="text" id="value" name="value" value=""><br>'.
+						'</fieldset>'.
+						'<input type="submit" name="save_new_attr_for_prod" id="save_new_attr_for_prod" value="'. BUTTON_SAVE_ATTR_FOR_PROD .'">';
+				$return_string = $return_string. '</form></div>';
+				return $return_string;
+				
 	}
 	
+	public static function getAvailableAttributes($product_id, $language_id, $existing_attributes_for_lang){
+		$attributes_not_in_use = array();
+		$current_attributes = productInfo::getAttributesByProductIdAndLangFromDB($product_id, $language_id);
+		foreach($existing_attributes_for_lang as $product_attribute_id=>$description){
+			if(!array_key_exists($product_attribute_id, $current_attributes)){
+				$attributes_not_in_use[$product_attribute_id] = $existing_attributes_for_lang[$product_attribute_id];
+			}
+		}
+		return $attributes_not_in_use;
+		
+	}
 	
 	// private section
 	private static function getAttributesByProductIdAndLangFromDB($product_id, $language_id){
