@@ -214,9 +214,6 @@ switch($action) {
 		$shown_language_id = language::getShownLanguageId();
 		$id_language_map = language::getIdLanguageMap();
 		echo productattribute::printOverview($shown_language_id, $id_language_map);
-
-			
-			echo productattribute::printOverview();
 				
 			break;
 			
