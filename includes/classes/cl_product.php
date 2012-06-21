@@ -9,7 +9,7 @@ class product {
 	private $description;
 	private $quantity;
 	private $price;
-	private $state;
+	private $active;
 	private $product_attributes;
 	private $product_data;
 	
@@ -27,10 +27,127 @@ class product {
 			$this->price = $product_data['price'];
 			$this->active = $product_data['active'];
 			
-		}	
-		
+		}		
 	}
 	/* public section */
+	
+	// return product title (optional in other language)
+	public function getTitle($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.title FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['title'];
+			}
+			else {
+				return $this->title;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return contract periode (optional in other language)
+	public function getContractPeriode($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.contract_periode FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['contract_periode'];
+			}
+			else {
+				return $this->contract_periode;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return description (optional in other language)
+	public function getDescription($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.description FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['description'];
+			}
+			else {
+				return $this->description;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return quantity (optional in other language)
+	public function getQuantity($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.quantity FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['quantity'];
+			}
+			else {
+				return $this->quantity;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return price (optional in other language)
+	public function getPrice($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.price FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['price'];
+			}
+			else {
+				return $this->price;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return active (optional in other language)
+	public function getActive($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.active FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['active'];
+			}
+			else {
+				return $this->active;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+	
+	
 	
 	public static function create($product_data) {
 		if($product_data != NULL){
@@ -117,12 +234,12 @@ class product {
 			
 			$primary_keys = $data['product_id'].','.$data['language_id'];
 			
-			$state = $data['active'];
+			$active = $data['active'];
 			$change_state;
-			if($state==1){
+			if($active==1){
 				$change_state = LINK_DEACTIVATE_PRODUCT;
 			}
-			elseif($state==0){
+			elseif($active==0){
 				$change_state = LINK_ACTIVATE_PRODUCT;
 			}
 			$table_content = $table_content .'<tr>
