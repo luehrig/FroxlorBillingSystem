@@ -6,7 +6,10 @@ require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_content.php';
 require_once PATH_CLASSES .'cl_customer.php';
+require_once PATH_CLASSES .'cl_invoice.php';
+require_once PATH_CLASSES .'cl_order.php';
 require_once PATH_CLASSES .'cl_country.php';
+require_once PATH_CLASSES .'cl_currency.php';
 
 if(session_id() == '') {
 	session_start();
@@ -118,6 +121,7 @@ switch($action) {
 		$customer = new customer($customer_id);
 	
 		// content
+		echo invoice::printOverviewCustomer($customer_id);
 	
 		echo '</div>';
 		echo '</div>';

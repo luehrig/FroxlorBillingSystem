@@ -87,6 +87,12 @@ define('VIEW_MENU_SHOPPING_CART','Warenkorb');
 /* customer center */
 define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
 
+define('EXPLANATION_NUMBER_OF_INVOICES','Es liegen %d Rechnungen für Sie vor.');
+define('TABLE_HEADING_INVOICE_INVOICE_NUMBER','Rechnungsnummer');
+define('TABLE_HEADING_INVOICE_ISSUE_DATE','Datum');
+define('TABLE_HEADING_INVOICE_AMOUNT','Betrag');
+define('TABLE_HEADING_INVOICE_INVOICE_STATUS','Status');
+
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');
 define('VIEW_CMENU_MYPRODUCTS', 'Meine Produkte');

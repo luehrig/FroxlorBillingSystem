@@ -1,9 +1,5 @@
 <?php
 
-// require_once 'cl_order.php';
-// require_once 'cl_customer';
-// require_once 'cl_invoicepdf.php';
-
 class invoice {
 
 	private $order;
@@ -60,6 +56,35 @@ class invoice {
 		return $this->invoice_data['order_id'];
 	}
 
+	public function getIssueDate() {
+		return $this->invoice_data['issue_date'];
+	}
+	
+	public function getInvoiceNumber() {
+		return $this->invoice_data['invoice_number'];
+	}
+	
+	public function getGrossAmount() {
+		return $this->invoice_data['invoice_sum_gross'];
+	}
+	
+	public function getCurrency() {
+		return $this->invoice_data['currency_id'];
+	}
+	
+	public function getStatus($language_id = NULL) {
+		if($language_id == NULL) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
+		
+		$sql_statement = 'SELECT ist.description AS status FROM '. TBL_INVOICE .' AS i INNER JOIN '. TBL_INVOICE_STATUS .' AS ist ON i.invoice_status = ist.invoice_status_id WHERE i.invoice_id = '. (int) $this->invoice_id .' AND ist.language_id = '. (int) $language_id;
+		$query = db_query($sql_statement);
+		
+		$result = db_fetch_array($query);
+	
+		return $result['status'];
+	}
+	
 	// create new invoice in DB
 	public static function create($customer_id, $issue_date = NULL, $payment_date = NULL, $order_id, $invoice_status = NULL, $currency_id, $tax_id) {
 		$customizing = new customizing(language::getBrowserLanguage());
@@ -121,6 +146,43 @@ class invoice {
 		}
 	} 
 	
+	// print invoice overview for customer
+	public static function printOverviewCustomer($customer_id, $container_id = 'invoice_overview') {
+		// query all invoices for customer
+		$sql_statement = 'SELECT i.invoice_id FROM '. TBL_INVOICE .' AS i WHERE i.customer_id = '. (int) $customer_id .' ORDER BY i.issue_date ASC';
+		$invoice_query = db_query($sql_statement);
+	
+		$number_of_invoices = db_num_results($invoice_query);
+	
+		$return_string = '<div id="'. $container_id .'">';
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_INVOICES, $number_of_invoices);
+	
+		$return_string = $return_string .'<table>
+		<tr>
+		<th>'. TABLE_HEADING_INVOICE_INVOICE_NUMBER .'</th>
+		<th>'. TABLE_HEADING_INVOICE_ISSUE_DATE .'</th>
+		<th>'. TABLE_HEADING_INVOICE_AMOUNT .'</th>
+		<th>'. TABLE_HEADING_INVOICE_INVOICE_STATUS .'</th>
+		</tr>';
+	
+		while($data = db_fetch_array($invoice_query)) {
+			$invoice = new invoice($data['invoice_id']);
+			$currency = new currency($invoice->getCurrency());
+			
+			$return_string = $return_string .'<tr>
+			<td>'. $invoice->getInvoiceNumber() .'</td>
+			<td>'. mysql_date2german($invoice->getIssueDate()) .'</td>
+			<td>'. sprintf("%9.2f", $invoice->getGrossAmount()) . $currency->getCurrencySign() .'</td>
+			<td>'. $invoice->getStatus() .'</td>
+			<td><a href="display_invoice.php?invoice_id='. $invoice->getInvoiceID() .'" id="display_invoice" target="_blank">displayicon</a></td>
+			</tr>';
+		}
+	
+		$return_string = $return_string .'</table></div>';
+	
+		return $return_string;
+	}
+
 	
 	/* private section */
 	private function load() {
