@@ -51,7 +51,7 @@ switch($action) {
 		
 		$product = new product($product_id, $language_id);
 		$language_ids_for_existing_products = $product->getLanguagesForExistingProduct($product_id);
-		$product_info = productInfo::getAttributesByProductIdAndLang($product_id, $language_id);
+		$product_info = productInfo::getAttributesByProductIdAndLang($product_id);
 		$attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
 		
 		
@@ -61,22 +61,21 @@ switch($action) {
 		case 'open_create_new_attribute_for_product':
 			$product_id = $_POST['product_id'];
 			$language_id = $_POST['language_id'];
-			$current_attributes_for_product = productInfo::getAttributesByProductIdAndLang($product_id, $language_id);
 			$existing_attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
-			$availible_attributes = productInfo::getAvailableAttributes($product_id, $language_id, $existing_attributes_for_lang);
+			$availible_attributes = productInfo::getAvailableAttributes($product_id, $existing_attributes_for_lang);
 		
 		
-			echo productInfo::printNewAttributeForm($product_id, $language_id, $availible_attributes);
+			echo productInfo::printNewAttributeForm($product_id, $availible_attributes);
 			break;
 		
 		case 'create_new_product_info':
 			$product_id = $_POST['product_id'];
-			$language_id = $_POST['language_id'];
+			//$language_id = $_POST['language_id'];
 			$attribute_id = $_POST['attribute_id'];
 			$value = $_POST['value'];
 		
 		
-			if(productInfo::create($product_id, $language_id, $attribute_id, $value)){
+			if(productInfo::create($product_id, $attribute_id, $value)){
 				echo INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL;
 			}
 			else{
