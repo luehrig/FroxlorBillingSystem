@@ -5,6 +5,7 @@ define('BASE_DIR', $_SERVER['DOCUMENT_ROOT'] .'/FroxlorBillingSystem/');
 define('PATH_INCLUDES', BASE_DIR .'includes/');
 define('PATH_FUNCTIONS', BASE_DIR .'functions/');
 define('PATH_CLASSES', PATH_INCLUDES . 'classes/');
+define('PATH_EXT_LIBRARIES',BASE_DIR .'external_libraries/');
 define('PATH_LANGUAGES', PATH_INCLUDES . 'languages/');
 define('PATH_IMAGES', BASE_DIR .'images/');
 define('PATH_BODYS', BASE_DIR .'bodys/');

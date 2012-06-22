@@ -12,7 +12,7 @@ echo '
 				Warenkorb
 			</legend>
 			
-			'.$cart->printCart().'
+			'.$cart->printCart(NULL, true).'
 			
 			
 			

@@ -432,7 +432,7 @@ ENGINE = MyISAM;
 DROP TABLE IF EXISTS `froxlor_billing`.`tbl_customizing` ;
 
 CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_customizing` (
-  `key` VARCHAR(32) NOT NULL ,
+  `key` VARCHAR(100) NOT NULL ,
   `language_id` INT NULL ,
   `value` VARCHAR(255) NOT NULL ,
   INDEX `fk_customizing_language_id` (`language_id` ASC) ,
@@ -746,7 +746,9 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_webpage', NULL, 'http://projektplatz.eu');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_country', NULL, 'Germany');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_billing_sender', NULL, 'billing@projektplatz.eu');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms_id', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_tax', NULL, '2');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_currency', NULL, '1');
 
 COMMIT;
 
