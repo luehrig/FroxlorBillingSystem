@@ -95,7 +95,7 @@ class productInfo{
 	// private section
 	private static function getAttributesByProductIdAndLangFromDB($product_id){
 		$attr_array = array();
-		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_INFO .' WHERE product_id = "'. $product_id .'";
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_INFO .' WHERE product_id = "'. $product_id .'"';
 		$attr_query = db_query($sql_select_statement);
 		while($data = db_fetch_array($attr_query)){
 			$attr_array[$data['attribute_id']] = $data['value'];
