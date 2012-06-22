@@ -127,10 +127,14 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order` (
   `customer_id` INT NOT NULL ,
   `order_date` DATE NOT NULL ,
   `order_status` INT NOT NULL ,
+  `customer_shipping_address` INT NOT NULL ,
+  `customer_billing_address` INT NOT NULL ,
   PRIMARY KEY (`order_id`) ,
   UNIQUE INDEX `order_id_UNIQUE` (`order_id` ASC) ,
   INDEX `fk_order_customer_id` (`customer_id` ASC) ,
   INDEX `fk_order_order_status_id` (`order_status` ASC) ,
+  INDEX `fk_order_shipping_address` (`customer_shipping_address` ASC) ,
+  INDEX `fk_order_billing_address` (`customer_billing_address` ASC) ,
   CONSTRAINT `fk_order_customer_id`
     FOREIGN KEY (`customer_id` )
     REFERENCES `froxlor_billing`.`tbl_customer` (`customer_id` )
@@ -139,7 +143,17 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order` (
   CONSTRAINT `fk_order_order_status_id`
     FOREIGN KEY (`order_status` )
     REFERENCES `froxlor_billing`.`tbl_order_status` (`order_status_id` )
-    ON DELETE RESTRICT
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_shipping_address`
+    FOREIGN KEY (`customer_shipping_address` )
+    REFERENCES `froxlor_billing`.`tbl_customer_address` (`customer_address_id` )
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_billing_address`
+    FOREIGN KEY (`customer_billing_address` )
+    REFERENCES `froxlor_billing`.`tbl_customer_address` (`customer_address_id` )
+    ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = MyISAM;
 
@@ -296,17 +310,10 @@ DROP TABLE IF EXISTS `froxlor_billing`.`tbl_product_info` ;
 CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product_info` (
   `product_id` INT NOT NULL ,
   `attribute_id` INT NOT NULL ,
-  `language_id` INT NOT NULL ,
   `value` VARCHAR(50) NULL ,
-  PRIMARY KEY (`product_id`, `attribute_id`, `language_id`) ,
-  INDEX `fk_product_info_language_id` (`language_id` ASC) ,
+  PRIMARY KEY (`product_id`, `attribute_id`) ,
   INDEX `fk_product_info_product_id` (`product_id` ASC) ,
   INDEX `fk_product_info_attribute_id` (`attribute_id` ASC) ,
-  CONSTRAINT `fk_product_info_language_id`
-    FOREIGN KEY (`language_id` )
-    REFERENCES `froxlor_billing`.`tbl_language` (`language_id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
   CONSTRAINT `fk_product_info_product_id`
     FOREIGN KEY (`product_id` )
     REFERENCES `froxlor_billing`.`tbl_product` (`product_id` )
@@ -316,6 +323,60 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_product_info` (
     FOREIGN KEY (`attribute_id` )
     REFERENCES `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id` )
     ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `froxlor_billing`.`tbl_order_position_detail`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `froxlor_billing`.`tbl_order_position_detail` ;
+
+CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order_position_detail` (
+  `order_position_id` INT NOT NULL ,
+  `server_id` INT NOT NULL ,
+  `froxlor_customer_id` VARCHAR(40) NULL ,
+  PRIMARY KEY (`order_position_id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `froxlor_billing`.`tbl_order_position`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `froxlor_billing`.`tbl_order_position` ;
+
+CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order_position` (
+  `order_position_id` INT NOT NULL AUTO_INCREMENT ,
+  `order_id` INT NOT NULL ,
+  `product_id` INT NOT NULL ,
+  `quantity` INT NOT NULL ,
+  `price` DOUBLE NOT NULL ,
+  `tax_id` INT NOT NULL ,
+  PRIMARY KEY (`order_position_id`) ,
+  INDEX `fk_order_position_product_id` (`product_id` ASC) ,
+  INDEX `fk_order_position_order_id` (`order_id` ASC) ,
+  INDEX `fk_order_position_order_position_detail_id` (`order_position_id` ASC) ,
+  UNIQUE INDEX `order_position_id_UNIQUE` (`order_position_id` ASC) ,
+  INDEX `fk_order_position_tax_id` (`tax_id` ASC) ,
+  CONSTRAINT `fk_order_position_product_id`
+    FOREIGN KEY (`product_id` )
+    REFERENCES `froxlor_billing`.`tbl_product` (`product_id` )
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_position_order_id`
+    FOREIGN KEY (`order_id` )
+    REFERENCES `froxlor_billing`.`tbl_order` (`order_id` )
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_position_order_position_detail_id`
+    FOREIGN KEY (`order_position_id` )
+    REFERENCES `froxlor_billing`.`tbl_order_position_detail` (`order_position_id` )
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_position_tax_id`
+    FOREIGN KEY (`tax_id` )
+    REFERENCES `froxlor_billing`.`tbl_tax` (`tax_id` )
+    ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = MyISAM;
 
@@ -342,58 +403,6 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_server` (
   UNIQUE INDEX `server_id_UNIQUE` (`server_id` ASC) ,
   UNIQUE INDEX `ipv4_UNIQUE` (`ipv4` ASC) ,
   UNIQUE INDEX `ipv6_UNIQUE` (`ipv6` ASC) )
-ENGINE = MyISAM;
-
-
--- -----------------------------------------------------
--- Table `froxlor_billing`.`tbl_order_position_detail`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `froxlor_billing`.`tbl_order_position_detail` ;
-
-CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order_position_detail` (
-  `order_position_id` INT NOT NULL ,
-  `server_id` INT NULL ,
-  `froxlor_customer_id` INT NULL ,
-  PRIMARY KEY (`order_position_id`) ,
-  INDEX `fk_order_position_detail_server_id` (`server_id` ASC) ,
-  CONSTRAINT `fk_order_position_detail_server_id`
-    FOREIGN KEY (`server_id` )
-    REFERENCES `froxlor_billing`.`tbl_server` (`server_id` )
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `froxlor_billing`.`tbl_order_position`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `froxlor_billing`.`tbl_order_position` ;
-
-CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order_position` (
-  `order_position_id` INT NOT NULL AUTO_INCREMENT ,
-  `order_id` INT NOT NULL ,
-  `product_id` INT NOT NULL ,
-  `quantity` INT NOT NULL ,
-  PRIMARY KEY (`order_position_id`) ,
-  INDEX `fk_order_position_product_id` (`product_id` ASC) ,
-  INDEX `fk_order_position_order_id` (`order_id` ASC) ,
-  INDEX `fk_order_position_order_position_detail_id` (`order_position_id` ASC) ,
-  UNIQUE INDEX `order_position_id_UNIQUE` (`order_position_id` ASC) ,
-  CONSTRAINT `fk_order_position_product_id`
-    FOREIGN KEY (`product_id` )
-    REFERENCES `froxlor_billing`.`tbl_product` (`product_id` )
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_order_position_order_id`
-    FOREIGN KEY (`order_id` )
-    REFERENCES `froxlor_billing`.`tbl_order` (`order_id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_order_position_order_position_detail_id`
-    FOREIGN KEY (`order_position_id` )
-    REFERENCES `froxlor_billing`.`tbl_order_position_detail` (`order_position_id` )
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE)
 ENGINE = MyISAM;
 
 
@@ -694,6 +703,15 @@ INSERT INTO `froxlor_billing`.`tbl_product_attribute` (`product_attribute_id`, `
 COMMIT;
 
 -- -----------------------------------------------------
+-- Data for table `froxlor_billing`.`tbl_product_info`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `froxlor_billing`;
+INSERT INTO `froxlor_billing`.`tbl_product_info` (`product_id`, `attribute_id`, `value`) VALUES (1, 1, '250');
+
+COMMIT;
+
+-- -----------------------------------------------------
 -- Data for table `froxlor_billing`.`tbl_customizing`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -720,6 +738,15 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_post_code', NULL, '12345');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_tel', NULL, '49 123 456789');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_fax', NULL, '49 123 09876543');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_product_attribute_discspace', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_froxlor_client_prefix', NULL, 'FBS');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_bank_name', NULL, 'Hausbank');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_tax_id_number', NULL, '0987654321');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_email', NULL, 'info@projektplatz.eu');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_webpage', NULL, 'http://projektplatz.eu');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_country', NULL, 'Germany');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_billing_sender', NULL, 'billing@projektplatz.eu');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms_id', NULL, '1');
 
 COMMIT;
 

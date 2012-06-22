@@ -12,6 +12,9 @@ define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
 define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
 define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
+define('BUTTON_CHANGE_ATTRIBUTES', 'Attribute ändern');
+define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
+define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
 
 define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
@@ -60,8 +63,12 @@ define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('LABEL_PRODUCT_QUANTITY', 'Menge');
 define('LABEL_PRODUCT_PRICE', 'Preis');
 
+define('LABEL_PRODUCT_ATTRIBUTE', 'Attribute für Produkt Nr. ');
 define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'Sprache');
 define('LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION', 'Beschreibung');
+
+define('LABEL_ATTRIBUTE', 'Attribut');
+define('LABEL_VALUE', 'Wert ');
 
 define('LABEL_SERVER_NAME','Servername');
 define('LABEL_SERVER_MNGMNT_UI','Verwaltungsoberfläche');
@@ -126,6 +133,8 @@ define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des
 define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
 define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
+
+define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt');
 
 
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server mit dieser IP-Adresse!');

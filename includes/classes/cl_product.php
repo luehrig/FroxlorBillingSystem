@@ -9,7 +9,7 @@ class product {
 	private $description;
 	private $quantity;
 	private $price;
-	private $state;
+	private $active;
 	private $product_attributes;
 	private $product_data;
 	
@@ -27,10 +27,127 @@ class product {
 			$this->price = $product_data['price'];
 			$this->active = $product_data['active'];
 			
-		}	
-		
+		}		
 	}
 	/* public section */
+	
+	// return product title (optional in other language)
+	public function getTitle($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.title FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['title'];
+			}
+			else {
+				return $this->title;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return contract periode (optional in other language)
+	public function getContractPeriode($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.contract_periode FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['contract_periode'];
+			}
+			else {
+				return $this->contract_periode;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return description (optional in other language)
+	public function getDescription($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.description FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['description'];
+			}
+			else {
+				return $this->description;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return quantity (optional in other language)
+	public function getQuantity($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.quantity FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['quantity'];
+			}
+			else {
+				return $this->quantity;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return price (optional in other language)
+	public function getPrice($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.price FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['price'];
+			}
+			else {
+				return $this->price;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	// return active (optional in other language)
+	public function getActive($language = NULL) {
+		if($this->product_id != NULL) {
+			// load title in other language
+			if($language != NULL) {
+				$sql_statement = 'SELECT p.active FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = '. (int) $this->product_id .' AND p.language_id = '. (int) $language;
+				$title_query = db_query($sql_statement);
+				$result_data = db_fetch_array($title_query);
+				return $result_data['active'];
+			}
+			else {
+				return $this->active;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+	
+	
 	
 	public static function create($product_data) {
 		if($product_data != NULL){
@@ -117,12 +234,12 @@ class product {
 			
 			$primary_keys = $data['product_id'].','.$data['language_id'];
 			
-			$state = $data['active'];
+			$active = $data['active'];
 			$change_state;
-			if($state==1){
+			if($active==1){
 				$change_state = LINK_DEACTIVATE_PRODUCT;
 			}
-			elseif($state==0){
+			elseif($active==0){
 				$change_state = LINK_ACTIVATE_PRODUCT;
 			}
 			$table_content = $table_content .'<tr>
@@ -142,21 +259,27 @@ class product {
 		return $return_string;
 	}
 	
-	public function printFormEdit($language_select_box, $container_id = 'product_editor'){
-		$return_string = '<div id="'.$container_id.'">.
-				<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
+	public function printFormEdit($attributesForLang, $product_info, $language_select_box, $container_id = 'product_editor'){
+		$return_string = '<div id="'.$container_id.'">'.
+		$this->getFilledProductEditForm($language_select_box);
 		$return_string = $return_string . '<input type="submit" name="submit_edit_product" id="submit_edit_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
-		$return_string = $return_string . '</form></div>';
+		$return_string = $return_string . '</form></fieldset>';
+		
+		$return_string = $return_string . $this->getAttributeEditForm($attributesForLang, $product_info);
+		$return_string = $return_string . '<input type="submit" name="submit_edit_attributes" id="submit_edit_attributes" value="'. BUTTON_CHANGE_ATTRIBUTES .'">';
+		$return_string = $return_string . '<input type="submit" name="give_prod_new_attr" id="give_prod_new_attr" value="'. BUTTON_NEW_ATTR_FOR_PROD .'">';
+		$return_string = $return_string . '</form></fieldset>';
+		$return_string = $return_string. '</div>';
 		return $return_string;
 		
 	}
 	
 	public function printFormTranslate($language_select_box, $container_id = 'product_editor'){
-		$return_string = '<div id="'.$container_id.'">.
-		<form>'.'<fieldset>'. $this->getFilledProductEditForm($language_select_box);
+		$return_string = '<div id="'.$container_id.'">'.
+		$this->getFilledProductEditForm($language_select_box);
 		$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
-		$return_string = $return_string . '</form>';
 		
+		$return_string = $return_string . '</form>';
 		$return_string = $return_string. '</div>';
 		return $return_string;
 	}
@@ -296,8 +419,27 @@ class product {
 					'<label for="price">'. LABEL_PRODUCT_PRICE .'</label>'.
 					'<input type="text" id="price" name="price" value="'. $this->price .'"><br>';
 		
-		$return_string = $return_string . '</fieldset>';
+		//$return_string = $return_string . '</fieldset>';
 		return $return_string;
+	}
+	
+	private function getAttributeEditForm($attributes_for_lang, $attr_for_product){
+		$return_string = '<form>'.'<fieldset>'.
+				'<legend>'.
+				'<label for="product_id_notation">'. LABEL_PRODUCT_ATTRIBUTE .' </label>'.
+				'<label for="product_id">'. $this->product_id.' </label>'.
+				'</legend>'.
+				'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>'.
+				'<input type="hidden" id = "language_id" name = language_id value = '. $this->language_id .'>';
+		foreach($attr_for_product as $att_id=>$att_val){
+			$return_string = $return_string.
+					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
+					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
+					
+					'<input type="text" id="att_val" name="att_val" value="'. $att_val .'">'.
+					'<a href="#" id="delete_product_attribute">'. LINK_DELETE . '</a><br>';
+		}
+		return $return_string;		
 	}
 }
 

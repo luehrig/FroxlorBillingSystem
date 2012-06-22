@@ -248,11 +248,11 @@ $(function() {
 	});
 
 	// third step in checkout process
-	$("body").on("click", "input[id=check_terms]", function() {
-		
+	$("body").on("click", "input[id=check_terms]", function() {		
 		var navlink = $('a[id=checkout_step4]');
+		var check_value = $(this).attr('checked');
 		
-		if($(this).attr('checked') == 'undefined') {
+		if(check_value == undefined) {
 			navlink.removeClass('nav');
 			navlink.addClass('nonav');
 		}
@@ -260,8 +260,43 @@ $(function() {
 			navlink.removeClass('nonav');
 			navlink.addClass('nav');
 		}
-
-		//return false;
+		
+	});
+	
+	// catch case if terms were not accepted and customer clicks next
+	$("body").on("click", "a[id=checkout_step4][class=nonav]", function() {
+		
+		$.ajax({
+			type : "POST",
+			url : "logic/process_content_handling.php",
+			data : {
+				action : "show_alert_accept_terms"
+			}
+		}).done(function(msg) {
+			$('.message_box').html(msg);
+		});
+		
+		return false;
+	});
+	
+	// catch case if terms were not accepted and customer clicks next
+	$("body").on("click", "a[id=save_order][class=nonav]", function() {
+		
+		// load received order page		
+		$.ajax({
+			type : "POST",
+			url : "logic/process_content_handling.php",
+			data : {
+				action : "show_order_received"
+			}
+		}).done(function(msg) {
+			$('.content_container').html(msg);
+		});
+		
+		// clear quantity counter in header for cart
+		setProductCountInCart();
+		
+		return false;
 	});
 	
 	
@@ -293,8 +328,27 @@ $(function() {
 		return false;
 
 	});
+	
+	//closes the colorbox and opens registration.php
+	$("body").on("click", "a[id=registration]", function() {
+		var language = $(this).attr('rel');
+		$.ajax({
+			type : "POST",
+			url : "logic/process_content_handling.php",
+			data : {
+				action : 'show_registration',
+				language_id : language
+				}
+		}).done(function(msg) {
+			$('.content_container').html(msg);
+		});
+		$.colorbox.close();
 
-	// overlay for customercenter
+		return false;
+	});
+	
+
+	// colorbox for customercenter
 	$("body").on("click", "a[class=customercenter]", function() {
 		// $.colorbox({href:"customercenter/index.php"});
 
@@ -333,6 +387,12 @@ $(function() {
 
 		return false;
 
+	});
+	
+	$("body").on("click", "a[class=nav]", function(){
+		
+		$("a").removeClass("active");
+		$(this).addClass("active");
 	});
 
 });

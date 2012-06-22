@@ -8,6 +8,7 @@ require '../../includes/classes/cl_country.php';
 require '../../includes/classes/cl_product.php';
 require '../../includes/classes/cl_server.php';
 require '../../includes/classes/cl_product_attribute.php';
+require '../../includes/classes/cl_product_info.php';
 
 session_start();
 
@@ -47,11 +48,41 @@ switch($action) {
 	case 'open_product_editor':
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];	
+		
 		$product = new product($product_id, $language_id);
 		$language_ids_for_existing_products = $product->getLanguagesForExistingProduct($product_id);
-	
-		echo $product->printFormEdit(language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
+		$product_info = productInfo::getAttributesByProductIdAndLang($product_id);
+		$attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
+		
+		
+		echo $product->printFormEdit($attributes_for_lang, $product_info, language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
 		break;
+		
+		case 'open_create_new_attribute_for_product':
+			$product_id = $_POST['product_id'];
+			$language_id = $_POST['language_id'];
+			$existing_attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
+			$availible_attributes = productInfo::getAvailableAttributes($product_id, $existing_attributes_for_lang);
+		
+		
+			echo productInfo::printNewAttributeForm($product_id, $availible_attributes);
+			break;
+		
+		case 'create_new_product_info':
+			$product_id = $_POST['product_id'];
+			//$language_id = $_POST['language_id'];
+			$attribute_id = $_POST['attribute_id'];
+			$value = $_POST['value'];
+		
+		
+			if(productInfo::create($product_id, $attribute_id, $value)){
+				echo INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL;
+			}
+			else{
+				echo INFO_MESSAGE_DB_ACTION_FAILED;
+			}
+		
+			break;
 		
 	case 'edit_product':
 		
@@ -227,6 +258,7 @@ switch($action) {
 		echo $product_attribute->printFormEdit(language::printLanguages($language_ids_for_existing_product_attributes, $language_id), $language_id);
 		
 		break;
+		
 		
 	case 'get_server_overview':
 
