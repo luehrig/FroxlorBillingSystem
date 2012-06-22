@@ -127,10 +127,14 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order` (
   `customer_id` INT NOT NULL ,
   `order_date` DATE NOT NULL ,
   `order_status` INT NOT NULL ,
+  `customer_shipping_address` INT NOT NULL ,
+  `customer_billing_address` INT NOT NULL ,
   PRIMARY KEY (`order_id`) ,
   UNIQUE INDEX `order_id_UNIQUE` (`order_id` ASC) ,
   INDEX `fk_order_customer_id` (`customer_id` ASC) ,
   INDEX `fk_order_order_status_id` (`order_status` ASC) ,
+  INDEX `fk_order_shipping_address` (`customer_shipping_address` ASC) ,
+  INDEX `fk_order_billing_address` (`customer_billing_address` ASC) ,
   CONSTRAINT `fk_order_customer_id`
     FOREIGN KEY (`customer_id` )
     REFERENCES `froxlor_billing`.`tbl_customer` (`customer_id` )
@@ -139,7 +143,17 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order` (
   CONSTRAINT `fk_order_order_status_id`
     FOREIGN KEY (`order_status` )
     REFERENCES `froxlor_billing`.`tbl_order_status` (`order_status_id` )
-    ON DELETE RESTRICT
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_shipping_address`
+    FOREIGN KEY (`customer_shipping_address` )
+    REFERENCES `froxlor_billing`.`tbl_customer_address` (`customer_address_id` )
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_billing_address`
+    FOREIGN KEY (`customer_billing_address` )
+    REFERENCES `froxlor_billing`.`tbl_customer_address` (`customer_address_id` )
+    ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = MyISAM;
 
@@ -314,46 +328,15 @@ ENGINE = MyISAM;
 
 
 -- -----------------------------------------------------
--- Table `froxlor_billing`.`tbl_server`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `froxlor_billing`.`tbl_server` ;
-
-CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_server` (
-  `server_id` INT NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(255) NOT NULL ,
-  `mngmnt_ui` VARCHAR(45) NULL ,
-  `ipv4` VARCHAR(15) NULL ,
-  `ipv6` VARCHAR(40) NULL ,
-  `froxlor_username` VARCHAR(50) NOT NULL ,
-  `froxlor_password` VARCHAR(40) NOT NULL ,
-  `froxlor_db` VARCHAR(50) NOT NULL ,
-  `froxlor_db_host` VARCHAR(255) NULL ,
-  `total_space` DOUBLE NULL ,
-  `free_space` DOUBLE NULL ,
-  `active` TINYINT(1)  NOT NULL DEFAULT false ,
-  PRIMARY KEY (`server_id`) ,
-  UNIQUE INDEX `server_id_UNIQUE` (`server_id` ASC) ,
-  UNIQUE INDEX `ipv4_UNIQUE` (`ipv4` ASC) ,
-  UNIQUE INDEX `ipv6_UNIQUE` (`ipv6` ASC) )
-ENGINE = MyISAM;
-
-
--- -----------------------------------------------------
 -- Table `froxlor_billing`.`tbl_order_position_detail`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `froxlor_billing`.`tbl_order_position_detail` ;
 
 CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order_position_detail` (
   `order_position_id` INT NOT NULL ,
-  `server_id` INT NULL ,
+  `server_id` INT NOT NULL ,
   `froxlor_customer_id` VARCHAR(40) NULL ,
-  PRIMARY KEY (`order_position_id`) ,
-  INDEX `fk_order_position_detail_server_id` (`server_id` ASC) ,
-  CONSTRAINT `fk_order_position_detail_server_id`
-    FOREIGN KEY (`server_id` )
-    REFERENCES `froxlor_billing`.`tbl_server` (`server_id` )
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE)
+  PRIMARY KEY (`order_position_id`) )
 ENGINE = InnoDB;
 
 
@@ -395,6 +378,31 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order_position` (
     REFERENCES `froxlor_billing`.`tbl_tax` (`tax_id` )
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
+ENGINE = MyISAM;
+
+
+-- -----------------------------------------------------
+-- Table `froxlor_billing`.`tbl_server`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `froxlor_billing`.`tbl_server` ;
+
+CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_server` (
+  `server_id` INT NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(255) NOT NULL ,
+  `mngmnt_ui` VARCHAR(45) NULL ,
+  `ipv4` VARCHAR(15) NULL ,
+  `ipv6` VARCHAR(40) NULL ,
+  `froxlor_username` VARCHAR(50) NOT NULL ,
+  `froxlor_password` VARCHAR(40) NOT NULL ,
+  `froxlor_db` VARCHAR(50) NOT NULL ,
+  `froxlor_db_host` VARCHAR(255) NULL ,
+  `total_space` DOUBLE NULL ,
+  `free_space` DOUBLE NULL ,
+  `active` TINYINT(1)  NOT NULL DEFAULT false ,
+  PRIMARY KEY (`server_id`) ,
+  UNIQUE INDEX `server_id_UNIQUE` (`server_id` ASC) ,
+  UNIQUE INDEX `ipv4_UNIQUE` (`ipv4` ASC) ,
+  UNIQUE INDEX `ipv6_UNIQUE` (`ipv6` ASC) )
 ENGINE = MyISAM;
 
 
@@ -732,6 +740,13 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_fax', NULL, '49 123 09876543');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_product_attribute_discspace', NULL, '1');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_froxlor_client_prefix', NULL, 'FBS');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_bank_name', NULL, 'Hausbank');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_tax_id_number', NULL, '0987654321');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_email', NULL, 'info@projektplatz.eu');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_webpage', NULL, 'http://projektplatz.eu');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_country', NULL, 'Germany');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_billing_sender', NULL, 'billing@projektplatz.eu');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms_id', NULL, '1');
 
 COMMIT;
 
