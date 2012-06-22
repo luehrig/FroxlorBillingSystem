@@ -29,7 +29,7 @@ class country {
 		
 		$result = $result . '</select>';
 		
-		echo $result;
+		return $result;
 	}
 	
 	// read all countries for selected language

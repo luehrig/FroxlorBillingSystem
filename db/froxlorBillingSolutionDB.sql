@@ -515,7 +515,7 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_contract` (
   `customer_id` INT NOT NULL ,
   `order_id` INT NOT NULL ,
   `invoice_id` INT NOT NULL ,
-  ` expiration_date` DATE NULL ,
+  `expiration_date` DATE NULL ,
   `start_date` DATE NULL ,
   PRIMARY KEY (`contract_id`) ,
   UNIQUE INDEX `contract_id_UNIQUE` (`contract_id` ASC) ,

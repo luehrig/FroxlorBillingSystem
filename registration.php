@@ -154,7 +154,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 					</p>
 					<p>
 						<label for="shippingcountry"><?php echo LABEL_COUNTRY; ?> </label>
-						<?php $country->printSelectBox("shippingcountry","shippingcountry"); ?>
+						<?php echo $country->printSelectBox("shippingcountry","shippingcountry"); ?>
 					</p>
 				</div>
 				<div id="billingaddress"></div>

@@ -640,7 +640,38 @@ $(function() {
 		return false;
 	});	
 	
-	 // get overview page with shop statistics
+	// get overview page with all invoices
+	$("body").on("click", "a[id=myinvoices]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_invoice_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// save new status
+	$("body").on("click", "a[id=change_invoice_status]", function() {
+		
+		var invoice_id = $(this).attr('rel');
+		var status_id = $('select[name=statusbox_'+ invoice_id +'] option:selected').attr('id');
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "change_invoice_status", invoice_id: invoice_id, status_id: status_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// get overview page with shop statistics
 	$("body").on("click", "a[id=mystatistics]", function() {
 		
 		$.ajax({
