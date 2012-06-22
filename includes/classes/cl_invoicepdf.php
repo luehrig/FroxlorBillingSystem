@@ -15,6 +15,7 @@ class invoicepdf extends FPDF {
 	private $shipping_address       = array();
 	private $billing_address 		= array();
 	private $business_customizing   = array();
+	private $currency;
 	
 	private $twArrSpaltenbreiten      = array();
 	private $twArrSpaltenkoepfe       = array();
@@ -42,6 +43,8 @@ class invoicepdf extends FPDF {
 		$customizing = new customizing();
 		$this->business_customizing = $customizing->getBusinessRelatedEntries();
 		
+		// create currency object
+		$this->currency = new currency($this->invoice_data['currency_id']);
 		
 		// settings for PDF
 		$this->SetDisplayMode( 100 );         // wie gro� wird Seite angezeigt(in %)
@@ -146,7 +149,7 @@ class invoicepdf extends FPDF {
 			$this->SetFillColor(255);
 			$this->twRundeckbereich(25, 52, 75, 36, 2, 'DF');
 			$this->SetXY(27, 53);
-			$this->Cell(71, 6, $this->customer_data['first_name'] .' '. $this->customer_data['last_name'], 0, 1, '');
+			$this->Cell(71, 6, utf8_decode($this->customer_data['first_name']) .' '. utf8_decode($this->customer_data['last_name']), 0, 1, '');
 			$this->SetXY(27, 60);
 			$this->Cell(71, 6, $this->billing_address['street']. ' '. $this->billing_address['street_number'], 0, 1, '');
 			$this->SetXY(27, 67);

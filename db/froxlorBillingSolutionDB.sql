@@ -351,13 +351,11 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order_position` (
   `product_id` INT NOT NULL ,
   `quantity` INT NOT NULL ,
   `price` DOUBLE NOT NULL ,
-  `tax_id` INT NOT NULL ,
   PRIMARY KEY (`order_position_id`) ,
   INDEX `fk_order_position_product_id` (`product_id` ASC) ,
   INDEX `fk_order_position_order_id` (`order_id` ASC) ,
   INDEX `fk_order_position_order_position_detail_id` (`order_position_id` ASC) ,
   UNIQUE INDEX `order_position_id_UNIQUE` (`order_position_id` ASC) ,
-  INDEX `fk_order_position_tax_id` (`tax_id` ASC) ,
   CONSTRAINT `fk_order_position_product_id`
     FOREIGN KEY (`product_id` )
     REFERENCES `froxlor_billing`.`tbl_product` (`product_id` )
@@ -371,11 +369,6 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_order_position` (
   CONSTRAINT `fk_order_position_order_position_detail_id`
     FOREIGN KEY (`order_position_id` )
     REFERENCES `froxlor_billing`.`tbl_order_position_detail` (`order_position_id` )
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_order_position_tax_id`
-    FOREIGN KEY (`tax_id` )
-    REFERENCES `froxlor_billing`.`tbl_tax` (`tax_id` )
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = MyISAM;

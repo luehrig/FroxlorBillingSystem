@@ -377,7 +377,8 @@ class customer {
 			db_query($sql_statement);
 			$customer_id = db_insert_id();
 			
-			$customer_prefix = $_SESSION['customizing']->getCustomizingValue('sys_customer_prefix');
+			$customizing = new customizing();
+			$customer_prefix = $customizing->getCustomizingValue('sys_customer_prefix');
 			$customer_number = $customer_prefix .'-'. $customer_id;
 			
 			$sql_statement = 'UPDATE '. TBL_CUSTOMER .' SET customer_number = "'. $customer_number .'" WHERE customer_id = '. (int) $customer_id;

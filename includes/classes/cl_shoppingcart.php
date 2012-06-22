@@ -139,7 +139,7 @@ class shoppingcart {
 		if($language_id == null) {
 			$language_id = get_default_language();
 		}
-		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.title FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
+		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.price, p.title FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
 		$query = db_query($sql_statement);
 		
 		// append single products to products array in object

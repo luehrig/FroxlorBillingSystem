@@ -111,10 +111,20 @@ class invoice {
 		$invoicepdf->Output();
 	}
 
-
+	// check if customer is authorized to view invoice
+	public function isCustomerAuthorized($customer_id) {
+		if( $this->customer->getCustomerID() == $customer_id) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	} 
+	
+	
 	/* private section */
 	private function load() {
-		$sql_statement = 'SELECT i.issue_date, i.payment_date, i.payed_on, i.invoice_number, i.order_id, t.tax_rate FROM '. TBL_INVOICE .' AS i LEFT JOIN '. TBL_TAX .' AS t ON i.tax_id = t.tax_id WHERE i.invoice_id = '. $this->invoice_id;
+		$sql_statement = 'SELECT i.issue_date, i.payment_date, i.payed_on, i.invoice_number, i.order_id, i.currency_id, t.tax_rate FROM '. TBL_INVOICE .' AS i LEFT JOIN '. TBL_TAX .' AS t ON i.tax_id = t.tax_id WHERE i.invoice_id = '. $this->invoice_id;
 		$query = db_query($sql_statement);
 
 		if($query != NULL) {
@@ -125,13 +135,14 @@ class invoice {
 			$this->invoice_data['payed_on'] = $result_data['payed_on'];
 			$this->invoice_data['invoice_number'] = $result_data['invoice_number'];
 			$this->invoice_data['order_id'] = $result_data['order_id'];
+			$this->invoice_data['currency_id'] = $result_data['currency_id'];
 			$this->invoice_data['tax_rate'] = $result_data['tax_rate'];
-
-			$this->loadFinancials();
 			
 			// load additional information from via related classes
 			$this->loadOrder($this->invoice_data['order_id']);
 			$this->loadCustomer($this->order_data['customer_id']);
+			
+			$this->loadFinancials();
 			
 		}
 		else {
@@ -173,7 +184,7 @@ class invoice {
 	
 	
 	private function loadTaxSum() {
-		$sql_statement = 'SELECT SUM(op.price * op.quantity) * '. (int) ($this->invoice_data['tax_rate'] / 100) .' AS gross FROM '. TBL_ORDER_POSITION .' AS op WHERE op.order_id = '. (int) $this->order_data['order_id'];
+		$sql_statement = 'SELECT SUM(op.price * op.quantity) * '. ($this->invoice_data['tax_rate'] / 100) .' AS gross FROM '. TBL_ORDER_POSITION .' AS op WHERE op.order_id = '. (int) $this->order_data['order_id'];
 		$query = db_query($sql_statement);
 		$result = db_fetch_array($query);
 		
@@ -181,7 +192,7 @@ class invoice {
 	}
 	
 	private function loadGrossSum() {
-		$this->invoice_data['invoice_sum_gross'] = (int) $this->invoice_data['invoice_sum_net'] + (int) $this->invoice_data['invoice_sum_tax'];
+		$this->invoice_data['invoice_sum_gross'] = $this->invoice_data['invoice_sum_net'] + $this->invoice_data['invoice_sum_tax'];
 	}
 }
 

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include_once 'configuration.inc.php';
 
 require_once PATH_FUNCTIONS .'database.php';
@@ -10,11 +12,28 @@ include_once PATH_INCLUDES .'database_tables.php';
 
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
+require_once PATH_CLASSES .'cl_currency.php';
 require_once PATH_EXT_LIBRARIES .'fpdf17/fpdf.php';
 require_once PATH_CLASSES .'cl_invoice.php';
 require_once PATH_CLASSES .'cl_invoicepdf.php';
 require_once PATH_CLASSES .'cl_order.php';
 require_once PATH_CLASSES .'cl_customer.php';
+
+if(!isset($language_id)) {
+	// check if language was handed over
+	if(isset($_POST['language_id'])) {
+		$language_id = language::ISOTointernal($_POST['language_id']);
+		if($language_id == null) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
+	}
+	else {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+	}
+}
+
+include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
+
 
 if(isset($_GET['invoice_id'])) {
 	$invoice_id = $_GET['invoice_id'];
@@ -24,5 +43,12 @@ else {
 }
 
 $invoice = new invoice($invoice_id);
-$invoice->printInvoice();
+
+if($invoice->isCustomerAuthorized( $_SESSION['customer_id']) ) {
+	$invoice->printInvoice();
+}
+else {
+	echo utf8_decode(WARNING_INVOICE_NOT_AUTHORIZED);
+}
+
 ?>

@@ -76,8 +76,8 @@ class order {
 				// reset variables that were used before
 				$order_position_id = null;
 
-				$insert_statement = 'INSERT INTO '. TBL_ORDER_POSITION .' (order_id, product_id, quantity)
-				VALUES ('. (int) $order_id .', '. (int) $order_positions[$i]['product_id'] .', '. (int) $order_positions[$i]['quantity'] .')';
+				$insert_statement = 'INSERT INTO '. TBL_ORDER_POSITION .' (order_id, product_id, quantity, price)
+				VALUES ('. (int) $order_id .', '. (int) $order_positions[$i]['product_id'] .', '. (int) $order_positions[$i]['quantity'] .','. $order_positions[$i]['price'] .')';
 
 				db_query($insert_statement);
 				$order_position_id = db_insert_id();

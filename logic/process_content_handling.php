@@ -134,7 +134,7 @@ switch($action) {
 			
 			$order = order::create($_SESSION['customer_id'], $customer->getDefaultShippingAddress(), NULL, NULL, NULL, $cart_products);
 		
-			$invoice = invoice::create($_SESSION['customer_id'], NULL, NULL, $order->getOrderID(), NULL, $customizing->getCustomizingValue('business_payment_default_currency') , $customizing->getCustomizingValue('business_payment_default_tax_id'));
+			$invoice = invoice::create($_SESSION['customer_id'], NULL, NULL, $order->getOrderID(), NULL, $customizing->getCustomizingValue('business_payment_default_currency') , $customizing->getCustomizingValue('business_payment_default_tax'));
 			
 			echo '<a href="display_invoice.php?invoice_id='. $invoice->getInvoiceID() .' id="show_invoice" rel="'. $invoice->getInvoiceID() .'" target="_blank">Rechnung anzeigen</a>';
 			
