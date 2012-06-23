@@ -52,7 +52,7 @@ class productInfo{
 		return db_fetch_array($info_query);
 	}
 	
-	public static function getAttributesByProductIdAndLang($product_id){
+	public static function getAttributesByProductId($product_id){
 		$attrArray = productInfo::getAttributesByProductIdAndLangFromDB($product_id);
 		return $attrArray;
 	}

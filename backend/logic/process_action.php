@@ -55,7 +55,7 @@ switch($action) {
 
 		$product = new product($product_id, $language_id);
 		$language_ids_for_existing_products = $product->getLanguagesForExistingProduct($product_id);
-		$product_info = productInfo::getAttributesByProductIdAndLang($product_id);
+		$product_info = productInfo::getAttributesByProductId($product_id);
 		$attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
 
 
