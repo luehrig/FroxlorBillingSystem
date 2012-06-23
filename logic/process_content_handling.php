@@ -7,7 +7,6 @@ require_once PATH_EXT_LIBRARIES .'phpmailer/class.phpmailer.php';
 
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
-require_once PATH_CLASSES .'cl_communication.php';
 require_once PATH_CLASSES .'cl_shoppingcart.php';
 require_once PATH_CLASSES .'cl_customer.php';
 require_once PATH_CLASSES .'cl_order.php';
@@ -141,9 +140,7 @@ switch($action) {
 			$invoice = invoice::create($_SESSION['customer_id'], NULL, NULL, $order->getOrderID(), NULL, $customizing->getCustomizingValue('business_payment_default_currency') , $customizing->getCustomizingValue('business_payment_default_tax'));
 			
 			
-			$communication = new communication();
-			
-			$communication->sendInvoice( $invoice->getInvoiceID() );
+			$invoice->sendInvoice( );
 			
 			
 			echo 'Ihre Bestellung wurde erfolgreich an unser Team übermittelt!';
