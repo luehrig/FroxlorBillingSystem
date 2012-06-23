@@ -1,6 +1,32 @@
 <?php 
 		
 $content = new content(1);
+
+// new product($product_id, $language_id)
+$product = new product(1, 1);
+
+$product_title = $product->getTitle();
+$contract_periode = $product->getContractPeriode();
+$description = $product->getDescription();
+$quantity = $product->getQuantity();
+$price = $product->getPrice();
+
+// array($ttribute_description => $value)
+$attribute_value_map = array();
+
+// return = array(atribute_id => Value);  getAttributesByProductId($product_id)
+$product_info_map = productInfo::getAttributesByProductId(1);
+
+// return = array(atribute_id => descriptione);  getAllExistingAttrByLang($language_id)
+$existing_attributes = productAttribute::getAllExistingAttrByLang(1);
+
+foreach($product_info_map as $atribute_id => $Value){
+	$attribute_value_map[$existing_attributes[$atribute_id]] = $Value;
+}
+
+
+
+
 		
 echo '
 		
