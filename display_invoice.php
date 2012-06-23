@@ -18,6 +18,7 @@ require_once PATH_CLASSES .'cl_invoice.php';
 require_once PATH_CLASSES .'cl_invoicepdf.php';
 require_once PATH_CLASSES .'cl_order.php';
 require_once PATH_CLASSES .'cl_customer.php';
+require_once PATH_CLASSES .'cl_content.php';
 
 if(!isset($language_id)) {
 	// check if language was handed over

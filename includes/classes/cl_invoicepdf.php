@@ -182,7 +182,7 @@ class invoicepdf extends FPDF {
 			$this->Cell(49, 4, 'Datum', 0, 1, 'R');
 			$this->SetFont('Arial','B','12');
 			$this->SetXY(160, 85);
-			$this->Cell(26, 4, $this->invoice_data['issue_date'], 0, 1, '');
+			$this->Cell(26, 4, mysql_date2german($this->invoice_data['issue_date']), 0, 1, '');
 
 			$this->SetFont('Arial','B','12');
 
@@ -298,11 +298,13 @@ class invoicepdf extends FPDF {
 	 * Zeigt Zahlungsbedingungen und Zahlbetrag (im Footer) an.
 	 */
 	private function twShowLetzteSeite() {
+		$content = new content($this->business_customizing['business_payment_payment_terms']);
+		
 		// Zahlungsbedingungen
 		$this->SetFont('Times','I','9');
 		$this->SetXY(26, 251);
 		$this->SetAutoPageBreak(true, 10);    // Seitenumbruch weiter runter
-		$this->MultiCell(110, 3.2, $this->business_customizing['business_payment_payment_terms'], 0, 'L', 0);
+		$this->MultiCell(110, 3.2, $content->getText(), 0, 'L', 0);
 
 		// Zahlbetr�ge
 		//Endbetrag (brutto)

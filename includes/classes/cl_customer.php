@@ -45,6 +45,14 @@ class customer {
 		return $this->customer_id;
 	}
 	
+	public function getEMail() {
+		return $this->email;
+	}
+	
+	public function getFullName() {
+		return $this->first_name .' '. $this->last_name;
+	}
+	
 	// returns customer data as HTML form (read-only)
 	public function printForm($container_id = 'customer_editor') {
 		$customizing = new customizing();

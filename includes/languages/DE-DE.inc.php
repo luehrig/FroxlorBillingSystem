@@ -104,5 +104,9 @@ define('LABEL_ACCEPT_TERMS','Hiermit bestätige ich, dass ich die oben aufgefüh
 define('HEADING_ORDER_OVERVIEW','Bestellübersicht');
 define('BUTTON_CHECKOUT_SEND_ORDER','Bestellung abschicken');
 
+/* communications */
+define('NOTICE_COMMUNICATION_HTML_EMAIL','Um diese E-Mail korrekt darzustellen, verwenden Sie bitte ein HTML kompatibles E-Mail Programm!');
+define('LABEL_COMMUNICATION_INVOICE_SUBJECT','Ihre Rechnung %d');
+define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','Rechnung %d');
 
 ?>

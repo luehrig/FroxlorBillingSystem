@@ -2,12 +2,18 @@
 
 include_once '../configuration.inc.php';
 
+require_once PATH_EXT_LIBRARIES .'fpdf17/fpdf.php';
+require_once PATH_EXT_LIBRARIES .'phpmailer/class.phpmailer.php';
+
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
+require_once PATH_CLASSES .'cl_communication.php';
 require_once PATH_CLASSES .'cl_shoppingcart.php';
 require_once PATH_CLASSES .'cl_customer.php';
 require_once PATH_CLASSES .'cl_order.php';
+require_once PATH_CLASSES .'cl_currency.php';
 require_once PATH_CLASSES .'cl_invoice.php';
+require_once PATH_CLASSES .'cl_invoicepdf.php';
 require_once PATH_CLASSES .'cl_server.php';
 require_once PATH_CLASSES .'cl_content.php';
 
@@ -123,8 +129,6 @@ switch($action) {
 	// show info page to say "your order has been send successfully"
 	case 'show_order_received':
 		
-			include_once 'configurtion.inc.php';
-		
 			$customizing = new customizing();
 		
 			$cart = new shoppingcart(session_id());			
@@ -136,7 +140,11 @@ switch($action) {
 		
 			$invoice = invoice::create($_SESSION['customer_id'], NULL, NULL, $order->getOrderID(), NULL, $customizing->getCustomizingValue('business_payment_default_currency') , $customizing->getCustomizingValue('business_payment_default_tax'));
 			
-			echo '<a href="display_invoice.php?invoice_id='. $invoice->getInvoiceID() .' id="show_invoice" rel="'. $invoice->getInvoiceID() .'" target="_blank">Rechnung anzeigen</a>';
+			
+			$communication = new communication();
+			
+			$communication->sendInvoice( $invoice->getInvoiceID() );
+			
 			
 			echo 'Ihre Bestellung wurde erfolgreich an unser Team übermittelt!';
 		

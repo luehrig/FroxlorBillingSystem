@@ -162,6 +162,18 @@ class invoice {
 		$invoicepdf->Output();
 	}
 
+	// returns byte string including incoive in pdf format
+	public function downloadInvoice() {
+		//create pdf
+		$invoicepdf = new invoicepdf($this->invoice_id);
+		
+		$invoice_file = PATH_TEMP . $this->getInvoiceNumber() .'.pdf';
+		
+		$invoicepdf->Output($invoice_file, "F");
+		
+		return $invoice_file;	 
+	}
+	
 	// check if customer is authorized to view invoice
 	public function isCustomerAuthorized($customer_id) {
 		if( $this->customer->getCustomerID() == $customer_id) {
