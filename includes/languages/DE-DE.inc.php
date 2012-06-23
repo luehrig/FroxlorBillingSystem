@@ -74,6 +74,7 @@ define('WARNING_SERVER_NO_SERVER_AVAILABLE','Für das gewählte Produkt steht ak
 define('WARNING_SERVER_NOT_ABLE_TO_ALLOCATE','Bei der Buchung des Produktes auf dem Server ist ein Fehler aufgetreten!');
 define('WARNING_SERVER_NOT_ABLE_TO_FREE','Bei der Freigabe des Produktes auf dem Server ist ein Fehler aufgetreten!');
 define('WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS','Um Fortzufahren ist es nötig, dass Sie unsere allgemeinen Geschäftsbedingungen akzeptieren!');
+define('WARNING_INVOICE_NOT_AUTHORIZED','Sie sind nicht berechtigt diese Rechnung zu öffnen!');
 
 /* menu texts */
 define('VIEW_MENU_HELP','Hilfe');
@@ -85,6 +86,12 @@ define('VIEW_MENU_SHOPPING_CART','Warenkorb');
 
 /* customer center */
 define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
+
+define('EXPLANATION_NUMBER_OF_INVOICES','Es liegen %d Rechnungen für Sie vor.');
+define('TABLE_HEADING_INVOICE_INVOICE_NUMBER','Rechnungsnummer');
+define('TABLE_HEADING_INVOICE_ISSUE_DATE','Datum');
+define('TABLE_HEADING_INVOICE_AMOUNT','Betrag');
+define('TABLE_HEADING_INVOICE_INVOICE_STATUS','Status');
 
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');

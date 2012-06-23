@@ -32,6 +32,7 @@ define('LABEL_MY_PRODUCTS','Meine Produkte');
 define('LABEL_MY_PRODUCTATTRIBUTES', 'Meine Produktattribute');
 define('LABEL_MY_SERVERS','Meine Server');
 define('LABEL_MY_CUSTOMERS','Meine Kunden');
+define('LABEL_MY_INVOICES','Meine Faktura');
 define('LABEL_MY_CONTENT','Mein Inhalt');
 define('LABEL_MY_STATISTICS','Meine Shopstatistiken');
 
@@ -123,6 +124,11 @@ define('EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES', 'Aktuell sind derzeit %d Prod
 define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
 define('EXPLANATION_NUMBER_OF_SERVERS','Aktuell befinden sich %d Server im Verkaufspool.');
 
+define('EXPLANATION_NUMBER_OF_INVOICES','Aktuell sind noch %d Rechnungen mit einem Volumen von %d offen.');
+define('TABLE_HEADING_INVOICE_INVOICE_NUMBER','Rechnungsnummer');
+define('TABLE_HEADING_INVOICE_ISSUE_DATE','Datum');
+define('TABLE_HEADING_INVOICE_AMOUNT','Betrag');
+define('TABLE_HEADING_INVOICE_INVOICE_STATUS','Status');
 
 define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Das Produkt wurde erfolgreich angelegt.');
 define('INFO_MESSAGE_DB_ACTION_FAILED', 'Es ist ein Fehler beim Ändern der Datenbank aufgetreten.');
@@ -138,6 +144,8 @@ define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfo
 
 
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server mit dieser IP-Adresse!');
+define('ERROR_INVOICE_NOT_PAYED','Die Rechnung %d ist noch nicht bezahlt!');
+
 
 define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Status von dem Produkt wurde erfolgreich geändert.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht');

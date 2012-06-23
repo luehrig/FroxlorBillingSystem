@@ -31,6 +31,20 @@ class customizing {
 		}
 	}
 	
+	// return array with all business related customizing entries
+	public function getBusinessRelatedEntries() {
+		$sql_statement = 'SELECT cust.key, cust.value FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.key LIKE "business_%" AND (cust.language_id = '. (int) $this->language .' OR cust.language_id IS NULL) ORDER BY cust.key';
+		$query = db_query($sql_statement);
+		
+		$business_entries = array();
+		
+		while($row = db_fetch_array($query)) {
+			$business_entries[$row['key']] = $row['value'];
+		}
+		
+		return $business_entries;
+	}
+	
 	// return default language id in internal format
 	public static function get_default_language() {
 		$sql_statement = 'SELECT cust.value AS default_language FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.key = "default_language"';

@@ -89,7 +89,7 @@ class shoppingcart {
 	}
 	
 	// returns shopping cart as html form with table
-	public function printCart($language_id = NULL) {
+	public function printCart($language_id = NULL, $display_checkout = false) {
 		
 		// read default language from customizing if no language id was given
 		if($language_id == null) {
@@ -117,9 +117,11 @@ class shoppingcart {
 		
 		$return_string = $return_string .'</table></form>';
 		
-		$return_string = $return_string .'<div id="buttons">
-											<a href="#!start_checkout" id="start_checkout">'. BUTTON_CHECKOUT .'</a>
-										  </div>';
+		$return_string = $return_string .'<div id="buttons">';
+											if($display_checkout == true) {
+												$return_string = $return_string .'<a href="#!start_checkout" id="start_checkout">'. BUTTON_CHECKOUT .'</a>';
+											}	
+		$return_string = $return_string .'</div>';
 		
 		return $return_string;
 	}
@@ -137,7 +139,7 @@ class shoppingcart {
 		if($language_id == null) {
 			$language_id = get_default_language();
 		}
-		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.title FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
+		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.price, p.title FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
 		$query = db_query($sql_statement);
 		
 		// append single products to products array in object

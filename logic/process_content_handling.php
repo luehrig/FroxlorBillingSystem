@@ -5,7 +5,9 @@ include_once '../configuration.inc.php';
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_shoppingcart.php';
+require_once PATH_CLASSES .'cl_customer.php';
 require_once PATH_CLASSES .'cl_order.php';
+require_once PATH_CLASSES .'cl_invoice.php';
 require_once PATH_CLASSES .'cl_server.php';
 require_once PATH_CLASSES .'cl_content.php';
 
@@ -110,6 +112,9 @@ switch($action) {
 	case 'show_checkout_step5':
 
 		echo HEADING_ORDER_OVERVIEW;
+		
+		$cart = new shoppingcart(session_id());
+		echo $cart->printCart();
 
 		echo '<a href="#!page=save_order&lang='. language::internalToISO($language_id) .'" id="save_order" class="nonav">'. BUTTON_CHECKOUT_SEND_ORDER .'</a>';
 		
@@ -118,21 +123,28 @@ switch($action) {
 	// show info page to say "your order has been send successfully"
 	case 'show_order_received':
 		
-			$cart = new shoppingcart(session_id());
-			
-			print_r($cart->getProducts());
-			
+			include_once 'configurtion.inc.php';
+		
+			$customizing = new customizing();
+		
+			$cart = new shoppingcart(session_id());			
 			$cart_products = $cart->getProducts();
 			
-			$order = order::create($_SESSION['customer_id'], NULL, NULL, $cart_products);
+			$customer = new customer($_SESSION['customer_id']);
+			
+			$order = order::create($_SESSION['customer_id'], $customer->getDefaultShippingAddress(), NULL, NULL, NULL, $cart_products);
 		
+			$invoice = invoice::create($_SESSION['customer_id'], NULL, NULL, $order->getOrderID(), NULL, $customizing->getCustomizingValue('business_payment_default_currency') , $customizing->getCustomizingValue('business_payment_default_tax'));
+			
+			echo '<a href="display_invoice.php?invoice_id='. $invoice->getInvoiceID() .' id="show_invoice" rel="'. $invoice->getInvoiceID() .'" target="_blank">Rechnung anzeigen</a>';
+			
 			echo 'Ihre Bestellung wurde erfolgreich an unser Team übermittelt!';
 		
 			// delete cart with ordered products
 			shoppingcart::deleteCart(session_id());
 		
 			break;
-		
+			
 	case 'show_imprint':
 
 		include PATH_BODYS .'imprint.php';
