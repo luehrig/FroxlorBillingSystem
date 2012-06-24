@@ -1,5 +1,10 @@
-<?php 
-		
+<?php 	
+include_once '../configuration.inc.php';
+
+require_once PATH_CLASSES .'cl_product.php';
+require_once PATH_CLASSES .'cl_product_info.php';
+require_once PATH_CLASSES .'cl_product_attribute.php';
+
 $content = new content(1);
 
 // new product($product_id, $language_id)

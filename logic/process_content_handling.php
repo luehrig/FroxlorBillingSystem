@@ -16,6 +16,8 @@ require_once PATH_CLASSES .'cl_invoicepdf.php';
 require_once PATH_CLASSES .'cl_server.php';
 require_once PATH_CLASSES .'cl_content.php';
 
+require_once PATH_FUNCTIONS .'datetime.php';
+
 if(session_id() == '') {
 	session_start();
 }

@@ -2,6 +2,8 @@
 
 include_once '../configuration.inc.php';
 
+require_once PATH_FUNCTIONS .'datetime.php';
+
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_content.php';
@@ -10,6 +12,7 @@ require_once PATH_CLASSES .'cl_invoice.php';
 require_once PATH_CLASSES .'cl_order.php';
 require_once PATH_CLASSES .'cl_country.php';
 require_once PATH_CLASSES .'cl_currency.php';
+require_once PATH_CLASSES .'cl_contract.php';
 
 if(session_id() == '') {
 	session_start();
@@ -57,7 +60,7 @@ switch($action) {
 		
 	case 'get_customer_data':
 		
-		$customer_id = $_POST['customer_id'];
+		$customer_id = $_SESSION['customer_id'];
 		
 		echo '<div class="whitebox">';
 		echo '<div class="cust_data">';
@@ -75,7 +78,7 @@ switch($action) {
 	
 	case 'get_edit_customer_data':
 		
-		$customer_id = $_POST['customer_id'];
+		$customer_id = $_SESSION['customer_id'];
 		
 		echo '<div class="whitebox">';		
 		echo '<div class="cust_data">';
@@ -93,16 +96,14 @@ switch($action) {
 		
 	case 'get_customer_products':
 	
-		$customer_id = $_POST['customer_id'];
+		$customer_id = $_SESSION['customer_id'];
 	
 		echo '<div class="whitebox">';
 		echo '<div class="cust_data">';
 	
 		echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
 	
-		$customer = new customer($customer_id);
-	
-		// content
+		echo contract::printOverviewCustomer($customer_id);
 	
 		echo '</div>';
 		echo '</div>';
@@ -111,7 +112,7 @@ switch($action) {
 	
 	case 'get_customer_invoices':
 	
-		$customer_id = $_POST['customer_id'];
+		$customer_id = $_SESSION['customer_id'];
 	
 		echo '<div class="whitebox">';
 		echo '<div class="cust_data">';

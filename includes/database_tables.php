@@ -25,5 +25,6 @@ define('TBL_CUSTOMER','tbl_customer');
 define('TBL_CUSTOMER_ADDRESS','tbl_customer_address');
 define('TBL_REMINDER','tbl_reminder');
 define('TBL_REMINDER_TYPE','tbl_reminder_type');
+define('TBL_NOTICE','tbl_notice');
 
 ?>

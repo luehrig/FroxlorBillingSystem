@@ -22,6 +22,7 @@ require '../../functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 require '../../functions/general.php';
+require_once  '../../functions/datetime.php';
 
 include_once '../../includes/database_tables.php';
 include_once '../includes/languages/DE.inc.php';

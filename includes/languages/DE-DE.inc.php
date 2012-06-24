@@ -75,6 +75,9 @@ define('WARNING_SERVER_NOT_ABLE_TO_ALLOCATE','Bei der Buchung des Produktes auf 
 define('WARNING_SERVER_NOT_ABLE_TO_FREE','Bei der Freigabe des Produktes auf dem Server ist ein Fehler aufgetreten!');
 define('WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS','Um Fortzufahren ist es nötig, dass Sie unsere allgemeinen Geschäftsbedingungen akzeptieren!');
 define('WARNING_INVOICE_NOT_AUTHORIZED','Sie sind nicht berechtigt diese Rechnung zu öffnen!');
+define('WARNING_DELETE_CONTRACT_CONFIRM','Wollen Sie den Vertrag wirklich kündigen?');
+
+define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
 
 /* menu texts */
 define('VIEW_MENU_HELP','Hilfe');
@@ -92,6 +95,16 @@ define('TABLE_HEADING_INVOICE_INVOICE_NUMBER','Rechnungsnummer');
 define('TABLE_HEADING_INVOICE_ISSUE_DATE','Datum');
 define('TABLE_HEADING_INVOICE_AMOUNT','Betrag');
 define('TABLE_HEADING_INVOICE_INVOICE_STATUS','Status');
+
+define('EXPLANATION_NUMBER_OF_CONTRACTS','Aktuell haben Sie %d Verträge mit uns.');
+define('TABLE_HEADING_CONTRACT_PRODUCT','Produkt');
+define('TABLE_HEADING_CONTRACT_START_DATE','Anfangsdatum');
+define('TABLE_HEADING_CONTRACT_EXPIRATION_DATE','Ablaufdatum');
+define('TABLE_HEADING_CONTRACT_CONTRACT_PERIODE','Vertragslaufzeit');
+define('TABLE_HEADING_CONTRACT_EXPIRATION_DATE_UNIT','Monat(e)');
+
+define('LABEL_CONTRACT_TERMINATION_EXECUTION_DATE','zum %s gekündigt');
+
 
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');

@@ -32,6 +32,27 @@ class country {
 		return $result;
 	}
 	
+	// returns country name for given country id
+	// if no suitable country name was found return null
+	public static function getCountryName($country_id, $language_id = NULL) {
+		// get browser language if no language id was given
+		if($language_id == NULL) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
+		
+		// get country name by country id and language id
+		$sql_statement = 'SELECT co.country_name FROM '. TBL_COUNTRY .' AS co WHERE co.country_id = '. (int) $country_id .' AND co.language_id = '. (int) $language_id;
+		$query = db_query($sql_statement);
+		
+		if(db_num_results($query) == 1) {
+			$result = db_fetch_array($query);
+			return $result['country_name'];
+		}
+		else {
+			return null;
+		}
+	}
+	
 	// read all countries for selected language
 	private function getAllAvailableCountries($language_id) {
 		$sql_statement = 'SELECT country_id, iso_code, country_name FROM '. TBL_COUNTRY .' WHERE language_id = '. $language_id;
