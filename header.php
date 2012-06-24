@@ -8,6 +8,10 @@ require PATH_CLASSES .'cl_language.php';
 require PATH_CLASSES .'cl_shoppingcart.php';
 require PATH_CLASSES .'cl_content.php';
 require PATH_CLASSES .'cl_customer.php';
+require PATH_CLASSES .'cl_product.php';
+require PATH_CLASSES .'cl_product_attribute.php';
+require PATH_CLASSES .'cl_product_info.php';
+
 
 require 'functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);

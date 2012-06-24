@@ -99,6 +99,6 @@ define('LABEL_SAME_ADRESS', 'Selbe Rechnungs- und Lieferanschrift');
 define('BUTTON_CHANGE_PW', 'Passwort ändern');
 
 
-
+define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetreiber gesendet!');
 
 ?>

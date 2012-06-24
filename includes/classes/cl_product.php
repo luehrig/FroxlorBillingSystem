@@ -10,7 +10,6 @@ class product {
 	private $quantity;
 	private $price;
 	private $active;
-	private $product_attributes;
 	private $product_data;
 	
 	/* constructor */

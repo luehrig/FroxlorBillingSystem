@@ -7,9 +7,14 @@
  */
 if(isset($_GET['_escaped_fragment_'])) {
 	
-	$action = 'show_'. substr($_GET['_escaped_fragment_'], 5);
+	$action = 'show_'. substr($_GET['_escaped_fragment_'], 0);
 	
-	$language_id = language::ISOTointernal($_GET['lang']);
+	if(isset($_GET['lang'])) {
+		$language_id = language::ISOTointernal($_GET['lang']);
+	}
+	else {
+		$language_id = language::ISOTointernal(language::getBrowserLanguage());
+	}	
 	
 	include_once 'logic/process_content_handling.php';
 }

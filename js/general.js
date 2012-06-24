@@ -401,8 +401,18 @@ $(function() {
 		var first_name = $('input[type=text][id=first_name]').val();
 		var last_name = $('input[type=text][id=last_name]').val();
 		var email = $('input[type=email][id=email]').val();
-		var msg_type = $('input[type=radio][class=message_type]').val();
 		var message = $('textarea[id=message]').val();
+		var msg_type = '';
+		
+		if( $('input[type=radio][name=message_type]')[0].checked){
+			msg_type = $('input[type=radio][id=question]').val();
+		}
+		else if($('input[type=radio][name=message_type]')[1].checked){
+			msg_type = $('input[type=radio][id=problem]').val();
+		}
+		else if($('input[type=radio][name=message_type]')[2].checked){
+			msg_type = $('input[type=radio][id=feedback]').val();
+		}
 
 		$.ajax({
 			type : "POST",
@@ -417,7 +427,7 @@ $(function() {
 				message : message
 			}
 		}).done(function(msg) {
-			$('.gesendet').html(msg);
+			$('.contact').html(msg);
 		});
 
 		return false;

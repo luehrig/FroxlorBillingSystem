@@ -7,6 +7,7 @@ class customer {
 	private $title;
 	private $first_name;
 	private $last_name;
+	private $company;
 	private $shipping_address;
 	private $billing_address;
 	private $telephone;
@@ -42,6 +43,14 @@ class customer {
 	
 	public function getCustomerID() {
 		return $this->customer_id;
+	}
+	
+	public function getEMail() {
+		return $this->email;
+	}
+	
+	public function getFullName() {
+		return $this->first_name .' '. $this->last_name;
 	}
 	
 	// returns customer data as HTML form (read-only)
@@ -261,6 +270,51 @@ class customer {
 		
 	}
 	
+	// get default shipping address
+	public function getDefaultShippingAddress() {
+		$sql_statement = 'SELECT c.shipping_address FROM '. TBL_CUSTOMER .' AS c WHERE c.customer_id = '. (int) $this->customer_id;
+		$query = db_query($sql_statement);
+		$result_data = db_fetch_array($query);
+		
+		return $result_data['shipping_address'];
+	}
+	
+	// get default billing address
+	public function getDefaultBillingAddress() {
+		$sql_statement = 'SELECT c.billing_address FROM '. TBL_CUSTOMER .' AS c WHERE c.customer_id = '. (int) $this->customer_id;
+		$query = db_query($sql_statement);
+		$result_data = db_fetch_array($query);
+	
+		return $result_data['billing_address'];
+	}
+	
+	// get address information for specific customer address
+	public function getAddressInformation($customer_address_id) {
+		$sql_statement = 'SELECT ca.street, ca.street_number, ca.post_code, ca.city, co.country_name FROM '. TBL_CUSTOMER_ADDRESS .' AS ca INNER JOIN '. TBL_COUNTRY .' AS co ON ca.country_code = co.country_id WHERE ca.customer_address_id = '. (int) $customer_address_id .' AND co.language_id = '. (int) language::ISOTointernal( language::getBrowserLanguage() );
+		$query = db_query($sql_statement);
+		$result_data = db_fetch_array($query);
+		
+		$address_information = array();
+		
+		$address_information['street'] = $result_data['street'];
+		$address_information['street_number'] = $result_data['street_number'];
+		$address_information['post_code'] = $result_data['post_code'];
+		$address_information['city'] = $result_data['city'];
+		$address_information['country'] = $result_data['country_name'];
+		
+		return $address_information;
+		
+	}
+	
+	// return true if customer is a commerical one else returns false
+	public function isCommerical() {
+		if($this->company != '') {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	// check if customer is still logged in
 	public static function isLoggedIn($session_id) {
@@ -331,7 +385,8 @@ class customer {
 			db_query($sql_statement);
 			$customer_id = db_insert_id();
 			
-			$customer_prefix = $_SESSION['customizing']->getCustomizingValue('sys_customer_prefix');
+			$customizing = new customizing();
+			$customer_prefix = $customizing->getCustomizingValue('sys_customer_prefix');
 			$customer_number = $customer_prefix .'-'. $customer_id;
 			
 			$sql_statement = 'UPDATE '. TBL_CUSTOMER .' SET customer_number = "'. $customer_number .'" WHERE customer_id = '. (int) $customer_id;

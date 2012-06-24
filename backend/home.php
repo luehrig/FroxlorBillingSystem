@@ -6,6 +6,7 @@
 			<li><a href="#myproductattributes," id="myproductattributes"><?php echo LABEL_MY_PRODUCTATTRIBUTES; ?></a></li>
 			<li><a href="#myservers" id="myservers"><?php echo LABEL_MY_SERVERS; ?></a></li>
 			<li><a href="#mycustomers" id="mycustomers"><?php echo LABEL_MY_CUSTOMERS; ?></a></li>
+			<li><a href="#myinvoices" id="myinvoices"><?php echo LABEL_MY_INVOICES; ?></a></li>
 			<li><a href="#mycontent" id="mycontent"><?php echo LABEL_MY_CONTENT; ?></a></li>
 			<li><a href="#mystatistics" id="mystatistics"><?php echo LABEL_MY_STATISTICS; ?></a></li>
 		</ul>

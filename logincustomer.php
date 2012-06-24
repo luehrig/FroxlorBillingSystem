@@ -51,9 +51,9 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 
 
 <body>
-<ddiv id="messagearea"></div> 
+<div id="messagearea"></div> 
 <div class="colorboxwrapper">   
-	<form method="post" action="#" id="loginform" accept-charset=utf-8>
+	<form method="post" action="#" class="loginform" accept-charset=utf-8>
 	    <fieldset>
 	    	<legend>
 	    		<img ID="minilogo" src="images/logos/logo.png">
@@ -63,12 +63,14 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	    	<input type="text" id="email" name="email" rel="mandatory"><br>
 	    	<label for="password"><?php echo LABEL_PASSWORD; ?></label>
 	    	<input type="password" id="password" name="password" rel="mandatory">    	
-	    </fieldset>
-	    
-	    <input type="submit" id="ajaxlogin" name="ajaxlogin" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">  
+	 		
+	 		<input type="submit" id="ajaxlogin" name="ajaxlogin" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">   
+	    </fieldset>  
 	</form>
 	<p>
-	<a href="#!page=registration&lang=" id="registration" rel="<?php echo $site_language; ?>"><span><?php echo LINK_REGISTRATION; ?></span></a>
+	<div id="register">
+		<a href="#!page=registration&lang=" id="registration" rel="<?php echo $site_language; ?>"><span><?php echo LINK_REGISTRATION; ?></span></a>
+	</div>
 	</p>
 </div>
 </body>

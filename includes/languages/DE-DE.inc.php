@@ -77,6 +77,10 @@ define('WARNING_SERVER_NO_SERVER_AVAILABLE','Für das gewählte Produkt steht ak
 define('WARNING_SERVER_NOT_ABLE_TO_ALLOCATE','Bei der Buchung des Produktes auf dem Server ist ein Fehler aufgetreten!');
 define('WARNING_SERVER_NOT_ABLE_TO_FREE','Bei der Freigabe des Produktes auf dem Server ist ein Fehler aufgetreten!');
 define('WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS','Um Fortzufahren ist es nötig, dass Sie unsere allgemeinen Geschäftsbedingungen akzeptieren!');
+define('WARNING_INVOICE_NOT_AUTHORIZED','Sie sind nicht berechtigt diese Rechnung zu öffnen!');
+define('WARNING_DELETE_CONTRACT_CONFIRM','Wollen Sie den Vertrag wirklich kündigen?');
+
+define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
 
 /* main menu texts */
 define('VIEW_MENU_HELP','Hilfe');
@@ -88,6 +92,22 @@ define('VIEW_MENU_SHOPPING_CART','Warenkorb');
 
 /* customer center */
 define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
+
+define('EXPLANATION_NUMBER_OF_INVOICES','Es liegen %d Rechnungen für Sie vor.');
+define('TABLE_HEADING_INVOICE_INVOICE_NUMBER','Rechnungsnummer');
+define('TABLE_HEADING_INVOICE_ISSUE_DATE','Datum');
+define('TABLE_HEADING_INVOICE_AMOUNT','Betrag');
+define('TABLE_HEADING_INVOICE_INVOICE_STATUS','Status');
+
+define('EXPLANATION_NUMBER_OF_CONTRACTS','Aktuell haben Sie %d Verträge mit uns.');
+define('TABLE_HEADING_CONTRACT_PRODUCT','Produkt');
+define('TABLE_HEADING_CONTRACT_START_DATE','Anfangsdatum');
+define('TABLE_HEADING_CONTRACT_EXPIRATION_DATE','Ablaufdatum');
+define('TABLE_HEADING_CONTRACT_CONTRACT_PERIODE','Vertragslaufzeit');
+define('TABLE_HEADING_CONTRACT_EXPIRATION_DATE_UNIT','Monat(e)');
+
+define('LABEL_CONTRACT_TERMINATION_EXECUTION_DATE','zum %s gekündigt');
+
 
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');
@@ -107,5 +127,12 @@ define('LABEL_ACCEPT_TERMS','Hiermit bestätige ich, dass ich die oben aufgefüh
 define('HEADING_ORDER_OVERVIEW','Bestellübersicht');
 define('BUTTON_CHECKOUT_SEND_ORDER','Bestellung abschicken');
 
+/* communications */
+define('NOTICE_COMMUNICATION_HTML_EMAIL','Um diese E-Mail korrekt darzustellen, verwenden Sie bitte ein HTML kompatibles E-Mail Programm!');
+define('LABEL_COMMUNICATION_INVOICE_SUBJECT','Ihre Rechnung %d');
+define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','Rechnung %d');
+
+/* help / contact */
+define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetreiber gesendet!');
 
 ?>
