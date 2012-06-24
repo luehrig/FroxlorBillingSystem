@@ -67,7 +67,6 @@ define('BUTTON_EDIT_CUSTOMER','Meine Daten bearbeiten');
 define('BUTTON_SAVE','Speichern');
 define('BUTTON_CHECKOUT','Kasse');
 
-
 /* message texts */
 define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
 define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');

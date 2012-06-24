@@ -123,6 +123,24 @@ switch($action) {
 		echo '</div>';
 	
 		break;
+		
+	case 'send_email':
+	
+		$first_name = $_POST['first_name'];
+		$last_name = $_POST['last_name'];
+		$customer_email = $_POST['email'];
+		$msg_type = $_POST['msg_type'];
+		$message = $_POST['message'];
+// 		$customer_id = $_POST['customer_id'];
+		
+		$recipient = 'janakeim7@googlemail.com';
+		
+		$subject = $msg_type. ' / ' . $first_name .' '. $last_name;
+		
+		echo $subject;
+		mail($recipient, $subject, $message, "from:$email");
+	
+		break;
 }	
 
 ?>

@@ -1,6 +1,7 @@
 <?php 
 
 require '../includes/classes/cl_customizing.php';
+require '../includes/classes/cl_language.php';
 
 session_start();
 
@@ -10,16 +11,18 @@ require '../functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 include_once '../includes/database_tables.php';
-include_once 'includes/languages/DE.inc.php';
 include_once '../functions/user_management.php';
 
 if(!db_backend_user_is_logged_in( session_id() )) {
 	header ("Location: login.php");
 	exit();
 }
-else {
-	echo 'Herzlich Willkommen im internen Bereich für den Shopbetreiber!';
-}
+
+// detect preferred browser language if language is not available use the default language from shop customizing
+$site_language = language::getBrowserLanguage();
+
+include_once 'includes/languages/'. strtoupper($site_language) .'.inc.php';
+
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
@@ -40,7 +43,10 @@ else {
 <body>
 <div class="header">
 	<img ID="logo" src="../images/fcloud.png">
-
-	<a href="#" id="logout"><?php echo BUTTON_LOGOUT_BACKEND; ?></a>
+	<div id="header_welcome">
+		<?php echo MSG_BACKEND_WELCOME; ?>
+	</div>
+	
+	<a href="#" id="header_logout"><?php echo BUTTON_LOGOUT_BACKEND; ?></a>
 	
 </div>

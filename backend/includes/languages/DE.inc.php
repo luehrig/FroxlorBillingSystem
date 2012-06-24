@@ -3,6 +3,8 @@
 define('PAGE_TITLE_LOGIN_BACKEND','Anmeldung für Shopeinstellungen');
 define('PAGE_TITLE_SHOPMAINTENANCE_BACKEND','Shopeinstellungen');
 
+define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den Shopbetreiber');
+
 define('BUTTON_LOGOUT_BACKEND','Abmelden');
 define('BUTTON_LOGIN_BACKEND','Einloggen');
 define('BUTTON_MODIFY_CUSTOMIZING_BACKEND','Customizing ändern');

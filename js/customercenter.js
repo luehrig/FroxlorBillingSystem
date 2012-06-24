@@ -31,7 +31,7 @@ $(function() {
 				
 				$.ajax({
 					type: "POST",
-					url: "logic/process_action.php",
+					url: "logic/process_customer_action.php",
 					data: { action: "show_customer_header"}
 				}).done(function( msg ) {
 					$('#customer_header_ajax').html( msg );
@@ -64,7 +64,7 @@ $(function() {
 		
 		$.ajax({
 			type: "POST",
-			url: "logic/process_action.php",
+			url: "logic/process_customer_action.php",
 			data: { action: "remove_customer_header"}
 		}).done(function( msg ) {
 			$('#customer_header').html( msg );
@@ -81,7 +81,7 @@ $(function() {
 		
 		$.ajax({
 			type: "POST",
-			url: "logic/process_action.php",
+			url: "logic/process_customer_action.php",
 			data: { action: "get_customer_data", customer_id:customer_id }
 		}).done(function( msg ) {
 			$('.customer_content_container').html( msg );
@@ -98,7 +98,7 @@ $(function() {
 		
 		$.ajax({
 			type: "POST",
-			url: "logic/process_action.php",
+			url: "logic/process_customer_action.php",
 			data: { action: "get_edit_customer_data", customer_id:customer_id }
 		}).done(function( msg ) {
 			$('.customer_content_container').html( msg );
@@ -111,7 +111,7 @@ $(function() {
 //		
 //		$.ajax({
 //			type: "POST",
-//			url: "logic/process_action.php",
+//			url: "logic/process_customer_action.php",
 //			data: { action: "hide_billingaddress"}
 //		}).done(function( msg ) {
 //			$('.billingaddress').html( msg );
@@ -127,7 +127,7 @@ $(function() {
 		
 		$.ajax({
 			type: "POST",
-			url: "logic/process_action.php",
+			url: "logic/process_customer_action.php",
 			data: { action: "get_customer_products", customer_id:customer_id }
 		}).done(function( msg ) {
 			$('.customer_content_container').html( msg );
@@ -144,7 +144,7 @@ $(function() {
 		
 		$.ajax({
 			type: "POST",
-			url: "logic/process_action.php",
+			url: "logic/process_customer_action.php",
 			data: { action: "get_customer_invoices", customer_id:customer_id }
 		}).done(function( msg ) {
 			$('.customer_content_container').html( msg );

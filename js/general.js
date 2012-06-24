@@ -394,6 +394,35 @@ $(function() {
 		$("a").removeClass("active");
 		$(this).addClass("active");
 	});
+	
+	// send email to admin
+	$("body").on("click", "input[id=send_email]", function() {
+				
+		var first_name = $('input[type=text][id=first_name]').val();
+		var last_name = $('input[type=text][id=last_name]').val();
+		var email = $('input[type=email][id=email]').val();
+		var msg_type = $('input[type=radio][class=message_type]').val();
+		var message = $('textarea[id=message]').val();
+
+		$.ajax({
+			type : "POST",
+			url : "logic/process_customer_action.php",
+			data : {
+				action : "send_email",
+//				customer_id : customer_id,
+				first_name : first_name,
+				last_name : last_name,
+				email : email,
+				msg_type : msg_type,
+				message : message
+			}
+		}).done(function(msg) {
+			$('.gesendet').html(msg);
+		});
+
+		return false;
+
+	});
 
 });
 
@@ -426,3 +455,5 @@ function loadContent(areacode, language_id) {
 		$('.content_container').html(msg);
 	});
 }
+
+

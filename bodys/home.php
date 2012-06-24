@@ -4,7 +4,6 @@ $content = new content(2,$language_id);
 		
 echo '	
 
-
 <h1>Startseite</h1>
 <div class="boxwrapper">
 	<div class=" whitebox box_1inRow">
