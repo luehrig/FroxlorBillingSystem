@@ -100,11 +100,12 @@ class shoppingcart {
 		$query = db_query($sql_statement);
 		
 		$return_string = '<form id="shoppingcart">
-							<table>
+							<table rules="groups">
 								<tr>
 									<th>'. HEADING_PRODUCT .'</th>
 									<th>'. HEADING_QUANTITY .'</th>
 									<th>'. HEADING_AMOUNT .'</th>
+									<th></th>
 								</tr>';
 		
 		while($result_data = db_fetch_array($query)) {

@@ -30,26 +30,42 @@ $customizing = new customizing( get_default_language() );
 
 $action = $_POST['action'];
 
+echo '<div class=internalwrapper>';
 switch($action) {
 
 	case 'get_customizing_overview':
+		echo'<h1>'.LABEL_MY_SHOP.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		echo '<div id="customizing_explanation"><p>'. EXPLANATION_CUSTOMIZING_ENTRIES .'</p></div>';
-			
 		echo $customizing->printCustomizingEntries();
-
+		
 		echo '<a href="#" id="edit_customizing">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
 		<a href="#" id="save_customizing">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
+		
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'get_products_overview':
-
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$shown_language_id = language::getShownLanguageId();
 		$id_language_map = language::getIdLanguageMap();
 		echo product::printOverview($shown_language_id, $id_language_map);
 
+
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'open_product_editor':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
 
@@ -60,9 +76,15 @@ switch($action) {
 
 
 		echo $product->printFormEdit($attributes_for_lang, $product_info, language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
+		
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'open_create_new_attribute_for_product':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
 		$existing_attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
@@ -70,9 +92,14 @@ switch($action) {
 
 
 		echo productInfo::printNewAttributeForm($product_id, $availible_attributes);
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'create_new_product_info':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		//$language_id = $_POST['language_id'];
 		$attribute_id = $_POST['attribute_id'];
@@ -86,10 +113,14 @@ switch($action) {
 			echo INFO_MESSAGE_DB_ACTION_FAILED;
 		}
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'edit_product':
-
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
@@ -118,10 +149,15 @@ switch($action) {
 			}
 
 		}
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 
 	case 'open_translate_product_form':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
 
@@ -129,9 +165,14 @@ switch($action) {
 
 		echo $product->printFormTranslate(language::printLanguages());
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'translate_product':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
@@ -162,16 +203,26 @@ switch($action) {
 			}
 
 		}
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 
 	case 'open_create_product_form':
-
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		echo product::printCreateProductForm(language::printLanguages());
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'create_new_product':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = null;
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
@@ -200,9 +251,14 @@ switch($action) {
 			}
 		}
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'change_product_state':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
 		$product = new product($product_id, $language_id);
@@ -224,10 +280,15 @@ switch($action) {
 		else{
 			echo INFO_MESSAGE_DB_ACTION_FAILED;
 		}
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 
 	case 'delete_product':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
 		$product = new product($product_id, $language_id);
@@ -239,6 +300,8 @@ switch($action) {
 			echo INFO_MESSAGE_DB_ACTION_FAILED;
 		}
 			
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 
@@ -246,14 +309,22 @@ switch($action) {
 
 
 	case 'get_product_attributes_overview':
+		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$shown_language_id = language::getShownLanguageId();
 		$id_language_map = language::getIdLanguageMap();
 		echo productattribute::printOverview($shown_language_id, $id_language_map);
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 			
 
 	case 'open_product_attribute_editor':
+		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_attribute_id = $_POST['product_attribute_id'];
 		$language_id = $_POST['language_id'];
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
@@ -261,22 +332,38 @@ switch($action) {
 
 		echo $product_attribute->printFormEdit(language::printLanguages($language_ids_for_existing_product_attributes, $language_id), $language_id);
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 
 	case 'get_server_overview':
-
+		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		echo server::printOverview();
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'open_create_server_form':
-
+		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		echo server::printCreateServerForm();
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'create_new_server':
+		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$name = $_POST['name'];
 		$mngmnt_ui = $_POST['mngmnt_ui'];
 		$ipv4 = $_POST['ipv4'];
@@ -310,21 +397,32 @@ switch($action) {
 			server::create($server_data);
 		}
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 
 
 	case 'open_server_editor':
+		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$server_id = $_POST['server_id'];
 
 		$server = new server($server_id);
 
 		echo $server->printEditServerForm();
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'edit_server':
-
+		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$server_id = $_POST['server_id'];
 		$name = $_POST['name'];
 		$mngmnt_ui = $_POST['mngmnt_ui'];
@@ -353,47 +451,68 @@ switch($action) {
 		$server = new server($server_id);
 		$server->update($server_data);
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'delete_server':
-
+		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$server_id = $_POST['server_id'];
 
 		$server = new server($server_id);
 		$server->delete();
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 
 	case 'get_customers_overview':
-
-
+		echo'<h1>'.LABEL_MY_CUSTOMERS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		echo customer::printOverview();
 
-
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'open_customer_editor':
+		echo'<h1>'.LABEL_MY_CUSTOMERS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$customer_id = $_POST['customer_id'];
 
 		$customer = new customer($customer_id);
 
 		echo $customer->printFormEdit();
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'get_content_overview':
-		echo 'Mein Inhalt!';
-
+		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 
 		echo content::printOverview();
 
 		echo '<div id="new_content_buttons"><a href="#" id="create_new_content">'. BUTTON_CREATE_CONTENT .'</a></div>';
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'open_new_content_editor':
-
+		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$echo_string = '<form><div id="new_content_title"><input type="text" id="title" /></div>';
 		$echo_string = $echo_string .'<div id="new_content_text"><textarea id="text" class="editor"></textarea></div>';
 			
@@ -403,9 +522,14 @@ switch($action) {
 			
 		echo $echo_string;
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'open_content_editor':
+		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$content_id = $_POST['content_id'];
 		$language_id = $_POST['language_id'];
 
@@ -430,10 +554,15 @@ switch($action) {
 			echo sprintf(ERROR_NO_CONTENT_ENTRY_FOUND, $content_id, $language_id);
 		}
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'update_content':
-
+		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$content_id = $_POST['content_id'];
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
@@ -441,37 +570,57 @@ switch($action) {
 
 		$content = new content($content_id, $language_id);
 		$content->update($title, $text, $language_id);
-
+		
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'create_content':
-
+		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
 		$text = $_POST['text'];
 
 		content::create($title, $text, $language_id);
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'delete_content':
-
+		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$content_id = $_POST['content_id'];
 		$language_id = $_POST['language_id'];
 
 		$content = new content($content_id, $language_id);
 		$content->delete($language_id);
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'get_invoice_overview':
-
+		echo'<h1>'.LABEL_MY_INVOICES.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		echo invoice::printOverviewBackend();
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'change_invoice_status':
-
+		echo'<h1>'.LABEL_MY_INVOICES.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
 		$invoice_id = $_POST['invoice_id'];
 		$status_id = $_POST['status_id'];
 
@@ -480,12 +629,20 @@ switch($action) {
 			$invoice->setStatus($status_id);
 		}
 			
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'get_statistic_overview':
-		echo 'Shopstatistiken!';
+		echo'<h1>'.LABEL_MY_STATISTICS.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 }
+echo '</div>';
 
 ?>

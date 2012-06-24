@@ -17,9 +17,6 @@ if(!db_backend_user_is_logged_in( session_id() )) {
 	header ("Location: login.php");
 	exit();
 }
-else {
-	echo 'Herzlich Willkommen im internen Bereich für den Shopbetreiber!';
-}
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
@@ -28,7 +25,7 @@ else {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><?php echo PAGE_TITLE_SHOPMAINTENANCE_BACKEND; ?></title>
 
-<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="../css/style.css" type="text/css">
 
 <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>!window.jQuery && document.write(unescape('%3Cscript src="../js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
@@ -40,7 +37,14 @@ else {
 <body>
 <div class="header">
 	<img ID="logo" src="../images/fcloud.png">
+	
+	
+	<div class="header_right">
+		<a class="admin_logout" href="#" id="logout"><?php echo BUTTON_LOGOUT_BACKEND; ?></a>
+		<div ID="admin_welcome">Herzlich Willkommen im internen Bereich für den Shopbetreiber!
+		</div>
+	</div>
 
-	<a href="#" id="logout"><?php echo BUTTON_LOGOUT_BACKEND; ?></a>
+	
 	
 </div>

@@ -2,8 +2,9 @@
 		
 $cart = new shoppingcart(session_id());
 
-echo '	
+?>
 
+<h1><?php echo VIEW_MENU_SHOPPING_CART; ?></h1>
 <div class="boxwrapper">
 	<div class=" whitebox box_1inRow">
 		<fieldset>
@@ -12,14 +13,10 @@ echo '
 				Warenkorb
 			</legend>
 			
-			'.$cart->printCart(NULL, true).'
-			
-			
+			<?php echo $cart->printCart(NULL, true); ?>
 			
 		</fieldset>
 	</div>
 	
 	
 </div>
-
-';?>

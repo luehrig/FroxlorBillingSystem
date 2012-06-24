@@ -2,35 +2,35 @@
 		
 $content = new content(1);
 
-// new product($product_id, $language_id)
-$product = new product(1, 1);
+// // new product($product_id, $language_id)
+// $product = new product(1, 1);
 
-$product_title = $product->getTitle();
-$contract_periode = $product->getContractPeriode();
-$description = $product->getDescription();
-$quantity = $product->getQuantity();
-$price = $product->getPrice();
+// $product_title = $product->getTitle();
+// $contract_periode = $product->getContractPeriode();
+// $description = $product->getDescription();
+// $quantity = $product->getQuantity();
+// $price = $product->getPrice();
 
-// array($ttribute_description => $value)
-$attribute_value_map = array();
+// // array($ttribute_description => $value)
+// $attribute_value_map = array();
 
-// return = array(atribute_id => Value);  getAttributesByProductId($product_id)
-$product_info_map = productInfo::getAttributesByProductId(1);
+// // return = array(atribute_id => Value);  getAttributesByProductId($product_id)
+// $product_info_map = productInfo::getAttributesByProductId(1);
 
-// return = array(atribute_id => descriptione);  getAllExistingAttrByLang($language_id)
-$existing_attributes = productAttribute::getAllExistingAttrByLang(1);
+// // return = array(atribute_id => descriptione);  getAllExistingAttrByLang($language_id)
+// $existing_attributes = productAttribute::getAllExistingAttrByLang(1);
 
-foreach($product_info_map as $atribute_id => $Value){
-	$attribute_value_map[$existing_attributes[$atribute_id]] = $Value;
-}
+// foreach($product_info_map as $atribute_id => $Value){
+// 	$attribute_value_map[$existing_attributes[$atribute_id]] = $Value;
+// }
 
 
 
+?>
+		
 
 		
-echo '
-		
-<h1>Produkte</h1>
+<h1><?php echo VIEW_MENU_PRODUCTS; ?></h1>
 <div class="boxwrapper">
 
 	<!-- Product No.1 -->
@@ -40,14 +40,19 @@ echo '
 			<legend>
 				Produktname
 			</legend>
-			<p>'. $content->getText() .'</p>
+			<p><?php echo $content->getText()?></p>
 		</fieldset>
-		<button class="buttonlayout_buy" rel="1">'. BUTTON_ADD_TO_CART .'</button>
+		<button class="buttonlayout_buy" rel="1"><?php echo BUTTON_ADD_TO_CART; ?></button>
 		<div id="book1" class="slidebox">
-			<fieldset>'. $content->getText() .'</fieldset>
+			<fieldset>
+				<legend>
+					Details
+				</legend>
+				<?php echo $content->getText()?>
+			</fieldset>
 		</div>
 <!-- TODO: rel tag has to content the product id! -->			
-		<button class="buttonlayout_more" rel="1">'. BUTTON_MORE .'</button>
+		<button class="buttonlayout_more" rel="1"><?php echo BUTTON_MORE; ?></button>
 	</div>
 				
 				
@@ -58,14 +63,19 @@ echo '
 			<legend>
 				Produktname
 			</legend>
-			<p>'. $content->getText() .'</p>
+			<p><?php echo $content->getText()?></p>
 		</fieldset>
-		<button class="buttonlayout_buy" rel="2">'. BUTTON_ADD_TO_CART .'</button>
+		<button class="buttonlayout_buy" rel="2"><?php echo BUTTON_ADD_TO_CART; ?></button>
 		<div id="book2" class="slidebox">
-			<fieldset>'. $content->getText() .'</fieldset>
+			<fieldset>
+				<legend>
+					Details
+				</legend>
+				<?php echo $content->getText()?>
+			</fieldset>
 		</div>
 <!-- TODO: rel tag has to content the product id! -->			
-		<button class="buttonlayout_more" rel="2">'. BUTTON_MORE .'</button>
+		<button class="buttonlayout_more" rel="2"><?php echo BUTTON_MORE; ?></button>
 	</div>
 				
 	<!-- Product No.3 -->
@@ -75,16 +85,20 @@ echo '
 			<legend>
 				Produktname
 			</legend>
-			<p>'. $content->getText() .'</p>
+			<p><?php echo $content->getText()?></p>
 		</fieldset>
-		<button class="buttonlayout_buy" rel="3">'. BUTTON_ADD_TO_CART .'</button>
+		<button class="buttonlayout_buy" rel="3"><?php echo BUTTON_ADD_TO_CART; ?></button>
 		<div id="book3" class="slidebox">
-			<fieldset>'. $content->getText() .'</fieldset>
+			<fieldset>
+				<legend>
+					Details
+				</legend>
+				<?php echo $content->getText()?>
+			</fieldset>
 		</div>
 <!-- TODO: rel tag has to content the product id! -->			
-		<button class="buttonlayout_more" rel="3">'. BUTTON_MORE .'</button>
+		<button class="buttonlayout_more" rel="3"><?php echo BUTTON_MORE; ?></button>
 	</div>
 				
 </div>
 
-';?>
