@@ -70,6 +70,9 @@ define('BUTTON_SAVE','Speichern');
 define('BUTTON_CHECKOUT','Kasse');
 define('BUTTON_CHECKOUT_NEXT','Weiter');
 
+define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den Shopbetreiber');
+
+
 define('BUTTON_LOGOUT_BACKEND','Abmelden');
 define('BUTTON_LOGIN_BACKEND','Einloggen');
 define('BUTTON_MODIFY_CUSTOMIZING_BACKEND','Customizing ändern');
@@ -153,7 +156,6 @@ define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','Rechnung %d');
 
 /* help / contact */
 define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetreiber gesendet!');
-define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den Shopbetreiber');
 define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
 
 define('BUTTON_CHANGE_SERVER', 'Server ändern');

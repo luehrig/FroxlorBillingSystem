@@ -48,7 +48,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 		<?php echo PAGE_TITLE_REGISTRATION; ?>
 	</h1>
 	<div id="messagearea"></div>
-	<form method="post" action="#" id="registrationform"
+	<form method="post" action="#" id="registrationform" class="registrationform"
 		accept-charset=utf-8>
 		<div class="registrationform">
 		<div class="boxwrapper">
@@ -72,22 +72,19 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 							<?php echo SELECT_GENDER_FEMALE; ?>
 						</option>
 					</select>
-				</p>
-				<p>
+				
 					<label for="title"><?php echo LABEL_TITLE; ?> </label> <input
 						type="text" id="title" name="title">
+				</p>	
+				<p>
+					<label for="first_name"><?php echo LABEL_FIRST_NAME; ?> </label> <input
+						type="text" id="first_name" name="first_name" rel="mandatory">
+					<label for="last_name"><?php echo LABEL_LAST_NAME; ?> </label> <input
+						type="text" id="last_name" name="last_name" rel="mandatory">
 				</p>
 				<p>
 					<label for="company"><?php echo LABEL_COMPANY; ?> </label> <input
 						type="text" id="company" name="company">
-				</p>
-				<p>
-					<label for="first_name"><?php echo LABEL_FIRST_NAME; ?> </label> <input
-						type="text" id="first_name" name="first_name" rel="mandatory">
-				</p>
-				<p>
-					<label for="last_name"><?php echo LABEL_LAST_NAME; ?> </label> <input
-						type="text" id="last_name" name="last_name" rel="mandatory">
 				</p>
 				<br>
 				<p>
@@ -130,24 +127,20 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 						<label for="shippingstreet"><?php echo LABEL_STREET; ?> </label> <input
 							type="text" id="shippingstreet" name="shippingstreet"
 							rel="mandatory">
-					</p>
-					<p>
-						<label for="shippingstreetnumber"><?php echo LABEL_STREETNUMBER; ?>
-						</label> <input type="text" id="shippingstreetnumber"
+						<label for="shippingstreetnumber" class="streetnumber"><?php echo LABEL_STREETNUMBER; ?>
+						</label> <input type="text" id="shippingstreetnumber" class="streetnumber"
 							name="shippingstreetnumber" rel="mandatory">
 					</p>
 					<p>
 						<label for="shippingpostcode"><?php echo LABEL_POSTCODE; ?> </label>
-						<input type="text" id="shippingpostcode" name="shippingpostcode"
+						<input type="text" id="shippingpostcode" class="postcode" name="shippingpostcode"
 							rel="mandatory">
-					</p>
-					<p>
-						<label for="shippingcity"><?php echo LABEL_CITY; ?> </label> <input
-							type="text" id="shippingcity" name="shippingcity" rel="mandatory">
+						<label for="shippingcity" class="city"><?php echo LABEL_CITY; ?> </label> <input
+							type="text" id="shippingcity" class="city" name="shippingcity" rel="mandatory">
 					</p>
 					<p>
 						<label for="shippingcountry"><?php echo LABEL_COUNTRY; ?> </label>
-						<?php $country->printSelectBox("shippingcountry","shippingcountry"); ?>
+						<?php echo $country->printSelectBox("shippingcountry","shippingcountry"); ?>
 					</p>
 				</div>
 				<div id="billingaddress"></div>

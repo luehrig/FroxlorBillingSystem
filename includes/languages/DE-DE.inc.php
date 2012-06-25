@@ -13,6 +13,7 @@ define('PAGE_TITLE_LOGIN_BACKEND','Anmeldung für Shopeinstellungen');
 define('PAGE_TITLE_SHOPMAINTENANCE_BACKEND','Shopeinstellungen');
 
 
+
 /* general texts */
 define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
 
@@ -31,7 +32,7 @@ define('LABEL_EMAIL','eMail Adresse');
 define('LABEL_PASSWORD','Passwort');
 define('LABEL_PASSWORDAGAIN','Passwort wiederholen');
 define('LABEL_STREET','Straße');
-define('LABEL_STREETNUMBER','Hausnummer');
+define('LABEL_STREETNUMBER','Hausnr.');
 define('LABEL_POSTCODE','Postleitzahl');
 define('LABEL_CITY','Ort');
 define('LABEL_COUNTRY','Land');
@@ -44,6 +45,8 @@ define('FIELDSET_CUSTOMER_CONTACT_INFORMATION','Kontaktdaten');
 define('FIELDSET_CUSTOMER_ADDRESS_INFORMATION','Adressdaten');
 define('FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION','Lieferadresse');
 define('FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION','Rechnungsadresse');
+
+
 
 
 define('SELECT_CUSTOMER_GENDER_MALE','Herr');
@@ -153,6 +156,7 @@ define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','Rechnung %d');
 
 /* help / contact */
 define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetreiber gesendet!');
+
 define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den Shopbetreiber');
 define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
 

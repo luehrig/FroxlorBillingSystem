@@ -19,10 +19,17 @@ if(!db_backend_user_is_logged_in( session_id() )) {
 }
 
 
+
 // // // detect preferred browser language if language is not available use the default language from shop customizing
  $site_language = language::getBrowserLanguage();
 
  include_once '../includes/languages/'. strtoupper($site_language) .'.inc.php';
+
+
+// detect preferred browser language if language is not available use the default language from shop customizing
+$site_language = language::getBrowserLanguage();
+
+
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
@@ -42,6 +49,7 @@ if(!db_backend_user_is_logged_in( session_id() )) {
 </head>
 <body>
 <div class="header">
+
 	<img ID="logo" src="../images/fcloud.png">
 	
  	<div class="header_right">
@@ -49,14 +57,4 @@ if(!db_backend_user_is_logged_in( session_id() )) {
 		<div ID="admin_welcome">Herzlich Willkommen im internen Bereich für den Shopbetreiber!
 		</div>
 	</div>
-
-<!--	
-
-	<div id="header_welcome">
-		<?php echo MSG_BACKEND_WELCOME;?>
-	</div>
-	
-	<a href="#" id="header_logout"><?php echo BUTTON_LOGOUT_BACKEND; ?></a>
------>
-	
 </div>

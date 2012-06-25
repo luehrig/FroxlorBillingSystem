@@ -61,11 +61,10 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 		<?php echo PAGE_TITLE_REGISTRATION; ?>
 	</h1>
 	<div id="messagearea"></div>
-	<form method="post" action="#" id="registrationform"
+	<form method="post" action="#" id="registrationform" class="registrationform"
 		accept-charset=utf-8>
-		<div class="registrationform">
 			<fieldset>
-				<legend id="bla">
+				<legend>
 					<?php echo FIELDSET_GENERAL_INFORMATION; ?>
 				</legend>
 				<p>
@@ -83,22 +82,18 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 							<?php echo SELECT_GENDER_FEMALE; ?>
 						</option>
 					</select>
-				</p>
-				<p>
 					<label for="title"><?php echo LABEL_TITLE; ?> </label> <input
 						type="text" id="title" name="title">
 				</p>
 				<p>
-					<label for="company"><?php echo LABEL_COMPANY; ?> </label> <input
-						type="text" id="company" name="company">
-				</p>
-				<p>
 					<label for="first_name"><?php echo LABEL_FIRST_NAME; ?> </label> <input
 						type="text" id="first_name" name="first_name" rel="mandatory">
-				</p>
-				<p>
 					<label for="last_name"><?php echo LABEL_LAST_NAME; ?> </label> <input
 						type="text" id="last_name" name="last_name" rel="mandatory">
+				</p>
+				<p>
+					<label for="company"><?php echo LABEL_COMPANY; ?> </label> <input
+						type="text" id="company" name="company">
 				</p>
 				<br>
 				<p>
@@ -158,8 +153,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 					</p>
 				</div>
 				<div id="billingaddress"></div>
-		
-		</div>
+
 		</fieldset>
 
 		<input type="reset" id="reset" name="reset"> <input type="submit"

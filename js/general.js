@@ -405,12 +405,14 @@ $(function() {
 		$(this).addClass("active");
 	});
 	
+
 	// sets current custermenu active 
 	$("body").on("click", "a[class=cm]", function(){
 		$("a").removeClass("active");
 		$(this).addClass("active");
 	});
 	
+
 	// send email to admin
 	$("body").on("click", "input[id=send_email]", function() {
 				

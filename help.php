@@ -2,6 +2,7 @@
 include_once 'configuration.inc.php';
 require PATH_CLASSES .'cl_language.php';
 require PATH_CLASSES .'cl_customer.php';
+
 require PATH_CLASSES .'cl_customizing.php';
 
 require 'functions/database.php';

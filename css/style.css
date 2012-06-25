@@ -472,26 +472,63 @@ legend
 
 
 /* --------------- Registration Formular ------------------------------ */
-.registrationform label{
-	margin-left: 10px;
-	width: 10em;
-    display: block;
-    float: left;
-	
+.registrationform{
+	text-align: left;
 }
-
-.registrationform input{
-
-}
-
-.registrationform select{
-	
-}
-
 .registrationform legend{
 	font-weight: bold;
 }
-
+.registrationform label{
+	margin-left: 10px;
+	width: 7em;
+    float: left;	
+}
+.registrationform label[for="title"]{
+	float: none;
+	position: absolute;
+	left: 420px;
+}
+.registrationform input[id="title"]{
+	position: absolute;
+	left: 520px;
+}
+.registrationform select[id="gender"]{
+	
+}
+.registrationform label[for="last_name"]{
+	float: none;
+	position: absolute;
+	left: 420px;
+}
+.registrationform input[id="last_name"]{
+	position: absolute;
+	left: 520px;
+}
+.registrationform input[id="email"]{
+	width: 15em;
+}
+.registrationform label[class="streetnumber"]{
+	float: none;
+	position: absolute;
+	left: 420px;
+}
+.registrationform input[class="streetnumber"]{
+	position: absolute;
+	left: 520px;
+	width: 6em;
+}
+.registrationform label[class="city"]{
+	float: none;
+	position: absolute;
+	left: 420px;
+}
+.registrationform input[class="city"]{
+	position: absolute;
+	left: 520px;
+}
+.registrationform input[class="postcode"]{
+	width: 5em;
+}
 .registrationform fieldset{
 	margin-top: 1em;
 }
@@ -657,7 +694,6 @@ legend
 }
 
 
-
 /*---------------- contact form --------------------------------------*/
 .contact_message{
 	padding: 10px;
@@ -701,7 +737,10 @@ legend
 	width: 100px;
 	margin-top: 5px;
 }
+
 #register{
+
+
 	font-style: italic;
 	text-decoration: underline;
 	margin-left: 20px;

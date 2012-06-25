@@ -31,7 +31,7 @@ define('LABEL_EMAIL','eMail Adresse');
 define('LABEL_PASSWORD','Passwort');
 define('LABEL_PASSWORDAGAIN','Passwort wiederholen');
 define('LABEL_STREET','Straße');
-define('LABEL_STREETNUMBER','Hausnummer');
+define('LABEL_STREETNUMBER','Hausnr.');
 define('LABEL_POSTCODE','Postleitzahl');
 define('LABEL_CITY','Ort');
 define('LABEL_COUNTRY','Land');
@@ -84,7 +84,6 @@ define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
 define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
 define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
-
 
 /* message texts */
 define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
@@ -271,7 +270,11 @@ define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server
 define('ERROR_INVOICE_NOT_PAYED','Die Rechnung %d ist noch nicht bezahlt!');
 
 
+
 define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Status von dem Produkt wurde erfolgreich geändert.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht');
+
+define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetreiber gesendet!');
+
 
 ?>
