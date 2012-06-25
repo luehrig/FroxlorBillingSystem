@@ -53,7 +53,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 <body>
 <div id="messagearea"></div> 
 <div class="colorboxwrapper">   
-	<form method="post" action="#" class="loginform" accept-charset=utf-8>
+	<form method="post" action="#" id="loginform" class="loginform" accept-charset=utf-8>
 	    <fieldset>
 	    	<legend>
 	    		<img ID="minilogo" src="images/logos/logo.png">

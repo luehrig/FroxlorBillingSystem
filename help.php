@@ -21,7 +21,7 @@ echo '
 
 <div class="colorboxwrapper">
 	<div class="contact">
-		<form method="post" action="#" class="contact_message" accept-charset=utf-8>
+		<form method="post" action="#" id="contact_message" class="contact_message" accept-charset=utf-8>
 			<fieldset>
 				<legend>
 					<img ID="minilogo" src="images/logos/logo.png">
