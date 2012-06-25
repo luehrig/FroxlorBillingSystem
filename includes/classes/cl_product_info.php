@@ -8,7 +8,7 @@ class productInfo{
 	
 	public function __construct($product_id = NULL, $attribute_id = NULL){
 		if($product_id != NULL AND $attribute_id != NULL){
-			$product_info_data = $this->getData();
+			$product_info_data = $this->getData($product_id, $attribute_id);
 			$this->product_id = $product_info_data['product_id'];
 			$this->attribute_id = $product_info_data['attribute_id'];
 			$this->value = $product_info_data['value'];
@@ -45,6 +45,15 @@ class productInfo{
 		return db_query($sql_insert_statement);
 	}
 	
+	public function delete(){
+		if($this->product_id != NULL AND $this->attribute_id != NULL){
+			$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_INFO .' WHERE product_id = "'. (int) $this->product_id.'" AND attribute_id = "'. $this->attribute_id. '"';
+			return db_query($sql_delete_statement);
+		}
+		else return false;
+		
+	}
+		
 	public function getData($product_id, $attribute_id){
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_INFO .' WHERE product_id = "'. (int) $product_id.'" 
 																		AND attribute_id = "'. $attribute_id .'"';

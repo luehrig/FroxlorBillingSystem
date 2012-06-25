@@ -117,6 +117,20 @@ switch($action) {
 		echo '</fieldset>';
 		echo '</div>';
 		break;
+		
+	case 'delete_product_info':
+		$product_id = $_POST['product_id'];
+		$attribute_id = $_POST['attribute_id'];
+		
+		$product_info = new productInfo($product_id, $attribute_id);
+		
+		if($product_info->delete()){
+			echo INFO_MESSAGE_PRODUCT_INFO_SUCCESSFULLY_DELETED;
+		}
+		else{
+			echo INFO_MESSAGE_DB_ACTION_FAILED;
+		}
+		break;
 
 	case 'edit_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
@@ -337,6 +351,31 @@ switch($action) {
 		echo '</div>';
 		break;
 
+	case 'save_changed_product_attribute':
+		$product_attribute_id = $_POST['product_attribute_id'];
+		$language_id = $_POST['language_id'];
+		$description = $_POST['description'];
+		$changed_atribute_data = array("language_id"=>$language_id, "description"=>$description);
+		
+		if(productAttribute::productAttributeExists($changed_atribute_data, $product_attribute_id)){
+			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS;
+		}
+		else{
+			$product_attribute = new productAttribute($product_attribute_id, $language_id);
+			;
+			
+			if($product_attribute->update($description)){
+				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_SUCCESSFUL;
+			}
+			else{
+				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED;
+			}
+				
+			
+		}
+		
+		break;
+		
 
 	case 'get_server_overview':
 		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
