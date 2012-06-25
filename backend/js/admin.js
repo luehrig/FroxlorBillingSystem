@@ -186,8 +186,26 @@ $(function() {
 		return false;
 	});
 	
-		
-		
+		// delete attribute in product info
+		$("body").on("click", "a[id=delete_product_attribute]", function() {
+			
+			var primaryKeysFromPhp = $(this).attr('rel');
+			var primaryKeys = primaryKeysFromPhp.split(",");
+			
+			var attribute_id = primaryKeys[0];
+			var product_id = primaryKeys[1];
+			
+			
+			$.ajax({
+				type: "POST",
+				url: "logic/process_action.php",
+				data: { action: "delete_product_info", product_id: product_id, attribute_id: attribute_id}
+			}).done(function( msg ) {
+				$('.content').html( msg );
+			});
+			
+			return false;
+		});	
 		
 		
 	// open translate Product form
@@ -341,6 +359,28 @@ $(function() {
 		
 		return false;
 	});	
+	
+	
+	// save changed attribute
+	$("body").on("click", "input[type=submit][id=submit_edit_product_attribute]", function() {
+		
+		var product_attribute_id = $('input[type=hidden][id=product_attribute_id]').val()
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
+		var description = $('textarea[id=description]').val();
+	
+		
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "save_changed_product_attribute", product_attribute_id: product_attribute_id, language_id: language_id, description: description,}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});		
+	
 
 	
 	// get overview page with all servers
