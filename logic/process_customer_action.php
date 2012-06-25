@@ -27,25 +27,25 @@ require PATH_FUNCTIONS .'general.php';
 
 include_once PATH_INCLUDES .'database_tables.php';
 
-// check if customer is logged in
-if(customer::isLoggedIn( session_id() )) {
-	
-	$customizing = new customizing( language::getBrowserLanguage() );
+$customizing = new customizing( language::getBrowserLanguage() );
 
-	if(!isset($language_id)) {
-		// check if language was handed over
-		if(isset($_POST['language_id'])) {
-			$language_id = language::ISOTointernal($_POST['language_id']);
-			if($language_id == null) {
-				$language_id = language::ISOTointernal( language::getBrowserLanguage() );
-			}
-		}
-		else {
+if(!isset($language_id)) {
+	// check if language was handed over
+	if(isset($_POST['language_id'])) {
+		$language_id = language::ISOTointernal($_POST['language_id']);
+		if($language_id == null) {
 			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
 		}
 	}
+	else {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+	}
+}
 
-	include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
+include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
+
+// check if customer is logged in
+if(customer::isLoggedIn( session_id() )) {
 
 	$action = $_POST['action'];
 
@@ -206,6 +206,7 @@ if(customer::isLoggedIn( session_id() )) {
 
 else {
 	echo WARNING_NOT_LOGGED_IN;
+	
 }
 
 ?>
