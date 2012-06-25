@@ -33,6 +33,7 @@ require PATH_CLASSES .'cl_customizing.php';
 <script language="javascript" src="js/admin.js"></script>
 </head>
 <body>
+
 <div id="messagearea"></div>    
 <form method="post" action="#" id="loginformbackend" accept-charset=utf-8>
     <fieldset>

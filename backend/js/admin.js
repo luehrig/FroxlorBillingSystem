@@ -700,6 +700,12 @@ $(function() {
 		return false;
 	});
 	
+	// sets current custermenu active 
+	$("body").on("click", "a[class=cm]", function(){
+		$("a").removeClass("active");
+		$(this).addClass("active");
+	});
+	
 	// alert message with
 });
 
