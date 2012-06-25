@@ -29,7 +29,7 @@ define('LABEL_EMAIL','eMail Adresse');
 define('LABEL_PASSWORD','Passwort');
 define('LABEL_PASSWORDAGAIN','Passwort wiederholen');
 define('LABEL_STREET','Straße');
-define('LABEL_STREETNUMBER','Hausnummer');
+define('LABEL_STREETNUMBER','Hausnr.');
 define('LABEL_POSTCODE','Postleitzahl');
 define('LABEL_CITY','Ort');
 define('LABEL_COUNTRY','Land');

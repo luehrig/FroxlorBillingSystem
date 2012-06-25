@@ -74,7 +74,6 @@ class customer {
 		else {
 			$billing_address_data = $shipping_address_data;
 		}
-		
 			
 		$return_string = '<div id="'. $container_id. '">';
 		
@@ -92,7 +91,7 @@ class customer {
 		$return_string = $return_string.' '.$this->title.' '.$this->first_name.' '.$this->last_name. // name
 		'<br>'.$billing_address_data['street'].' '.$billing_address_data['street_number']. // street + number
 		'<br>'.$billing_address_data['post_code'].' '.$billing_address_data['city']. // post code + city
-		'<br>'. $billing_address_data['country_code'] .'</td></tr>'. // country
+		'<br>'. $country->getCountryName($billing_address_data['country_code']) .'</td></tr>'. // country
 		'<tr><th>'.LABEL_S_ADDRESS.': </th><td>';
 		if($shipping_address_data == $shipping_address_data){ // if billing address equals shipping address show checked checkbox
 			$return_string = $return_string.'<input type="checkbox" name="same_adress" readonly checked>'. LABEL_SAME_ADRESS;
@@ -101,7 +100,7 @@ class customer {
 			$return_string = $return_string.
 			$shipping_address_data['street'].' '.$shipping_address_data['street_number']. // street + number
 			'<br>'.$shipping_address_data['post_code'].' '.$shipping_address_data['city']. // post code + city
-			'<br>'.'</td></tr>'; // country
+			'<br>'.$country->getCountryName($shipping_address_data['country_code']).'</td></tr>'; // country
 		}
 		$return_string = $return_string.
 		'<tr><th>'.LABEL_TELEPHONE.': </th><td>'.LABEL_TEL.': '.$this->telephone.
