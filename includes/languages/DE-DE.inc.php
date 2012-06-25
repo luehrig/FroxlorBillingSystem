@@ -102,6 +102,7 @@ define('WARNING_SERVER_NOT_ABLE_TO_FREE','Bei der Freigabe des Produktes auf dem
 define('WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS','Um Fortzufahren ist es nötig, dass Sie unsere allgemeinen Geschäftsbedingungen akzeptieren!');
 define('WARNING_INVOICE_NOT_AUTHORIZED','Sie sind nicht berechtigt diese Rechnung zu öffnen!');
 define('WARNING_DELETE_CONTRACT_CONFIRM','Wollen Sie den Vertrag wirklich kündigen?');
+define('WARNING_REGISTRATION_RESET_FORM_CONFIRM','Wollen Sie wirklich alle Eingaben löschen?');
 
 define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
 

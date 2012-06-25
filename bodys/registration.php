@@ -149,7 +149,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 		</fieldset>
 		</div>
 
-		<input type="reset" id="reset" name="reset"> <input type="submit"
+		<input type="reset" id="clear" name="clear"> <input type="submit"
 			id="register" name="register"
 			value="<?php echo BUTTON_CREATE_ACCOUNT; ?>">
 	</div>	
