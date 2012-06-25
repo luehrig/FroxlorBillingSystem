@@ -19,8 +19,8 @@ require_once '../includes/classes/cl_country.php';
 
 $country = new country( get_default_language() );
 
-require_once PATH_CLASSES .'cl_customizing.php';
-require_once PATH_CLASSES .'cl_language.php';
+require_once '../includes/classes/cl_customizing.php';
+require_once '../includes/classes/cl_language.php';
 
 /* if(!isset($_SESSION['customizing'])) { */
 $customizing = new customizing( get_default_language() );
