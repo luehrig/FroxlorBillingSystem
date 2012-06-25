@@ -34,7 +34,7 @@ class notice {
 		$sql_statement = 'DELETE FROM '. TBL_NOTICE .' WHERE notice_id = '. (int) $this->notice_id;
 		db_query($sql_statement);
 	}
-
+	
 	// create new notice for contract
 	public static function create($contract_id, $termination_date = NULL) {
 		// use current date for termination date
