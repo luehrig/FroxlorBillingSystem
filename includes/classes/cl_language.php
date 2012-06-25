@@ -89,7 +89,7 @@ class language {
 		}
 		
 		// return default customizing language if no suitable language was found
-// 		return language::internalToISO( customizing::get_default_language() );
+		return language::internalToISO( customizing::get_default_language() );
 	}
 	
 	// translate internal language id to ISO 639-1 code
