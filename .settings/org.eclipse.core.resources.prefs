@@ -2,12 +2,10 @@
 <<<<<<<=HEAD
 >>>>>>>=0ed47e3c6acfa7a56fea49bb15b2b4d5c4e635a9
 eclipse.preferences.version=1
-encoding//backend/includes/languages/DE.inc.php=UTF-8
 encoding//backend/js/admin.js=UTF-8
 encoding//backend/logic/process_action.php=UTF-8
 encoding//bodys/registration.php=UTF-8
 encoding//css/style.css=UTF-8
-encoding//customercenter/login.php=UTF-8
 encoding//includes/classes/cl_country.php=UTF-8
 encoding//includes/classes/cl_customer.php=UTF-8
 encoding//includes/classes/cl_invoicepdf.php=UTF-8

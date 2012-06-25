@@ -1,1 +1,3 @@
-<div class="menu">Men&uuml</div>
+<div class="mainmenu">
+	<ul></ul>
+</div>

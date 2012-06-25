@@ -52,6 +52,7 @@ $cart = new shoppingcart(session_id());
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
 	<div class="header_right">
+
 		<a href="#!page=shoppingcart&lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 		<br>
 		<div ID="customer_header">	
@@ -66,5 +67,12 @@ $cart = new shoppingcart(session_id());
 			}	
 		?>
 		</div>
+		<div class="language_switch">
+			<button class="language_button active" ID="german"> deutsch
+			</button>
+			<button class="language_button"  ID="english"> englisch
+			</button>
+		</div>
+
 	</div>
 </div>

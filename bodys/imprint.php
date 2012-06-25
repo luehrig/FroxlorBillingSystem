@@ -1,8 +1,9 @@
 <?php
 $content = new content(1,$language_id); 
 
-echo'
-<h1>'.$content->getTitle() .'</h1>
+?>
+
+<h1><?php echo VIEW_MENU_IMPRINT; ?></h1>
 <div class="boxwrapper">
 
 	<div class=" whitebox box_2inRow">
@@ -36,5 +37,3 @@ echo'
 	</div>
 	
 </div>
-';
-?>

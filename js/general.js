@@ -364,9 +364,19 @@ $(function() {
 
 		if ($(detailboxid).is(":hidden")) {
 			$(detailboxid).slideDown("slow");
+			$(this).text("weniger");
 		} else {
 			$(detailboxid).slideUp();
+			$(this).text("mehr");
 		}
+	});
+	
+	// switches language of website
+	$("body").on("click", "button[class=language_button]", function() {
+		$("button").removeClass("active");
+		$(this).addClass("active");	
+		
+		
 	});
 
 	// add product from product overview to cart
@@ -389,12 +399,20 @@ $(function() {
 
 	});
 	
+	// sets current mainmenu active
 	$("body").on("click", "a[class=nav]", function(){
-		
 		$("a").removeClass("active");
 		$(this).addClass("active");
 	});
 	
+
+	// sets current custermenu active 
+	$("body").on("click", "a[class=cm]", function(){
+		$("a").removeClass("active");
+		$(this).addClass("active");
+	});
+	
+
 	// send email to admin
 	$("body").on("click", "input[id=send_email]", function() {
 				
