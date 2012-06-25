@@ -411,7 +411,7 @@ class product {
 					'<input type="text" id="title" name="title" value="'. $this->title .'"><br>'.
 					'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
 					'<input type="text" id="contract_periode" name="contract_periode" value="'. $this->contract_periode .'"><br>'.
-					'<label for="describtion">'. LABEL_PRODUCT_DESCRIPTION .'</label><br>'.
+					'<label for="description">'. LABEL_PRODUCT_DESCRIPTION .'</label><br>'.
 					'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>'.
 					'<label for="quantity">'. LABEL_PRODUCT_QUANTITY .'</label>'.
 					'<input type="text" id="quantity" name="quantity" value="'. $this->quantity .'"><br>'.
@@ -431,12 +431,13 @@ class product {
 				'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>'.
 				'<input type="hidden" id = "language_id" name = language_id value = '. $this->language_id .'>';
 		foreach($attr_for_product as $att_id=>$att_val){
+			
+			$primary_keys = $att_id.','.$this->product_id;
 			$return_string = $return_string.
 					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
 					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
-					
 					'<input type="text" id="att_val" name="att_val" value="'. $att_val .'">'.
-					'<a href="#" id="delete_product_attribute">'. LINK_DELETE . '</a><br>';
+					'<a href="#" id="delete_product_attribute" rel="'. $primary_keys .'">'. LINK_DELETE . '</a><br>';
 		}
 		return $return_string;		
 	}
