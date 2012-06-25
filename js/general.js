@@ -359,7 +359,6 @@ $(function() {
 	$("body").on("click", "button[class=buttonlayout_more]", function() {
 		// get product id from rel tag
 		var product_id = $(this).attr('rel');
-
 		var detailboxid = '#book' + product_id;
 
 		if ($(detailboxid).is(":hidden")) {

@@ -32,20 +32,23 @@ foreach($product_info_map as $atribute_id => $Value){
 }
 
 $numberOfProducts = 7;
-$index = 1;
+$index = 0;
 
 
 
 
 echo '
-	<h1><?php echo VIEW_MENU_PRODUCTS; ?></h1>
+	<h1>'.VIEW_MENU_PRODUCTS.'</h1>
 	<div class="boxwrapper">
 ';
 
 
 while ($index <= $numberOfProducts) {
-	
+	if($index % 3 == 0){
+		echo'<div class="productwrapper"> ';
+	}
 echo'
+
 	<div class="whitebox box_3inRow">
 		<img ID="littlelogo" src="images/logos/logo.png">
 		<fieldset>
@@ -73,6 +76,10 @@ echo'
 	</div>
 
 ';
+
+	if($index % 3 == 0){
+		echo'</div> ';
+	}
 	$index++;
 }
 echo'</div>'
