@@ -69,7 +69,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	</form>
 	
 
-	<div id="register">
+	<div id="link_register">
 		<a href="#!page=registration&lang=" id="registration" rel="<?php echo $site_language; ?>"><span><?php echo LINK_REGISTRATION; ?></span></a>
 	</div>
 	
