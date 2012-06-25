@@ -20,9 +20,20 @@ class contract {
 	/* public section */
 	// TODO:
 	public function terminate() {
-
+		$sql_statement = 'DELETE FROM '. TBL_CONTRACT .' WHERE contract_id = '. (int) $this->contract_id;
+		$query = db_query($sql_statement);
+		
+		// if deletion was successful return null object
+		if( $query != NULL ) {
+			return null;
+		}
 	}
 
+	public function extend() {
+		$sql_statement = 'UPDATE '. TBL_CONTRACT .' SET expiration_date = DATE_ADD( NOW() , INTERVAL '. $this->expiration_date .' DAY) WHERE contract_id = '. (int) $this->contract_id;
+		db_query($sql_statement);
+	}
+	
 	public function getExpirationDate() {
 		return $this->expiration_date;
 	}
@@ -41,7 +52,7 @@ class contract {
 				// if one order position has a quantity greater 1, create one contract for each of it
 				for ($i = 1; $i <= $order_position['quantity']; $i++) {
 
-					$insert_statement = 'INSERT INTO '. TBL_CONTRACT .' (customer_id, order_id, order_position_id, invoice_id, start_date, expiration_date, contract_periode) VALUES ('. $invoice->getCustomerID() .', '. $order->getOrderID() .', '. $order_position['order_position_id'] .', '. $invoice_id .', NOW() , DATE_ADD(NOW(), INTERVAL '. (int) $order_position['contract_periode'] .' DAY), '. (int) $order_position['contract_periode'] .')';
+					$insert_statement = 'INSERT INTO '. TBL_CONTRACT .' (customer_id, order_id, order_position_id, invoice_id, start_date, expiration_date, contract_periode) VALUES ('. $invoice->getCustomerID() .', '. $order->getOrderID() .', '. $order_position['order_position_id'] .', '. $invoice_id .', NOW() , DATE_ADD(NOW(), INTERVAL '. (int) $order_position['contract_periode'] .' MONTH), '. (int) $order_position['contract_periode'] .')';
 					db_query($insert_statement);
 
 				}
