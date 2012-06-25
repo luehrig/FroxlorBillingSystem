@@ -72,6 +72,7 @@ define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
 define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');
 define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
 define('WARNING_WRONG_CREDENTIALS','Die angegebenen Zugangsdaten sind nicht korrekt! Bitte prüfen Sie ihre Eingabe.');
+define('WARNING_NOT_LOGGED_IN','Sie sind nicht angemeldet oder ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an!');
 define('WARNING_CONTENT_NOT_FOUND','Die angeforderte Seite wurde nicht gefunden!');
 define('WARNING_SERVER_NO_SERVER_AVAILABLE','Für das gewählte Produkt steht aktuell leider kein passender Server zur Verfügung. Bitte wenden Sie sich an den Support.');
 define('WARNING_SERVER_NOT_ABLE_TO_ALLOCATE','Bei der Buchung des Produktes auf dem Server ist ein Fehler aufgetreten!');
