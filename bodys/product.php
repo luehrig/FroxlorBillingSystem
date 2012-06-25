@@ -1,7 +1,12 @@
-<?php 
-		
-$content = new content(1);
+<?php 	
+include_once '../configuration.inc.php';
 
+require_once PATH_CLASSES .'cl_product.php';
+require_once PATH_CLASSES .'cl_product_info.php';
+require_once PATH_CLASSES .'cl_product_attribute.php';
+
+$content = new content(1);
+//TODO: hier kommt ein Fehler! Fatal error: Class'produkt' not found
 // // new product($product_id, $language_id)
 // $product = new product(1, 1);
 

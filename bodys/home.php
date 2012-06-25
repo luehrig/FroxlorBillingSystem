@@ -2,6 +2,7 @@
 		
 $content = new content(2,$language_id);
 
+
 ?>
 
 <h1><?php echo VIEW_MENU_HOME; ?></h1>

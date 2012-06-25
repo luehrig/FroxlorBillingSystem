@@ -638,6 +638,7 @@ legend
 	
 }
 
+
 /*----------------------Backend--------------------------*/
 
 .admin_logout{
@@ -655,5 +656,55 @@ legend
 	margin-right:5px;
 }
 
+
+
+/*---------------- contact form --------------------------------------*/
+.contact_message{
+	padding: 10px;
+}
+.contact_message label{
+	width: 7em;
+    display: block;
+    float: left;
+}
+.contact_message input{
+	width: 200px;
+}
+.contact_message legend{
+	font-weight: bold;
+}
+.contact_message fieldset{
+	margin-top: 1em;
+}
+.contact_message input[type="radio"]{
+	width: 5px;
+}
+.contact_message textarea{
+	width: 310px;
+}
+.contact_message input[type="submit"]{
+	width: 100px;
+}
+/*---------------- login form --------------------------------------*/
+
+.loginform label{
+	width: 7em;
+    display: block;
+    float: left;
+    margin-bottom: 5px;
+}
+.loginform input{
+	width: 200px;
+	margin-bottom: 5px;
+}
+.loginform input[type="submit"]{
+	width: 100px;
+	margin-top: 5px;
+}
+#register{
+	font-style: italic;
+	text-decoration: underline;
+	margin-left: 20px;
+}
 
 

@@ -146,7 +146,7 @@ class order {
 	// load all order positions to order
 	private function loadOrderPositions($order_id, $language_id) {
 
-		$sql_statement = 'SELECT op.quantity, p.title AS product_title, p.contract_periode, p.description AS product_description, op.price, op.price * op.quantity AS amount FROM '. TBL_ORDER_POSITION .' AS op INNER JOIN '. TBL_PRODUCT .' AS p ON op.product_id = p.product_id WHERE op.order_id = '. (int) $order_id .' AND p.language_id = '. (int) $language_id;
+		$sql_statement = 'SELECT op.order_position_id, op.quantity, p.title AS product_title, p.contract_periode, p.description AS product_description, op.price, op.price * op.quantity AS amount FROM '. TBL_ORDER_POSITION .' AS op INNER JOIN '. TBL_PRODUCT .' AS p ON op.product_id = p.product_id WHERE op.order_id = '. (int) $order_id .' AND p.language_id = '. (int) $language_id;
 		$query = db_query($sql_statement);
 
 		// order positions found

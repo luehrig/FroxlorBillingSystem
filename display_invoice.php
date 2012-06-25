@@ -10,6 +10,8 @@ require_once PATH_FUNCTIONS .'general.php';
 
 include_once PATH_INCLUDES .'database_tables.php';
 
+require_once PATH_FUNCTIONS .'datetime.php';
+
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_currency.php';
