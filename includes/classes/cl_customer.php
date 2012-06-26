@@ -246,7 +246,7 @@ class customer {
 	
 	// delete customer from DB
 	public function delete($customer_id) {
-		$delete_statement = 'DELETE FROM '. TBL_CUSTOMER .' WHERE customer_id = '. (int) $customer_id;
+		$delete_statement = 'DELETE * FROM '. TBL_CUSTOMER .' AS cust WHERE cust.customer_id = '. (int) $customer_id;
 		$delete_query_result = db_query($delete_statement);
 		return $delete_query_result;
 		

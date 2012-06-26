@@ -12,8 +12,8 @@ $(function() {
 
 	$(document).ready(function() {
 		// code that is executed if page was loaded
+			
 	});
-
 	
 	// process login procedure for shop backend
 	$("body").on("click","form[id=loginformbackend] input[type=submit][id=login]", function() {
@@ -52,6 +52,8 @@ $(function() {
 		
 		return false;
 	});	
+	
+
 	
 	// set customizing fields editable
 	$('body').on("click","a[id=edit_customizing]", function() {
@@ -125,6 +127,47 @@ $(function() {
 		return false;
 		
 	});	
+	
+	
+	
+//	$("body").on("change", "select[id=language_selection])",(function(){
+//		var language_id = $('select[id=language_selection] option:selected').attr('id');
+//		alert('trigger me');
+//		$.ajax({
+//			type: "POST",
+//			url: "logic/process_action.php",
+//			data: { action: "open_product_editor", product_id: product_id , language_id: language_id}
+//		}).done(function( msg ) {
+//			$('.content').html( msg );
+//		});
+//		
+//		return false;
+//			
+//		}));	
+	
+//	$(".languageSelectBox").change(function(){
+//		  $(this).css("background-color","#FFFFCC");
+//		  alert('guguggs');
+//		}); 
+//	
+//	$('#language_selection').change(function(){
+//		$(this).find('option:selected').each(function () {
+//	    alert('triger me');
+//		});
+//	});
+//	
+//    $("#language_selection").change(function () {
+//        var str = "";
+//        $("select option:selected").each(function () {
+//              str += $(this).text() + " ";
+//              alert('BEispeil');
+//            });
+//        $("div").text(str);
+//      })
+//      .change();
+
+
+	
 	
 	// edit product
 	$("body").on("click", "input[type=submit][id=submit_edit_product]", function() {
@@ -748,5 +791,3 @@ $(function() {
 	
 	// alert message with
 });
-
-	
