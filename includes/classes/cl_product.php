@@ -389,6 +389,34 @@ class product {
 		}
 		return $language_id_array;
 	}
+	
+	public static function getAllActiveProducts($languageId){
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' AS p WHERE language_id = "'. $languageId .'" AND active = "1" ORDER BY p.product_id ASC';
+		$active_product_query = db_query($sql_select_statement);
+		
+		/*
+		 array(prod_id1 => array("title" => title1,
+								 "contract_periode" => contractPeriode1,
+								 "description" => description1,
+								 "quantity" => quantity1,
+								 "price" => price1),
+			   prod_id2 => array("title" => title2,
+								 "contract_periode" => contractPeriode2,
+								 "description" => description2,
+								 "quantity" => quantity2,
+								 "price" => price2))
+		*/
+		
+		$active_product_array = array();
+		while($data = db_fetch_array($active_product_query)){
+			$active_product_array[$data['product_id']] = array("title" => $data['title'],
+													   "contract_periode" => $data['contract_periode'],
+													   "description" => $data['description'], 
+													   "quantity" => $data['quantity'],
+													   "price" => $data['price']);
+		}
+		return $active_product_array;
+	}
 
 	// private section
 	
