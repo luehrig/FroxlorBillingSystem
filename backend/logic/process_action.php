@@ -362,7 +362,35 @@ switch($action) {
 		echo '</fieldset>';
 		echo '</div>';
 		break;
-			
+
+	case 'open_create_attribute_form':
+		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo productAttribute::printCreateAttributeForm(language::printLanguages());
+		echo '</fieldset>';
+		echo '</div>';
+		break;
+	
+	case 'create_new_attribute':
+		$language_id = $_POST['language_id'];
+		$description = $_POST['description'];
+		$product_attribute_data = array();
+		$product_attribute_data['product_attribute_id'] = NULL;
+		$product_attribute_data['language_id'] = $language_id;
+		$product_attribute_data['description'] = $description;
+		
+		if(productAttribute::descriptionAlreadyExists($language_id, $description)){
+			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS;
+		}
+		else{
+			if(productAttribute::create($product_attribute_data)){
+				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_SUCCESSFUL;
+			}
+			else{
+				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED;
+			}
+		}
+		break;
 
 	case 'open_product_attribute_editor':
 		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';

@@ -411,6 +411,41 @@ $(function() {
 		return false;
 	});	
 	
+	// open form to create new attribute
+	
+	$("body").on("click", "a[id=create_new_product_attribute]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_create_attribute_form"}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+		
+	// create new attribute
+	$("body").on("click", "input[type=submit][id=create_product_attribute]", function() {
+		
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
+		var description = $('textarea[id=description]').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "create_new_attribute", language_id: language_id, description: description}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+		
+	
+	
+	
 	// set customizing fields editable for product attributes
 	$("body").on("click", "a[id=edit_product_atrribute]", function() {
 		

@@ -17,15 +17,15 @@ class productAttribute{
 	
 	
 	
-	public static function create(){
+	public static function create($product_attribute_data){
 		
 		//create new product_attribute
-		if($product_attribute_data != NULL){
+		if($product_attribute_data['product_attribute_id'] == NULL){
 			$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT_ATTRIBUTE .'(language_id, description)
 			VALUES (
 			"'. $product_attribute_data['language_id'] .'",
-			"'. $product_attribute_data['description'] .'",)';
-			db_query($sql_insert_statement);
+			"'. $product_attribute_data['description'] .'")';
+			return db_query($sql_insert_statement);
 		}
 		
 		//tanslate product_attribute
@@ -34,8 +34,8 @@ class productAttribute{
 			VALUES (
 			"'. $product_attribute_data['product_attribute_id'] .'",
 			"'. $product_attribute_data['language_id'] .'",
-			"'. $product_attribute_data['description'] .'",)';
-			db_query($sql_insert_statement);
+			"'. $product_attribute_data['description'] .'")';
+			return db_query($sql_insert_statement);
 			
 		}
 	}
@@ -90,7 +90,18 @@ class productAttribute{
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
 		return $return_string;
-		
+	}
+	
+	public static  function printCreateAttributeForm($language_select_box, $container_id = 'new_product_form'){
+		$return_string = '<div id="'.$container_id.'">'.
+		'<form>'.'<fieldset>'.
+		'<label for="language_id">'. LABEL_PRODUCT_ATTRIBUTE_LANGUAGE .'</label><br> '.
+		$language_select_box.
+		'<label for="description">'. LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION .'</label><br>'.
+		'<textarea cols="20" rows="4" id="description" name="description" > </textarea><br>';
+		$return_string = $return_string . '<input type="submit" name="create_product_attribute" id="create_product_attribute" value="'. BUTTON_CREATE_PRODUCT_ATTRIBUTE .'">';
+		$return_string = $return_string . '</form></div>';
+		return $return_string;
 	}
 	
 	public static function productAttributeExists($product_attribute_data, $compareable_product_attribute_id){
@@ -146,6 +157,18 @@ class productAttribute{
 			$attribute_array[$data['product_attribute_id']] = $data['description'];
 		}
 		return $attribute_array;
+	}
+	
+	public static function descriptionAlreadyExists($language_id, $description){
+		$exists = false;
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE language_id = "'.$language_id.'" AND description = "'.$description.'"';
+		$info_query = db_query($sql_select_statement);
+		if(db_num_results($info_query) == 0){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 	
 	/*private section*/
