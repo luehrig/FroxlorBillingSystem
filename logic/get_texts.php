@@ -37,13 +37,19 @@ if(!isset($language_id)) {
 include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
 switch($action) {
-	
+
 	case 'get_message_delete_contract_confirm':
-		
+
 		echo WARNING_DELETE_CONTRACT_CONFIRM;
-		
-	break;
-	
+
+		break;
+
+	case 'get_message_reset_registration_form_confirm':
+
+		echo WARNING_REGISTRATION_RESET_FORM_CONFIRM;
+
+		break;
+
 }
 
 ?>

@@ -50,6 +50,10 @@ if(!isset($language_id)) {
 
 include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
+// if(customer::isLoggedIn( session_id() )) {
+// // 	$customer_id = $_SESSION['customer_id'];
+// }
+
 switch($action) {
 
 	// show home page if no specific action was handed over

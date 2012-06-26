@@ -238,13 +238,13 @@ class customer {
 	// update customer
 	public function update($customer_id, $customerData) {
 		// build sql update string from data array
-		$update_statement = 'UPDATE '. TBL_CUSTOMER .' AS cust SET ';
+		$update_statement = 'UPDATE '. TBL_CUSTOMER .' SET ';
 		
 		foreach ($customerData as $key => $value) {
-			$update_statement = $update_statement .'cust.'. $key .' = '. $value .' ';
+			$update_statement = $update_statement . $key .' = "'. $value .'" ';
 		}
 		
-		$update_statement = $update_statement .'WHERE cust.customer_id = '. (int) $customer_id;
+		$update_statement = $update_statement .'WHERE customer_id = '. (int) $customer_id;
 		
 		db_query($update_statement);
 	}
