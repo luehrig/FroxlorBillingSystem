@@ -399,7 +399,7 @@ class product {
 	}
 	
 	private function getFilledProductEditForm($language_select_box){
-		$return_string = '<form>'.'<fieldset>'.
+		$return_string = '<form name="myForm">'.'<fieldset>'.
 					'<legend>'.
 						'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
 						'<label for="product_id">'. $this->product_id.' </label>'.
@@ -417,7 +417,7 @@ class product {
 					'<input type="text" id="quantity" name="quantity" value="'. $this->quantity .'"><br>'.
 					'<label for="price">'. LABEL_PRODUCT_PRICE .'</label>'.
 					'<input type="text" id="price" name="price" value="'. $this->price .'"><br>';
-		
+					
 		//$return_string = $return_string . '</fieldset>';
 		return $return_string;
 	}

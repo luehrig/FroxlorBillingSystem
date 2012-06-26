@@ -24,7 +24,7 @@ class language {
 		
 			$return_string = '<div id="'. $div_containerid .'">';
 		
-			$return_string = $return_string .'<select id="language_selection" name="language_selection" size="1">';
+			$return_string = $return_string .'<select id="language_selection" class="languageSelectBox" name="language_selection" size="1">';
 			if($filter != NULL){		
 				while($data = db_fetch_array($language_query)) {
 	
