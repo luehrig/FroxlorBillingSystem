@@ -9,7 +9,7 @@ $(function() {
 	$("body").on("click",
 			"form[id=loginform] input[type=submit][id=ajaxlogin]", function() {
 
-				var email = $('input[type=text][id=email]').val();
+				var email = $('input[type=email][id=email]').val();
 				var password = $('input[type=password][id=password]').val();
 
 				// do ajax call. If login was successful redirect to customer
