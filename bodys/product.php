@@ -47,8 +47,8 @@ foreach ($active_product_array as $product_id => $product_data){
 	// return = array(atribute_id => descriptione);  
 	$existing_attributes = productAttribute::getAllExistingAttrByLang($language_id);
 	
-	foreach($product_info_map as $atribute_id => $value){
-		$attribute_value_map[$existing_attributes[$atribute_id]] = $value;
+	foreach($product_info_map as $attribute_id => $value){
+		$attribute_value_map[$existing_attributes[$attribute_id]] = $value;
 	}
 	
 	// @ Erol: Hier musst du dann die einzelnen divs für die einzelnen Produkte zusammenstellen
@@ -68,8 +68,8 @@ foreach ($active_product_array as $product_id => $product_data){
 			</legend>
 			<p>'.$product_data['description'].'</p>
 		</fieldset>
-		<button class="buttonlayout_buy" rel="'.$index.'">'.BUTTON_ADD_TO_CART.'</button>
-		<div id="book'.$index.'" class="slidebox">
+		<button class="buttonlayout_buy" rel="'.$product_id.'">'.BUTTON_ADD_TO_CART.'</button>
+		<div id="book'.$product_id.'" class="slidebox">
 			<fieldset>
 				<legend>
 					Details
@@ -89,7 +89,7 @@ foreach ($active_product_array as $product_id => $product_data){
 			</fieldset>
 		</div>
 	<!-- TODO: rel tag has to content the product id! -->
-	<button class="buttonlayout_more" rel="'.$index.'">'.BUTTON_MORE.'</button>
+	<button class="buttonlayout_more" rel="'.$product_id.'">'.BUTTON_MORE.'</button>
 	</div>
 	
 	';
