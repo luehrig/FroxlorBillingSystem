@@ -105,7 +105,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 				</legend>
 				<p>
 					<label for="email"><?php echo LABEL_EMAIL; ?> </label> <input
-						type="text" id="email" name="email" rel="mandatory">
+						type="email" id="email" name="email" rel="mandatory">
 				</p>
 				<p>
 					<label for="telephone"><?php echo LABEL_TELEPHONE; ?> </label> <input

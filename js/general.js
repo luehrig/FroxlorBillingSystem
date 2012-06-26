@@ -9,18 +9,38 @@ $(function() {
 	$("body").on("click", "a[class=nav]", function() {
 		var state = $(this).attr('id');
 		var lang = $('input[type=hidden][id=site_language]').val();
-		$.bbq.pushState('#!page=' + state + '&lang=' + lang);
-
+		//$.bbq.pushState('#!page=' + state + '&lang=' + lang);
+		$.bbq.pushState( state +'.html?lang='+ lang, 2);
+		
+		
 		return false;
 	});
 
+	/* $("body").on("click", "a[class=nav]", function() {
+		
+		var url = $(this).attr('id');
+		var lang = $('input[type=hidden][id=site_language]').val();
+		
+		loadContent(url, lang);
+		
+		return false;
+	});*/
+	
 	// Bind a callback that executes when document.location.hash changes.
 	$(window).bind("hashchange", function(e) {
-		var url = $.bbq.getState("!page");
+		//var url = $.bbq.getState("!page");
 		var lang = $.bbq.getState("lang");
 
+		var fragment = $.param.fragment();
+		
+		var newurl = fragment.substr(0, fragment.indexOf('.'));
+
+		if(newurl == '') {
+			newurl = 'home';
+		}
+		
 		// dynamic content loading
-		loadContent(url, lang);
+		loadContent(newurl, lang);
 
 	});
 
@@ -85,6 +105,10 @@ $(function() {
 								customerData[key] = $(this).val();
 							});
 
+							// get password
+							customerData['email'] = $(
+									'input[type=email][id=email]').val();
+							
 							// get password
 							customerData['password'] = $(
 									'input[type=password][id=password]').val();
@@ -170,7 +194,7 @@ $(function() {
 					"click",
 					"form[id=loginform] input[type=submit][id=login]",
 					function() {
-						var email = $('input[type=text][id=email]').val();
+						var email = $('input[type=email][id=email]').val();
 						var password = $('input[type=password][id=password]')
 								.val();
 
@@ -194,7 +218,7 @@ $(function() {
 										});
 
 						// reset input fields
-						$('input[type=text][id=email]').val('');
+						$('input[type=email][id=email]').val('');
 						$('input[type=password][id=password]').val('');
 
 						return false;

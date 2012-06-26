@@ -1,5 +1,7 @@
 <?php 	
-include_once '../configuration.inc.php';
+if(!isset($_GET['page'])) {
+	include_once '../configuration.inc.php';
+}
 
 
 require_once PATH_CLASSES .'cl_product.php';

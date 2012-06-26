@@ -3,10 +3,10 @@
 
 <div class="mainmenu">
 	<ul>
-	   <li><a href="#!page=home&lang=<?php echo $site_language; ?>" id="home" class="nav active"><span><?php echo VIEW_MENU_HOME; ?></span></a></li>
-	   <li><a href="#!page=products&lang=<?php echo $site_language; ?>" id="products" class="nav"><span><?php echo VIEW_MENU_PRODUCTS; ?></span></a></li>
-	   <li><a href="#!page=help&lang=<?php echo $site_language; ?>" class="lightbox"><span><?php echo VIEW_MENU_HELP; ?></span></a></li>
-	   <li><a href="#!page=imprint&lang=<?php echo $site_language; ?>" id="imprint" class="nav"><span><?php echo VIEW_MENU_IMPRINT; ?></span></a></li>
+	   <li><a href="home.html?lang=<?php echo $site_language; ?>" id="home" class="nav active"><span><?php echo VIEW_MENU_HOME; ?></span></a></li>
+	   <li><a href="products.html?lang=<?php echo $site_language; ?>" id="products" class="nav"><span><?php echo VIEW_MENU_PRODUCTS; ?></span></a></li>
+	   <li><a href="help.html?lang=<?php echo $site_language; ?>" class="lightbox"><span><?php echo VIEW_MENU_HELP; ?></span></a></li>
+	   <li><a href="imprint.html?lang=<?php echo $site_language; ?>" id="imprint" class="nav"><span><?php echo VIEW_MENU_IMPRINT; ?></span></a></li>
 	   
 	   
 	   <?php 

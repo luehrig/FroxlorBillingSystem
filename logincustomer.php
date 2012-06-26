@@ -60,7 +60,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	    		<?php echo FIELDSET_LOGIN_FORM_CUSTOMER; ?>
 	    	</legend>
 	    	<label for="email"><?php echo LABEL_EMAIL; ?></label>
-	    	<input type="text" id="email" name="email" rel="mandatory"><br>
+	    	<input type="email" id="email" name="email" rel="mandatory"><br>
 	    	<label for="password"><?php echo LABEL_PASSWORD; ?></label>
 	    	<input type="password" id="password" name="password" rel="mandatory">    	
 	 		

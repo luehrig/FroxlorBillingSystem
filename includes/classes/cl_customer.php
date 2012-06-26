@@ -241,8 +241,11 @@ class customer {
 		$update_statement = 'UPDATE '. TBL_CUSTOMER .' SET ';
 		
 		foreach ($customerData as $key => $value) {
-			$update_statement = $update_statement . $key .' = "'. $value .'" ';
+			$update_statement = $update_statement . $key .' = "'. $value .'", ';
 		}
+		
+		// delete lasst comma to prevent issues with WHERE clausel
+		$update_statement = substr($update_statement, 0, strlen($update_statement)-2 );
 		
 		$update_statement = $update_statement .'WHERE customer_id = '. (int) $customer_id;
 		

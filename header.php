@@ -44,7 +44,6 @@ $cart = new shoppingcart(session_id());
 <script language="javascript" src="js/general.js"></script>
 <script language="javascript" src="js/jquery.ba-bbq.min.js"></script>
 
-<script language="javascript" src="../js/customercenter.js"></script>
 <script language="javascript" src="js/customercenter.js"></script>
 
 </head>
@@ -53,7 +52,7 @@ $cart = new shoppingcart(session_id());
 	<img ID="logo" src="images/fcloud.png">
 	<div class="header_right">
 
-		<a href="#!page=shoppingcart&lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
+		<a href="shoppingcart.html?lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 		<br>
 		<div ID="customer_header">	
 		<div ID="customer_header_ajax"></div>

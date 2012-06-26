@@ -5,9 +5,9 @@
  * 
  * receive special masked url and print content as static page
  */
-if(isset($_GET['_escaped_fragment_'])) {
+if(isset($_GET['page'])) {
 	
-	$action = 'show_'. substr($_GET['_escaped_fragment_'], 0);
+	$action = 'show_'. substr($_GET['page'], 0);
 	
 	if(isset($_GET['lang'])) {
 		$language_id = language::ISOTointernal($_GET['lang']);

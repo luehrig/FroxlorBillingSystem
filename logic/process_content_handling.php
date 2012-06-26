@@ -1,6 +1,7 @@
 <?php
-
-include_once '../configuration.inc.php';
+if(!isset($_GET['page'])) {
+	include_once '../configuration.inc.php';
+}
 
 require_once PATH_EXT_LIBRARIES .'fpdf17/fpdf.php';
 require_once PATH_EXT_LIBRARIES .'phpmailer/class.phpmailer.php';
@@ -99,18 +100,18 @@ switch($action) {
 		echo '<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
 
 		echo '<div class="message_box"></div>';
-		
+
 		echo '<a href="#!page=checkout_step4&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 
 		break;
 
-	// message that customer has to accept terms
+		// message that customer has to accept terms
 	case 'show_alert_accept_terms':
 
 		echo WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS;
-		
-	break;
-		
+
+		break;
+
 		// show address information
 	case 'show_checkout_step4':
 
@@ -123,38 +124,38 @@ switch($action) {
 	case 'show_checkout_step5':
 
 		echo HEADING_ORDER_OVERVIEW;
-		
+
 		$cart = new shoppingcart(session_id());
 		echo $cart->printCart();
 
 		echo '<a href="#!page=save_order&lang='. language::internalToISO($language_id) .'" id="save_order" class="nonav">'. BUTTON_CHECKOUT_SEND_ORDER .'</a>';
-		
+
 		break;
 
-	// show info page to say "your order has been send successfully"
+		// show info page to say "your order has been send successfully"
 	case 'show_order_received':
-		
-			$customizing = new customizing();
-		
-			$cart = new shoppingcart(session_id());			
-			$cart_products = $cart->getProducts();
+
+		$customizing = new customizing();
+
+		$cart = new shoppingcart(session_id());
+		$cart_products = $cart->getProducts();
 			
-			$customer = new customer($_SESSION['customer_id']);
+		$customer = new customer($_SESSION['customer_id']);
 			
-			$order = order::create($_SESSION['customer_id'], $customer->getDefaultShippingAddress(), NULL, NULL, NULL, $cart_products);
-		
-			$invoice = invoice::create($_SESSION['customer_id'], NULL, NULL, $order->getOrderID(), NULL, $customizing->getCustomizingValue('business_payment_default_currency') , $customizing->getCustomizingValue('business_payment_default_tax'));
-			
-			
-			$invoice->sendInvoice( );
+		$order = order::create($_SESSION['customer_id'], $customer->getDefaultShippingAddress(), NULL, NULL, NULL, $cart_products);
+
+		$invoice = invoice::create($_SESSION['customer_id'], NULL, NULL, $order->getOrderID(), NULL, $customizing->getCustomizingValue('business_payment_default_currency') , $customizing->getCustomizingValue('business_payment_default_tax'));
 			
 			
-			echo 'Ihre Bestellung wurde erfolgreich an unser Team übermittelt!';
-		
-			// delete cart with ordered products
-			shoppingcart::deleteCart(session_id());
-		
-			break;
+		$invoice->sendInvoice( );
+			
+			
+		echo 'Ihre Bestellung wurde erfolgreich an unser Team übermittelt!';
+
+		// delete cart with ordered products
+		shoppingcart::deleteCart(session_id());
+
+		break;
 			
 	case 'show_imprint':
 
