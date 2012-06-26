@@ -39,6 +39,17 @@ switch($action) {
 		
 	break;
 	
+	case 'update_customer':
+		$customerData = $_POST['customerData'];
+		$customer_id = $_POST['customer_id'];
+	
+		$customer = new customer($customer_id);
+		$customer->update($customer_id, $customerData);
+		
+		echo MSG_CHANGES_SAVED;
+	
+		break;
+	
 }
 
 ?>

@@ -182,11 +182,22 @@ switch($action) {
 		<li><a class="cm" href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
 		</ul>
 		</div>';
-
-		echo '<div class="customer_content_container">'.
+		
+		echo '<div class="whitebox">';
+		echo '<div class="cust_data">';
+		
+		// message area
+		echo '<div class="messagearea">'; 
+		// error message area
+		echo '<div id="error_msg_area">'.'</div>';
+		echo '</div>';
+		
+		echo '<div class="customer_content_container">';
 	 		/* content depends on menu click */
-		'</div>';
-
+		
+		echo '</div>';
+		echo '</div>';
+		echo '</div>';
 
 		break;
 

@@ -25,6 +25,7 @@ class product {
 			$this->quantity = $product_data['quantity'];
 			$this->price = $product_data['price'];
 			$this->active = $product_data['active'];
+			//echo $this->active;
 			
 		}		
 	}
@@ -165,7 +166,7 @@ class product {
 			}
 			// translate product with same product_id
 			else{
-				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .' (product_id, language_id, title, contract_periode, description, quantity, price)
+				$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT .' (product_id, language_id, title, contract_periode, description, quantity, price, active)
 				VALUES (
 				"'. $product_data['product_id'] .'",
 				"'. $product_data['language_id'] .'",
@@ -173,7 +174,8 @@ class product {
 				"'. $product_data['contract_periode'] .'",
 				"'. $product_data['description'] .'",
 				"'. $product_data['quantity'] .'",
-				"'. $product_data['price'] .'")';
+				"'. $product_data['price'] .'",
+				"'. $product_data['active'].'")';
 				return db_query($sql_insert_statement);
 			}
 		}
@@ -366,7 +368,7 @@ class product {
 	
 	public function changeProductState($product_data){		
 		$sql_update_statement = 'UPDATE '. TBL_PRODUCT .' SET active="' . $product_data['active'] . '" WHERE
-		product_id="' . $product_data['product_id'] . '" AND language_id="' . $product_data['language_id']  . '"';  
+		product_id="' . $product_data['product_id'] . '"';  
 		return db_query($sql_update_statement);
 	}
 	
@@ -389,6 +391,34 @@ class product {
 		}
 		return $language_id_array;
 	}
+	
+	public static function getAllActiveProducts($languageId){
+		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT .' AS p WHERE language_id = "'. $languageId .'" AND active = "1" ORDER BY p.product_id ASC';
+		$active_product_query = db_query($sql_select_statement);
+		
+		/*
+		 array(prod_id1 => array("title" => title1,
+								 "contract_periode" => contractPeriode1,
+								 "description" => description1,
+								 "quantity" => quantity1,
+								 "price" => price1),
+			   prod_id2 => array("title" => title2,
+								 "contract_periode" => contractPeriode2,
+								 "description" => description2,
+								 "quantity" => quantity2,
+								 "price" => price2))
+		*/
+		
+		$active_product_array = array();
+		while($data = db_fetch_array($active_product_query)){
+			$active_product_array[$data['product_id']] = array("title" => $data['title'],
+													   "contract_periode" => $data['contract_periode'],
+													   "description" => $data['description'], 
+													   "quantity" => $data['quantity'],
+													   "price" => $data['price']);
+		}
+		return $active_product_array;
+	}
 
 	// private section
 	
@@ -399,12 +429,13 @@ class product {
 	}
 	
 	private function getFilledProductEditForm($language_select_box){
-		$return_string = '<form>'.'<fieldset>'.
+		$return_string = '<form name="myForm">'.'<fieldset>'.
 					'<legend>'.
 						'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
 						'<label for="product_id">'. $this->product_id.' </label>'.
 					'</legend>'.
-					'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>'.
+					'<input type="hidden" id = "product_id" name = "product_id" value = '.$this->product_id.'>'.
+					'<input type="hidden" id = "active" name = "active" value = '.$this->active.'>'.
 					'<label for="language_id">'. LABEL_PRODUCT_LANGUAGE. '</label> '.
 					$language_select_box.
 					'<label for="title">'. LABEL_PRODUCT_TITLE .'</label>'.
@@ -417,7 +448,7 @@ class product {
 					'<input type="text" id="quantity" name="quantity" value="'. $this->quantity .'"><br>'.
 					'<label for="price">'. LABEL_PRODUCT_PRICE .'</label>'.
 					'<input type="text" id="price" name="price" value="'. $this->price .'"><br>';
-		
+					
 		//$return_string = $return_string . '</fieldset>';
 		return $return_string;
 	}
@@ -428,17 +459,19 @@ class product {
 				'<label for="product_id_notation">'. LABEL_PRODUCT_ATTRIBUTE .' </label>'.
 				'<label for="product_id">'. $this->product_id.' </label>'.
 				'</legend>'.
-				'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>'.
-				'<input type="hidden" id = "language_id" name = language_id value = '. $this->language_id .'>';
+				'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>';
+		$attr_ids = "";
 		foreach($attr_for_product as $att_id=>$att_val){
-			
+			$attr_ids = $attr_ids. $att_id.',';
 			$primary_keys = $att_id.','.$this->product_id;
 			$return_string = $return_string.
 					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
 					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
-					'<input type="text" id="att_val" name="att_val" value="'. $att_val .'">'.
+					'<input type="text" id="'.$att_id.'" name="'.$att_id.'" value="'. $att_val .'">'.
 					'<a href="#" id="delete_product_attribute" rel="'. $primary_keys .'">'. LINK_DELETE . '</a><br>';
 		}
+		$trimmed_attr_ids = trim($attr_ids, ",");
+		$return_string = $return_string. '<input type="hidden" id = "attr_array" name = "attr_array" value = '.$trimmed_attr_ids.'>';
 		return $return_string;		
 	}
 }

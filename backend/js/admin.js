@@ -12,8 +12,8 @@ $(function() {
 
 	$(document).ready(function() {
 		// code that is executed if page was loaded
+			
 	});
-
 	
 	// process login procedure for shop backend
 	$("body").on("click","form[id=loginformbackend] input[type=submit][id=login]", function() {
@@ -52,6 +52,8 @@ $(function() {
 		
 		return false;
 	});	
+	
+
 	
 	// set customizing fields editable
 	$('body').on("click","a[id=edit_customizing]", function() {
@@ -126,6 +128,47 @@ $(function() {
 		
 	});	
 	
+	
+	
+//	$("body").on("change", "select[id=language_selection])",(function(){
+//		var language_id = $('select[id=language_selection] option:selected').attr('id');
+//		alert('trigger me');
+//		$.ajax({
+//			type: "POST",
+//			url: "logic/process_action.php",
+//			data: { action: "open_product_editor", product_id: product_id , language_id: language_id}
+//		}).done(function( msg ) {
+//			$('.content').html( msg );
+//		});
+//		
+//		return false;
+//			
+//		}));	
+	
+//	$(".languageSelectBox").change(function(){
+//		  $(this).css("background-color","#FFFFCC");
+//		  alert('guguggs');
+//		}); 
+//	
+//	$('#language_selection').change(function(){
+//		$(this).find('option:selected').each(function () {
+//	    alert('triger me');
+//		});
+//	});
+//	
+//    $("#language_selection").change(function () {
+//        var str = "";
+//        $("select option:selected").each(function () {
+//              str += $(this).text() + " ";
+//              alert('BEispeil');
+//            });
+//        $("div").text(str);
+//      })
+//      .change();
+
+
+	
+	
 	// edit product
 	$("body").on("click", "input[type=submit][id=submit_edit_product]", function() {
 		
@@ -186,27 +229,54 @@ $(function() {
 		return false;
 	});
 	
-		// delete attribute in product info
-		$("body").on("click", "a[id=delete_product_attribute]", function() {
-			
-			var primaryKeysFromPhp = $(this).attr('rel');
-			var primaryKeys = primaryKeysFromPhp.split(",");
-			
-			var attribute_id = primaryKeys[0];
-			var product_id = primaryKeys[1];
-			
-			
-			$.ajax({
-				type: "POST",
-				url: "logic/process_action.php",
-				data: { action: "delete_product_info", product_id: product_id, attribute_id: attribute_id}
-			}).done(function( msg ) {
-				$('.content').html( msg );
-			});
-			
-			return false;
-		});	
+	// delete attribute in product info
+	$("body").on("click", "a[id=delete_product_attribute]", function() {
+	
+		var attribute_id = primaryKeys[0];
+		var product_id = $('input[type=hidden][id=product_id]').val();
 		
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "delete_product_info", product_id: product_id, attribute_id: attribute_id}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	//save changed attribute in product info  
+	$("body").on("click", "input[type=submit][id=submit_edit_attributes]", function() {
+		
+		var product_id = $('input[type=hidden][id=product_id]').val();
+		var attr_arrayFromPhp = $('input[type=hidden][id=attr_array]').val();
+		
+		var attr_array = attr_arrayFromPhp.split(",");
+
+		var attr_id_array = new Array();
+		var value_array = new Array();
+		for(var ind = 0; ind < attr_array.length; ind ++){
+			var attr_id = attr_array[ind];
+			var value =  $('input[type=text][id='+attr_id+']').val();
+			attr_id_array.push(attr_id);
+			value_array.push(value);
+		}
+		
+		var joined_attr_id_array = attr_id_array.join();
+		var joined_value_array = value_array.join();
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "update_attributes_in_prod_info", product_id: product_id, joined_attr_id_array: joined_attr_id_array, joined_value_array: joined_value_array}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
 		
 	// open translate Product form
 	$("body").on("click","a[id=translate_product]", function() {
@@ -237,11 +307,12 @@ $(function() {
 		var description = $('textarea[id=description]').val();
 		var quantity = $('input[type=text][id=quantity]').val();
 		var price = $('input[type=text][id=price]').val();
+		var active = $('input[type=hidden][id=active]').val();
 		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "translate_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price }
+			data: { action: "translate_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price, active: active}
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -748,5 +819,3 @@ $(function() {
 	
 	// alert message with
 });
-
-	

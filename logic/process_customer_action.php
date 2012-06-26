@@ -27,6 +27,8 @@ require PATH_FUNCTIONS .'general.php';
 
 include_once PATH_INCLUDES .'database_tables.php';
 
+include_once PATH_INCLUDES .'database_tables.php';
+
 $customizing = new customizing( language::getBrowserLanguage() );
 
 if(!isset($language_id)) {
@@ -65,8 +67,6 @@ if(customer::isLoggedIn( session_id() )) {
 
 			$customer_id = $_SESSION['customer_id'];
 
-			echo '<div class="whitebox">';
-			echo '<div class="cust_data">';
 
 			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
 
@@ -74,17 +74,12 @@ if(customer::isLoggedIn( session_id() )) {
 
 			echo $customer->printForm();
 
-			echo '</div>';
-			echo '</div>';
-
 			break;
 
 		case 'get_edit_customer_data':
 
 			$customer_id = $_SESSION['customer_id'];
 
-			echo '<div class="whitebox">';
-			echo '<div class="cust_data">';
 
 			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
 
@@ -92,24 +87,15 @@ if(customer::isLoggedIn( session_id() )) {
 
 			echo $customer->printFormEdit();
 
-			echo '</div>';
-			echo '</div>';
-
 			break;
 
 		case 'get_customer_products':
 
 			$customer_id = $_SESSION['customer_id'];
 
-			echo '<div class="whitebox">';
-			echo '<div class="cust_data">';
-
 			echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
 
 			echo contract::printOverviewCustomer($customer_id);
-
-			echo '</div>';
-			echo '</div>';
 
 			break;
 
@@ -117,18 +103,12 @@ if(customer::isLoggedIn( session_id() )) {
 
 			$customer_id = $_SESSION['customer_id'];
 
-			echo '<div class="whitebox">';
-			echo '<div class="cust_data">';
-
 			echo '<h1>'.PAGE_TITLE_CUSTOMERINVOICES.'</h1>';
 
 			$customer = new customer($customer_id);
 
 			// content
 			echo invoice::printOverviewCustomer($customer_id);
-
-			echo '</div>';
-			echo '</div>';
 
 			break;
 

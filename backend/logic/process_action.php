@@ -131,7 +131,32 @@ switch($action) {
 			echo INFO_MESSAGE_DB_ACTION_FAILED;
 		}
 		break;
+		
+		
+		
+	case 'update_attributes_in_prod_info':
+		$product_id = $_POST['product_id'];
+		
+		$attr_id_array = explode(",", $_POST['joined_attr_id_array']);
+		$value_array = explode(",", $_POST['joined_value_array']);
+		
+		$succeed = true;
+		foreach ($attr_id_array as $ind => $attr_id){
+			$value = $value_array[$ind];
+			if(!productInfo::update($product_id, $attr_id, $value)){
+				$succeed = false;
+			}
+		}
+		if($succeed){
+			echo INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL;
+		}
+		else{
+			echo INFO_MESSAGE_PRODUCT_UPDATE_FAILED;
+		}
 
+		break;
+
+		
 	case 'edit_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
 		echo'<div class="whitebox internal">';
@@ -195,6 +220,7 @@ switch($action) {
 		$description = $_POST['description'];
 		$quantity = $_POST['quantity'];
 		$price = $_POST['price'];
+		$active = $_POST['active'];
 
 		$product_data = array(
 				"product_id"=>$product_id,
@@ -203,7 +229,9 @@ switch($action) {
 				"contract_periode"=>$contract_periode,
 				"description"=>$description,
 				"quantity"=>$quantity,
-				"price"=>$price);
+				"price"=>$price,
+				"active"=>$active);
+				
 
 		if(product::translatedProductExists($product_data)){
 			echo sprintf(INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS, $product_id);

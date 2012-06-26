@@ -35,6 +35,14 @@ class productInfo{
 // 		}
 // 	}
 	
+	public static function update($product_id, $attribute_id, $value){
+		$sql_update_statement = 'UPDATE '. TBL_PRODUCT_INFO .' SET
+				
+				value="'. $value .'" 
+				WHERE product_id="'. $product_id .'" AND attribute_id = "'. $attribute_id. '"' ;
+		return db_query($sql_update_statement);
+	}
+	
 	
 	public static function create($product_id, $attribute_id, $value){
 		$sql_insert_statement = 'INSERT INTO '. TBL_PRODUCT_INFO .' (product_id, attribute_id, value)
