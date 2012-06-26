@@ -107,6 +107,7 @@ $(function() {
 											function(msg) {
 												// $('#messagearea').html( msg
 												// );
+												$('a[id=customercenter]').addClass('nav');
 												$.ajax({
 													type : "POST",
 													url : "logic/process_usermanagement.php",
@@ -115,6 +116,16 @@ $(function() {
 														email : customerData['email'],
 														password : customerData['password']
 													}
+												});
+												
+												$.ajax({
+													type : "POST",
+													url : "logic/process_customer_action.php",
+													data : {
+														action : "show_customer_header"
+													}
+												}).done(function(msg) {
+													$('#customer_header_ajax').html(msg);
 												});
 												window.location.href = "index.php#!page=customercenter";
 											});
