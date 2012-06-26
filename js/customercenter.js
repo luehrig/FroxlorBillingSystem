@@ -89,7 +89,7 @@ $(function() {
 	// Handels customer menu click "My Data" --> get overview page with all
 	// customizing entries
 	$("body").on("click", "a[id=mydata]", function() {
-
+		
 		var customer_id = $(this).attr('rel');
 
 		$.ajax({
@@ -110,6 +110,10 @@ $(function() {
 	// Handels button click "edit" --> get form with existing data as default
 	$('body').on("click", "input[id=edit_customer]", function() {
 
+		// clear message area
+//		$('#error_msg_area').html('');
+//		$('.messagearea').html('');
+		
 		var customer_id = $(this).attr('rel');
 
 		$.ajax({
@@ -125,23 +129,88 @@ $(function() {
 
 		return false;
 	});
+	
+	// save changed customer data 
+	$('body').on("click", "form[class=edit_cust_data] input[type=submit][id=save_customer]", 
+		
+		// check if mandatory fields are filled
+		function() {
+			
+			// clear message area
+//			$('#error_msg_area').html(msg);
+//			$('.messagearea').html(msg);
+		
+			var mandatory_filled = true;
+			var customerData = {};
 
-	// $('body').on("click", "input[id=same_adress]", function() {
-	//		
-	// $.ajax({
-	// type: "POST",
-	// url: "logic/process_customer_action.php",
-	// data: { action: "hide_billingaddress"}
-	// }).done(function( msg ) {
-	// $('.billingaddress').html( msg );
-	// });
-	//		
-	// return false;
-	// });
+			$("input[rel=mandatory]").each(function() {
+				if (!$(this).val() && mandatory_filled == true) {
+					mandatory_filled = false;
+					return false;
+				}
+			});
+			if (mandatory_filled == false) {
+				$.ajax({
+					type : "POST",
+					url : "logic/process_inputcheck.php",
+					data : {
+						action : "get_message_mandatory_not_filled"
+					}
+				}).done(function(msg) {
+					$('#error_msg_area').html(msg);
+					$('html, body').animate({ scrollTop: $('.messagearea').offset().top }, 1000);
 
+				});
+			} else {
+				// get all input fields
+				$('input[type=text]').each(function() {
+					var key = $(this).attr('id');
+					customerData[key] = $(this).val();
+				});		
+				// get all select fields
+				$('select option:selected').each(function() {
+					var key = $(this).attr('name');
+					customerData[key] = $(this).attr('id');
+				});
+				var customer_id = $(this).attr('rel');
+				// update DB with changed customer data
+				$.ajax({
+					type : "POST",
+					url : "logic/process_db.php",
+					data : {
+						action : "update_customer",
+						customerData : customerData,
+						customer_id : customer_id
+					}
+					}).done(function(msg) {
+				$('.customer_content_container').html(msg);
+					});
+				
+				// get overview page with all customizing entries 
+//				$.ajax({
+//					type : "POST",
+//					url : "logic/process_customer_action.php",
+//					data : {
+//						action : "get_customer_data",
+//						customer_id : customer_id
+//					}
+//				}).done(function(msg) {
+//					$('.customer_content_container').html(msg);
+//					// $('a[id=save_customizing]').hide();
+//				});
+			}
+
+		return false;
+	});
+
+	
 	// Handels customer menu click "My Products" --> get overview page with
 	// customer's products
 	$("body").on("click", "a[id=myproducts]", function() {
+		
+		// clear message area
+		$('#error_msg_area').html('');
+		$('.messagearea').html('');
 		
 		getCustomerProducts();
 

@@ -11,6 +11,7 @@ encoding//includes/classes/cl_customer.php=UTF-8
 encoding//includes/classes/cl_invoicepdf.php=UTF-8
 encoding//includes/languages/DE-DE.inc.php=UTF-8
 encoding//js/customercenter.js=UTF-8
+encoding//logic/process_customer_action.php=UTF-8
 encoding/display_invoice.php=UTF-8
 encoding/header.php=UTF-8
 encoding/index.php=UTF-8
