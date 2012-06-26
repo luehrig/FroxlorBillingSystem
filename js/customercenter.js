@@ -246,6 +246,8 @@ $(function() {
 					}
 				}).done(function(msg) {
 					
+					$('.messagearea').html(msg);
+					
 					getCustomerProducts();
 					
 				});
