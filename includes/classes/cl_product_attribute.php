@@ -5,16 +5,17 @@ class productAttribute{
 	private $description;
 	private $product_attribute_data;
 	
-	public function _construct($product_attribute_id = NULL, $language_id = NULL){
+	public function __construct($product_attribute_id = NULL, $language_id = NULL){
 		if($product_attribute_id != NULL AND $language_id != NULL){
-			$product_attribute_data = $this->getData($product_id);
+			$product_attribute_data = $this->getData($product_attribute_id, $language_id);
 			$this->product_attribute_data = $product_attribute_data;
 			$this->product_attribute_id = $product_attribute_data['product_attribute_id'];
 			$this->language_id = $product_attribute_data['language_id'];
-			$this->description = $product_attribute_data['description'];
-			
+			$this->description = $product_attribute_data['description'];	
 		}
 	}
+	
+	
 	
 	public static function create(){
 		
@@ -39,6 +40,18 @@ class productAttribute{
 		}
 	}
 	
+	public function delete(){
+		
+	}
+	
+	public function update($change_description){
+		if($change_description != NULL){
+			$sql_update_statement = 'UPDATE '. TBL_PRODUCT_ATTRIBUTE .' SET 
+				description = "'. $change_description .'" WHERE product_attribute_id = "'.$this->product_attribute_id.'" AND language_id="'.$this->language_id.'"'; 
+			return db_query($sql_update_statement);
+		}
+		
+	}
 
 	public static function printOverview($shown_language_id, $id_language_map, $container_id='product_attribute_overview'){
 		
@@ -80,8 +93,26 @@ class productAttribute{
 		
 	}
 	
-	public function getData(){
-		return $this->getProductAttributeFromDB();
+	public static function productAttributeExists($product_attribute_data, $compareable_product_attribute_id){
+
+		$sql_statement = 'SELECT * FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE
+		language_id = "'. $product_attribute_data['language_id'] .'" AND
+		description = "'. $product_attribute_data['description'] .'"';
+		$info_query = db_query($sql_statement);
+		$db_content = db_fetch_array($info_query);
+		if($db_content['product_attribute_id'] == $compareable_product_attribute_id){
+			return false;
+		}
+		if($db_content == ""){
+			return false;
+		}
+		else return true;
+	}
+	
+	
+	
+	public function getData($product_attribute_id, $language_id){
+		return $this->getProductAttributeFromDB($product_attribute_id, $language_id);
 	}
 	
 	public function getLanguagesForExistingProductAttr($product_attribute_id){
@@ -97,9 +128,10 @@ class productAttribute{
 	public function printFormEdit($language_select_box, $language_id, $container_id = 'product_attribute_editor'){
 		$return_string = '<div id="'.$container_id.'">.
 		<form>'.'<fieldset>'. 
+			'<input type="hidden" id = "product_attribute_id" name = product_attribute_id value = '.$this->product_attribute_id.'>'.
 			'<label for="language_id">'. LABEL_PRODUCT_ATTRIBUTE_LANGUAGE .'</label><br> '.
 				$language_select_box.
-			'<label for="describtion">'. LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION .'</label><br>'.
+			'<label for="description">'. LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION .'</label><br>'.
 			'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>';
 		$return_string = $return_string . '<input type="submit" name="submit_edit_product_attribute" id="submit_edit_product_attribute" value="'. BUTTON_CHANGE_PRODUCT_ATTRIBUTE .'">';
 		$return_string = $return_string . '</form></div>';

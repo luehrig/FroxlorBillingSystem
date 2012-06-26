@@ -94,7 +94,6 @@ $(function() {
 								var key = $(this).attr('name');
 								customerData[key] = $(this).attr('id');
 							});
-
 							$
 									.ajax({
 										type : "POST",
@@ -108,12 +107,51 @@ $(function() {
 											function(msg) {
 												// $('#messagearea').html( msg
 												// );
+												$.ajax({
+													type : "POST",
+													url : "logic/process_usermanagement.php",
+													data : {
+														action : "login_customer",
+														email : customerData['email'],
+														password : customerData['password']
+													}
+												});
 												window.location.href = "index.php#!page=customercenter";
 											});
 						}
 
 						return false;
 					});
+
+	// ask customer if reset should be done now
+	$("body").on("click",
+			"form[id=registrationform] input[id=clear]",
+			function() {
+
+				var confirm_message = '';
+
+				// get confirm message
+				$.ajax({
+					type : "POST",
+					url : "logic/get_texts.php",
+					data : {
+						action : "get_message_reset_registration_form_confirm"
+					}
+				}).done(function(msg) {
+					confirm_message = msg;
+
+					var confirm_result = confirm(confirm_message);
+
+					if (confirm_result == true) {
+						//document.getElementById('registrationform').reset();
+						$('#registrationform').get(0).reset();
+					}
+
+				});
+				
+			return false;
+				
+			});
 
 	// process login procedure
 	$("body")
@@ -156,14 +194,13 @@ $(function() {
 	 * $("body").on("click","form[id=loginform]
 	 * input[type=submit][id=ajaxlogin]", function() { var email =
 	 * $('input[type=text][id=email]').val(); var password =
-	 * $('input[type=password][id=password]').val();
-	 *  // do ajax call. If login was successful redirect to customer center
-	 * $.ajax({ type: "POST", url: "logic/process_usermanagement.php", data: {
-	 * action: "login_customer", email: email, password: password }
-	 * }).done(function( msg ) { if(msg == 'true') { $.colorbox.close();
-	 * $('a[id=customercenter]').addClass('nav'); } else {
-	 * $('#messagearea').html( msg ); } });
-	 *  // reset input fields $('input[type=text][id=email]').val('');
+	 * $('input[type=password][id=password]').val(); // do ajax call. If login
+	 * was successful redirect to customer center $.ajax({ type: "POST", url:
+	 * "logic/process_usermanagement.php", data: { action: "login_customer",
+	 * email: email, password: password } }).done(function( msg ) { if(msg ==
+	 * 'true') { $.colorbox.close(); $('a[id=customercenter]').addClass('nav'); }
+	 * else { $('#messagearea').html( msg ); } }); // reset input fields
+	 * $('input[type=text][id=email]').val('');
 	 * $('input[type=password][id=password]').val('');
 	 * 
 	 * return false; });
@@ -248,24 +285,23 @@ $(function() {
 	});
 
 	// third step in checkout process
-	$("body").on("click", "input[id=check_terms]", function() {		
+	$("body").on("click", "input[id=check_terms]", function() {
 		var navlink = $('a[id=checkout_step4]');
 		var check_value = $(this).attr('checked');
-		
-		if(check_value == undefined) {
+
+		if (check_value == undefined) {
 			navlink.removeClass('nav');
 			navlink.addClass('nonav');
-		}
-		else {
+		} else {
 			navlink.removeClass('nonav');
 			navlink.addClass('nav');
 		}
-		
+
 	});
-	
+
 	// catch case if terms were not accepted and customer clicks next
 	$("body").on("click", "a[id=checkout_step4][class=nonav]", function() {
-		
+
 		$.ajax({
 			type : "POST",
 			url : "logic/process_content_handling.php",
@@ -275,14 +311,14 @@ $(function() {
 		}).done(function(msg) {
 			$('.message_box').html(msg);
 		});
-		
+
 		return false;
 	});
-	
+
 	// catch case if terms were not accepted and customer clicks next
 	$("body").on("click", "a[id=save_order][class=nonav]", function() {
-		
-		// load received order page		
+
+		// load received order page
 		$.ajax({
 			type : "POST",
 			url : "logic/process_content_handling.php",
@@ -292,14 +328,13 @@ $(function() {
 		}).done(function(msg) {
 			$('.content_container').html(msg);
 		});
-		
+
 		// clear quantity counter in header for cart
 		setProductCountInCart();
-		
+
 		return false;
 	});
-	
-	
+
 	// overlay for help menu
 	$("body").on("click", "a[class=lightbox]", function() {
 		$.colorbox({
@@ -328,8 +363,8 @@ $(function() {
 		return false;
 
 	});
-	
-	//closes the colorbox and opens registration.php
+
+	// closes the colorbox and opens registration.php
 	$("body").on("click", "a[id=registration]", function() {
 		var language = $(this).attr('rel');
 		$.ajax({
@@ -338,7 +373,7 @@ $(function() {
 			data : {
 				action : 'show_registration',
 				language_id : language
-				}
+			}
 		}).done(function(msg) {
 			$('.content_container').html(msg);
 		});
@@ -346,7 +381,6 @@ $(function() {
 
 		return false;
 	});
-	
 
 	// colorbox for customercenter
 	$("body").on("click", "a[class=customercenter]", function() {
@@ -359,7 +393,6 @@ $(function() {
 	$("body").on("click", "button[class=buttonlayout_more]", function() {
 		// get product id from rel tag
 		var product_id = $(this).attr('rel');
-
 		var detailboxid = '#book' + product_id;
 
 		if ($(detailboxid).is(":hidden")) {
@@ -370,13 +403,12 @@ $(function() {
 			$(this).text("mehr");
 		}
 	});
-	
+
 	// switches language of website
 	$("body").on("click", "button[class=language_button]", function() {
 		$("button").removeClass("active");
-		$(this).addClass("active");	
-		
-		
+		$(this).addClass("active");
+
 	});
 
 	// add product from product overview to cart
@@ -398,37 +430,33 @@ $(function() {
 		return false;
 
 	});
-	
-	// sets current mainmenu active
-	$("body").on("click", "a[class=nav]", function(){
-		$("a").removeClass("active");
-		$(this).addClass("active");
-	});
-	
 
-	// sets current custermenu active 
-	$("body").on("click", "a[class=cm]", function(){
+	// sets current mainmenu active
+	$("body").on("click", "a[class=nav]", function() {
 		$("a").removeClass("active");
 		$(this).addClass("active");
 	});
-	
+
+	// sets current custermenu active
+	$("body").on("click", "a[class=cm]", function() {
+		$("a").removeClass("active");
+		$(this).addClass("active");
+	});
 
 	// send email to admin
 	$("body").on("click", "input[id=send_email]", function() {
-				
+
 		var first_name = $('input[type=text][id=first_name]').val();
 		var last_name = $('input[type=text][id=last_name]').val();
 		var email = $('input[type=email][id=email]').val();
 		var message = $('textarea[id=message]').val();
 		var msg_type = '';
-		
-		if( $('input[type=radio][name=message_type]')[0].checked){
+
+		if ($('input[type=radio][name=message_type]')[0].checked) {
 			msg_type = $('input[type=radio][id=question]').val();
-		}
-		else if($('input[type=radio][name=message_type]')[1].checked){
+		} else if ($('input[type=radio][name=message_type]')[1].checked) {
 			msg_type = $('input[type=radio][id=problem]').val();
-		}
-		else if($('input[type=radio][name=message_type]')[2].checked){
+		} else if ($('input[type=radio][name=message_type]')[2].checked) {
 			msg_type = $('input[type=radio][id=feedback]').val();
 		}
 
@@ -437,7 +465,7 @@ $(function() {
 			url : "logic/process_customer_action.php",
 			data : {
 				action : "send_email",
-//				customer_id : customer_id,
+				// customer_id : customer_id,
 				first_name : first_name,
 				last_name : last_name,
 				email : email,
@@ -483,5 +511,3 @@ function loadContent(areacode, language_id) {
 		$('.content_container').html(msg);
 	});
 }
-
-

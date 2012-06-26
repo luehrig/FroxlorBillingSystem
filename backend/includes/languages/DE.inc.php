@@ -264,7 +264,12 @@ define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des
 
 define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
 define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
-define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
+define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Produkt existiert bereits!');
+
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS', 'Dieses Produktattribut existiert bereits!');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_SUCCESSFUL', 'Änderungen wurden erfolgreich gespeichert.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
+
 
 define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt');
 
@@ -275,5 +280,7 @@ define('ERROR_INVOICE_NOT_PAYED','Die Rechnung %d ist noch nicht bezahlt!');
 
 define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Status von dem Produkt wurde erfolgreich geändert.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht');
+
+define('INFO_MESSAGE_PRODUCT_INFO_SUCCESSFULLY_DELETED', 'Das Produktattribut wurde erfolgreich gelöscht.');
 
 ?>

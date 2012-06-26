@@ -154,6 +154,16 @@ a:active {
 	color:black; text-decoration:underline; 
 }
 
+/*Message Area*/
+.messagearea{
+	margin: 10px;
+	font-weight: bold;
+}
+
+/*Error Message Area*/
+#error_msg_area{
+	color: red;
+}
 /* --------------- Header Area ------------------------------ */
 
 
@@ -238,6 +248,12 @@ th
 {
 	margin-left: 200px;
 	margin-right: 40px;
+}
+
+.productwrapper
+{
+	width: 780px;
+	clear:both;
 }
 
 
@@ -535,11 +551,10 @@ legend
 /* --------------- Customer Center -------------------------------------- */
 
 .customer_content_container {
-	width: 700px;
+	width: 100%;
 	text-align: left;
 	float: left;
 	margin: 5px;
-	margin-left: 200px;
 }
 
 
@@ -628,11 +643,13 @@ legend
     text-align: left;
     vertical-align: top;
     padding-bottom: 20px;
+    border: none;
 }
 .customer_data td{
     text-align: left;
     vertical-align: top;
     padding-bottom: 20px;
+    border: none;
 }
 
 #edit_customer{

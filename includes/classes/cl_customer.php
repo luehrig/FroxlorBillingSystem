@@ -138,7 +138,7 @@ class customer {
 			$billing_address_data = $shipping_address_data;
 		}
 		
-		$return_string = '<div id="'. $container_id .'"><form><div class="edit_cust_data">';
+		$return_string = '<div id="'. $container_id .'"><form class="edit_cust_data"><div class="edit_cust_data">';
 	
 		$return_string = $return_string .'<fieldset>'.
 		//Login Data		
@@ -220,7 +220,7 @@ class customer {
 		</fieldset>
 		</div>';
 	
-		$return_string = $return_string . '<input type="submit" name="save_customer" id="save_customer" value="'. BUTTON_SAVE .'">';
+		$return_string = $return_string . '<input type="submit" name="save_customer" id="save_customer" value="'. BUTTON_SAVE .'" rel="'. $this->customer_id.'">';
 	
 		$return_string = $return_string .'</div></form></div>';
 	
@@ -231,20 +231,22 @@ class customer {
 	// update customer
 	public function update($customer_id, $customerData) {
 		// build sql update string from data array
-		$update_statement = 'UPDATE '. TBL_CUSTOMER .' AS cust SET ';
+		$update_statement = 'UPDATE '. TBL_CUSTOMER .' SET ';
 		
 		foreach ($customerData as $key => $value) {
-			$update_statement = $update_statement .'cust.'. $key .' = '. $value .' ';
+			$update_statement = $update_statement . $key .' = "'. $value .'", ';
 		}
 		
-		$update_statement = $update_statement .'WHERE cust.customer_id = '. (int) $customer_id;
+		$update_statement = substr($update_statement, 0, strlen($update_statement)-2);
+		
+		$update_statement = $update_statement .'WHERE customer_id = '. (int) $customer_id;
 		
 		db_query($update_statement);
 	}
 	
 	// delete customer from DB
 	public function delete($customer_id) {
-		$delete_statement = 'DELETE * FROM '. TBL_CUSTOMER .' AS cust WHERE cust.customer_id = '. (int) $customer_id;
+		$delete_statement = 'DELETE FROM '. TBL_CUSTOMER .' WHERE customer_id = '. (int) $customer_id;
 		$delete_query_result = db_query($delete_statement);
 		return $delete_query_result;
 		

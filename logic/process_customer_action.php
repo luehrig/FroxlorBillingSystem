@@ -4,6 +4,8 @@ include_once '../configuration.inc.php';
 
 require_once PATH_FUNCTIONS .'datetime.php';
 
+require_once PATH_EXT_LIBRARIES .'phpmailer/class.phpmailer.php';
+
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_content.php';
@@ -30,128 +32,87 @@ include_once PATH_INCLUDES .'database_tables.php';
 $customizing = new customizing( language::getBrowserLanguage() );
 
 if(!isset($language_id)) {
-// check if language was handed over
-if(isset($_POST['language_id'])) {
-	$language_id = language::ISOTointernal($_POST['language_id']);
-	if($language_id == null) {
-		$language_id = language::ISOTointernal( language::getBrowserLanguage() ); 
+	// check if language was handed over
+	if(isset($_POST['language_id'])) {
+		$language_id = language::ISOTointernal($_POST['language_id']);
+		if($language_id == null) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
 	}
-}
-else {
-	$language_id = language::ISOTointernal( language::getBrowserLanguage() );
-}
+	else {
+		$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+	}
 }
 
 include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
-$action = $_POST['action'];
+// check if customer is logged in
+if(customer::isLoggedIn( session_id() )) {
 
-switch($action) {
+	$action = $_POST['action'];
 
-	case 'show_customer_header':
+	switch($action) {
 
-		$customer = new customer($_SESSION['customer_id']);
-		$data = $customer->getData();
-		
-		echo MSG_CUSTOMER_WELCOME .', '. $data['first_name'] .' '. $data['last_name'] .'!';
-		echo '<a href="#" id="logout"> '. BUTTON_LOGOUT_CUSTOMER .'</a>';
-	
-		break;
-		
-	case 'get_customer_data':
-		
-		$customer_id = $_SESSION['customer_id'];
-		
-		echo '<div class="whitebox">';
-		echo '<div class="cust_data">';
-		
-		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
-							
-		$customer = new customer($customer_id);
-		
-		echo $customer->printForm();
-		
-		echo '</div>';
-		echo '</div>';
-		
-	break;
-	
-	case 'get_edit_customer_data':
-		
-		$customer_id = $_SESSION['customer_id'];
-		
-		echo '<div class="whitebox">';		
-		echo '<div class="cust_data">';
-		
-		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
-		
-		$customer = new customer($customer_id);
-		
-		echo $customer->printFormEdit();
-		
-		echo '</div>';
-		echo '</div>';
-		
-	break;
-	
-	case 'get_edit_customer_data':
-	
-		$customer_id = $_SESSION['customer_id'];
-		
-		
-		echo '<div class="msg_area">'.MSG_CHANGES_SAVED.'</div>';
-	
-		echo '<div class="whitebox">';
-		echo '<div class="cust_data">';
-		
-	
-		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
-		
-		$customer = new customer($customer_id);
-		
-		echo $customer->printFormEdit();
-		
-		echo '</div>';
-		echo '</div>';
-	
-		break;
-		
-	case 'get_customer_products':
-	
-		$customer_id = $_SESSION['customer_id'];
-	
-		echo '<div class="whitebox">';
-		echo '<div class="cust_data">';
-	
-		echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
-	
-		echo contract::printOverviewCustomer($customer_id);
-	
-		echo '</div>';
-		echo '</div>';
-	
-		break;
-	
-	case 'get_customer_invoices':
-	
-		$customer_id = $_SESSION['customer_id'];
-	
-		echo '<div class="whitebox">';
-		echo '<div class="cust_data">';
-	
-		echo '<h1>'.PAGE_TITLE_CUSTOMERINVOICES.'</h1>';
-	
-		$customer = new customer($customer_id);
-	
-		// content
-		echo invoice::printOverviewCustomer($customer_id);
-	
-		echo '</div>';
-		echo '</div>';
-	
-		break;
-		
-	case 'send_email':
+		case 'show_customer_header':
+
+			$customer = new customer($_SESSION['customer_id']);
+			$data = $customer->getData();
+
+			echo MSG_CUSTOMER_WELCOME .', '. $data['first_name'] .' '. $data['last_name'] .'!';
+			echo '<a href="#" id="logout"> '. BUTTON_LOGOUT_CUSTOMER .'</a>';
+
+			break;
+
+		case 'get_customer_data':
+
+			$customer_id = $_SESSION['customer_id'];
+
+
+			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
+
+			$customer = new customer($customer_id);
+
+			echo $customer->printForm();
+
+			break;
+
+		case 'get_edit_customer_data':
+
+			$customer_id = $_SESSION['customer_id'];
+
+
+			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
+
+			$customer = new customer($customer_id);
+
+			echo $customer->printFormEdit();
+
+			break;
+
+		case 'get_customer_products':
+
+			$customer_id = $_SESSION['customer_id'];
+
+			echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
+
+			echo contract::printOverviewCustomer($customer_id);
+
+			break;
+
+		case 'get_customer_invoices':
+
+			$customer_id = $_SESSION['customer_id'];
+
+			echo '<h1>'.PAGE_TITLE_CUSTOMERINVOICES.'</h1>';
+
+			$customer = new customer($customer_id);
+
+			// content
+			echo invoice::printOverviewCustomer($customer_id);
+
+			break;
+
+		case 'send_email':
 	
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
@@ -218,8 +179,14 @@ switch($action) {
 		}	
 
 		break;
-		
+	}
+
+}
+
+
+else {
+	echo WARNING_NOT_LOGGED_IN;
 	
-}	
+}
 
 ?>
