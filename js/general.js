@@ -94,7 +94,6 @@ $(function() {
 								var key = $(this).attr('name');
 								customerData[key] = $(this).attr('id');
 							});
-
 							$
 									.ajax({
 										type : "POST",
@@ -108,6 +107,15 @@ $(function() {
 											function(msg) {
 												// $('#messagearea').html( msg
 												// );
+												$.ajax({
+													type : "POST",
+													url : "logic/process_usermanagement.php",
+													data : {
+														action : "login_customer",
+														email : customerData['email'],
+														password : customerData['password']
+													}
+												});
 												window.location.href = "index.php#!page=customercenter";
 											});
 						}
