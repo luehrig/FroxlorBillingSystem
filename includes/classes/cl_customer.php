@@ -163,12 +163,12 @@ class customer {
 		$return_string = $return_string .'</select></p>
 		<p><label for="title">'. LABEL_TITLE .'</label>
 		<input type="text" id="title" name="title" value="'. $this->title .'"></p>
-		<p><label for="company">'. LABEL_COMPANY .'</label>
-		<input type="text" id="company" name="company" value="'. $this->company .'"></p>
 		<p><label for="first_name">'. LABEL_FIRST_NAME .'</label>
 		<input type="text" id="first_name" name="first_name" rel="mandatory" value="'. $this->first_name .'"></p>
 		<p><label for="last_name">'. LABEL_LAST_NAME .'</label>
 		<input type="text" id="last_name" name="last_name" rel="mandatory" value="'. $this->last_name .'"></p>
+		<p><label for="company">'. LABEL_COMPANY .'</label>
+		<input type="text" id="company" name="company" value="'. $this->company .'"></p>
 		</fieldset>'.
 		
 		// Contact Information
@@ -199,13 +199,6 @@ class customer {
 		'</div></p>
 		</fieldset>';
 		
-		// Checkbox for same shipping and billing address
-		 if($shipping_address_data == $shipping_address_data){ // if billing address equals shipping address show checked checkbox
-			$return_string = $return_string.'<input id="same_address" type="checkbox" name="same_adress" checked>'. LABEL_SAME_ADRESS;
-		 }
-		 else{
-		 	$return_string = $return_string.'<input id="different_adress" type="checkbox" name="same_adress">'. LABEL_SAME_ADRESS;
-		 }
 		
 		$return_string = $return_string.
 		'<div id="billingaddress">

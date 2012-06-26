@@ -125,20 +125,27 @@ $(function() {
 
 		return false;
 	});
+	
+	// save changed customer data 
+	$('body').on("click", "input[type=submit][id=save_customer]", function() {
 
-	// $('body').on("click", "input[id=same_adress]", function() {
-	//		
-	// $.ajax({
-	// type: "POST",
-	// url: "logic/process_customer_action.php",
-	// data: { action: "hide_billingaddress"}
-	// }).done(function( msg ) {
-	// $('.billingaddress').html( msg );
-	// });
-	//		
-	// return false;
-	// });
+		var customer_id = $(this).attr('rel');
 
+		$.ajax({
+			type : "POST",
+			url : "logic/process_customer_action.php",
+			data : {
+				action : "save_customer_data",
+				customer_id : customer_id
+			}
+		}).done(function(msg) {
+			$('.customer_content_container').html(msg);
+		});
+
+		return false;
+	});
+
+	
 	// Handels customer menu click "My Products" --> get overview page with
 	// customer's products
 	$("body").on("click", "a[id=myproducts]", function() {

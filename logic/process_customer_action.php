@@ -93,6 +93,28 @@ switch($action) {
 		echo '</div>';
 		
 	break;
+	
+	case 'get_edit_customer_data':
+	
+		$customer_id = $_SESSION['customer_id'];
+		
+		
+		echo '<div class="msg_area">'.MSG_CHANGES_SAVED.'</div>';
+	
+		echo '<div class="whitebox">';
+		echo '<div class="cust_data">';
+		
+	
+		echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
+		
+		$customer = new customer($customer_id);
+		
+		echo $customer->printFormEdit();
+		
+		echo '</div>';
+		echo '</div>';
+	
+		break;
 		
 	case 'get_customer_products':
 	
@@ -196,6 +218,8 @@ switch($action) {
 		}	
 
 		break;
+		
+	
 }	
 
 ?>

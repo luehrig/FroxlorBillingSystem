@@ -660,6 +660,9 @@ legend
 .edit_cust_data fieldset{
 	margin-top: 1em;
 }
+.edit_cust_data input[name="save_customer"]{
+	margin-left: 20px;
+}
 
 #change_pw{
 	
