@@ -273,6 +273,9 @@ define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED', 'Es ist ein Fehler beim �
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_SUCCESSFUL', 'Produktattribut erfolgreich angelegt.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED', 'Es ist ein Fehler beim Anlegen des Produktattributs aufgetreten.');
 
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED', 'Produktattribut wurde erfolgreich entfernt.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_DELETION_FAILED', 'Es ist ein Fehler beim Löschen des Produktattributs aufgetreten.');
+
 
 define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt');
 

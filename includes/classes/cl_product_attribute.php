@@ -40,8 +40,9 @@ class productAttribute{
 		}
 	}
 	
-	public function delete(){
-		
+	public function delete($product_attribute_id, $language_id){
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id = "'. $product_attribute_id .'" AND language_id = "'. $language_id .'"';
+		return db_query($sql_delete_statement);		
 	}
 	
 	public function update($change_description){
@@ -137,8 +138,8 @@ class productAttribute{
 	}
 	
 	public function printFormEdit($language_select_box, $language_id, $container_id = 'product_attribute_editor'){
-		$return_string = '<div id="'.$container_id.'">.
-		<form>'.'<fieldset>'. 
+		$return_string = '<div id="'.$container_id.'">'.
+		'<form>'.'<fieldset>'. 
 			'<input type="hidden" id = "product_attribute_id" name = product_attribute_id value = '.$this->product_attribute_id.'>'.
 			'<label for="language_id">'. LABEL_PRODUCT_ATTRIBUTE_LANGUAGE .'</label><br> '.
 				$language_select_box.
