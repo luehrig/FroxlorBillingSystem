@@ -91,7 +91,6 @@ switch($action) {
 		$existing_attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
 		$availible_attributes = productInfo::getAvailableAttributes($product_id, $existing_attributes_for_lang);
 
-
 		echo productInfo::printNewAttributeForm($product_id, $availible_attributes);
 		echo '</fieldset>';
 		echo '</div>';
@@ -394,10 +393,9 @@ switch($action) {
 		
 	case 'delete_product_attribute':
 		$product_attribute_id = $_POST['product_attribute_id'];
-		echo 'blubbbb';
 		$language_id = $_POST['language_id'];
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
-		if($product_attribute->delete($product_attribute_id, $language_id)){
+		if($product_attribute->delete($product_attribute_id)){
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED;
 		}
 		else{

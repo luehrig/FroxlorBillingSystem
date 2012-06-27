@@ -211,13 +211,13 @@ class product {
 		
 		
 		$return_string = '<div id="'. $container_id .'">';
-		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products) . '<br>';
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products) ;
 		
 		
 		$create_button = '<a href="#" id="create_new_product">'.BUTTON_CREATE_NEW_PRODUCT.'</a></td>';
 		
 		
-		$return_string = $return_string . $create_button . '<br><br>';
+		$return_string = $return_string . '<br><br>';
 		
 		
 		$table_header = '<table border = "0">
@@ -257,6 +257,7 @@ class product {
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
+		$return_string = $return_string.  $create_button.'<br>';
 		return $return_string;
 	}
 	
@@ -268,7 +269,7 @@ class product {
 		
 		$return_string = $return_string . $this->getAttributeEditForm($attributesForLang, $product_info);
 		$return_string = $return_string . '<input type="submit" name="submit_edit_attributes" id="submit_edit_attributes" value="'. BUTTON_CHANGE_ATTRIBUTES .'">';
-		$return_string = $return_string . '<input type="submit" name="give_prod_new_attr" id="give_prod_new_attr" value="'. BUTTON_NEW_ATTR_FOR_PROD .'">';
+		$return_string = $return_string . '<input type="submit" name="give_prod_new_attr" id="give_prod_new_attr" value="'. BUTTON_NEW_ATTR_FOR_PROD .'">'; 
 		$return_string = $return_string . '</form></fieldset>';
 		$return_string = $return_string. '</div>';
 		return $return_string;
@@ -459,16 +460,17 @@ class product {
 				'<label for="product_id_notation">'. LABEL_PRODUCT_ATTRIBUTE .' </label>'.
 				'<label for="product_id">'. $this->product_id.' </label>'.
 				'</legend>'.
-				'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>';
+				'<input type="hidden" id = "product_id" name = "product_id" value = "'.$this->product_id .'">'.
+				'<input type="hidden" id = "language_id" name = "language_id" value = "'.$this->language_id .'">';
 		$attr_ids = "";
 		foreach($attr_for_product as $att_id=>$att_val){
 			$attr_ids = $attr_ids. $att_id.',';
-			$primary_keys = $att_id.','.$this->product_id;
+			$label_for_attr_description = '';
 			$return_string = $return_string.
 					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
 					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
 					'<input type="text" id="'.$att_id.'" name="'.$att_id.'" value="'. $att_val .'">'.
-					'<a href="#" id="delete_product_attribute" rel="'. $primary_keys .'">'. LINK_DELETE . '</a><br>';
+					'<a href="#" id="delete_product_info" rel="'. $att_id .'">'. LINK_DELETE . '</a><br>';
 		}
 		$trimmed_attr_ids = trim($attr_ids, ",");
 		$return_string = $return_string. '<input type="hidden" id = "attr_array" name = "attr_array" value = '.$trimmed_attr_ids.'>';

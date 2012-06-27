@@ -40,8 +40,8 @@ class productAttribute{
 		}
 	}
 	
-	public function delete($product_attribute_id, $language_id){
-		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id = "'. $product_attribute_id .'" AND language_id = "'. $language_id .'"';
+	public function delete($product_attribute_id){
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id = "'. $product_attribute_id .'"';
 		return db_query($sql_delete_statement);		
 	}
 	
@@ -62,13 +62,13 @@ class productAttribute{
 		$number_of_product_attributes = db_num_results($product_attribute_query);
 		
 		$return_string = '<div id="'. $container_id .'">';
-		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES, $number_of_product_attributes). '<br>';
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES, $number_of_product_attributes);
 		
 		
 		$create_button = '<a href="#" id="create_new_product_attribute">'.BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE.'</a></td>';
 		
 		
-		$return_string = $return_string . $create_button . '<br><br>';
+		$return_string = $return_string . '<br><br>';
 		
 		
 		$table_header = '<table border = "0">
@@ -86,10 +86,11 @@ class productAttribute{
 			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['description'] .'</td>
 			<td><a href="#" id="edit_product_atrribute" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
-			<td><a href="#" id="delete_product_attribute" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
+			<td><a href="#" id="delete_product_attribute_description" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
+		$return_string = $return_string. $create_button. '<br>'; 
 		return $return_string;
 	}
 	
