@@ -41,10 +41,25 @@ switch($action) {
 	
 	case 'update_customer':
 		$customerData = $_POST['customerData'];
+		$shippingAddress = $_POST['shippingAddress'];
+		$billingAddress = $_POST['billingAddress'];
 		$customer_id = $_POST['customer_id'];
+		$shipping_address_id = $_POST['shipping_address_id'];
+		$billing_address_id = $_POST['billing_address_id'];
 	
 		$customer = new customer($customer_id);
 		$customer->update($customer_id, $customerData);
+		
+		// update shipping address if change was requested
+		if(isset($shipping_address_id) && isset($shippingAddress)) {
+			$customer->updateAddress($shipping_address_id, $shippingAddress);
+		}
+		
+		// update billing address if change was requested
+		if(isset($billing_address_id) && isset($billingAddress)) {
+			$customer->updateAddress($billing_address_id, $billingAddress);
+		}
+		
 		
 		echo MSG_CHANGES_SAVED;
 	
