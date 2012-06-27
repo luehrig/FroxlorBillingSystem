@@ -14,9 +14,10 @@ class country {
 	// print html select box
 	public function printSelectBox($selectbox_id, $name = 'country', $default_value = NULL) {
 		$result = '<select name="'. $selectbox_id .'" id="'. $selectbox_id .'" size="1" rel="mandatory">';
-				
-		$result = $result . '<option value="" style="display:none;"></option>';
-		
+
+		if($default_value == NULL) {
+			$result = $result . '<option value="" style="display:none;"></option>';
+		}
 		
 		for($i=0; $i < count($this->available_countries); $i++) {
 			if($default_value != NULL && $this->available_countries[$i]['country_id'] == $default_value) {
