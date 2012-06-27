@@ -27,9 +27,9 @@ define('DB_PASSWORD','');
 define('DB_NAME','froxlor_billing');
 
 /* SMTP / mail section */
-define('SMTP_SERVER','');
-define('SMTP_USER','');
-define('SMTP_PASSWORD','');
+define('SMTP_SERVER','mail.projektplatz.eu');
+define('SMTP_USER','info@projektplatz.eu');
+define('SMTP_PASSWORD','heinemann123');
 
 
 
