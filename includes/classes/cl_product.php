@@ -464,12 +464,12 @@ class product {
 		$attr_ids = "";
 		foreach($attr_for_product as $att_id=>$att_val){
 			$attr_ids = $attr_ids. $att_id.',';
-			$primary_keys = $att_id.','.$this->product_id;
+			//$primary_keys = $att_id.','.$this->product_id;
 			$return_string = $return_string.
 					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
 					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
 					'<input type="text" id="'.$att_id.'" name="'.$att_id.'" value="'. $att_val .'">'.
-					'<a href="#" id="delete_product_info" rel="'. $primary_keys .'">'. LINK_DELETE . '</a><br>';
+					'<a href="#" id="delete_product_info" rel="'. $att_id .'">'. LINK_DELETE . '</a><br>';
 		}
 		$trimmed_attr_ids = trim($attr_ids, ",");
 		$return_string = $return_string. '<input type="hidden" id = "attr_array" name = "attr_array" value = '.$trimmed_attr_ids.'>';

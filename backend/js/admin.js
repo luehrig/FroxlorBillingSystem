@@ -232,7 +232,7 @@ $(function() {
 	// delete attribute in product info
 	$("body").on("click", "a[id=delete_product_info]", function() {
 	
-		var attribute_id = primaryKeys[0];
+		var attribute_id = $(this).attr('rel');
 		var product_id = $('input[type=hidden][id=product_id]').val();
 		
 		
