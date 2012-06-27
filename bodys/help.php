@@ -5,8 +5,11 @@ require_once PATH_CLASSES .'cl_customer.php';
 
 require_once PATH_CLASSES .'cl_customizing.php';
 
+$content_id_for_help = 3;
+$language_id = language::ISOTointernal(language::getBrowserLanguage());
+$content = new content($content_id_for_help ,$language_id);
 
-$content = new content(2,$language_id);
+
 
 echo '	
 <h1>' .VIEW_MENU_HELP. '</h1>
@@ -14,7 +17,7 @@ echo '
 	<div class=" whitebox box_1inRow">
 		<fieldset>
 			<legend>
-				'. $content->getTitle() .'
+				<img ID="minilogo" src="images/logos/logo.png">
 			</legend>
 				'. $content->getText() .'
 		</fieldset>
