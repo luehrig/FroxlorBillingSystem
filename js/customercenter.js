@@ -196,7 +196,6 @@ $(function() {
 						var key = $(this).attr('id');
 						key = key.substr(8,key.strlen);
 						
-						
 						shippingAddress[key] = $(this).val();
 					});
 					
@@ -207,15 +206,33 @@ $(function() {
 						var key = $(this).attr('id');
 						key = key.substr(7,key.strlen);
 						
-						
 						billingAddress[key] = $(this).val();
 					});
 					
-					// get all select fields
-					/* $('select option:selected').each(function() {
+					// get select fields
+					$('select[id^=general] option:selected').each(function() {
 						var key = $(this).attr('name');
+						key = key.substr(7,key.strlen);
+						
 						customerData[key] = $(this).attr('id');
-					});*/
+					});
+					
+					// get select fields
+					$('select[id^=shipping] option:selected').each(function() {
+						var key = $(this).attr('name');
+						key = key.substr(8,key.strlen);
+						
+						shippingAddress[key] = $(this).attr('id');
+					});
+					
+					// get select fields
+					$('select[id^=billing] option:selected').each(function() {
+						var key = $(this).attr('name');
+						key = key.substr(7,key.strlen);
+						
+						billingAddress[key] = $(this).attr('id');
+					});
+					
 					var customer_id = $(this).attr('rel');
 					// update DB with changed customer data
 					$.ajax({
