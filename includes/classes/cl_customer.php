@@ -122,14 +122,14 @@ class customer {
 		$country = new country();
 	
 		// query shipping address
-		$sql_statement = 'SELECT sa.street, sa.street_number, sa.post_code, sa.city, sa.country_code FROM '. TBL_CUSTOMER_ADDRESS .' AS sa WHERE sa.customer_address_id = '. (int) $this->shipping_address;
+		$sql_statement = 'SELECT sa.customer_address_id, sa.street, sa.street_number, sa.post_code, sa.city, sa.country_code FROM '. TBL_CUSTOMER_ADDRESS .' AS sa WHERE sa.customer_address_id = '. (int) $this->shipping_address;
 		$shipping_address_query = db_query($sql_statement);
 		$shipping_address_data = db_fetch_array($shipping_address_query);
 	
 		// query billing address if shipping & billing address is different
 		if($this->shipping_address != $this->billing_address) {
 			// query billing address
-			$sql_statement = 'SELECT sa.street, sa.street_number, sa.post_code, sa.city, sa.country_code FROM '. TBL_CUSTOMER_ADDRESS .' AS sa WHERE sa.customer_address_id = '. (int) $this->billing_address;
+			$sql_statement = 'SELECT sa.customer_address_id, sa.street, sa.street_number, sa.post_code, sa.city, sa.country_code FROM '. TBL_CUSTOMER_ADDRESS .' AS sa WHERE sa.customer_address_id = '. (int) $this->billing_address;
 			$billing_address_query = db_query($sql_statement);
 			$billing_address_data = db_fetch_array($billing_address_query);
 		}
@@ -143,41 +143,41 @@ class customer {
 		$return_string = $return_string .'<fieldset>'.
 		//Login Data		
 		'<legend>'. LABEL_LOGIN_DATA .'</legend>
-		<p><label for="email">'. LABEL_EMAIL .'</label>
-		<input type="text" id="email" name="email" rel="mandatory" value="'. $this->email .'"></p>
+		<p><label for="generalemail">'. LABEL_EMAIL .'</label>
+		<input type="email" id="generalemail" name="generalemail" rel="mandatory" value="'. $this->email .'"></p>
 		<a href="#" id="change_pw"><'. BUTTON_CHANGE_PW. '></a>
     	</fieldset>'.
     	
 		// General Inforamtion
 		'<fieldset><legend>'. FIELDSET_GENERAL_INFORMATION .'</legend>
-		<p><label for="gender">'. LABEL_GENDER .'</label>
-		<select name="gender" id="gender" size="1" rel="mandatory">';
+		<p><label for="generalgender">'. LABEL_GENDER .'</label>
+		<select name="generalgender" id="generalgender" size="1" rel="mandatory">';
 		if( $this->gender == $customizing->getCustomizingValue('sys_gender_male') ) {
-			$return_string = $return_string .'<option id="'. $customizing->getCustomizingValue('sys_gender_male') .'" name="gender" selected>'. SELECT_CUSTOMER_GENDER_MALE .'</option>
-			<option id="'. $customizing->getCustomizingValue('sys_gender_female') .'" name="gender">'. SELECT_CUSTOMER_GENDER_FEMALE .'</option>';
+			$return_string = $return_string .'<option id="'. $customizing->getCustomizingValue('sys_gender_male') .'" name="generalgender" selected>'. SELECT_CUSTOMER_GENDER_MALE .'</option>
+			<option id="'. $customizing->getCustomizingValue('sys_gender_female') .'" name="generalgender">'. SELECT_CUSTOMER_GENDER_FEMALE .'</option>';
 		}
 		else {
-			$return_string = $return_string .'<option id="'. $customizing->getCustomizingValue('sys_gender_male') .'" name="gender">'. SELECT_CUSTOMER_GENDER_MALE .'</option>
-			<option id="'. $customizing->getCustomizingValue('sys_gender_female') .'" name="gender" selected>'. SELECT_CUSTOMER_GENDER_FEMALE .'</option>';
+			$return_string = $return_string .'<option id="'. $customizing->getCustomizingValue('sys_gender_male') .'" name="generalgender">'. SELECT_CUSTOMER_GENDER_MALE .'</option>
+			<option id="'. $customizing->getCustomizingValue('sys_gender_female') .'" name="generalgender" selected>'. SELECT_CUSTOMER_GENDER_FEMALE .'</option>';
 		}
 		$return_string = $return_string .'</select></p>
-		<p><label for="title">'. LABEL_TITLE .'</label>
-		<input type="text" id="title" name="title" value="'. $this->title .'"></p>
-		<p><label for="first_name">'. LABEL_FIRST_NAME .'</label>
-		<input type="text" id="first_name" name="first_name" rel="mandatory" value="'. $this->first_name .'"></p>
-		<p><label for="last_name">'. LABEL_LAST_NAME .'</label>
-		<input type="text" id="last_name" name="last_name" rel="mandatory" value="'. $this->last_name .'"></p>
-		<p><label for="company">'. LABEL_COMPANY .'</label>
-		<input type="text" id="company" name="company" value="'. $this->company .'"></p>
+		<p><label for="generaltitle">'. LABEL_TITLE .'</label>
+		<input type="text" id="generaltitle" name="generaltitle" value="'. $this->title .'"></p>
+		<p><label for="generalfirst_name">'. LABEL_FIRST_NAME .'</label>
+		<input type="text" id="generalfirst_name" name="generalfirst_name" rel="mandatory" value="'. $this->first_name .'"></p>
+		<p><label for="generallast_name">'. LABEL_LAST_NAME .'</label>
+		<input type="text" id="generallast_name" name="generallast_name" rel="mandatory" value="'. $this->last_name .'"></p>
+		<p><label for="generalcompany">'. LABEL_COMPANY .'</label>
+		<input type="text" id="generalcompany" name="generalcompany" value="'. $this->company .'"></p>
 		</fieldset>'.
 		
 		// Contact Information
 		'<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_CONTACT_INFORMATION .'</legend>
-		<p><label for="telephone">'. LABEL_TELEPHONE .'</label>
-		<input type="text" id="telephone" name="telephone" value="'. $this->telephone .'"></p>
-		<p><label for="fax">'. LABEL_FAX .'</label>
-		<input type="text" id="fax" name="fax" value="'. $this->fax .'"></p>
+		<p><label for="generaltelephone">'. LABEL_TELEPHONE .'</label>
+		<input type="text" id="generaltelephone" name="generaltelephone" value="'. $this->telephone .'"></p>
+		<p><label for="generalfax">'. LABEL_FAX .'</label>
+		<input type="text" id="generalfax" name="generalfax" value="'. $this->fax .'"></p>
 		</fieldset>'.
 		
 		// Address
@@ -188,15 +188,16 @@ class customer {
 		<div id="shippingaddress">
 		<p><label for="shippingstreet">'. LABEL_STREET .'</label>
 		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'"></p>
-		<p><label for="shippingstreetnumber">'. LABEL_STREETNUMBER .'</label>
-		<input type="text" id="shippingstreetnumber" name="shippingstreetnumber" rel="mandatory" value="'. $shipping_address_data['street_number'] .'"></p>
-		<p><label for="shippingpostcode">'. LABEL_POSTCODE .'</label>
-		<input type="text" id="shippingpostcode" name="shippingpostcode" rel="mandatory" value="'. $shipping_address_data['post_code'] .'"></p>
+		<p><label for="shippingstreet_number">'. LABEL_STREETNUMBER .'</label>
+		<input type="text" id="shippingstreet_number" name="shippingstreet_number" rel="mandatory" value="'. $shipping_address_data['street_number'] .'"></p>
+		<p><label for="shippingpost_code">'. LABEL_POSTCODE .'</label>
+		<input type="text" id="shippingpost_code" name="shippingpost_code" rel="mandatory" value="'. $shipping_address_data['post_code'] .'"></p>
 		<p><label for="shippingcity">'. LABEL_CITY .'</label>
 		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'"></p>
 		<p><label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
-		'<div class="country">'. $country->printSelectBox("shippingcountry","shippingcountry", $shipping_address_data['country_code']).
-		'</div></p>
+		'<div class="country">'. $country->printSelectBox("shippingcountry_code","shippingcountry_code", $shipping_address_data['country_code']).
+		'<input type="hidden" id="address_id_shipping" name="address_id_shipping" value="'. $shipping_address_data['customer_address_id'] .'">
+		</div></p>
 		</fieldset>';
 		
 		
@@ -207,14 +208,15 @@ class customer {
 		<div id="billingaddress">
 		<p><label for="billingstreet">'. LABEL_STREET .'</label>
 		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $billing_address_data['street'] .'"></p>
-		<p><label for="billingstreetnumber">'. LABEL_STREETNUMBER .'</label>
-		<input type="text" id="billingstreetnumber" name="billingstreetnumber" rel="mandatory" value="'. $billing_address_data['street_number'] .'"></p>
-		<p><label for="billingpostcode">'. LABEL_POSTCODE .'</label>
-		<input type="text" id="billingpostcode" name="billingpostcode" rel="mandatory" value="'. $billing_address_data['post_code'] .'"></p>
+		<p><label for="billingstreet_number">'. LABEL_STREETNUMBER .'</label>
+		<input type="text" id="billingstreet_number" name="billingstreet_number" rel="mandatory" value="'. $billing_address_data['street_number'] .'"></p>
+		<p><label for="billingpost_code">'. LABEL_POSTCODE .'</label>
+		<input type="text" id="billingpost_code" name="billingpost_code" rel="mandatory" value="'. $billing_address_data['post_code'] .'"></p>
 		<p><label for="billingcity">'. LABEL_CITY .'</label>
 		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'"></p>
 		<p><label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
-		$country->printSelectBox("billingcountry","billingcountry",$billing_address_data['country_code']) .'</p>
+		$country->printSelectBox("billingcountry_code","billingcountry_code",$billing_address_data['country_code']) .'</p>
+		<input type="hidden" id="address_id_billing" name="address_id_billing" value="'. $billing_address_data['customer_address_id'] .'">
 		</div>
 		</fieldset>
 		</fieldset>
@@ -240,9 +242,25 @@ class customer {
 		// delete lasst comma to prevent issues with WHERE clausel
 		$update_statement = substr($update_statement, 0, strlen($update_statement)-2 );
 		
-		$update_statement = substr($update_statement, 0, strlen($update_statement)-2);
+		$update_statement = $update_statement .' WHERE customer_id = '. (int) $customer_id;
 		
-		$update_statement = $update_statement .'WHERE customer_id = '. (int) $customer_id;
+		db_query($update_statement);
+	}
+	
+	// update customer related address
+	public function updateAddress($address_id, $addressData) {
+		
+		// build sql update string from data array
+		$update_statement = 'UPDATE '. TBL_CUSTOMER_ADDRESS .' SET ';
+		
+		foreach ($addressData as $key => $value) {
+			$update_statement = $update_statement . $key .' = "'. $value .'", ';
+		}
+		
+		// delete lasst comma to prevent issues with WHERE clausel
+		$update_statement = substr($update_statement, 0, strlen($update_statement)-2 );
+		
+		$update_statement = $update_statement .' WHERE customer_address_id = '. (int) $address_id;
 		
 		db_query($update_statement);
 	}

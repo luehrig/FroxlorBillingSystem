@@ -77,20 +77,13 @@ switch($action) {
 	case 'show_checkout_step1':
 
 		echo 'Melden Sie sich an oder erstellen Sie ein neues Kundenkonto um zu bestellen.';
+		
+		echo '<a href="login.html" id="cartlogin" class="nonav">Einloggen</a>';
 
 		break;
 
 	case 'show_checkout_step2':
 
-		echo 'Sie können sofort weitermachen, weil Sie bereits als Kunde angemeldet sind.';
-
-		echo '<a href="#!page=checkout_step3&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
-
-		break;
-
-	case 'show_checkout_step3':
-
-		// TODO: change content ID to AGB entry
 		$content = new content(3,$language_id);
 			
 		echo $content->getTitle();
@@ -101,7 +94,7 @@ switch($action) {
 
 		echo '<div class="message_box"></div>';
 
-		echo '<a href="#!page=checkout_step4&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		echo '<a href="checkout_step3.html&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 
 		break;
 
@@ -113,22 +106,22 @@ switch($action) {
 		break;
 
 		// show address information
-	case 'show_checkout_step4':
+	case 'show_checkout_step3':
 
 		echo 'Auswahl der Rechnungs- und Lieferadresse!';
-		echo '<a href="#!page=checkout_step5&lang='. language::internalToISO($language_id) .'" id="checkout_step5" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 
 		break;
 
 		// show address information
-	case 'show_checkout_step5':
+	case 'show_checkout_step4':
 
 		echo HEADING_ORDER_OVERVIEW;
 
 		$cart = new shoppingcart(session_id());
 		echo $cart->printCart();
 
-		echo '<a href="#!page=save_order&lang='. language::internalToISO($language_id) .'" id="save_order" class="nonav">'. BUTTON_CHECKOUT_SEND_ORDER .'</a>';
+		echo '<a href="order_received.html&lang='. language::internalToISO($language_id) .'" id="save_order" class="nonav">'. BUTTON_CHECKOUT_SEND_ORDER .'</a>';
 
 		break;
 
@@ -222,6 +215,13 @@ switch($action) {
 
 		break;
 
+	case 'show_specific_page':
+		$destination = $_POST['destination'];
+		
+		header($destination);
+		
+		break;
+		
 	default:
 		echo WARNING_CONTENT_NOT_FOUND;
 		break;
