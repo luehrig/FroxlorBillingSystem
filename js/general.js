@@ -9,36 +9,36 @@ $(function() {
 	$("body").on("click", "a[class=nav]", function() {
 		var state = $(this).attr('id');
 		var lang = $('input[type=hidden][id=site_language]').val();
-		//$.bbq.pushState('#!page=' + state + '&lang=' + lang);
-		$.bbq.pushState( state +'.html?lang='+ lang, 2);
-		
-		
+		// $.bbq.pushState('#!page=' + state + '&lang=' + lang);
+		$.bbq.pushState(state + '.html?lang=' + lang, 2);
+
 		return false;
 	});
 
-	/* $("body").on("click", "a[class=nav]", function() {
-		
-		var url = $(this).attr('id');
-		var lang = $('input[type=hidden][id=site_language]').val();
-		
-		loadContent(url, lang);
-		
-		return false;
-	});*/
-	
+	/*
+	 * $("body").on("click", "a[class=nav]", function() {
+	 * 
+	 * var url = $(this).attr('id'); var lang =
+	 * $('input[type=hidden][id=site_language]').val();
+	 * 
+	 * loadContent(url, lang);
+	 * 
+	 * return false; });
+	 */
+
 	// Bind a callback that executes when document.location.hash changes.
 	$(window).bind("hashchange", function(e) {
-		//var url = $.bbq.getState("!page");
+		// var url = $.bbq.getState("!page");
 		var lang = $.bbq.getState("lang");
 
 		var fragment = $.param.fragment();
-		
+
 		var newurl = fragment.substr(0, fragment.indexOf('.'));
 
-		if(newurl == '') {
+		if (newurl == '') {
 			newurl = 'home';
 		}
-		
+
 		// dynamic content loading
 		loadContent(newurl, lang);
 
@@ -108,7 +108,7 @@ $(function() {
 							// get password
 							customerData['email'] = $(
 									'input[type=email][id=email]').val();
-							
+
 							// get password
 							customerData['password'] = $(
 									'input[type=password][id=password]').val();
@@ -131,26 +131,35 @@ $(function() {
 											function(msg) {
 												// $('#messagearea').html( msg
 												// );
-												$('a[id=customercenter]').addClass('nav');
-												$.ajax({
-													type : "POST",
-													url : "logic/process_usermanagement.php",
-													data : {
-														action : "login_customer",
-														email : customerData['email'],
-														password : customerData['password']
-													}
-												});
-												
-												$.ajax({
-													type : "POST",
-													url : "logic/process_customer_action.php",
-													data : {
-														action : "show_customer_header"
-													}
-												}).done(function(msg) {
-													$('#customer_header_ajax').html(msg);
-												});
+												$('a[id=customercenter]')
+														.addClass('nav');
+												$
+														.ajax({
+															type : "POST",
+															url : "logic/process_usermanagement.php",
+															data : {
+																action : "login_customer",
+																email : customerData['email'],
+																password : customerData['password']
+															}
+														});
+
+												$
+														.ajax(
+																{
+																	type : "POST",
+																	url : "logic/process_customer_action.php",
+																	data : {
+																		action : "show_customer_header"
+																	}
+																})
+														.done(
+																function(msg) {
+																	$(
+																			'#customer_header_ajax')
+																			.html(
+																					msg);
+																});
 												window.location.href = "index.php#!page=customercenter";
 											});
 						}
@@ -159,8 +168,7 @@ $(function() {
 					});
 
 	// ask customer if reset should be done now
-	$("body").on("click",
-			"form[id=registrationform] input[id=clear]",
+	$("body").on("click", "form[id=registrationform] input[id=clear]",
 			function() {
 
 				var confirm_message = '';
@@ -178,14 +186,14 @@ $(function() {
 					var confirm_result = confirm(confirm_message);
 
 					if (confirm_result == true) {
-						//document.getElementById('registrationform').reset();
+						// document.getElementById('registrationform').reset();
 						$('#registrationform').get(0).reset();
 					}
 
 				});
-				
-			return false;
-				
+
+				return false;
+
 			});
 
 	// process login procedure
@@ -303,15 +311,10 @@ $(function() {
 			}
 			// user is not logged in as customer
 			else {
-
-				$.ajax({
-					type : "POST",
-					url : "logic/process_content_handling.php",
-					data : {
-						action : "show_checkout_step1"
-					}
-				}).done(function(msg) {
-					$('.content_container').html(msg);
+				var current_pos = window.location.href;
+				
+				$.colorbox({
+					href : "logincustomer.php?position="+ current_pos +"" 
 				});
 			}
 		});
@@ -321,7 +324,7 @@ $(function() {
 
 	// third step in checkout process
 	$("body").on("click", "input[id=check_terms]", function() {
-		var navlink = $('a[id=checkout_step4]');
+		var navlink = $('a[id=checkout_step3]');
 		var check_value = $(this).attr('checked');
 
 		if (check_value == undefined) {
@@ -335,7 +338,7 @@ $(function() {
 	});
 
 	// catch case if terms were not accepted and customer clicks next
-	$("body").on("click", "a[id=checkout_step4][class=nonav]", function() {
+	$("body").on("click", "a[id=checkout_step3][class=nonav]", function() {
 
 		$.ajax({
 			type : "POST",
@@ -362,10 +365,10 @@ $(function() {
 			}
 		}).done(function(msg) {
 			$('.content_container').html(msg);
-		});
 
-		// clear quantity counter in header for cart
-		setProductCountInCart();
+			// clear quantity counter in header for cart
+			setProductCountInCart();
+		});
 
 		return false;
 	});

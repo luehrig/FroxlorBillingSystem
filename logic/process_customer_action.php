@@ -142,6 +142,7 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 				$mail->AddAddress( $recipient, $customizing->getCustomizingValue('business_company_name') );
 				$mail->SetFrom( $customer_email , $full_name );
 				$mail->Subject = $subject;
+				$mail->setMessage = $message;
 				$mail->Send();
 				echo MSG_SUCCESSFULLY_SENT;
 			} catch (phpmailerException $e) {
@@ -169,6 +170,7 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 				$mail->AddAddress( $recipient, $customizing->getCustomizingValue('business_company_name') );
 				$mail->SetFrom( $customer_email , $full_name );
 				$mail->Subject = $subject;
+				$mail->setMessage = $message;
 				$mail->Send();
 				echo MSG_SUCCESSFULLY_SENT;
 			} catch (phpmailerException $e) {
