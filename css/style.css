@@ -24,7 +24,6 @@ z
 	background-color: #F0F0F0;
 	width: 900px;
 	height: 110px;
-	
 	-moz-box-shadow: inset 0 0 10px 0 #000;
 	-webkit-box-shadow: inset 0 0 10px 0 #000;
 	box-shadow: inset 0 0 10px 0 #000;
@@ -33,9 +32,11 @@ z
 .header_right {
 	float: right;
 	width: 450px;
-	height: 100px;
+	height: 90px;
 	position: relative;
 	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 
@@ -142,7 +143,6 @@ a:active {
 
 
 #shoppingcart {
-	float: right;
 	margin: 10px;
 	font-weight:bold;
 	font-size: 0.8em;
@@ -681,7 +681,7 @@ legend
 
 #admin_welcome
 {
-	margin-top: 90px;
+	margin-top: 80px;
 	margin-right:5px;
 }
 
