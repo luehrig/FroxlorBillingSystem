@@ -40,8 +40,8 @@ class productAttribute{
 		}
 	}
 	
-	public function delete($product_attribute_id, $language_id){
-		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id = "'. $product_attribute_id .'" AND language_id = "'. $language_id .'"';
+	public function delete($product_attribute_id){
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id = "'. $product_attribute_id .'"';
 		return db_query($sql_delete_statement);		
 	}
 	
