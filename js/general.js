@@ -373,7 +373,7 @@ $(function() {
 	// overlay for help menu
 	$("body").on("click", "a[class=lightbox]", function() {
 		$.colorbox({
-			href : "help.php"
+			href : "bodys/contact_js.php"
 		});
 
 		return false;

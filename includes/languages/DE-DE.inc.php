@@ -28,7 +28,7 @@ define('SHIPPING_ADDRESS','Lieferadresse');
 define('LABEL_BILLING_ADDRESS','Rechnungsadresse');
 define('LABEL_TELEPHONE','Telefon');
 define('LABEL_FAX','Fax');
-define('LABEL_EMAIL','eMail Adresse');
+define('LABEL_EMAIL','E-Mail Adresse');
 define('LABEL_PASSWORD','Passwort');
 define('LABEL_PASSWORDAGAIN','Passwort wiederholen');
 define('LABEL_STREET','Stra√üe');
@@ -46,13 +46,18 @@ define('FIELDSET_CUSTOMER_ADDRESS_INFORMATION','Adressdaten');
 define('FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION','Lieferadresse');
 define('FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION','Rechnungsadresse');
 
-
-
-
 define('SELECT_CUSTOMER_GENDER_MALE','Herr');
 define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('SELECT_GENDER_MALE','Herr');
 define('SELECT_GENDER_FEMALE','Frau');
+
+/* Contact form */
+define('LEGEND_CONTACT_FORM','Kontaktformular');
+define('RADIO_VALUE_QUESTION','Frage');
+define('RADIO_VALUE_PROBLEM','Problem');
+define('RADIO_VALUE_FEEDBACK','Feedback');
+define('LABEL_YOUR_MESSAGE','Deine Nachricht');
+define('LABEL_SEND','Senden');
 
 /* Login process */
 define('FIELDSET_LOGIN_FORM_CUSTOMER','Kundenanmeldung');
@@ -108,6 +113,7 @@ define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gek√
 
 /* main menu texts */
 define('VIEW_MENU_HELP','Hilfe');
+define('VIEW_MENU_CONTACT','Kontakt');
 define('VIEW_MENU_IMPRINT', 'Impressum');
 define('VIEW_MENU_HOME', 'Home');
 define('VIEW_MENU_PRODUCTS', 'Produkte');

@@ -48,6 +48,8 @@ $cart = new shoppingcart(session_id());
 
 <script language="javascript" src="js/customercenter.js"></script>
 
+<link rel="SHORTCUT ICON" href="images/logos/logo.ico" type="image/x-icon">
+
 </head>
 <body>
 <div class="header">

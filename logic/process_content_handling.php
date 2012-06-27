@@ -173,6 +173,16 @@ switch($action) {
 		include PATH_BODYS .'product.php';
 		break;
 
+		//contact form (is only used when javascript is not active)
+	case 'show_contact':
+		include PATH_BODYS .'contact.php';
+		break;		
+
+		//content of help
+	case 'show_help':
+		include PATH_BODYS .'help.php';
+		break;
+
 	case 'show_customercenter':
 
 		echo '<div class="customermenu">
