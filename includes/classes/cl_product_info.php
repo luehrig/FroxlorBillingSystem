@@ -61,6 +61,11 @@ class productInfo{
 		else return false;
 		
 	}
+	
+	public static function deleteAllProductInfosByAttrId($attribute_id){
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_INFO  .' WHERE attribute_id = "'. $attribute_id  .'"';
+		return db_query($sql_delete_statement);
+	}
 		
 	public function getData($product_id, $attribute_id){
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_INFO .' WHERE product_id = "'. (int) $product_id.'" 

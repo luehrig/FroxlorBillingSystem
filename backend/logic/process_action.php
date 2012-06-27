@@ -395,7 +395,8 @@ switch($action) {
 		$product_attribute_id = $_POST['product_attribute_id'];
 		$language_id = $_POST['language_id'];
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
-		if($product_attribute->delete($product_attribute_id)){
+		if($product_attribute->delete($product_attribute_id) AND productInfo::deleteAllProductInfosByAttrId($product_attribute_id)){
+
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED;
 		}
 		else{
