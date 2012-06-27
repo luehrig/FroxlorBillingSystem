@@ -268,7 +268,7 @@ class product {
 		
 		$return_string = $return_string . $this->getAttributeEditForm($attributesForLang, $product_info);
 		$return_string = $return_string . '<input type="submit" name="submit_edit_attributes" id="submit_edit_attributes" value="'. BUTTON_CHANGE_ATTRIBUTES .'">';
-		$return_string = $return_string . '<input type="submit" name="give_prod_new_attr" id="give_prod_new_attr" value="'. BUTTON_NEW_ATTR_FOR_PROD .'">';
+		$return_string = $return_string . '<input type="submit" name="give_prod_new_attr" id="give_prod_new_attr" value="'. BUTTON_NEW_ATTR_FOR_PROD .'">'; 
 		$return_string = $return_string . '</form></fieldset>';
 		$return_string = $return_string. '</div>';
 		return $return_string;
@@ -459,7 +459,8 @@ class product {
 				'<label for="product_id_notation">'. LABEL_PRODUCT_ATTRIBUTE .' </label>'.
 				'<label for="product_id">'. $this->product_id.' </label>'.
 				'</legend>'.
-				'<input type="hidden" id = "product_id" name = product_id value = '.$this->product_id.'>';
+				'<input type="hidden" id = "product_id" name = "product_id" value = "'.$this->product_id .'">'.
+				'<input type="hidden" id = "language_id" name = "language_id" value = "'.$this->language_id .'">';
 		$attr_ids = "";
 		foreach($attr_for_product as $att_id=>$att_val){
 			$attr_ids = $attr_ids. $att_id.',';

@@ -91,7 +91,6 @@ switch($action) {
 		$existing_attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
 		$availible_attributes = productInfo::getAvailableAttributes($product_id, $existing_attributes_for_lang);
 
-
 		echo productInfo::printNewAttributeForm($product_id, $availible_attributes);
 		echo '</fieldset>';
 		echo '</div>';
