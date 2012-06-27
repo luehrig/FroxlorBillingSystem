@@ -11,9 +11,10 @@ $(function() {
 
 				var email = $('input[type=email][id=email]').val();
 				var password = $('input[type=password][id=password]').val();
+				var position = $('input[type=hidden][id=position]').val();
 
-				// do ajax call. If login was successful redirect to customer
-				// center
+				// do ajax call. If login was successful redirect to last
+				// position
 				$.ajax({
 					type : "POST",
 					url : "logic/process_usermanagement.php",
@@ -27,15 +28,28 @@ $(function() {
 						$.colorbox.close();
 						$('a[id=customercenter]').addClass('nav');
 
-						$.ajax({
-							type : "POST",
-							url : "logic/process_content_handling.php",
-							data : {
-								action : "show_customercenter"
-							}
-						}).done(function(msg) {
-							$('.content_container').html(msg);
-						});
+						if (position != '') {
+							$.ajax({
+								type : "POST",
+								url : "logic/process_content_handling.php",
+								data : {
+									action : "show_specific_page",
+									destination : position
+								}
+							}).done(function(msg) {
+								
+							});
+						} else {
+							$.ajax({
+								type : "POST",
+								url : "logic/process_content_handling.php",
+								data : {
+									action : "show_customercenter"
+								}
+							}).done(function(msg) {
+								$('.content_container').html(msg);
+							});
+						}
 
 						$.ajax({
 							type : "POST",
@@ -89,7 +103,7 @@ $(function() {
 	// Handels customer menu click "My Data" --> get overview page with all
 	// customizing entries
 	$("body").on("click", "a[id=mydata]", function() {
-		
+
 		var customer_id = $(this).attr('rel');
 
 		$.ajax({
@@ -111,9 +125,9 @@ $(function() {
 	$('body').on("click", "input[id=edit_customer]", function() {
 
 		// clear message area
-//		$('#error_msg_area').html('');
-//		$('.messagearea').html('');
-		
+		// $('#error_msg_area').html('');
+		// $('.messagearea').html('');
+
 		var customer_id = $(this).attr('rel');
 
 		$.ajax({
@@ -129,89 +143,139 @@ $(function() {
 
 		return false;
 	});
-	
-	// save changed customer data 
-	$('body').on("click", "form[class=edit_cust_data] input[type=submit][id=save_customer]", 
-		
-		// check if mandatory fields are filled
-		function() {
-			
-			// clear message area
-//			$('#error_msg_area').html(msg);
-//			$('.messagearea').html(msg);
-		
-			var mandatory_filled = true;
-			var customerData = {};
 
-			$("input[rel=mandatory]").each(function() {
-				if (!$(this).val() && mandatory_filled == true) {
-					mandatory_filled = false;
-					return false;
-				}
-			});
-			if (mandatory_filled == false) {
-				$.ajax({
-					type : "POST",
-					url : "logic/process_inputcheck.php",
-					data : {
-						action : "get_message_mandatory_not_filled"
-					}
-				}).done(function(msg) {
-					$('#error_msg_area').html(msg);
-					$('html, body').animate({ scrollTop: $('.messagearea').offset().top }, 1000);
+	// save changed customer data
+	$('body').on("click",
+			"form[class=edit_cust_data] input[type=submit][id=save_customer]",
 
-				});
-			} else {
-				// get all input fields
-				$('input[type=text]').each(function() {
-					var key = $(this).attr('id');
-					customerData[key] = $(this).val();
-				});		
-				// get all select fields
-				$('select option:selected').each(function() {
-					var key = $(this).attr('name');
-					customerData[key] = $(this).attr('id');
-				});
-				var customer_id = $(this).attr('rel');
-				// update DB with changed customer data
-				$.ajax({
-					type : "POST",
-					url : "logic/process_db.php",
-					data : {
-						action : "update_customer",
-						customerData : customerData,
-						customer_id : customer_id
+			// check if mandatory fields are filled
+			function() {
+
+				// clear message area
+				// $('#error_msg_area').html(msg);
+				// $('.messagearea').html(msg);
+
+				var mandatory_filled = true;
+				var customerData = {};
+				var shippingAddress = {};
+				var billingAddress = {};
+
+				$("input[rel=mandatory]").each(function() {
+					if (!$(this).val() && mandatory_filled == true) {
+						mandatory_filled = false;
+						return false;
 					}
+				});
+				if (mandatory_filled == false) {
+					$.ajax({
+						type : "POST",
+						url : "logic/process_inputcheck.php",
+						data : {
+							action : "get_message_mandatory_not_filled"
+						}
 					}).done(function(msg) {
-				$('.customer_content_container').html(msg);
+						$('#error_msg_area').html(msg);
+						$('html, body').animate({
+							scrollTop : $('.messagearea').offset().top
+						}, 1000);
+
 					});
-				
-				// get overview page with all customizing entries 
-//				$.ajax({
-//					type : "POST",
-//					url : "logic/process_customer_action.php",
-//					data : {
-//						action : "get_customer_data",
-//						customer_id : customer_id
-//					}
-//				}).done(function(msg) {
-//					$('.customer_content_container').html(msg);
-//					// $('a[id=save_customizing]').hide();
-//				});
-			}
+				} else {
+					// get all input fields for customer data
+					$('input[id^=general]').each(function() {
+						var key = $(this).attr('id');
+						key = key.substr(7,key.strlen);
+						
+						customerData[key] = $(this).val();
+					});
+					
+					// read shipping information
+					var shipping_address_id = $('input[id=address_id_shipping]').val();
+					
+					$('input[id^=shipping]').each(function() {
+						var key = $(this).attr('id');
+						key = key.substr(8,key.strlen);
+						
+						shippingAddress[key] = $(this).val();
+					});
+					
+					// read billing information
+					var billing_address_id = $('input[id=address_id_billing]').val();
+					
+					$('input[id^=billing]').each(function() {
+						var key = $(this).attr('id');
+						key = key.substr(7,key.strlen);
+						
+						billingAddress[key] = $(this).val();
+					});
+					
+					// get select fields
+					$('select[id^=general] option:selected').each(function() {
+						var key = $(this).attr('name');
+						key = key.substr(7,key.strlen);
+						
+						customerData[key] = $(this).attr('id');
+					});
+					
+					// get select fields
+					$('select[id^=shipping] option:selected').each(function() {
+						var key = $(this).attr('name');
+						key = key.substr(8,key.strlen);
+						
+						shippingAddress[key] = $(this).attr('id');
+					});
+					
+					// get select fields
+					$('select[id^=billing] option:selected').each(function() {
+						var key = $(this).attr('name');
+						key = key.substr(7,key.strlen);
+						
+						billingAddress[key] = $(this).attr('id');
+					});
+					
+					var customer_id = $(this).attr('rel');
+					// update DB with changed customer data
+					$.ajax({
+						type : "POST",
+						url : "logic/process_db.php",
+						data : {
+							action : "update_customer",
+							customerData : customerData,
+							customer_id : customer_id,
+							shippingAddress : shippingAddress,
+							shipping_address_id : shipping_address_id,
+							billingAddress : billingAddress,
+							billing_address_id : billing_address_id
+						}
+					}).done(function(msg) {
+						$('.customer_content_container').html(msg);
+					});
 
-		return false;
-	});
+					// get overview page with all customizing entries
+					// $.ajax({
+					// type : "POST",
+					// url : "logic/process_customer_action.php",
+					// data : {
+					// action : "get_customer_data",
+					// customer_id : customer_id
+					// }
+					// }).done(function(msg) {
+					// $('.customer_content_container').html(msg);
+					// // $('a[id=save_customizing]').hide();
+					// });
+				}
 
-	
+				return false;
+			});
+
 	// Handels customer menu click "My Products" --> get overview page with
 	// customer's products
 	$("body").on("click", "a[id=myproducts]", function() {
-		
+
 		// clear message area
 		$('#error_msg_area').html('');
 		$('.messagearea').html('');
-		
+
 		getCustomerProducts();
 
 		return false;
@@ -222,7 +286,7 @@ $(function() {
 
 		var confirm_message = '';
 		var contract_id = $(this).attr('rel');
-		
+
 		// get confirm message
 		$.ajax({
 			type : "POST",
@@ -232,11 +296,11 @@ $(function() {
 			}
 		}).done(function(msg) {
 			confirm_message = msg;
-			
-			var confirm_result = confirm( confirm_message );
+
+			var confirm_result = confirm(confirm_message);
 
 			if (confirm_result == true) {
-				
+
 				$.ajax({
 					type : "POST",
 					url : "logic/process_business_logic.php",
@@ -245,17 +309,15 @@ $(function() {
 						contract_id : contract_id
 					}
 				}).done(function(msg) {
-					
+
 					$('.messagearea').html(msg);
-					
+
 					getCustomerProducts();
-					
+
 				});
 			}
-			
+
 		});
-		
-		
 
 		return false;
 	});
@@ -284,7 +346,7 @@ $(function() {
 });
 
 function getCustomerProducts() {
-	
+
 	$.ajax({
 		type : "POST",
 		url : "logic/process_customer_action.php",
@@ -295,5 +357,5 @@ function getCustomerProducts() {
 		$('.customer_content_container').html(msg);
 		// $('a[id=save_customizing]').hide();
 	});
-	
+
 }
