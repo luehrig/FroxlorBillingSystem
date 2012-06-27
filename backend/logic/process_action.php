@@ -394,7 +394,6 @@ switch($action) {
 		
 	case 'delete_product_attribute':
 		$product_attribute_id = $_POST['product_attribute_id'];
-		echo 'blubbbb';
 		$language_id = $_POST['language_id'];
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
 		if($product_attribute->delete($product_attribute_id, $language_id)){

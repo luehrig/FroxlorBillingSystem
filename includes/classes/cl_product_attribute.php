@@ -86,7 +86,7 @@ class productAttribute{
 			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['description'] .'</td>
 			<td><a href="#" id="edit_product_atrribute" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
-			<td><a href="#" id="delete_product_attribute" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
+			<td><a href="#" id="delete_product_attribute_description" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';

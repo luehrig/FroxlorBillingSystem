@@ -230,7 +230,7 @@ $(function() {
 	});
 	
 	// delete attribute in product info
-	$("body").on("click", "a[id=delete_product_attribute]", function() {
+	$("body").on("click", "a[id=delete_product_info]", function() {
 	
 		var attribute_id = primaryKeys[0];
 		var product_id = $('input[type=hidden][id=product_id]').val();
@@ -444,11 +444,10 @@ $(function() {
 	});	
 		
 	// delete attribute
-	$("body").on("click", "a[id=delete_product_attribute]", function() {
+	$("body").on("click", "a[id=delete_product_attribute_description]", function() {
 		
 		var primary_keys_from_php = $(this).attr('rel');
 		var primary_keys = primary_keys_from_php.split(",");
-		alert('trigger me');
 		var product_attribute_id = primary_keys[0];
 		var language_id = primary_keys[1];
 		$.ajax({
