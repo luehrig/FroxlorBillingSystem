@@ -69,33 +69,55 @@ switch($action) {
 
 		// display shopping cart with all products
 	case 'show_shoppingcart':
-
-		include PATH_BUYINGCENTER .'shoppingcart.php';
+		
+		$cart = new shoppingcart(session_id());
+		
+		echo '<h1>'. VIEW_MENU_SHOPPING_CART. '</h1>';
+		echo '<div class="boxwrapper">';
+		echo '<div class=" whitebox box_1inRow">';
+		echo '<fieldset>';
+		echo '<legend> Warenkorb </legend>';
+		
+		echo $cart->printCart(NULL, true);
+					
+		echo '</fieldset>';
+		echo '</div>';
+		echo '</div>';
 
 		break;
 
 	case 'show_checkout_step1':
 
+
 		echo 'Melden Sie sich an oder erstellen Sie ein neues Kundenkonto um zu bestellen.';
 		
 		echo '<a href="login.html" id="cartlogin" class="nonav">Einloggen</a>';
 
+
 		break;
 
 	case 'show_checkout_step2':
-
 		$content = new content(3,$language_id);
 			
-		echo $content->getTitle();
-			
+		echo '<h1>'. $content->getTitle(). '</h1>';
+		
+		echo '<div class="boxwrapper">';
+		echo '<div class="whitebox box_1inRow">';
+		echo '<fieldset>';
+		
 		echo $content->getText();
-
+		
+		echo '</fieldset>';
+		echo '</div>';
+		
 		echo '<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
 
 		echo '<div class="message_box"></div>';
 
 		echo '<a href="checkout_step3.html&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		
 
+		echo '</div>';
 		break;
 
 		// message that customer has to accept terms
@@ -107,19 +129,30 @@ switch($action) {
 
 		// show address information
 	case 'show_checkout_step3':
-
-		echo 'Auswahl der Rechnungs- und Lieferadresse!';
+		echo '<h1>Rechnungs- und Lieferadresse</h1>';
+		echo '<div class="boxwrapper">';
+		echo '<div class="whitebox box_1inRow">';
+		echo '<fieldset>';
+		//TODO: show Adresses
+		
+		echo '</fieldset>';
+		echo '</div>';
+		
 		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 
 		break;
 
 		// show address information
 	case 'show_checkout_step4':
-
-		echo HEADING_ORDER_OVERVIEW;
+		echo '<h1>'.HEADING_ORDER_OVERVIEW.'</h1>';
+		echo '<div class="boxwrapper">';
+		echo '<div class="whitebox box_1inRow">';
+		echo '<fieldset>';
 
 		$cart = new shoppingcart(session_id());
 		echo $cart->printCart();
+		echo '</fieldset>';
+		echo '</div>';
 
 		echo '<a href="order_received.html&lang='. language::internalToISO($language_id) .'" id="save_order" class="nonav">'. BUTTON_CHECKOUT_SEND_ORDER .'</a>';
 
@@ -185,9 +218,9 @@ switch($action) {
 		<li><a class="cm" href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
 		</ul>
 		</div>';
-		
-		echo '<div class="whitebox">';
-		echo '<div class="cust_data">';
+		echo '<div class="internalwrapper">';
+		echo '<div class="whitebox internal">';
+		echo '<fieldset>';
 		
 		// message area
 		echo '<div class="messagearea">'; 
