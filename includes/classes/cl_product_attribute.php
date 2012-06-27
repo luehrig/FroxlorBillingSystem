@@ -62,13 +62,13 @@ class productAttribute{
 		$number_of_product_attributes = db_num_results($product_attribute_query);
 		
 		$return_string = '<div id="'. $container_id .'">';
-		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES, $number_of_product_attributes). '<br>';
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES, $number_of_product_attributes);
 		
 		
 		$create_button = '<a href="#" id="create_new_product_attribute">'.BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE.'</a></td>';
 		
 		
-		$return_string = $return_string . $create_button . '<br><br>';
+		$return_string = $return_string . '<br><br>';
 		
 		
 		$table_header = '<table border = "0">
@@ -90,6 +90,7 @@ class productAttribute{
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
+		$return_string = $return_string. $create_button. '<br>'; 
 		return $return_string;
 	}
 	
