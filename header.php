@@ -36,8 +36,10 @@ $cart = new shoppingcart(session_id());
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Froxcloud</title>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-<link rel="stylesheet" type="text/css" href="mobile.css" media="handheld" />
+<link rel="stylesheet" type="text/css" href="css/style.css"  media="screen" />
+<link rel="stylesheet" type="text/css" href="css/handheld.css" media="handheld" />
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+
 <link rel="stylesheet" href="css/colorbox.css" type="text/css">
 
 <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
