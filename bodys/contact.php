@@ -1,21 +1,21 @@
 <?php 
-include_once '../configuration.inc.php';
+
 require_once  PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_customer.php';
 
 require_once PATH_CLASSES .'cl_customizing.php';
 
-require_once '../functions/database.php';
+require_once 'functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
-include_once '../includes/database_tables.php';
+include_once 'includes/database_tables.php';
 
-require_once '../functions/general.php';
+require_once 'functions/general.php';
 
 // detect preferred browser language if language is not available use the default language from shop customizing
 $site_language = language::getBrowserLanguage();
 
-include_once '../includes/languages/'. strtoupper($site_language) .'.inc.php';
+include_once 'includes/languages/'. strtoupper($site_language) .'.inc.php';
 
 '<script language="javascript" src="js/customercenter.js"></script>';
 

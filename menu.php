@@ -10,7 +10,7 @@
 		</script>
 		
 		<!-- menu link for contact form if javascript is not active -->
-	   <li><noscript><a href="content.html?lang=<?php echo $site_language; ?>" id="contact" class="nav"><span><?php echo VIEW_MENU_CONTACT; ?></span></a></noscript></li>
+	   <li><noscript><a href="contact.html?lang=<?php echo $site_language; ?>" id="contact" class="nav"><span><?php echo VIEW_MENU_CONTACT; ?></span></a></noscript></li>
 	   
 	   <li><a href="help.html?lang=<?php echo $site_language; ?>" id="help" class="nav"><span><?php echo VIEW_MENU_HELP; ?></span></a></li>
 	   <li><a href="imprint.html?lang=<?php echo $site_language; ?>" id="imprint" class="nav"><span><?php echo VIEW_MENU_IMPRINT; ?></span></a></li>
