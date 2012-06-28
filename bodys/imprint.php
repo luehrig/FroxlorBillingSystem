@@ -5,36 +5,22 @@ if(!isset($_GET['page'])) {
 
 require_once PATH_CLASSES .'cl_language.php';
 require_once PATH_CLASSES .'cl_content.php';
+require_once PATH_CLASSES .'cl_customizing.php';
 
-$content_id_for_imprint = 1;
 $language_id = language::ISOTointernal(language::getBrowserLanguage());
-$content = new content($content_id_for_imprint ,$language_id); 
+
+$customizing = new customizing($language_id);
+$imprint_Customizing_key = 'sys_page_imprint';
+
+$customized_imprint_id = $customizing->getCustomizingValue($imprint_Customizing_key);
+
+$content = new content($customized_imprint_id ,$language_id); 
 
 $imprint_text = $content->getText($language_id);
+$imprint_title = $content->getTitle($language_id);
 
+echo '<h1>'. $imprint_title .'</h1>'. '<div class="boxwrapper">'.
 
-echo '<h1>'. VIEW_MENU_IMPRINT .'</h1>'. '<div class="boxwrapper">'.
-
-// 	<div class=" whitebox box_2inRow">
-// 		<fieldset>
-// 			<legend>
-// 				<img ID="minilogo" src="images/logos/logo.png">
-// 				Rechtliches
-// 			</legend>
-// 			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
-// 		</fieldset>
-// 	</div>
-	
-// 	<div class=" whitebox box_2inRow">
-// 		<fieldset>
-// 			<legend>
-// 				<img ID="minilogo" src="images/logos/logo.png">
-// 				Herzlich Willkommen
-// 			</legend>
-// 			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
-// 		</fieldset>
-// 	</div>
-	
 	'<div class=" whitebox box_1inRow">
 		<fieldset>
 			<legend>

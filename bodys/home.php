@@ -1,63 +1,35 @@
 <?php 
 		
-$content = new content(2,$language_id);
+
+
+require_once PATH_CLASSES .'cl_language.php';
+require_once PATH_CLASSES .'cl_content.php';
+require_once PATH_CLASSES .'cl_customizing.php';
+
+$language_id = language::ISOTointernal(language::getBrowserLanguage());
+
+$customizing = new customizing($language_id);
+$home_Customizing_key = 'sys_page_home';
+
+$customized_home_id = $customizing->getCustomizingValue($home_Customizing_key);
+
+$content = new content($customized_home_id ,$language_id);
+
+$home_text = $content->getText($language_id);
+$home_title = $content->getTitle($language_id);
+
+echo '<h1>'. $home_title .'</h1>'. '<div class="boxwrapper">'.
+
+		'<div class=" whitebox box_1inRow">
+		<fieldset>
+		<legend>
+		<img ID="minilogo" src="images/logos/logo.png">
+		</legend>'.
+		$home_text.
+		'</fieldset>
+		</div>
+
+		</div>';
+
 ?>
 
-<h1><?php echo VIEW_MENU_HOME; ?></h1>
-<div class="boxwrapper">
-	<div class=" whitebox box_1inRow">
-		<fieldset>
-			<legend>
-				Herzlich Willkommen
-			</legend>
-			Text
-		</fieldset>
-	</div>
-	
-	<div class=" whitebox box_2inRow">
-		<fieldset>
-			<legend>
-				Herzlich Willkommen
-			</legend>
-			Text
-		</fieldset>
-	</div>
-	
-	<div class=" whitebox box_2inRow">
-		<fieldset>
-			<legend>
-				Herzlich Willkommen
-			</legend>
-			Text
-		</fieldset>
-	</div>
-	
-	<div class=" whitebox box_3inRow">
-		<fieldset>
-			<legend>
-				Kommentar
-			</legend>
-			Text
-		</fieldset>
-	</div>
-	
-	<div class=" whitebox box_3inRow">
-		<fieldset>
-			<legend>
-				Kommentar
-			</legend>
-			Text
-		</fieldset>
-	</div>
-	
-	<div class=" whitebox box_3inRow">
-		<fieldset>
-			<legend>
-				Kommentar
-			</legend>
-			Text
-		</fieldset>
-	</div>
-
-</div>
-	
