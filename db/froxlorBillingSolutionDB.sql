@@ -777,6 +777,10 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms', NULL, '1');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_tax', NULL, '2');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_currency', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_home', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_imprint', NULL, '2');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_sitemap', NULL, '4');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_help', NULL, '3');
 
 COMMIT;
 
