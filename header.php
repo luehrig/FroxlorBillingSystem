@@ -32,15 +32,24 @@ $cart = new shoppingcart(session_id());
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
+
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Froxcloud</title>
 
-<link rel="stylesheet" type="text/css" href="css/style.css"  media="screen" />
-<link rel="stylesheet" type="text/css" href="css/handheld.css" media="handheld" />
-<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-
+<!-- stylesheets for lightbox, printer and desktop screen -->
 <link rel="stylesheet" href="css/colorbox.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" media="screen and (min-device-width: 600px)" type="text/css" />
+<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+<!-- stylesheet for mobile devices -->
+<link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 599px)" href="css/handheld.css" />
+<link rel="stylesheet" media="screen and (-webkit-device-pixel-ratio:0.75)" href="css/handheld.css" />
+<link rel="stylesheet" href="css/handheld.css" media="handheld" type="text/css" />
+
+
+
 
 <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
