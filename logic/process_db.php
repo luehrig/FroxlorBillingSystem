@@ -72,29 +72,6 @@ switch($action) {
 			$customer->setDefaultBillingAddress($identified_billing_address_id);
 		}
 
-		/* $addressDiff = array_diff($shippingAddress, $billingAddress);
-
-
-		if( count($addressDiff) == 0) {
-			
-		$customer->setDefaultBillingAddress($shipping_address_id);
-		}
-		else {
-		// check if address for customer still exists in address pool for customer
-		if($customer->hasAddress($))
-				
-			// update shipping address if change was requested
-		if(isset($shipping_address_id) && isset($shippingAddress)) {
-		$customer->updateAddress($shipping_address_id, $shippingAddress);
-		}
-
-		// update billing address if change was requested
-		if(isset($billing_address_id) && isset($billingAddress)) {
-		$customer->updateAddress($billing_address_id, $billingAddress);
-		}
-		}
-		*/
-
 		echo MSG_CHANGES_SAVED;
 
 		break;

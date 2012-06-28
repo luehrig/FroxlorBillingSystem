@@ -151,10 +151,6 @@ $(function() {
 			// check if mandatory fields are filled
 			function() {
 
-				// clear message area
-				// $('#error_msg_area').html(msg);
-				// $('.messagearea').html(msg);
-
 				var mandatory_filled = true;
 				var customerData = {};
 				var shippingAddress = {};
