@@ -111,8 +111,12 @@ switch($action) {
 		echo '</fieldset>';
 		echo '</div>';
 		
-		echo '<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
 
+		echo '<div class="whitebox box_1inRow">';	
+		echo '<fieldset>';
+		echo '<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
+		echo '</fieldset>';
+		echo '</div>';
 		echo '<div class="message_box"></div>';
 
 		echo '<a href="checkout_step3.html&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
@@ -133,16 +137,16 @@ switch($action) {
 		echo '<h1>Rechnungs- und Lieferadresse</h1>';
 		echo '<div class="boxwrapper">';
 		echo '<div class="whitebox box_1inRow">';
-		echo '<fieldset>';
+		
 
 		$customer = new customer($_SESSION['customer_id']);
 		echo $customer->printAddressForm();
 		
+		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 		
-		echo '</fieldset>';
 		echo '</div>';
 		
-		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		
 
 		break;
 
