@@ -542,14 +542,14 @@ $(function() {
 
 	// sets current mainmenu active
 	$("body").on("click", "a[class=nav]", function() {
-		$("a").removeClass("active");
-		$(this).addClass("active");
+		$("a").removeClass("mm_active");
+		$(this).addClass("mm_active");
 	});
 
 	// sets current custermenu active
 	$("body").on("click", "a[class=cm]", function() {
-		$("a").removeClass("active");
-		$(this).addClass("active");
+		$("a").removeClass("cm_active");
+		$(this).addClass("cm_active");
 	});
 
 	// send email to admin

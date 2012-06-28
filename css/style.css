@@ -448,7 +448,7 @@ legend
 	background:transparent url(../images/nav_bg.png) 0px -30px no-repeat;		
 }
 	
-.mainmenu li a.active 
+.mainmenu li a.mm_active 
 {
 	color: white;
 	display:inline;
@@ -603,7 +603,7 @@ legend
 	padding-bottom: 8px;
 }
 
-.customermenu a.active {
+.customermenu a.cm_active {
 	background:  url('../images/cmenu_hover_blue.png') left center no-repeat;
 	color: white;
 }
