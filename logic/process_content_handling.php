@@ -12,6 +12,7 @@ require_once PATH_CLASSES .'cl_shoppingcart.php';
 require_once PATH_CLASSES .'cl_customer.php';
 require_once PATH_CLASSES .'cl_order.php';
 require_once PATH_CLASSES .'cl_currency.php';
+require_once PATH_CLASSES .'cl_country.php';
 require_once PATH_CLASSES .'cl_invoice.php';
 require_once PATH_CLASSES .'cl_invoicepdf.php';
 require_once PATH_CLASSES .'cl_server.php';
@@ -133,17 +134,44 @@ switch($action) {
 		echo '<div class="boxwrapper">';
 		echo '<div class="whitebox box_1inRow">';
 		echo '<fieldset>';
-		//TODO: show Adresses
+
+		$customer = new customer($_SESSION['customer_id']);
+		echo $customer->printAddressForm();
+		
 		
 		echo '</fieldset>';
 		echo '</div>';
 		
-		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 
 		break;
 
 		// show address information
 	case 'show_checkout_step4':
+		// get address arrays form address selction screen
+		$shippingAddress = $_POST['shippingAddress'];
+		$billingAddress = $_POST['billingAddress'];
+		
+		// get customer object
+		$customer = new customer($_SESSION['customer_id']);
+		
+		// check if shipping and billing address is still in database
+		// if this is not the case -> add address information
+		$identified_shipping_address = $customer->hasAddress($shippingAddress);
+		$identified_billing_address = $customer->hasAddress($billingAddress);
+		
+		if($identified_shipping_address == false) {
+			$identified_shipping_address = $customer->addAddress($shippingAddress);
+		}
+		
+		if($identified_billing_address == false) {
+			$identified_billing_address = $customer->addAddress($billingAddress);
+		}
+		
+		// write address information (address ids into hidden fields)
+		echo '<input type="hidden" id="shipping_address_id" name="shipping_address_id" value="'. $identified_shipping_address .'">';
+		echo '<input type="hidden" id="billing_address_id" name="billing_address_id" value="'. $identified_billing_address .'">'; 
+		
 		echo '<h1>'.HEADING_ORDER_OVERVIEW.'</h1>';
 		echo '<div class="boxwrapper">';
 		echo '<div class="whitebox box_1inRow">';
@@ -160,15 +188,32 @@ switch($action) {
 
 		// show info page to say "your order has been send successfully"
 	case 'show_order_received':
-
+		
+		// init neccessary objects for processing
 		$customizing = new customizing();
-
+		
 		$cart = new shoppingcart(session_id());
 		$cart_products = $cart->getProducts();
 			
 		$customer = new customer($_SESSION['customer_id']);
+		
+		
+		// get address information for order
+		$shipping_address_id = $_POST['shipping_address_id'];
+		$billing_address_id = $_POST['billing_address_id'];
+		
+		// if something went wrong with address id handling use default address information for customer
+		if(!isset($shipping_address_id)) {
+			$shipping_address_id = $customer->getDefaultShippingAddress();
+		}
+		
+		if(!isset($billing_address_id)) {
+			$billing_address_id = $customer->getDefaultBillingAddress();
+		}
+		
+		
 			
-		$order = order::create($_SESSION['customer_id'], $customer->getDefaultShippingAddress(), NULL, NULL, NULL, $cart_products);
+		$order = order::create($_SESSION['customer_id'], $shipping_address_id, $billing_address_id, NULL, NULL, $cart_products);
 
 		$invoice = invoice::create($_SESSION['customer_id'], NULL, NULL, $order->getOrderID(), NULL, $customizing->getCustomizingValue('business_payment_default_currency') , $customizing->getCustomizingValue('business_payment_default_tax'));
 			

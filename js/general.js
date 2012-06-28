@@ -352,16 +352,87 @@ $(function() {
 
 		return false;
 	});
+	
+	// catch case if terms were not accepted and customer clicks next
+	$("body").on("click", "a[id=checkout_step4][class=nonav]", function() {
+
+		// read address data 
+		var shippingAddress = {};
+		var billingAddress = {};
+		
+		/*
+		 * 
+		 * shipping address
+		 * 
+		 */
+		$('input[id^=shipping]').each(function() {
+			var key = $(this).attr('id');
+			key = key.substr(8,key.strlen);
+			
+			shippingAddress[key] = $(this).val();
+		});
+		
+		// get select fields
+		$('select[id^=shipping] option:selected').each(function() {
+			var key = $(this).attr('name');
+			key = key.substr(8,key.strlen);
+			
+			shippingAddress[key] = $(this).attr('id');
+		});
+		
+		/*
+		 * 
+		 * billing address
+		 * 
+		 */
+		$('input[id^=billing]').each(function() {
+			var key = $(this).attr('id');
+			key = key.substr(7,key.strlen);
+			
+			billingAddress[key] = $(this).val();
+		});		
+		
+		// get select fields
+		$('select[id^=billing] option:selected').each(function() {
+			var key = $(this).attr('name');
+			key = key.substr(7,key.strlen);
+			
+			billingAddress[key] = $(this).attr('id');
+		});
+		
+		
+		
+		$.ajax({
+			type : "POST",
+			url : "logic/process_content_handling.php",
+			data : {
+				action : "show_checkout_step4",
+				shippingAddress : shippingAddress,
+				billingAddress : billingAddress
+			}
+		}).done(function(msg) {
+			$('.content_container').html(msg);
+		});
+
+		return false;
+	});
+
 
 	// catch case if terms were not accepted and customer clicks next
 	$("body").on("click", "a[id=save_order][class=nonav]", function() {
 
+		// get address information
+		var shipping_address_id = $("input[type=hidden][id=shipping_address_id]").val();
+		var billing_address_id = $("input[type=hidden][id=billing_address_id]").val();
+		
 		// load received order page
 		$.ajax({
 			type : "POST",
 			url : "logic/process_content_handling.php",
 			data : {
-				action : "show_order_received"
+				action : "show_order_received",
+				shipping_address_id : shipping_address_id,
+				billing_address_id : billing_address_id
 			}
 		}).done(function(msg) {
 			$('.content_container').html(msg);

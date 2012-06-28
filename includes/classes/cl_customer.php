@@ -229,6 +229,76 @@ class customer {
 		return $return_string;
 	}
 
+	
+	// returns customer address data as HTML form
+	public function printAddressForm($container_id = 'customer_address_information') {
+		$customizing = new customizing();
+		$country = new country();
+	
+		// query shipping address
+		$sql_statement = 'SELECT sa.customer_address_id, sa.street, sa.street_number, sa.post_code, sa.city, sa.country_code FROM '. TBL_CUSTOMER_ADDRESS .' AS sa WHERE sa.customer_address_id = '. (int) $this->shipping_address;
+		$shipping_address_query = db_query($sql_statement);
+		$shipping_address_data = db_fetch_array($shipping_address_query);
+	
+		// query billing address if shipping & billing address is different
+		if($this->shipping_address != $this->billing_address) {
+			// query billing address
+			$sql_statement = 'SELECT sa.customer_address_id, sa.street, sa.street_number, sa.post_code, sa.city, sa.country_code FROM '. TBL_CUSTOMER_ADDRESS .' AS sa WHERE sa.customer_address_id = '. (int) $this->billing_address;
+			$billing_address_query = db_query($sql_statement);
+			$billing_address_data = db_fetch_array($billing_address_query);
+		}
+		// if not, set shipping address as billing address
+		else {
+			$billing_address_data = $shipping_address_data;
+		}
+	
+		$return_string = '<div id="'. $container_id .'"><form class="cust_address_information"><div class="cust_address_information">';
+	
+		$return_string = $return_string .'<fieldset>
+		<legend>'. FIELDSET_CUSTOMER_ADDRESS_INFORMATION .'</legend>
+		<fieldset>
+		<legend>'. FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION .'</legend>
+		<div id="shippingaddress">
+		<p><label for="shippingstreet">'. LABEL_STREET .'</label>
+		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'"></p>
+		<p><label for="shippingstreet_number">'. LABEL_STREETNUMBER .'</label>
+		<input type="text" id="shippingstreet_number" name="shippingstreet_number" rel="mandatory" value="'. $shipping_address_data['street_number'] .'"></p>
+		<p><label for="shippingpost_code">'. LABEL_POSTCODE .'</label>
+		<input type="text" id="shippingpost_code" name="shippingpost_code" rel="mandatory" value="'. $shipping_address_data['post_code'] .'"></p>
+		<p><label for="shippingcity">'. LABEL_CITY .'</label>
+		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'"></p>
+		<p><label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
+		'<div class="country">'. $country->printSelectBox("shippingcountry_code","shippingcountry_code", $shipping_address_data['country_code']).
+		'<input type="hidden" id="address_id_shipping" name="address_id_shipping" value="'. $shipping_address_data['customer_address_id'] .'">
+		</div></p>
+		</fieldset>';
+	
+	
+		$return_string = $return_string.
+		'<div id="billingaddress">
+		<fieldset>
+		<legend>'. FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION .'</legend>
+		<div id="billingaddress">
+		<p><label for="billingstreet">'. LABEL_STREET .'</label>
+		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $billing_address_data['street'] .'"></p>
+		<p><label for="billingstreet_number">'. LABEL_STREETNUMBER .'</label>
+		<input type="text" id="billingstreet_number" name="billingstreet_number" rel="mandatory" value="'. $billing_address_data['street_number'] .'"></p>
+		<p><label for="billingpost_code">'. LABEL_POSTCODE .'</label>
+		<input type="text" id="billingpost_code" name="billingpost_code" rel="mandatory" value="'. $billing_address_data['post_code'] .'"></p>
+		<p><label for="billingcity">'. LABEL_CITY .'</label>
+		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'"></p>
+		<p><label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
+		$country->printSelectBox("billingcountry_code","billingcountry_code",$billing_address_data['country_code']) .'</p>
+		<input type="hidden" id="address_id_billing" name="address_id_billing" value="'. $billing_address_data['customer_address_id'] .'">
+		</div>
+		</fieldset>
+		</fieldset>
+		</div>';
+	
+		$return_string = $return_string .'</div></form></div>';
+	
+		return $return_string;
+	}
 
 	// update customer
 	public function update($customer_id, $customerData) {
