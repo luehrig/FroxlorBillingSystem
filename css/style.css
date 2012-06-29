@@ -3,12 +3,9 @@
 /*sets body 100% in firefox*/
 html, body {
 	min-height: 100%;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#F0F0F0'); /* for IE */
 }
 
-.hide_for_screen
-{
-	display:none;
-}
 
 body 
 {
@@ -16,7 +13,7 @@ body
 	width: 900px;
 	margin: 0 auto;
 	font-family: Arial, Helvetica, sans-serif;
-z
+
 	/*gradient color for all browser*/
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#F0F0F0'); /* for IE */
 	background: -webkit-gradient(linear, left top, left bottom, from(#00abf4), to(#F0F0F0)); /* for webkit browsers */
@@ -345,7 +342,6 @@ legend
 	border-bottom-right-radius: 10px;
 	color: white;
 
-	
 	/*Gradient color like logo color with "ultimate css gradient generator" */
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f7f7f', endColorstr='#131313'); /* for IE */
 	background: -webkit-gradient(linear, left top, left bottom, from(#7f7f7f), to(#131313)); /* for webkit browsers */
@@ -448,7 +444,7 @@ legend
 	background:transparent url(../images/nav_bg.png) 0px -30px no-repeat;		
 }
 	
-.mainmenu li a.active 
+.mainmenu li a.mm_active 
 {
 	color: white;
 	display:inline;
@@ -603,7 +599,7 @@ legend
 	padding-bottom: 8px;
 }
 
-.customermenu a.active {
+.customermenu a.cm_active {
 	background:  url('../images/cmenu_hover_blue.png') left center no-repeat;
 	color: white;
 }
