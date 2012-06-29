@@ -19,9 +19,24 @@ include_once '../includes/languages/'. strtoupper($site_language) .'.inc.php';
 
 '<script language="javascript" src="js/customercenter.js"></script>';
 
-echo '	
+if(session_id() == ''){
+	session_start();
+}
+$session = session_id();
 
+
+$data = '';
+
+if(customer::isLoggedIn($session)) {
+		
+	$customer = new customer($_SESSION['customer_id']);
+	$data = $customer->getData();
+}
+
+echo '	
+<h1>' .VIEW_MENU_CONTACT. '</h1>
 <div class="colorboxwrapper_small">
+<div class="whitebox">
 	<div class="contact">
 		<form method="post" action="#" id="contact_message" class="contact_message" accept-charset=utf-8>
 			<fieldset>
@@ -30,27 +45,34 @@ echo '
 					'. LEGEND_CONTACT_FORM .'
 				</legend>
 				<p>
-					<label for="first_name">'. LABEL_FIRST_NAME .'</label> 
-					<input type="text" id="first_name" name="first_name" rel="mandatory">
-				</p>
+					<label for="first_name">'. LABEL_FIRST_NAME .'</label>';
+					
+					// If customer is logged in show customer's first name in first name input field
+					if($data != ''){
+						echo'<input type="text" id="first_name" name="first_name" rel="mandatory" value="'. $data['first_name'] .'">';
+					}
+					else{ // if not show empty input field
+						echo '<input type="text" id="first_name" name="first_name" rel="mandatory" value="blablabla">';
+					} 
+				echo'</p>
 				<p>
-					<label for="last_name">'. LABEL_LAST_NAME .'</label> 
-					<input type="text" id="last_name" name="last_name" rel="mandatory">
-				</p>
+					<label for="last_name">'. LABEL_LAST_NAME .'</label>';
+					
+					// If customer is logged in show customer's last name in last name input field
+					if($data != ''){
+						echo'<input type="text" id="last_name" name="last_name" rel="mandatory" value="'. $data['last_name'] .'">';
+					} 
+					else{ // if not show empty input field
+						echo '<input type="text" id="last_name" name="last_name" rel="mandatory">';
+					}
+				echo'</p>
 				<p>
 					<label for="email">'. LABEL_EMAIL .'</label>';
 	
-					if(session_id() == ''){
-						session_start();
-					}
-					$session = session_id();
+					
 					
 					// If customer is logged in show customer's email adress in email input field
-					if(customer::isLoggedIn($session)) {
-					
-						$customer = new customer($_SESSION['customer_id']);
-						$data = $customer->getData();
-						
+					if($data != ''){
 						echo '<input type="email" id="email" name="email" rel="mandatory" value="'. $data['email'] .'">';
 					}
 					else{ // if not show empty input field
