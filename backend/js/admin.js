@@ -130,7 +130,7 @@ $(function() {
 	
 	
 	
-//	$("body").on("change", "select[id=language_selection])",(function(){
+//	$("body").on("change", "select[id=language_selection] option:selected)",(function(){
 //		var language_id = $('select[id=language_selection] option:selected').attr('id');
 //		alert('trigger me');
 //		$.ajax({
