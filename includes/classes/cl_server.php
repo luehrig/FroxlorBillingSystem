@@ -175,15 +175,15 @@ class server {
 			
 			// TODO: icons please
 			if($data['active'] == 1) {
-				$table_content = $table_content . LABEL_ACTIVE;
+				$table_content = $table_content . '<img src="../images/activate.png" title="'. LABEL_ACTIVE .'">';
 			}
 			else {
-				$table_content = $table_content . LABEL_INACTIVE;
+				$table_content = $table_content . '<img src="../images/deactivate.png" title="'. LABEL_INACTIVE .'">';
 			}
 			
 			$table_content = $table_content .'</td>
-			<td><a href="#" id="edit_server" rel="'. $data['server_id'] .'">editicon</a></td>
-			<td><a href="#" id="delete_server" rel="'. $data['server_id'] .'">deleteicon</a></td>
+			<td><a href="#" id="edit_server" rel="'. $data['server_id'] .'"><img src="../images/edit.png" title="'. LINK_EDIT_PRODUCT .'"></a></td>
+			<td><a href="#" id="delete_server" rel="'. $data['server_id'] .'"><img src="../images/delete.png" title="'. LINK_DELETE . '"></a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';

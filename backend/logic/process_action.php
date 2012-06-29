@@ -25,7 +25,10 @@ require '../../functions/general.php';
 require_once  '../../functions/datetime.php';
 
 include_once '../../includes/database_tables.php';
-include_once '../includes/languages/DE.inc.php';
+// detect preferred browser language if language is not available use the default language from shop customizing
+$site_language = language::getBrowserLanguage();
+
+include_once '../../includes/languages/'. strtoupper($site_language) .'.inc.php';
 
 $customizing = new customizing( get_default_language() );
 
@@ -42,10 +45,12 @@ switch($action) {
 		echo '<div id="customizing_explanation"><p>'. EXPLANATION_CUSTOMIZING_ENTRIES .'</p></div>';
 		echo $customizing->printCustomizingEntries();
 		
-		echo '<a href="#" id="edit_customizing">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
-		<a href="#" id="save_customizing">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
+		echo '<div class="space">';
 		
-		echo '</fieldset>';
+		echo '<a href="#" id="edit_customizing" class="button_style">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
+		<a href="#" id="save_customizing"  class="button_style">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
+		
+		echo '</div></fieldset>';
 		echo '</div>';
 		break;
 
@@ -606,7 +611,7 @@ switch($action) {
 
 		echo content::printOverview();
 
-		echo '<div id="new_content_buttons"><a href="#" id="create_new_content">'. BUTTON_CREATE_CONTENT .'</a></div>';
+		echo '<div id="new_content_buttons"><a href="#" id="create_new_content" class="button_style">'. BUTTON_CREATE_CONTENT .'</a></div>';
 
 		echo '</fieldset>';
 		echo '</div>';

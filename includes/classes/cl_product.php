@@ -238,10 +238,10 @@ class product {
 			$active = $data['active'];
 			$change_state;
 			if($active==1){
-				$change_state = LINK_DEACTIVATE_PRODUCT;
+				$change_state = '<img src="../images/activate.png" title="'. LINK_ACTIVATE_PRODUCT .'">';
 			}
 			elseif($active==0){
-				$change_state = LINK_ACTIVATE_PRODUCT;
+				$change_state = '<img src="../images/deactivate.png" title="'. LINK_DEACTIVATE_PRODUCT .'">';
 			}
 			$table_content = $table_content .'<tr>
 			<td>'. $id_language_map[$data['language_id']] .'</td>
@@ -250,10 +250,10 @@ class product {
 			<td>'. $data['description'] .'</td>
 			<td>'. $data['quantity'] .'</td>
 			<td>'. $data['price'] .'</td>
-			<td><a href="#" id="edit_product" rel="'. $primary_keys .'">Bearbeiten-Icon</a><br>
-			<a href="#" id="translate_product" rel="'. $primary_keys .'">'. LINK_TRANSLATE_PRODUCT . '</a><br>
+			<td><a href="#" id="edit_product" rel="'. $primary_keys .'"><img src="../images/edit.png" title="'. LINK_EDIT_PRODUCT .'"></a><br>
+			<a href="#" id="translate_product" rel="'. $primary_keys .'"><img src="../images/translate.png" title="'. LINK_TRANSLATE_PRODUCT . '"></a><br>
 			<a href="#" id="change_product_state" rel="'. $primary_keys .'">'. $change_state . '</a><br>
-			<a href="#" id="delete_product" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
+			<a href="#" id="delete_product" rel="'. $primary_keys .'"><img src="../images/delete.png" title="'. LINK_DELETE . '"></a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
