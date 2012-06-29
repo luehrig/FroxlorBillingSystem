@@ -31,14 +31,14 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 $action = $_POST['action'];
 
 switch($action) {
-	
+
 	case 'create_customer':
 		$customerData = $_POST['customerData'];
-		
+
 		customer::create($customerData);
-		
-	break;
-	
+
+		break;
+
 	case 'update_customer':
 		$customerData = $_POST['customerData'];
 		$shippingAddress = $_POST['shippingAddress'];
@@ -46,25 +46,36 @@ switch($action) {
 		$customer_id = $_POST['customer_id'];
 		$shipping_address_id = $_POST['shipping_address_id'];
 		$billing_address_id = $_POST['billing_address_id'];
-	
+
 		$customer = new customer($customer_id);
 		$customer->update($customer_id, $customerData);
-		
-		// update shipping address if change was requested
-		if(isset($shipping_address_id) && isset($shippingAddress)) {
-			$customer->updateAddress($shipping_address_id, $shippingAddress);
+
+		// check if entered address information still exists as address data sets
+		$identified_shipping_address_id = $customer->hasAddress($shippingAddress);
+		$identified_billing_address_id = $customer->hasAddress($billingAddress);
+
+		// if shipping address does not exist -> add address and set as default shipping address
+		if($identified_shipping_address_id == false) {
+			$new_shipping_address_id = $customer->addAddress($shippingAddress);
+			$customer->setDefaultShippingAddress($new_shipping_address_id);
 		}
-		
-		// update billing address if change was requested
-		if(isset($billing_address_id) && isset($billingAddress)) {
-			$customer->updateAddress($billing_address_id, $billingAddress);
+		else {
+			$customer->setDefaultShippingAddress($identified_shipping_address_id);
 		}
-		
-		
+
+		// if billing address does not exist -> add address and set as default billing address
+		if($identified_billing_address_id == false) {
+			$new_billing_address_id = $customer->addAddress($billingAddress);
+			$customer->setDefaultBillingAddress($new_billing_address_id);
+		}
+		else {
+			$customer->setDefaultBillingAddress($identified_billing_address_id);
+		}
+
 		echo MSG_CHANGES_SAVED;
-	
+
 		break;
-	
+
 }
 
 ?>

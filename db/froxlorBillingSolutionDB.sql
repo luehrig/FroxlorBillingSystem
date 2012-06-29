@@ -45,6 +45,7 @@ DROP TABLE IF EXISTS `froxlor_billing`.`tbl_customer_address` ;
 
 CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_customer_address` (
   `customer_address_id` INT NOT NULL AUTO_INCREMENT ,
+  `customer_id` INT NOT NULL ,
   `street` VARCHAR(255) NOT NULL ,
   `street_number` VARCHAR(5) NOT NULL ,
   `post_code` VARCHAR(10) NOT NULL ,
@@ -53,10 +54,16 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_customer_address` (
   INDEX `fk_customer_address_country_id` (`country_code` ASC) ,
   PRIMARY KEY (`customer_address_id`) ,
   UNIQUE INDEX `customer_address_id_UNIQUE` (`customer_address_id` ASC) ,
+  INDEX `fk_customer_address_customer_id` (`customer_id` ASC) ,
   CONSTRAINT `fk_customer_address_country_id`
     FOREIGN KEY (`country_code` )
     REFERENCES `froxlor_billing`.`tbl_country` (`language_id` )
     ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_customer_address_customer_id`
+    FOREIGN KEY (`customer_id` )
+    REFERENCES `froxlor_billing`.`tbl_customer` (`customer_id` )
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = MyISAM;
 
@@ -777,6 +784,10 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms', NULL, '1');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_tax', NULL, '2');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_currency', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_home', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_imprint', NULL, '2');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_sitemap', NULL, '4');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_help', NULL, '3');
 
 COMMIT;
 

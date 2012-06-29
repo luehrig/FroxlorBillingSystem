@@ -346,10 +346,6 @@ switch($action) {
 		echo '</div>';
 		break;
 
-
-
-
-
 	case 'get_product_attributes_overview':
 		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
 		echo'<div class="whitebox internal">';

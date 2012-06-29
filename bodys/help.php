@@ -1,28 +1,36 @@
 <?php 
 
 require_once PATH_CLASSES .'cl_language.php';
-require_once PATH_CLASSES .'cl_customer.php';
-
+require_once PATH_CLASSES .'cl_content.php';
 require_once PATH_CLASSES .'cl_customizing.php';
 
+$language_id = language::ISOTointernal(language::getBrowserLanguage());
 
-$content = new content(2,$language_id);
+$customizing = new customizing($language_id);
+$help_Customizing_key = 'sys_page_help';
 
-echo '	
-<h1>' .VIEW_MENU_HELP. '</h1>
-<div class="boxwrapper">
-	<div class=" whitebox box_1inRow">
+$customized_help_id = $customizing->getCustomizingValue($help_Customizing_key);
+
+$content = new content($customized_help_id ,$language_id);
+
+$help_text = $content->getText($language_id);
+$help_title = $content->getTitle($language_id);
+
+echo '<h1>'. $help_title .'</h1>'. '<div class="boxwrapper">'.
+
+		'<div class=" whitebox box_1inRow">
 		<fieldset>
-			<legend>
-				'. $content->getTitle() .'
-			</legend>
-				'. $content->getText() .'
-		</fieldset>
-	</div>
-</div>
-';
+		<legend>
+		<img ID="minilogo" src="images/logos/logo.png">
+		</legend>'.
+		$help_text.
+		'</fieldset>
+		</div>
+
+		</div>';
 
 ?>
+
 
 
 

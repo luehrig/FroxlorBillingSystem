@@ -6,7 +6,7 @@ $(function() {
 	// class so that, when
 	// clicked, their `id` value is pushed onto the history hash instead of
 	// being navigated to directly.
-	$("body").on("click", "a[class=nav]", function() {
+	$("body").on("click", "a[class^=nav]", function() {
 		var state = $(this).attr('id');
 		var lang = $('input[type=hidden][id=site_language]').val();
 		// $.bbq.pushState('#!page=' + state + '&lang=' + lang);
@@ -53,7 +53,9 @@ $(function() {
 
 	$(document).ready(function() {
 		// code that is executed if page was loaded
-
+		
+		loadContent('home','undefined');
+		
 	});
 
 	// check password length
@@ -312,9 +314,9 @@ $(function() {
 			// user is not logged in as customer
 			else {
 				var current_pos = window.location.href;
-				
+
 				$.colorbox({
-					href : "logincustomer.php?position="+ current_pos +"" 
+					href : "logincustomer.php?position=" + current_pos + ""
 				});
 			}
 		});
@@ -354,24 +356,97 @@ $(function() {
 	});
 
 	// catch case if terms were not accepted and customer clicks next
-	$("body").on("click", "a[id=save_order][class=nonav]", function() {
+	$("body").on("click", "a[id=checkout_step4][class=nonav]", function() {
 
-		// load received order page
+		// read address data
+		var shippingAddress = {};
+		var billingAddress = {};
+
+		/*
+		 * 
+		 * shipping address
+		 * 
+		 */
+		$('input[id^=shipping]').each(function() {
+			var key = $(this).attr('id');
+			key = key.substr(8, key.strlen);
+
+			shippingAddress[key] = $(this).val();
+		});
+
+		// get select fields
+		$('select[id^=shipping] option:selected').each(function() {
+			var key = $(this).attr('name');
+			key = key.substr(8, key.strlen);
+
+			shippingAddress[key] = $(this).attr('id');
+		});
+
+		/*
+		 * 
+		 * billing address
+		 * 
+		 */
+		$('input[id^=billing]').each(function() {
+			var key = $(this).attr('id');
+			key = key.substr(7, key.strlen);
+
+			billingAddress[key] = $(this).val();
+		});
+
+		// get select fields
+		$('select[id^=billing] option:selected').each(function() {
+			var key = $(this).attr('name');
+			key = key.substr(7, key.strlen);
+
+			billingAddress[key] = $(this).attr('id');
+		});
+
 		$.ajax({
 			type : "POST",
 			url : "logic/process_content_handling.php",
 			data : {
-				action : "show_order_received"
+				action : "show_checkout_step4",
+				shippingAddress : shippingAddress,
+				billingAddress : billingAddress
 			}
 		}).done(function(msg) {
 			$('.content_container').html(msg);
-
-			// clear quantity counter in header for cart
-			setProductCountInCart();
 		});
 
 		return false;
 	});
+
+	// catch case if terms were not accepted and customer clicks next
+	$("body").on(
+			"click",
+			"a[id=save_order][class=nonav]",
+			function() {
+
+				// get address information
+				var shipping_address_id = $(
+						"input[type=hidden][id=shipping_address_id]").val();
+				var billing_address_id = $(
+						"input[type=hidden][id=billing_address_id]").val();
+
+				// load received order page
+				$.ajax({
+					type : "POST",
+					url : "logic/process_content_handling.php",
+					data : {
+						action : "show_order_received",
+						shipping_address_id : shipping_address_id,
+						billing_address_id : billing_address_id
+					}
+				}).done(function(msg) {
+					$('.content_container').html(msg);
+
+					// clear quantity counter in header for cart
+					setProductCountInCart();
+				});
+
+				return false;
+			});
 
 	// overlay for help menu
 	$("body").on("click", "a[class=lightbox]", function() {
@@ -471,14 +546,14 @@ $(function() {
 
 	// sets current mainmenu active
 	$("body").on("click", "a[class=nav]", function() {
-		$("a").removeClass("active");
-		$(this).addClass("active");
+		$("a").removeClass("mm_active");
+		$(this).addClass("mm_active");
 	});
 
 	// sets current custermenu active
 	$("body").on("click", "a[class=cm]", function() {
-		$("a").removeClass("active");
-		$(this).addClass("active");
+		$("a").removeClass("cm_active");
+		$(this).addClass("cm_active");
 	});
 
 	// send email to admin
