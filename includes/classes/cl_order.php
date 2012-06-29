@@ -89,7 +89,7 @@ class order {
 				$froxlor_customer_id = $customizing->getCustomizingValue('business_froxlor_client_prefix') .'_'. $customer_id;
 				
 				if($recommended_server != null) {
-					// reserve disk space on selected server
+					// reserve disc space on selected server
 					$booked_server = new server($recommended_server);
 					$booked_server->bookProduct( (int) $order_positions[$i]['product_id']);
 					

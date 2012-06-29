@@ -234,34 +234,6 @@ $(function() {
 						return false;
 					});
 
-	// process login procedure via ajax form
-	/*
-	 * $("body").on("click","form[id=loginform]
-	 * input[type=submit][id=ajaxlogin]", function() { var email =
-	 * $('input[type=text][id=email]').val(); var password =
-	 * $('input[type=password][id=password]').val(); // do ajax call. If login
-	 * was successful redirect to customer center $.ajax({ type: "POST", url:
-	 * "logic/process_usermanagement.php", data: { action: "login_customer",
-	 * email: email, password: password } }).done(function( msg ) { if(msg ==
-	 * 'true') { $.colorbox.close(); $('a[id=customercenter]').addClass('nav'); }
-	 * else { $('#messagearea').html( msg ); } }); // reset input fields
-	 * $('input[type=text][id=email]').val('');
-	 * $('input[type=password][id=password]').val('');
-	 * 
-	 * return false; });
-	 */
-
-	// open shopping cart -> obsolete since jquery bbq plugin
-	// TODO: This is maybe a candidate for another colorbox
-	/*
-	 * $("body").on("click","a[id=shoppingcart]", function() { $.ajax({ type:
-	 * "POST", url: "logic/process_content_handling.php", data: { action:
-	 * "show_shoppingcart" } }).done(function( msg ) {
-	 * $('.content_container').html( msg ); });
-	 * 
-	 * return false; });
-	 */
-
 	// remove product from shopping cart
 	$("body").on("click", "a[id^=removeproduct_]", function() {
 		var product_id = $(this).attr('rel');
