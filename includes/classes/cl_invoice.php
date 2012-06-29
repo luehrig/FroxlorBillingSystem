@@ -305,8 +305,8 @@ class invoice {
 
 		$number_of_invoices = db_num_results($invoice_query);
 
-		$return_string = '<div id="'. $container_id .'">';
-		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_INVOICES, $number_of_invoices);
+		$return_string = '<div id="'. $container_id .'"><div class="status">';
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_INVOICES, $number_of_invoices).'</div>';
 
 		$return_string = $return_string .'<table>
 		<tr>
@@ -325,7 +325,7 @@ class invoice {
 			<td>'. mysql_date2german($invoice->getIssueDate()) .'</td>
 			<td>'. sprintf("%9.2f", $invoice->getGrossAmount()) . $currency->getCurrencySign() .'</td>
 			<td>'. $invoice->getStatus() .'</td>
-			<td><a href="display_invoice.php?invoice_id='. $invoice->getInvoiceID() .'" id="display_invoice" target="_blank">displayicon</a></td>
+			<td><a href="display_invoice.php?invoice_id='. $invoice->getInvoiceID() .'" id="display_invoice" target="_blank"><img src="../images/show.png" title="'. LINK_DISPLAY . '"></a></td>
 			</tr>';
 		}
 
@@ -368,7 +368,7 @@ class invoice {
 			<td>'. mysql_date2german($invoice->getIssueDate()) .'</td>
 			<td>'. sprintf("%9.2f", $invoice->getGrossAmount()) . $currency->getCurrencySign() .'</td>
 			<td>'. invoice::getStatusBox($invoice->getStatusID(), NULL, 'statusbox_'. $invoice->getInvoiceID() ) .'</td>
-			<td><a href="../display_invoice.php?invoice_id='. $invoice->getInvoiceID() .'" id="display_invoice" target="_blank">displayicon</a></td>
+			<td><a href="../display_invoice.php?invoice_id='. $invoice->getInvoiceID() .'" id="display_invoice" target="_blank"><img src="../images/show.png" title="'. LINK_DISPLAY . '"></a></td>
 			<td><a href="#!change_invoice_invoice" rel="'. $invoice->getInvoiceID() .'" id="change_invoice_status">changeicon</a></td>
 			</tr>';
 		}

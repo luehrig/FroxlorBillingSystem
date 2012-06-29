@@ -40,8 +40,8 @@ class productAttribute{
 		}
 	}
 	
-	public function delete($product_attribute_id){
-		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id = "'. $product_attribute_id .'"';
+	public function delete(){
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id = "'. $this->product_attribute_id.'"';
 		return db_query($sql_delete_statement);		
 	}
 	
@@ -85,8 +85,8 @@ class productAttribute{
 			$table_content = $table_content .'<tr>
 			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['description'] .'</td>
-			<td><a href="#" id="edit_product_atrribute" rel="'. $primary_keys .'">Bearbeiten-Icon</a></td>
-			<td><a href="#" id="delete_product_attribute_description" rel="'. $primary_keys .'">'. LINK_DELETE . '</a></td>
+			<td><a href="#" id="edit_product_atrribute" rel="'. $primary_keys .'"><img src="../images/edit.png" title="'. LINK_EDIT_PRODUCT .'"></a></td>
+			<td><a href="#" id="delete_product_attribute_description" rel="'. $primary_keys .'"><img src="../images/delete.png" title="'. LINK_DELETE . '"></a></td>
 			</tr>';
 		}
 		$return_string = $return_string . $table_header . $table_content. '</table><br>';
@@ -138,7 +138,7 @@ class productAttribute{
 		return $language_id_array;
 	}
 	
-	public function printFormEdit($language_select_box, $language_id, $container_id = 'product_attribute_editor'){
+	public function printFormEdit($language_select_box, $container_id = 'product_attribute_editor'){
 		$return_string = '<div id="'.$container_id.'">'.
 		'<form>'.'<fieldset>'. 
 			'<input type="hidden" id = "product_attribute_id" name = product_attribute_id value = '.$this->product_attribute_id.'>'.

@@ -108,7 +108,7 @@ class customer {
 		'</table>';
 
 
-		$return_string = $return_string . '<input type="submit" name="edit_customer" id="edit_customer" rel="'. $this->customer_id .'" value="'. BUTTON_EDIT_CUSTOMER .'">';
+		$return_string = $return_string . '<input type="submit" name="edit_customer" id="edit_customer" rel="'. $this->customer_id .'" value="'. BUTTON_EDIT_CUSTOMER .'" >';
 
 		$return_string = $return_string .'</form></div>';
 
@@ -222,8 +222,9 @@ class customer {
 		</fieldset>
 		</div>';
 
-		$return_string = $return_string . '<input type="submit" name="save_customer" id="save_customer" value="'. BUTTON_SAVE .'" rel="'. $this->customer_id.'">';
-
+// 		$return_string = $return_string . '<input type="submit" name="save_customer" id="save_customer" value="'. BUTTON_SAVE .'" rel="'. $this->customer_id.'">';
+		$return_string = $return_string . '<img id="save_customer" src="images/save.png" title="'. BUTTON_SAVE .'" rel="'. $this->customer_id.'">';
+		
 		$return_string = $return_string .'</div></form></div>';
 
 		return $return_string;
@@ -260,13 +261,13 @@ class customer {
 		<legend>'. FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION .'</legend>
 		<div id="shippingaddress">
 		<p><label for="shippingstreet">'. LABEL_STREET .'</label>
-		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'"></p>
-		<p><label for="shippingstreet_number">'. LABEL_STREETNUMBER .'</label>
-		<input type="text" id="shippingstreet_number" name="shippingstreet_number" rel="mandatory" value="'. $shipping_address_data['street_number'] .'"></p>
+		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'">
+		<label for="shippingstreet_number" class="streetnumber">'. LABEL_STREETNUMBER .'</label>
+		<input type="text" id="shippingstreet_number" class="streetnumber" name="shippingstreet_number" rel="mandatory" value="'. $shipping_address_data['street_number'] .'"></p>
 		<p><label for="shippingpost_code">'. LABEL_POSTCODE .'</label>
-		<input type="text" id="shippingpost_code" name="shippingpost_code" rel="mandatory" value="'. $shipping_address_data['post_code'] .'"></p>
-		<p><label for="shippingcity">'. LABEL_CITY .'</label>
-		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'"></p>
+		<input type="text" id="shippingpost_code" class="postcode"  name="shippingpost_code" rel="mandatory" value="'. $shipping_address_data['post_code'] .'">
+		<label for="shippingcity" class="city">'. LABEL_CITY .'</label>
+		<input type="text" id="shippingcity" class="city" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'"></p>
 		<p><label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
 		'<div class="country">'. $country->printSelectBox("shippingcountry_code","shippingcountry_code", $shipping_address_data['country_code']).
 		'<input type="hidden" id="address_id_shipping" name="address_id_shipping" value="'. $shipping_address_data['customer_address_id'] .'">
@@ -280,13 +281,13 @@ class customer {
 		<legend>'. FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION .'</legend>
 		<div id="billingaddress">
 		<p><label for="billingstreet">'. LABEL_STREET .'</label>
-		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $billing_address_data['street'] .'"></p>
-		<p><label for="billingstreet_number">'. LABEL_STREETNUMBER .'</label>
-		<input type="text" id="billingstreet_number" name="billingstreet_number" rel="mandatory" value="'. $billing_address_data['street_number'] .'"></p>
+		<input type="text" id="billingstreet" name="billingstreet" rel="mandatory" value="'. $billing_address_data['street'] .'">
+		<label for="billingstreet_number" class="streetnumber">'. LABEL_STREETNUMBER .'</label>
+		<input type="text" id="billingstreet_number" class="streetnumber" name="billingstreet_number" rel="mandatory" value="'. $billing_address_data['street_number'] .'"></p>
 		<p><label for="billingpost_code">'. LABEL_POSTCODE .'</label>
-		<input type="text" id="billingpost_code" name="billingpost_code" rel="mandatory" value="'. $billing_address_data['post_code'] .'"></p>
-		<p><label for="billingcity">'. LABEL_CITY .'</label>
-		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'"></p>
+		<input type="text" id="billingpost_code" class="postcode" name="billingpost_code" rel="mandatory" value="'. $billing_address_data['post_code'] .'">
+		<label for="billingcity" class="city">'. LABEL_CITY .'</label>
+		<input type="text" id="billingcity" class="city" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'"></p>
 		<p><label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
 		$country->printSelectBox("billingcountry_code","billingcountry_code",$billing_address_data['country_code']) .'</p>
 		<input type="hidden" id="address_id_billing" name="address_id_billing" value="'. $billing_address_data['customer_address_id'] .'">
@@ -557,7 +558,7 @@ class customer {
 			<td>'. $data['customer_number'] .'</td>
 			<td>'. $data['first_name'] .'</td>
 			<td>'. $data['last_name'] .'</td>
-			<td><a href="#" id="edit_customer" rel="'. $data['customer_id'] .'">Icon</a></td>
+			<td><a href="#" id="edit_customer" rel="'. $data['customer_id'] .'"><img src="../images/show.png" title="'. LINK_DISPLAY . '"></a></td>
 			</tr>';
 		}
 

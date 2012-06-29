@@ -3,12 +3,9 @@
 /*sets body 100% in firefox*/
 html, body {
 	min-height: 100%;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#F0F0F0'); /* for IE */
 }
 
-.hide_for_screen
-{
-	display:none;
-}
 
 body 
 {
@@ -16,7 +13,7 @@ body
 	width: 900px;
 	margin: 0 auto;
 	font-family: Arial, Helvetica, sans-serif;
-z
+
 	/*gradient color for all browser*/
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#F0F0F0'); /* for IE */
 	background: -webkit-gradient(linear, left top, left bottom, from(#00abf4), to(#F0F0F0)); /* for webkit browsers */
@@ -133,9 +130,19 @@ a:active {
 	color:black; text-decoration:underline; 
 }
 
+.button_style{
+	outline: thin outset;
+    padding: 5px;
+    margin: 10px;
+}
+
+.space{
+	padding: 15px;
+}
+
 /*Message Area*/
 .messagearea{
-	margin: 10px;
+	margin: 5px;
 	font-weight: bold;
 }
 
@@ -197,16 +204,32 @@ th
 {
 	border-bottom: 5px solid black;
 }
+.shoppingcart a:link[id="start_checkout"]{
+	text-align: right;
+	text-decoration: underline;
+}
+.shoppingcart a:focus { 
+	font-weight:bold; color:black; text-decoration:underline; 
+}
+.shoppingcart a:hover { 
+	font-weight:bold; color:black; text-decoration:underline; 
+}
+.shoppingcart a:active {
+	font-weight:bold; color:black; text-decoration:underline; 
+}
+.shoppingcart input[id="quantity_1"]{
+	width: 3em;
+	text-align: center;
+}
+.shoppingcart img{
+	margin-left: 5px;
+    margin-right: 5px;
+}
+.shoppingcart div[id="buttons"]{
+	text-align: right;
+}
 
-#shoppingcart a:focus { 
-	font-weight:bold; color:black; text-decoration:underline; 
-}
-#shoppingcart a:hover { 
-	font-weight:bold; color:black; text-decoration:underline; 
-}
-#shoppingcart a:active {
-	font-weight:bold; color:black; text-decoration:underline; 
-}
+
 
 
 /* --------------- wrapper ------------------------ */
@@ -345,7 +368,6 @@ legend
 	border-bottom-right-radius: 10px;
 	color: white;
 
-	
 	/*Gradient color like logo color with "ultimate css gradient generator" */
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f7f7f', endColorstr='#131313'); /* for IE */
 	background: -webkit-gradient(linear, left top, left bottom, from(#7f7f7f), to(#131313)); /* for webkit browsers */
@@ -448,7 +470,7 @@ legend
 	background:transparent url(../images/nav_bg.png) 0px -30px no-repeat;		
 }
 	
-.mainmenu li a.active 
+.mainmenu li a.mm_active 
 {
 	color: white;
 	display:inline;
@@ -533,7 +555,9 @@ legend
 	float: left;
 	margin: 5px;
 }
-
+.customer_content_container h1{
+	margin-top: 0px;
+}
 
 #customer_header {
     font-size: 0.8em;
@@ -559,6 +583,11 @@ legend
 #customer_header a:visited {
 	color:#A0A0A0; text-decoration:none; 
 }
+#customer_header div[class="welcome_text"]{
+	float: left;
+	margin-top: 2px;
+}
+
 
 .cust_data{
 	width: 680px;
@@ -603,7 +632,7 @@ legend
 	padding-bottom: 8px;
 }
 
-.customermenu a.active {
+.customermenu a.cm_active {
 	background:  url('../images/cmenu_hover_blue.png') left center no-repeat;
 	color: white;
 }
@@ -654,7 +683,7 @@ legend
 .edit_cust_data fieldset{
 	margin-top: 1em;
 }
-.edit_cust_data input[name="save_customer"]{
+.edit_cust_data img[id="save_customer"]{
 	margin-left: 20px;
 }
 
@@ -688,6 +717,41 @@ legend
 {
 	margin-top: 80px;
 	margin-right:5px;
+}
+
+#customizing_entries{
+	text-aling: left;
+}
+#customizing_entries label{
+	width: 7em;
+    display: block;
+    float: left;
+    margin-bottom: 5px;
+}
+#customizing_entries input{
+	width: 200px;
+	margin-bottom: 5px;
+}
+.content img{
+	margin: 5px;
+}
+.content form{
+	text-align: left;
+}
+.content legend{
+	font-weight: bold;
+}
+.content label{
+	margin-left: 10px;
+	width: 7em;
+    float: left;	
+}
+
+.content a:focus { 
+	font-weight:bold; color:black; text-decoration:none; 
+}
+.content a:active {
+	color:black; text-decoration:none; 
 }
 
 
@@ -749,4 +813,52 @@ legend
 	margin-left: 20px;
 }
 
+/*---------- Contract Overview --------------------------------*/
+#contract_overview div[class="status"]{
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
 
+#invoice_overview div[class="status"]{
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+
+/*------ Customer Address Information ------------ */
+.cust_address_information{
+	text-align: left;
+}
+
+.cust_address_information legend{
+	font-weight: bold;
+}
+.cust_address_information label{
+	margin-left: 10px;
+	width: 7em;
+    float: left;	
+}
+.cust_address_information label[class="streetnumber"]{
+	float: none;
+	position: absolute;
+	left: 420px;
+}
+.cust_address_information input[class="streetnumber"]{
+	position: absolute;
+	left: 520px;
+	width: 6em;
+}
+.cust_address_information label[class="city"]{
+	float: none;
+	position: absolute;
+	left: 420px;
+}
+.cust_address_information input[class="city"]{
+	position: absolute;
+	left: 520px;
+}
+.cust_address_information input[class="postcode"]{
+	width: 4em;
+}
+.cust_address_information fieldset{
+	margin-top: 1em;
+}

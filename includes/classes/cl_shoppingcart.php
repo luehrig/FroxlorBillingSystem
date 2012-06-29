@@ -99,7 +99,7 @@ class shoppingcart {
 		$sql_statement = 'SELECT sc.product_id, sc.quantity, p.title, p.price, (sc.quantity * p.price) AS amount FROM '. TBL_SHOPPING_CART .' AS sc INNER JOIN '. TBL_PRODUCT .' AS p ON sc.product_id = p.product_id WHERE sc.session_id = "'. $this->session_id .'" AND p.language_id = '. $language_id;
 		$query = db_query($sql_statement);
 		
-		$return_string = '<form id="shoppingcart">
+		$return_string = '<form id="shoppingcart" class="shoppingcart">
 							<table rules="groups">
 								<tr>
 									<th>'. HEADING_PRODUCT .'</th>
@@ -109,7 +109,8 @@ class shoppingcart {
 								</tr>';
 		
 		while($result_data = db_fetch_array($query)) {
-			$return_string = $return_string .'<tr><td>'. $result_data['title'] .'</td><td><span id="decrease_'. $result_data['product_id'] .'">minusicon</span><input type="text" id="quantity_'. $result_data['product_id'] .'" value="'. $result_data['quantity'] .'"><span id="increase_'. $result_data['product_id'] .'">plusicon</span></td><td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td><td><a href="#" id="removeproduct_'. $result_data['product_id'] .'" rel="'. $result_data['product_id'] .'">removeicon</a></td></tr>';
+			$return_string = $return_string .'<tr><td>'. $result_data['title'] .'</td><td><span id="decrease_'. $result_data['product_id'] .'"><img class="img_plus_minus" src="images/minus.png"></span><input type="text" id="quantity_'. $result_data['product_id'] .'" value="'. $result_data['quantity'] .'"><span id="increase_'. $result_data['product_id'] .'"><img class="img_plus_minus" src="images/plusicon.png"></span></td>
+			<td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td><td><a href="#" id="removeproduct_'. $result_data['product_id'] .'" rel="'. $result_data['product_id'] .'"><img src="images/delete.png" title="'. IMG_TITEL_REMOVE .'"></a></td></tr>';
 		}
 		
 		//for($i=0; $i < count($this->products); $i++) {

@@ -33,15 +33,15 @@ $cart = new shoppingcart(session_id());
 <html>
 <head>
 
-<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Froxcloud</title>
 
 <!-- stylesheets for lightbox, printer and desktop screen -->
-<link rel="stylesheet" href="css/colorbox.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" media="screen and (min-device-width: 600px)" type="text/css" />
 <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+<link rel="stylesheet" href="css/colorbox.css" type="text/css">
 
 <!-- stylesheet for mobile devices -->
 <link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 599px)" href="css/handheld.css" />
@@ -69,15 +69,17 @@ $cart = new shoppingcart(session_id());
 
 		<a href="shoppingcart.html?lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 		<br>
-		<div ID="customer_header">	
+		<div ID="customer_header">
+		<div class="welcome_text">	
 		<div ID="customer_header_ajax"></div>
+		</div>
 		<?php 
 			if(customer::isLoggedIn(session_id())) {
 				$customer = new customer($_SESSION['customer_id']);
 				$data = $customer->getData();
 				
-				echo MSG_CUSTOMER_WELCOME .', '. $data['first_name'] .' '. $data['last_name'] .'!';
-				echo '<a href="#" id="logout"> '. BUTTON_LOGOUT_CUSTOMER .'</a>';
+				echo '<div class="welcome_text">'. MSG_CUSTOMER_WELCOME .', '. $data['first_name'] .' '. $data['last_name'] .'!</div>';
+				echo '<a href="#" id="logout"><img src="images/logout.png" id="logout" title="'. BUTTON_LOGOUT_CUSTOMER .'"></a>';
 			}	
 		?>
 		</div>

@@ -1,9 +1,4 @@
-@CHARSET "ISO-8859-1";
-
-/* --------------- General ------------------------------ */
-/*finish for mobile*/
-
-.hide_for_handheld
+.hide_for_mobile
 {
 	display:none;
 }
@@ -12,15 +7,18 @@ body
 {
 	color: #131313;
 	width: 100%;
-	margin:0px auto;
-	font-size: 1em;
+	margin: 0 auto;
+	float:right;
+	font-size:1em;
+	font-family: Arial, Helvetica, sans-serif;
 }
+
+
 
 .header {
 	background-color: #F0F0F0;
 	width: 100%;
-	height: 160px;
-	margin: 0px;
+	height: 20%;
 	
 	-moz-box-shadow: inset 0 0 10px 0 #000;
 	-webkit-box-shadow: inset 0 0 10px 0 #000;
@@ -29,16 +27,18 @@ body
 
 .header_right {
 	float: right;
-	width: 30%;
-	
+	width: 110px;
 	position: relative;
 	text-align: right;
+	margin:2%;
+	font-size: 0.2;
+	display:none;
 }
+
 
 .content_container {
 	background-color: #F0F0F0;
 	width: 100%;
-	height: auto;
 	text-align:center;
 	position:relative;
 	float: left;
@@ -53,44 +53,36 @@ body
 
 .footer
 {
-	height: 80px;
+	width: 100%;
+	height: 45px;
+	clear: both;
+	bottom:0px;
 	position:relative;
-	top: 0px;
-	background-color:#131313;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	text-align: center;
-	font-size: 0.8em;
 	color: white;
+	text-align:left;
 	clear:both;
-	padding: 20px;
-	margin:0px;
-}
-
-.footer_copyright
-{
-	text-align: center;
-	position: absolute;
-	bottom:10px;
-	font-size: 0.9em;
-	color: white;
+	font-size:0.5;
+	
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131313', endColorstr='#7f7f7f'); 
+	background: -webkit-gradient(linear, left top, left bottom, from(#131313), to(#7f7f7f)); 
+	background: -moz-linear-gradient(top,  #131313,  #7f7f7f); 
+	
 }
 
 
-/* --------------- Headers ------------------------------ */
 body h1{
 	 
 	 font-family: Arial, Helvetica, sans-serif;
 	 font-weight: bold;
-	 font-size: 1.25em;
-	 letter-spacing: .2em;
+	 font-size: 1.1em;
+	 letter-spacing: 0.2em;
 	 line-height: 1.1em;
-        margin: 20px 15px;
+     margin: 20px 15px;
 	 text-align: left;
 	 text-transform: uppercase;
 	 color: #333;
 }
-
+/*
 h2
 {
 	text-align: center;
@@ -105,12 +97,12 @@ h3
 
 hr
 {
- border: 0px; /* Für Firefox und Opera */
+ border: 0px;
  border-top: solid 1px #FF0000;
- border-bottom: solid 1px #FFFFFF; /* Für I.Explorer (Seiten-Hintergrundfarbe!) */
+ border-bottom: solid 1px #FFFFFF;
 }
 
-/* Hyperlinks */
+
 a:link {
 	 color:black; text-decoration:none;
 }
@@ -127,27 +119,25 @@ a:active {
 	color:black; text-decoration:underline; 
 }
 
-/*Message Area*/
+
 .messagearea{
 	margin: 10px;
 	font-weight: bold;
 }
 
-/*Error Message Area*/
+
 #error_msg_area{
 	color: red;
 }
-/* --------------- Header Area ------------------------------ */
 
-
-
+*/
 #shoppingcart {
-	float: right;
-	margin: 10px;
 	font-weight:bold;
+	font-size: 0.8em;
 	color:#A0A0A0;
+	display:none;
 }
-
+/*
 #shoppingcart tr
 {
 	border: solid 1px black;
@@ -163,12 +153,14 @@ a:active {
 {
 	clear: both;
 }
-
+*/
 table
 {
+	font-size:0.3em;
 	border-collapse:collapse;
 	width: 100%;
 	text-align: center;
+	margin-bottom:10px;
 	
 }
 
@@ -179,19 +171,17 @@ td
 	border-right: 1px solid black;
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
-	padding:5px;
+	padding:1px;
+	text-align:left;
 }
 
-td .firstcol
-{
-	
-}
+
 
 th
 {
-	border-bottom: 5px solid black;
+	border-bottom: 1px solid black;
 }
-
+/*
 #shoppingcart a:focus { 
 	font-weight:bold; color:black; text-decoration:underline; 
 }
@@ -202,40 +192,20 @@ th
 	font-weight:bold; color:black; text-decoration:underline; 
 }
 
+*/
 
-/* --------------- wrapper ------------------------ */
 .boxwrapper 
 {
-	margin: 5%;
-	width: 100%;
-}
-
-.colorboxwrapper
-{
-	margin: 40px auto;
-	width: 450px;
-}
-
-.colorboxwrapper_small
-{
-	margin: 10px auto;
-	width: 450px;
+	width: 95%;
+	margin: 0 auto;
 }
 
 .internalwrapper
 {
-	margin-left: 200px;
-	margin-right: 40px;
+	font-size:0.5;
+	width: 95%;
+	margin: 0 auto;
 }
-
-.productwrapper
-{
-	width: 780px;
-	clear:both;
-}
-
-
-/* --------------- Box Layouts ------------------------ */
 
 .whitebox 
 {
@@ -243,13 +213,12 @@ th
 	background-color: white;
 	border-radius: 10px;
 	box-shadow: 1px 1px 2px black;
-	margin: 5px 0;
-	width: 90%;
+	width:100%;
+	
 }
 
 .box_3inRow
 {
-	
 	height: auto;
 }
 
@@ -275,6 +244,7 @@ th
 
 .slidebox
 {
+	height: auto;
 	display: none;
 }
 
@@ -282,70 +252,66 @@ fieldset
 {
 	border: black solid 1px;
 	border-radius: 10px;
-	padding: 10px;
-	margin:10px;
-	height: auto;
-	width: auto;
+	margin:5px;
+	padding:0;
 }
 
 legend
 {
+	font-weight:bold;
 	text-align: left;
 }
 
 
 #littlelogo
 {
-	width: 120px;
-	margin: 5px;
+	width: 0px;
 }
 
 #minilogo
 {
-	width:40px;
-	margin: 5px;
-	float:left;
-	margin-bottom:5px;
+	width:0px;
 }
 
+
 #logo {
-	width: 60%;
-	margin: 10px;
+	width:70%;
+	float:left;
+	margin: 2%;
 }
 
 #froxcloud_white
 {
 	width:30%;
 	float:right;
-	bottom:0px;
-	margin-right: 50px;
+	margin:2%;
 }
+
 
 
 .buttonlayout_more
 {
 	width: 100%;
-	height: 60px;
+	height:50px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	color: white;
 
-	
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f7f7f', endColorstr='#131313');
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f7f7f', endColorstr='#131313'); 
 	background: -webkit-gradient(linear, left top, left bottom, from(#7f7f7f), to(#131313)); 
-	background: -moz-linear-gradient(top,  #7f7f7f,  #131313);
+	background: -moz-linear-gradient(top,  #7f7f7f,  #131313);  
 
 }
 
 .buttonlayout_buy
 {
+	display:none;
 	width: 100%;
 	color: white;
-	height: 60px;
-	
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#02def7');
+	height:50px;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#02def7'); 
 	background: -webkit-gradient(linear, left top, left bottom, from(#00abf4), to(#02def7)); 
-	background: -moz-linear-gradient(top,  #00abf4,  #02def7); 
+	background: -moz-linear-gradient(top,  #00abf4,  #02def7);
 }
 
 
@@ -353,9 +319,8 @@ legend
 {
 	float:right;
 	margin-right: 200px;
-	display: none;
+	display:none;
 }
-
 /*
 .language_switch button
 {
@@ -364,7 +329,7 @@ legend
 	font-size: 0.6em;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f7f7f', endColorstr='#131313'); 
 	background: -webkit-gradient(linear, left top, left bottom, from(#7f7f7f), to(#131313)); 
-	background: -moz-linear-gradient(top,  #7f7f7f,  #131313); 
+	background: -moz-linear-gradient(top,  #7f7f7f,  #131313);
 }
 
 #german
@@ -381,80 +346,86 @@ legend
 
 .language_switch button.active
 {
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#02def7'); 
-	background: -webkit-gradient(linear, left top, left bottom, from(#00abf4), to(#02def7)); 
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#02def7');
+	background: -webkit-gradient(linear, left top, left bottom, from(#00abf4), to(#02def7));
 	background: -moz-linear-gradient(top,  #00abf4,  #02def7); 
 }
 
-/* --------------- Main Menu ------------------------------ */
+*/
 .mainmenu ul
 {
-	margin:0px;
+	
+	float:left;
+	margin:0;
 	padding:0;
 	list-style-type:none;
-	width:auto;
+	width:100%;
 	position:relative;
-	display:block;
-	height:65px;
+	height:60px;
+	font-size:0.7em;
 	font-weight:bold;
+	background:transparent url(../images/nav_bg.png) repeat-x top left;
 	font-family:Arial, Helvetica, sans-serif;
 	border-bottom:1px solid #000000;
 	border-top:1px solid #000000;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f7f7f', endColorstr='#131313'); /* for IE */
-	background: -webkit-gradient(linear, left top, left bottom, from(#7f7f7f), to(#131313)); /* for webkit browsers */
-	background: -moz-linear-gradient(top,  #7f7f7f,  #131313); /* for firefox 3.6+ */ 
-	
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7f7f7f', endColorstr='#131313');
+	background: -webkit-gradient(linear, left top, left bottom, from(#7f7f7f), to(#131313)); 
+	background: -moz-linear-gradient(top,  #7f7f7f,  #131313); 
 }
 
 .mainmenu li
 {
+	display:block;
 	float:left;
-	margin: 0px;
-	height:100%;
-	width:auto;
-	padding: 0 5px 0 5px;
-	
+	margin:0;
+	padding:0;
+	width:20%;
+	text-align: center;
 }
 	
 .mainmenu li a
 {
-	text-align:center;
 	display:block;
 	float:left;
 	color:#999999;
+	text-decoration:none;
 	font-weight:bold;
-	width: 100%;
-	padding: 0 5px 0 5px;
-	height: 100%;
-	
+	height:100%;
+	width:100%;
+
 }
 	
-.mainmenu li a:hover
-{	
-	color:#FFFFFF; 
-}
-	
-.mainmenu li a.active 
+.mainmenu li a.mm_active 
 {
 	color: white;
 	display:inline;
-	height:22px;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#02def7'); /* for IE */
-	background: -webkit-gradient(linear, left top, left bottom, from(#00abf4), to(#02def7)); /* for webkit browsers */
-	background: -moz-linear-gradient(top,  #00abf4,  #02def7); /* for firefox 3.6+ */ 
-	
-	float:left;
 	margin:0;
+	width:100%;
 	height:100%;
+	background:transparent url(../images/nav_bg.png) 0px 0px no-repeat;
 }
 
-#mainmenuelement{
-	display:none;
-	float: right;
-	margin-right:10px;
+#mainmenuelement
+{
+	float:right;
+	width:40%;
 }
 
-/* --------------- Registration Formular ------------------------------ */
+#help
+{
+display:none;
+}
+
+#imprint
+{
+display:none;
+}
+
+#help
+{
+display:none;
+}
+
 .registrationform{
 	text-align: left;
 }
@@ -515,16 +486,14 @@ legend
 .registrationform fieldset{
 	margin-top: 1em;
 }
-/* --------------- Customer Center -------------------------------------- */
 
 .customer_content_container {
 	width: 100%;
 	text-align: left;
 	float: left;
-	margin: 5px;
 }
 
-
+/*
 #customer_header {
     font-size: 0.8em;
     font-weight: bold;
@@ -554,22 +523,22 @@ legend
 	width: 680px;
 	text-align: left;
 }
-
+*/
 .customermenu {
-	border-radius: 10px;
 	background: #333;
 	list-style: none;
-	margin: 15px;
-	padding: 0;
 	float: left;
-	border:1px solid #000000;
+	width:100%;
 }
+
 .customermenu ul {
 	list-style-type:none;
 	padding: 0;
 	margin: 5px;
 }
 .customermenu li {
+	float:left;
+	width:33%;
 	font: 67.5% 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
 	color:#999999;
 	margin: 0;
@@ -593,20 +562,20 @@ legend
 	padding-bottom: 8px;
 }
 
-.customermenu a.active {
+.customermenu a.cm_active {
 	background:  url('../images/cmenu_hover_blue.png') left center no-repeat;
 	color: white;
 }
 
-/* Customer Data Table */
+
 .customer_data {
 	vertical-align: top;
 	margin: 15px;
+	font-size:0.6em;
 }
 
 .customer_data th{
 	color: 1874CD;
-	width: 200px;
     text-align: left;
     vertical-align: top;
     padding-bottom: 20px;
@@ -624,7 +593,6 @@ legend
 }
 
 .edit_cust_data{
-	margin: 15px;
 }
 
 .edit_cust_data label{
@@ -662,8 +630,7 @@ legend
 	
 }
 
-
-/*----------------------Backend--------------------------*/
+/*
 
 .admin_logout{
 	float: right;
@@ -681,7 +648,6 @@ legend
 }
 
 
-/*---------------- contact form --------------------------------------*/
 .contact_message{
 	padding: 10px;
 }
@@ -716,7 +682,6 @@ legend
 	width: 100px;
 	float: left;
 }
-/*---------------- login form --------------------------------------*/
 
 .loginform label{
 	width: 7em;
@@ -737,6 +702,4 @@ legend
 	font-style: italic;
 	text-decoration: underline;
 	margin-left: 20px;
-}
-
-
+}*/

@@ -25,7 +25,10 @@ require '../../functions/general.php';
 require_once  '../../functions/datetime.php';
 
 include_once '../../includes/database_tables.php';
-include_once '../includes/languages/DE.inc.php';
+// detect preferred browser language if language is not available use the default language from shop customizing
+$site_language = language::getBrowserLanguage();
+
+include_once '../../includes/languages/'. strtoupper($site_language) .'.inc.php';
 
 $customizing = new customizing( get_default_language() );
 
@@ -42,10 +45,12 @@ switch($action) {
 		echo '<div id="customizing_explanation"><p>'. EXPLANATION_CUSTOMIZING_ENTRIES .'</p></div>';
 		echo $customizing->printCustomizingEntries();
 		
-		echo '<a href="#" id="edit_customizing">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
-		<a href="#" id="save_customizing">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
+		echo '<div class="space">';
 		
-		echo '</fieldset>';
+		echo '<a href="#" id="edit_customizing" class="button_style">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
+		<a href="#" id="save_customizing"  class="button_style">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
+		
+		echo '</div></fieldset>';
 		echo '</div>';
 		break;
 
@@ -71,7 +76,7 @@ switch($action) {
 		$language_id = $_POST['language_id'];
 
 		$product = new product($product_id, $language_id);
-		$language_ids_for_existing_products = $product->getLanguagesForExistingProduct($product_id);
+		$language_ids_for_existing_products = $product->getLanguagesForExistingProduct();
 		$product_info = productInfo::getAttributesByProductId($product_id);
 		$attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
 
@@ -167,20 +172,22 @@ switch($action) {
 		$description = $_POST['description'];
 		$quantity = $_POST['quantity'];
 		$price = $_POST['price'];
+		$active = $_POST['active'];
 
 		$product_data = array("language_id"=>$language_id,
 				"title"=>$title,
 				"contract_periode"=>$contract_periode,
 				"description"=>$description,
 				"quantity"=>$quantity,
-				"price"=>$price);
+				"price"=>$price,
+				"active"=>$active);
 
 		if(product::productExists($product_data, $product_id)){
 			echo INFO_MESSAGE_PRODUCT_ALREADY_EXISTS;
 		}
 		else{
-			$product = new product($product_id);
-			if($product->update($product_id, $language_id, $product_data)){
+			$product = new product($product_id, $language_id);
+			if($product->update($product_data)){
 				echo INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL;
 			}
 			else{
@@ -335,7 +342,7 @@ switch($action) {
 		$language_id = $_POST['language_id'];
 		$product = new product($product_id, $language_id);
 
-		if($product->delete($product_id, $language_id)){
+		if($product->delete()){
 			echo INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED;
 		}
 		else{
@@ -391,7 +398,7 @@ switch($action) {
 		$product_attribute_id = $_POST['product_attribute_id'];
 		$language_id = $_POST['language_id'];
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
-		if($product_attribute->delete($product_attribute_id) AND productInfo::deleteAllProductInfosByAttrId($product_attribute_id)){
+		if($product_attribute->delete() AND productInfo::deleteAllProductInfosByAttrId($product_attribute_id)){
 
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED;
 		}
@@ -409,7 +416,7 @@ switch($action) {
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
 		$language_ids_for_existing_product_attributes = $product_attribute->getLanguagesForExistingProductAttr($product_attribute_id);
 
-		echo $product_attribute->printFormEdit(language::printLanguages($language_ids_for_existing_product_attributes, $language_id), $language_id);
+		echo $product_attribute->printFormEdit(language::printLanguages($language_ids_for_existing_product_attributes, $language_id));
 
 		echo '</fieldset>';
 		echo '</div>';
@@ -606,7 +613,7 @@ switch($action) {
 
 		echo content::printOverview();
 
-		echo '<div id="new_content_buttons"><a href="#" id="create_new_content">'. BUTTON_CREATE_CONTENT .'</a></div>';
+		echo '<div id="new_content_buttons"><a href="#" id="create_new_content" class="button_style">'. BUTTON_CREATE_CONTENT .'</a></div>';
 
 		echo '</fieldset>';
 		echo '</div>';

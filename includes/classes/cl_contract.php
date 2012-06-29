@@ -77,8 +77,8 @@ class contract {
 
 		$number_of_contracts = db_num_results($contract_query);
 
-		$return_string = '<div id="'. $container_id .'">';
-		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_CONTRACTS, $number_of_contracts);
+		$return_string = '<div id="'. $container_id .'"><div class="status">';
+		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_CONTRACTS, $number_of_contracts).'</div>';
 
 		$return_string = $return_string .'<table>
 		<tr>
