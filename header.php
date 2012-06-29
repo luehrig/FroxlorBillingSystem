@@ -39,9 +39,9 @@ $cart = new shoppingcart(session_id());
 <title>Froxcloud</title>
 
 <!-- stylesheets for lightbox, printer and desktop screen -->
-<link rel="stylesheet" href="css/colorbox.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" media="screen and (min-device-width: 600px)" type="text/css" />
 <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+<link rel="stylesheet" href="css/colorbox.css" type="text/css">
 
 <!-- stylesheet for mobile devices -->
 <link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 599px)" href="css/handheld.css" />
