@@ -181,12 +181,12 @@ class product {
 		}
 	}
 	
-	public function delete($product_id, $language_id) {
-		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $product_id.'" AND language_id = "'. $language_id. '"';
+	public function delete() {
+		$sql_delete_statement = 'DELETE FROM '. TBL_PRODUCT .' WHERE product_id = "'. (int) $this->product_id.'" AND language_id = "'. $this->language_id. '"';
 		return db_query($sql_delete_statement);
 	}
 	
-	public function update($product_id, $language_id, $product_data) {
+	public function update($product_data) {
 		if($product_data != NULL){
 			$sql_update_statement = 'UPDATE '. TBL_PRODUCT .' SET
 				language_id="'. $product_data['language_id'] .'", 
@@ -196,7 +196,7 @@ class product {
 				quantity="'. $product_data['quantity'] .'", 
 				price="'. $product_data['price'] .'", 
 				active="'. $product_data['active'] .'" 
-				WHERE product_id="'. $product_id .'" AND language_id = "'. $language_id. '"' ;
+				WHERE product_id="'. $this->product_id .'" AND language_id = "'. $this->language_id. '"' ;
 			
 			return db_query($sql_update_statement);
 		}
@@ -383,8 +383,8 @@ class product {
 		return $this->product_data;
 	}
 	
-	public function getLanguagesForExistingProduct($product_id){
-		$sql_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = "'. $product_id .'"';
+	public function getLanguagesForExistingProduct(){
+		$sql_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT .' AS p WHERE p.product_id = "'. $this->product_id .'"';
 		$language_query = db_query($sql_statement);
 		$language_id_array = array();
 		while($data = db_fetch_array($language_query)) {
