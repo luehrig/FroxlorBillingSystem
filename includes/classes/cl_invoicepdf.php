@@ -308,18 +308,18 @@ class invoicepdf extends FPDF {
 		$this->SetXY(141, 251);
 		$this->Cell(24, 5, 'Nettobetrag:', 0, 1, 'R');
 		$this->SetXY(169, 251);
-		$this->Cell(21, 5, sprintf("%9.2f �", $this->invoice_data['invoice_sum_net']), 0, 1, 'R');
+		$this->Cell(21, 5, sprintf("%9.2f", $this->invoice_data['invoice_sum_net']) ." ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign()), 0, 1, 'R');
 		//Steuer
 		$this->SetFont('Arial','','10');
 		$this->SetXY(141, 257);
 		$this->Cell(24, 5, '+'. $this->invoice_data['tax_rate'] .'% MwSt:', 0, 1, 'R');
 		$this->SetXY(169, 257);
-		$strWegenKlammer = sprintf("%9.2f", $this->invoice_data['invoice_sum_tax']). " �";
+		$strWegenKlammer = sprintf("%9.2f", $this->invoice_data['invoice_sum_tax']). " ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign());
 		$this->Cell(21, 5, $strWegenKlammer, 0, 1, 'R');
 		//Endbetrag
 		$this->SetFont('Arial','B','12');
 		$this->SetXY(141, 263);
-		$strWegenKlammer = "Zahlbetrag:". sprintf("%9.2f", $this->invoice_data['invoice_sum_gross']). " �";
+		$strWegenKlammer = "Zahlbetrag:". sprintf("%9.2f", $this->invoice_data['invoice_sum_gross']). " ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign());
 		$this->Cell(49, 5, $strWegenKlammer, 0, 1, 'R');
 
 		$this->SetFont('Arial','B','12');
