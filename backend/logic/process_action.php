@@ -167,13 +167,15 @@ switch($action) {
 		$description = $_POST['description'];
 		$quantity = $_POST['quantity'];
 		$price = $_POST['price'];
+		$active = $_POST['active'];
 
 		$product_data = array("language_id"=>$language_id,
 				"title"=>$title,
 				"contract_periode"=>$contract_periode,
 				"description"=>$description,
 				"quantity"=>$quantity,
-				"price"=>$price);
+				"price"=>$price,
+				"active"=>$active);
 
 		if(product::productExists($product_data, $product_id)){
 			echo INFO_MESSAGE_PRODUCT_ALREADY_EXISTS;
