@@ -47,7 +47,7 @@ echo '
 				<p>
 					<label for="first_name">'. LABEL_FIRST_NAME .'</label>';
 					
-					// If customer is logged in show customer's last name in last name input field
+					// If customer is logged in show customer's first name in first name input field
 					if($data != ''){
 						echo'<input type="text" id="first_name" name="first_name" rel="mandatory" value="'. $data['first_name'] .'">';
 					}
