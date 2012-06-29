@@ -92,6 +92,7 @@ define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
 define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
 define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
+define('IMG_REMOVE_PRODUCT', 'Produkt entfernen');
 
 
 /* message texts */
@@ -170,10 +171,12 @@ define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den 
 define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
 
 define('BUTTON_CHANGE_SERVER', 'Server ändern');
+define('LINK_EDIT_PRODUCT', 'Bearbeiten');
 define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
 define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
 define('LINK_DELETE', 'Löschen');
+define('LINK_DISPLAY', 'Anzeigen');
 define('BUTTON_CREATE_SERVER', 'Server anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');
@@ -187,8 +190,8 @@ define('LABEL_MY_STATISTICS','Meine Shopstatistiken');
 
 
 
-define('LABEL_ACTIVE','aktiv');
-define('LABEL_INACTIVE','inaktiv');
+define('LABEL_ACTIVE','Aktiv');
+define('LABEL_INACTIVE','Inaktiv');
 
 
 

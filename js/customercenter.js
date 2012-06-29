@@ -146,7 +146,7 @@ $(function() {
 
 	// save changed customer data
 	$('body').on("click",
-			"form[class=edit_cust_data] input[type=submit][id=save_customer]",
+			"form[class=edit_cust_data] img[id=save_customer]",
 
 			// check if mandatory fields are filled
 			function() {

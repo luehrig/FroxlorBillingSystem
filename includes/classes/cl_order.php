@@ -89,6 +89,11 @@ class order {
 				$froxlor_customer_id = $customizing->getCustomizingValue('business_froxlor_client_prefix') .'_'. $customer_id;
 				
 				if($recommended_server != null) {
+					// reserve disk space on selected server
+					$booked_server = new server($recommended_server);
+					$booked_server->bookProduct( (int) $order_positions[$i]['product_id']);
+					
+					// save single order position details
 					$insert_statement = 'INSERT INTO '. TBL_ORDER_POSITION_DETAIL .' (order_position_id, server_id, froxlor_customer_id)
 					VALUES ('. (int) $order_position_id .', '. (int) $recommended_server .', "'. $froxlor_customer_id .'")';
 					db_query($insert_statement);
