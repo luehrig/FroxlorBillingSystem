@@ -679,7 +679,7 @@ legend
 	margin-top: 80px;
 	margin-right:5px;
 }
-
+*/
 #customizing_entries{
 	text-aling: left;
 }
@@ -693,6 +693,7 @@ legend
 	width: 200px;
 	margin-bottom: 5px;
 }
+/*
 .content img{
 	margin: 5px;
 }
@@ -715,7 +716,7 @@ legend
 	color:black; text-decoration:none; 
 }
 
-
+*/
 .contact_message{
 	padding: 10px;
 }
@@ -772,7 +773,7 @@ legend
 	margin-left: 20px;
 }
 
-*/
+
 #contract_overview div[class="status"]{
 	display:none;
 	margin-left: 15px;
