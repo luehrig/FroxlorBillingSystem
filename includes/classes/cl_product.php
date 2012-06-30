@@ -214,10 +214,10 @@ class product {
 		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCTS, $number_of_products) ;
 		
 		
-		$create_button = '<a href="#" id="create_new_product">'.BUTTON_CREATE_NEW_PRODUCT.'</a></td>';
+		$create_button = '<a href="#" id="create_new_product" class="button_style">'.BUTTON_CREATE_NEW_PRODUCT.'</a></td>';
 		
 		
-		$return_string = $return_string . '<br><br>';
+		$return_string = $return_string;
 		
 		
 		$table_header = '<table border = "0">

@@ -264,6 +264,8 @@ define('EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES', 'Aktuell sind derzeit %d Prod
 define('EXPLANATION_NUMBER_OF_CUSTOMERS','Aktuell haben Sie %d Kunden.');
 define('EXPLANATION_NUMBER_OF_SERVERS','Aktuell befinden sich %d Server im Verkaufspool.');
 
+define('EXPLANATION_CONTENT','Hier können Sie den Inhalt Ihrer Seiten verwalten.');
+
 
 
 

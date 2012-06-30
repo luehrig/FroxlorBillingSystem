@@ -65,10 +65,10 @@ class productAttribute{
 		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_PRODUCT_ATTRIBUTES, $number_of_product_attributes);
 		
 		
-		$create_button = '<a href="#" id="create_new_product_attribute">'.BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE.'</a></td>';
+		$create_button = '<a href="#" id="create_new_product_attribute" class="button_style">'.BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE.'</a></td>';
 		
 		
-		$return_string = $return_string . '<br><br>';
+		$return_string = $return_string;
 		
 		
 		$table_header = '<table border = "0">

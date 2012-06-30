@@ -153,10 +153,10 @@ class server {
 		$return_string = $return_string . sprintf(EXPLANATION_NUMBER_OF_SERVERS, $number_of_servers);
 
 
-		$create_button = '<a href="#" id="create_new_server">'.BUTTON_CREATE_SERVER.'</a></td>';
+		$create_button = '<a href="#" id="create_new_server" class="button_style">'.BUTTON_CREATE_SERVER.'</a></td>';
 
 
-		$return_string = $return_string . $create_button;
+		$return_string = $return_string;
 
 
 		$table_header = '<table border = "0">
@@ -186,7 +186,7 @@ class server {
 			<td><a href="#" id="delete_server" rel="'. $data['server_id'] .'"><img src="../images/delete.png" title="'. LINK_DELETE . '"></a></td>
 			</tr>';
 		}
-		$return_string = $return_string . $table_header . $table_content. '</table><br>';
+		$return_string = $return_string . $table_header . $table_content. '</table><br>' . $create_button;
 		return $return_string;
 	}
 

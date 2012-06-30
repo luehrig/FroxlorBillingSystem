@@ -90,7 +90,9 @@ class content {
 		$content_query = db_query($sql_statement);
 		
 		$return_string = '<div id="'. $container_id .'">';
-
+		
+		$return_string = $return_string . EXPLANATION_CONTENT;
+		
 		$return_string = $return_string . '<table><tr><th>'. TABLE_HEADING_CONTENT_TITLE .'</th></tr>';
 		
 		while($data = db_fetch_array($content_query)) {
