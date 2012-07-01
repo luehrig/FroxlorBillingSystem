@@ -8,6 +8,7 @@ define('PATH_CLASSES', PATH_INCLUDES . 'classes/');
 define('PATH_EXT_LIBRARIES',BASE_DIR .'external_libraries/');
 define('PATH_LANGUAGES', PATH_INCLUDES . 'languages/');
 define('PATH_IMAGES', BASE_DIR .'images/');
+define('PATH_IMAGES_REL', '/FroxlorBillingSystem/images/');
 define('PATH_BODYS', BASE_DIR .'bodys/');
 define('PATH_TEMP', BASE_DIR .'tmp/');
 define('PATH_BUYINGCENTER', BASE_DIR .'buyingcenter/');
