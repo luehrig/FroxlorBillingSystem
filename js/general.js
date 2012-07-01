@@ -15,17 +15,6 @@ $(function() {
 		return false;
 	});
 
-	/*
-	 * $("body").on("click", "a[class=nav]", function() {
-	 * 
-	 * var url = $(this).attr('id'); var lang =
-	 * $('input[type=hidden][id=site_language]').val();
-	 * 
-	 * loadContent(url, lang);
-	 * 
-	 * return false; });
-	 */
-
 	// Bind a callback that executes when document.location.hash changes.
 	$(window).bind("hashchange", function(e) {
 		// var url = $.bbq.getState("!page");
@@ -53,12 +42,14 @@ $(function() {
 
 	$(document).ready(function() {
 		// code that is executed if page was loaded
-		
-		loadContent('home','undefined');
-		
+
 	});
 
-	// check password length
+	/*
+	 * 
+	 * check if password has minimal length from customizing
+	 * 
+	 */
 	$("body").on("change", "form[id=registrationform] input[id=password]",
 			function() {
 				var password = $(this).val();
@@ -67,40 +58,70 @@ $(function() {
 					type : "POST",
 					url : "logic/process_inputcheck.php",
 					data : {
-						action : "check_password",
+						action : "check_passwordlength",
 						password : password
 					}
 				}).done(function(msg) {
-					$('#messagearea').html(msg);
+					$('div[id=mandatory_fields]').remove();
+					$('#messagearea').append(msg);
 				});
 			});
 
+	/*
+	 * 
+	 * validate entered passwords
+	 * 
+	 */
+	$("body").on("change", "form[id=registrationform] input[id=passwordagain]",
+			function() {
+				var password = $("input[id=password]").val();
+				var passwordagain = $(this).val();
+
+				passwordsMatching(password, passwordagain);
+
+			});
+
+	/*
+	 * 
+	 * validate entered email adress
+	 * 
+	 */
+	$("body").on("change", "input[id=email]", function() {
+		validateEmail($(this).val());
+	});
+
+	/*
+	 * 
+	 * validate entered telephone number
+	 * 
+	 */
+	$("body").on("change", "input[id=telephone]", function() {
+		validateTelephone($(this).val());
+	});
+
+	/*
+	 * 
+	 * validate entered fax number
+	 * 
+	 */
+	$("body").on("change", "input[id=fax]", function() {
+		validateFax($(this).val());
+	});
+
+	/*
+	 * 
+	 * trigger processing for registration
+	 * 
+	 */
 	$("body")
 			.on(
 					"click",
 					"form[id=registrationform] input[type=submit][id=register]",
 					function() {
-						var mandatory_filled = true;
+
 						var customerData = {};
 
-						$("input[rel=mandatory]").each(function() {
-							if (!$(this).val() && mandatory_filled == true) {
-								mandatory_filled = false;
-								return false;
-							}
-						});
-
-						if (mandatory_filled == false) {
-							$.ajax({
-								type : "POST",
-								url : "logic/process_inputcheck.php",
-								data : {
-									action : "get_message_mandatory_not_filled"
-								}
-							}).done(function(msg) {
-								$('#messagearea').html(msg);
-							});
-						} else {
+						if (mandatoryFilled() == true) {
 							// get all input fields
 							$('input[type=text]').each(function() {
 								var key = $(this).attr('id');
@@ -115,59 +136,214 @@ $(function() {
 							customerData['password'] = $(
 									'input[type=password][id=password]').val();
 
-							// get all select fields
-							$('select option:selected').each(function() {
-								var key = $(this).attr('name');
-								customerData[key] = $(this).attr('id');
-							});
-							$
-									.ajax({
-										type : "POST",
-										url : "logic/process_db.php",
-										data : {
-											action : "create_customer",
-											customerData : customerData
-										}
-									})
-									.done(
-											function(msg) {
-												// $('#messagearea').html( msg
-												// );
-												$('a[id=customercenter]')
-														.addClass('nav');
-												$
-														.ajax({
-															type : "POST",
-															url : "logic/process_usermanagement.php",
-															data : {
-																action : "login_customer",
-																email : customerData['email'],
-																password : customerData['password']
-															}
-														});
+							var passwordretry = $(
+									'input[type=password][id=passwordagain]')
+									.val();
 
-												$
-														.ajax(
-																{
-																	type : "POST",
-																	url : "logic/process_customer_action.php",
-																	data : {
-																		action : "show_customer_header"
-																	}
-																})
-														.done(
-																function(msg) {
-																	$(
-																			'#customer_header_ajax')
-																			.html(
-																					msg);
-																});
-												window.location.href = "index.php#!page=customercenter";
-											});
+							// check if passwords matching
+							if (passwordsMatching(customerData['password'],
+									passwordretry) == false
+									|| validateEmail(customerData['email']) == false
+									|| validateTelephone(customerData['telephone']) == false
+									|| validateFax(customerData['fax']) == false) {
+								return false;
+							} else {
+								// get all select fields
+								$('select option:selected').each(function() {
+									var key = $(this).attr('name');
+									customerData[key] = $(this).attr('id');
+								});
+								$
+										.ajax({
+											type : "POST",
+											url : "logic/process_db.php",
+											data : {
+												action : "create_customer",
+												customerData : customerData
+											}
+										})
+										.done(
+												function(msg) {
+													// $('#messagearea').html(
+													// msg
+													// );
+													$('a[id=customercenter]')
+															.addClass('nav');
+													$
+															.ajax({
+																type : "POST",
+																url : "logic/process_usermanagement.php",
+																data : {
+																	action : "login_customer",
+																	email : customerData['email'],
+																	password : customerData['password']
+																}
+															});
+
+													$
+															.ajax(
+																	{
+																		type : "POST",
+																		url : "logic/process_customer_action.php",
+																		data : {
+																			action : "show_customer_header"
+																		}
+																	})
+															.done(
+																	function(
+																			msg) {
+																		$(
+																				'#customer_header_ajax')
+																				.html(
+																						msg);
+																	});
+													window.location.href = "index.php#!page=customercenter";
+												});
+							}
 						}
-
 						return false;
 					});
+
+	/*
+	 * 
+	 * check if all mandatory fields are filled in registration form
+	 * 
+	 */
+	function mandatoryFilled() {
+		var mandatory_filled = true;
+
+		$("input[rel=mandatory]").each(function() {
+			if (!$(this).val() && mandatory_filled == true) {
+				mandatory_filled = false;
+				return false;
+			}
+		});
+
+		if (mandatory_filled == false) {
+			$.ajax({
+				type : "POST",
+				url : "logic/process_inputcheck.php",
+				data : {
+					action : "get_message_mandatory_not_filled"
+				}
+			}).done(function(msg) {
+				$('#messagearea').append(msg);
+				return false;
+			});
+
+		} else {
+			$('div[id=mandatory_fields]').remove();
+			return true;
+		}
+	}
+
+	/*
+	 * 
+	 * check if two passwords matching
+	 * 
+	 */
+	function passwordsMatching(password_one, password_two) {
+		if (password != passwordagain) {
+
+			$.ajax({
+				type : "POST",
+				url : "logic/process_inputcheck.php",
+				data : {
+					action : "get_message_passwords_not_matching"
+				}
+			}).done(function(msg) {
+				$('#messagearea').html(msg);
+				return false;
+			});
+		} else {
+			$('div[id=passwords_not_matching]').remove();
+			return true;
+		}
+	}
+
+	/*
+	 * 
+	 * check if email is in valid format
+	 * 
+	 */
+	function validateEmail(input) {
+		$('div[id=invalid_email_message]').remove();
+		if (!input
+				.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.([a-z][a-z]+)|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i)) {
+
+			$.ajax({
+				type : "POST",
+				url : "logic/process_inputcheck.php",
+				data : {
+					action : "get_message_invalid_email"
+				}
+			}).done(function(msg) {
+				$('#messagearea').append(msg);
+			});
+
+			return true;
+		} else {
+			$('div[id=invalid_email_message]').remove();
+			return false;
+		}
+	}
+
+	/*
+	 * check if input is valid fax number
+	 * 
+	 */
+	function validateFax(input) {
+		$('div[id=invalid_fax]').remove();
+		if (isInteger(input)) {
+			$.ajax({
+				type : "POST",
+				url : "logic/process_inputcheck.php",
+				data : {
+					action : "get_message_invalid_fax"
+				}
+			}).done(function(msg) {
+				$('#messagearea').append(msg);
+				return false;
+			});
+		} else {
+			$('div[id=invalid_fax]').remove();
+		}
+	}
+
+	/*
+	 * check if input is valid telephone number
+	 * 
+	 */
+	function validateTelephone(input) {
+		$('div[id=invalid_telephone]').remove();
+		if (isInteger(input)) {
+			$.ajax({
+				type : "POST",
+				url : "logic/process_inputcheck.php",
+				data : {
+					action : "get_message_invalid_telephone"
+				}
+			}).done(function(msg) {
+				$('#messagearea').append(msg);
+				return false;
+			});
+		} else {
+			$('div[id=invalid_telephone]').remove();
+		}
+	}
+
+	/*
+	 * 
+	 * check if only integers were entered
+	 * 
+	 */
+	function isInteger(input) {
+		if (!input.match(/^[0-9 ]*$/) && !input == "") {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	// ask customer if reset should be done now
 	$("body").on("click", "form[id=registrationform] input[id=clear]",

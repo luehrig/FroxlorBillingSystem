@@ -34,19 +34,35 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 $action = $_POST['action'];
 
 switch($action) {
-	case 'check_password':
+	case 'check_passwordlength':
 		$password_input = $_POST['password'];
-		
+
 		// check password length
 		if(strlen($password_input) < $_SESSION['customizing']->getCustomizingValue('min_password_length')) {
-			echo WARNING_SHORT_PASSWORD;
+			echo 'div id="short_password">'. WARNING_SHORT_PASSWORD .'</div>';
 		}
-		
-	break;
-	
+
+		break;
+
 	case 'get_message_mandatory_not_filled':
-		echo WARNING_FILL_ALL_MANDATORY_FIELDS;
-	break;
+		echo '<div id="mandatory_fields">'. WARNING_FILL_ALL_MANDATORY_FIELDS .'</div>';
+		break;
+
+	case 'get_message_passwords_not_matching':
+		echo '<div id="passwords_not_matching">'. WARNING_PASSWORD_NOT_MATCHING .'</div>';
+		break;
+
+	case 'get_message_invalid_telephone':
+		echo '<div id="invalid_telephone">'. WARNING_INVALID_TELEPHONE .'</div>';
+		break;
+
+	case 'get_message_invalid_fax':
+		echo '<div id="invalid_fax">'. WARNING_INVALID_FAX .'</div>';
+		break;
+
+	case 'get_message_invalid_email':
+		echo '<div id="invalid_email_message">'. WARNING_INVALID_EMAIL .'</div>';
+		break;
 }
 
 ?>
