@@ -223,7 +223,7 @@ class customer {
 		</div>';
 
 // 		$return_string = $return_string . '<input type="submit" name="save_customer" id="save_customer" value="'. BUTTON_SAVE .'" rel="'. $this->customer_id.'">';
-		$return_string = $return_string . '<img id="save_customer" src="images/save.png" title="'. BUTTON_SAVE .'" rel="'. $this->customer_id.'">';
+		$return_string = $return_string . '<img id="save_customer" src="'. PATH_IMAGES_REL .'save.png" title="'. BUTTON_SAVE .'" rel="'. $this->customer_id.'">';
 		
 		$return_string = $return_string .'</div></form></div>';
 
@@ -558,7 +558,7 @@ class customer {
 			<td>'. $data['customer_number'] .'</td>
 			<td>'. $data['first_name'] .'</td>
 			<td>'. $data['last_name'] .'</td>
-			<td><a href="#" id="edit_customer" rel="'. $data['customer_id'] .'"><img src="../images/show.png" title="'. LINK_DISPLAY . '"></a></td>
+			<td><a href="#" id="edit_customer" rel="'. $data['customer_id'] .'"><img src="'. PATH_IMAGES_REL .'show.png" title="'. LINK_DISPLAY . '"></a></td>
 			</tr>';
 		}
 
