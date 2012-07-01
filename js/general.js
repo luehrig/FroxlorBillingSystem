@@ -74,6 +74,41 @@ $(function() {
 					$('#messagearea').html(msg);
 				});
 			});
+	
+	// check valid e-mail address
+	$("body").on("change", "form[id=registrationform] input[id=email]",
+			function() {
+				var email = $(this).val();
+
+				$.ajax({
+					type : "POST",
+					url : "logic/process_inputcheck.php",
+					data : {
+						action : "check_email",
+						email : email
+					}
+				}).done(function(msg) {
+					$('#messagearea').html(msg);
+				});
+			});
+	
+	// check valid phone no.
+	$("body").on("change", "form[id=registrationform] input[id=telephone]",
+			function() {
+				var phone_no = $(this).val();
+
+				$.ajax({
+					type : "POST",
+					url : "logic/process_inputcheck.php",
+					data : {
+						action : "check_phone_no",
+						phone_no : phone_no
+					}
+				}).done(function(msg) {
+					$('#messagearea').html(msg);
+				});
+			});
+	
 
 	$("body")
 			.on(

@@ -109,6 +109,8 @@ define('WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS','Um Fortzufahren ist es nötig, da
 define('WARNING_INVOICE_NOT_AUTHORIZED','Sie sind nicht berechtigt diese Rechnung zu öffnen!');
 define('WARNING_DELETE_CONTRACT_CONFIRM','Wollen Sie den Vertrag wirklich kündigen?');
 define('WARNING_REGISTRATION_RESET_FORM_CONFIRM','Wollen Sie wirklich alle Eingaben löschen?');
+define('WARNING_INVALID_EMAIL_ADDRESS','Keine gültige E-Mail Adresse!');
+define('WARNING_INVALID_PHONE_NO','Keine gültige Telefonnummer!');
 
 define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
 
