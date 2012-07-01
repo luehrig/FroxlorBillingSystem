@@ -600,7 +600,7 @@ switch($action) {
 
 		$customer = new customer($customer_id);
 
-		echo $customer->printFormEdit();
+		echo $customer->printForm();
 
 		echo '</fieldset>';
 		echo '</div>';

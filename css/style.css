@@ -755,6 +755,11 @@ legend
 	margin-bottom: 15px;
 }
 
+.content input[id="edit_customer"]{
+	visibility: hidden;
+}
+
+
 .content a:focus { 
 	font-weight:bold; color:black; text-decoration:none; 
 }
