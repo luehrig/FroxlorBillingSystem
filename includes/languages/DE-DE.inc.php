@@ -97,6 +97,10 @@ define('IMG_REMOVE_PRODUCT', 'Produkt entfernen');
 
 /* message texts */
 define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
+define('WARNING_PASSWORD_NOT_MATCHING','Die eingegebenen Passwörter stimmen nicht überein!');
+define('WARNING_INVALID_TELEPHONE','Bitte geben Sie eine gültige Telefonnummer ein!');
+define('WARNING_INVALID_FAX','Bitte geben Sie eine gültige Faxnummer ein!');
+define('WARNING_INVALID_EMAIL','Die eingegebene Email Adresse ist ungültig!');
 define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');
 define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
 define('WARNING_WRONG_CREDENTIALS','Die angegebenen Zugangsdaten sind nicht korrekt! Bitte prüfen Sie ihre Eingabe.');
