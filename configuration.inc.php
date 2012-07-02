@@ -17,6 +17,7 @@ define('PATH_CUSTOMERCENTER_LANGUAGES', BASE_DIR . PATH_CUSTOMERCENTER_INCLUDES 
 define('PATH_BACKEND_INCLUDES', BASE_DIR .'backend/includes/');
 define('PATH_BACKEND_LANGUAGES', PATH_BACKEND_INCLUDES . 'languages/');
 
+define('PATH_IMAGES_REL', '/FroxlorBillingSystem/images/');
 
 
 /* database section */

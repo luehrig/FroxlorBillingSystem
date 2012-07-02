@@ -30,7 +30,7 @@ if(!db_backend_user_is_logged_in( session_id() )) {
 $site_language = language::getBrowserLanguage();
 
 
-
+include_once '../configuration.inc.php';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
@@ -63,7 +63,8 @@ $site_language = language::getBrowserLanguage();
 	<img ID="logo" src="../images/fcloud.png">
 	
  	<div class="header_right">
-		<a class="admin_logout" href="#" id="logout"><?php echo BUTTON_LOGOUT_BACKEND?></a>
+		<div id="logout_text"><a class="admin_logout" href="#" id="logout"><?php echo BUTTON_LOGOUT_BACKEND?></div>
+		<img src="<?php echo PATH_IMAGES_REL ?>logout.png" id="logout" title="<?php echo BUTTON_LOGOUT_CUSTOMER ?>"></a>
 		<div ID="admin_welcome">Herzlich Willkommen im internen Bereich für den Shopbetreiber!
 		</div>
 	</div>
