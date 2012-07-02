@@ -178,10 +178,8 @@ $(function() {
 
 							// check if passwords matching
 							if (passwordsMatching(customerData['password'],
-									passwordretry) == false
-									|| validateEmail(customerData['email']) == false
-									|| validateTelephone(customerData['telephone']) == false
-									|| validateFax(customerData['fax']) == false) {
+									passwordretry) == false)
+									 {
 								return false;
 							} else {
 								// get all select fields
@@ -279,7 +277,7 @@ $(function() {
 	 * 
 	 */
 	function passwordsMatching(password_one, password_two) {
-		if (password != passwordagain) {
+		if (password_one != password_two) {
 
 			$.ajax({
 				type : "POST",
