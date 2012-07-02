@@ -91,6 +91,7 @@ $(function() {
 				data: { action: "save_customizing_entry", key: key, value: value, language: language }
 			}).done(function( msg ) {
 				//$('.content').html( msg );
+				$('a[id=edit_customizing]').show();
 			});
 			
 		});

@@ -64,7 +64,7 @@ switch($action) {
 		echo '<div id="invalid_email_message">'. WARNING_INVALID_EMAIL .'</div>';
 		break;
 		
-	case 'check_email':
+	/* case 'check_email':
 		$email = $_POST['email'];
 		
 		// check validation of email
@@ -73,6 +73,7 @@ switch($action) {
 		}
 		
 		break;
+		*/
 		
 // 	case 'check_phone_no':
 // 		$phone_no = $_POST['phone_no'];
@@ -93,7 +94,7 @@ switch($action) {
  Returns true if the email address has the email
  address format and the domain exists.
  */
-function validEmail($email)
+/* function validEmail($email)
 {
 	$isValid = true;
 	$atIndex = strrpos($email, "@");
@@ -158,5 +159,6 @@ function validEmail($email)
 		}
 			return $isValid;
 }
+*/
 
 ?>

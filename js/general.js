@@ -68,7 +68,7 @@ $(function() {
 			});
 	
 	// check valid e-mail address
-	$("body").on("change", "form[id=registrationform] input[id=email]",
+	/* $("body").on("change", "form[id=registrationform] input[id=email]",
 			function() {
 				var email = $(this).val();
 
@@ -83,6 +83,7 @@ $(function() {
 					$('#messagearea').html(msg);
 				});
 			});
+	*/
 	
 	// check valid phone no.
 	$("body").on("change", "form[id=registrationform] input[id=telephone]",
