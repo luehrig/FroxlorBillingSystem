@@ -352,7 +352,8 @@ $(function() {
 	 */
 	function validateTelephone(input) {
 		$('div[id=invalid_telephone]').remove();
-		if (isInteger(input)) {
+		var reg_exp = /^(((\+|00)\d{2})|0)\d+\s?(\/|-)?\s?\d+/;
+		if (!input.match(reg_exp)) {
 			$.ajax({
 				type : "POST",
 				url : "logic/process_inputcheck.php",
