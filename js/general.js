@@ -176,7 +176,7 @@ $(function() {
 									'input[type=password][id=passwordagain]')
 									.val();
 
-							// check if passwords matching
+							// check if any input is invalid 
 							if (passwordsMatching(customerData['password'],
 									passwordretry) == false)
 									 {
@@ -328,7 +328,7 @@ $(function() {
 	 */
 	function validateFax(input) {
 		$('div[id=invalid_fax]').remove();
-		if (isInteger(input)) {
+		if (!isPhoneOrFaxNo(input)) {
 			$.ajax({
 				type : "POST",
 				url : "logic/process_inputcheck.php",
@@ -350,7 +350,7 @@ $(function() {
 	 */
 	function validateTelephone(input) {
 		$('div[id=invalid_telephone]').remove();
-		if (isInteger(input)) {
+		if (!isPhoneOrFaxNo(input)) {
 			$.ajax({
 				type : "POST",
 				url : "logic/process_inputcheck.php",
@@ -368,16 +368,19 @@ $(function() {
 
 	/*
 	 * 
-	 * check if only integers were entered
+	 * check if input matches the regular phone/fax numbers
 	 * 
 	 */
-	function isInteger(input) {
-		if (!input.match(/^[0-9 ]*$/) && !input == "") {
-			return true;
-		} else {
+	function isPhoneOrFaxNo(input){
+		var reg_exp = /^(((\+|00)\d{2})|0)\d+\s?(\/|-)?\s?\d+/;
+		if(input.match(reg_exp)){
+			return true;	
+		}
+		else{
 			return false;
 		}
 	}
+	
 
 	// ask customer if reset should be done now
 	$("body").on("click", "form[id=registrationform] input[id=clear]",
