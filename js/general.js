@@ -66,6 +66,42 @@ $(function() {
 					$('#messagearea').append(msg);
 				});
 			});
+	
+	// check valid e-mail address
+	/* $("body").on("change", "form[id=registrationform] input[id=email]",
+			function() {
+				var email = $(this).val();
+
+				$.ajax({
+					type : "POST",
+					url : "logic/process_inputcheck.php",
+					data : {
+						action : "check_email",
+						email : email
+					}
+				}).done(function(msg) {
+					$('#messagearea').html(msg);
+				});
+			});
+	*/
+	
+	// check valid phone no.
+	$("body").on("change", "form[id=registrationform] input[id=telephone]",
+			function() {
+				var phone_no = $(this).val();
+
+				$.ajax({
+					type : "POST",
+					url : "logic/process_inputcheck.php",
+					data : {
+						action : "check_phone_no",
+						phone_no : phone_no
+					}
+				}).done(function(msg) {
+					$('#messagearea').html(msg);
+				});
+			});
+	
 
 	/*
 	 * 
@@ -140,7 +176,7 @@ $(function() {
 									'input[type=password][id=passwordagain]')
 									.val();
 
-							// check if passwords matching
+							// check if any input is invalid 
 							if (passwordsMatching(customerData['password'],
 									passwordretry) == false
 									|| validateEmail(customerData['email']) == false
@@ -294,7 +330,7 @@ $(function() {
 	 */
 	function validateFax(input) {
 		$('div[id=invalid_fax]').remove();
-		if (isInteger(input)) {
+		if (!isPhoneOrFaxNo(input)) {
 			$.ajax({
 				type : "POST",
 				url : "logic/process_inputcheck.php",
@@ -316,7 +352,7 @@ $(function() {
 	 */
 	function validateTelephone(input) {
 		$('div[id=invalid_telephone]').remove();
-		if (isInteger(input)) {
+		if (!isPhoneOrFaxNo(input)) {
 			$.ajax({
 				type : "POST",
 				url : "logic/process_inputcheck.php",
@@ -334,16 +370,19 @@ $(function() {
 
 	/*
 	 * 
-	 * check if only integers were entered
+	 * check if input matches the regular phone/fax numbers
 	 * 
 	 */
-	function isInteger(input) {
-		if (!input.match(/^[0-9 ]*$/) && !input == "") {
-			return true;
-		} else {
+	function isPhoneOrFaxNo(input){
+		var reg_exp = /^(((\+|00)\d{2})|0)\d+\s?(\/|-)?\s?\d+/;
+		if(input.match(reg_exp)){
+			return true;	
+		}
+		else{
 			return false;
 		}
 	}
+	
 
 	// ask customer if reset should be done now
 	$("body").on("click", "form[id=registrationform] input[id=clear]",
