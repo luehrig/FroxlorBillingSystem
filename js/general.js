@@ -17,17 +17,16 @@ $(function() {
 
 	// Bind a callback that executes when document.location.hash changes.
 	$(window).bind("hashchange", function(e) {
-		// var url = $.bbq.getState("!page");
+		//var url = $.bbq.getState("");
 		var lang = $.bbq.getState("lang");
-
 		var fragment = $.param.fragment();
-
 		var newurl = fragment.substr(0, fragment.indexOf('.'));
 
+		// if no fragment was found redirect to home page
 		if (newurl == '') {
 			newurl = 'home';
 		}
-
+		
 		// dynamic content loading
 		loadContent(newurl, lang);
 

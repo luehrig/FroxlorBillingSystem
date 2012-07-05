@@ -195,7 +195,7 @@ class customer {
 		<p><label for="shippingcity">'. LABEL_CITY .'</label>
 		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'"></p>
 		<p><label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
-		'<div class="country">'. $country->printSelectBox("shippingcountry_code","shippingcountry_code", $shipping_address_data['country_code']).
+		'<div class="country">'. $country->printSelectBox("shippingcountry_code","shippingcountry_code", $shipping_address_data['country_code'], 'rel="mandatory"').
 		'<input type="hidden" id="address_id_shipping" name="address_id_shipping" value="'. $shipping_address_data['customer_address_id'] .'">
 		</div></p>
 		</fieldset>';
@@ -215,7 +215,7 @@ class customer {
 		<p><label for="billingcity">'. LABEL_CITY .'</label>
 		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'"></p>
 		<p><label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
-		$country->printSelectBox("billingcountry_code","billingcountry_code",$billing_address_data['country_code']) .'</p>
+		$country->printSelectBox("billingcountry_code","billingcountry_code",$billing_address_data['country_code'], 'rel="mandatory"') .'</p>
 		<input type="hidden" id="address_id_billing" name="address_id_billing" value="'. $billing_address_data['customer_address_id'] .'">
 		</div>
 		</fieldset>

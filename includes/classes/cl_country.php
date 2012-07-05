@@ -12,8 +12,8 @@ class country {
 	}
 	
 	// print html select box
-	public function printSelectBox($selectbox_id, $name = 'country', $default_value = NULL) {
-		$result = '<select name="'. $selectbox_id .'" id="'. $selectbox_id .'" size="1" rel="mandatory">';
+	public function printSelectBox($selectbox_id, $name = 'country', $default_value = NULL, $additional_information = NULL) {
+		$result = '<select name="'. $selectbox_id .'" id="'. $selectbox_id .'" size="1" ' .$additional_information. '>';
 
 		if($default_value == NULL) {
 			$result = $result . '<option value="" style="display:none;"></option>';

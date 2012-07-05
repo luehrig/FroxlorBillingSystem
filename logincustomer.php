@@ -71,7 +71,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	
 
 	<div id="link_register">
-		<a href="registration.html&lang=" id="registration" rel="<?php echo $site_language; ?>"><span><?php echo LINK_REGISTRATION; ?></span></a>
+		<a href="#registration.html&lang=" id="registration" class="nav" rel="<?php echo $site_language; ?>"><span><?php echo LINK_REGISTRATION; ?></span></a>
 	</div>
 	
 </div>

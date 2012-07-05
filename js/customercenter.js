@@ -175,7 +175,6 @@ $(function() {
 						$('html, body').animate({
 							scrollTop : $('.messagearea').offset().top
 						}, 1000);
-
 					});
 				} else {
 					// get all input fields for customer data
