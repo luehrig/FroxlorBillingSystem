@@ -63,6 +63,7 @@ $(function() {
 
 					} else {
 						$('#messagearea').html(msg);
+						$.fn.colorbox.resize({});
 					}
 				});
 
