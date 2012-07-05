@@ -592,14 +592,16 @@ switch($action) {
 		echo '</div>';
 		break;
 
-	case 'open_customer_editor':
+	case 'show_customer_data':
 		echo'<h1>'.LABEL_MY_CUSTOMERS.'</h1>';
+		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$customer_id = $_POST['customer_id'];
 
 		$customer = new customer($customer_id);
-
+		
+		// get customer data
 		echo $customer->printForm();
 
 		echo '</fieldset>';
@@ -681,7 +683,7 @@ switch($action) {
 
 		$content = new content($content_id, $language_id);
 		$content->update($title, $text, $language_id);
-		
+		echo INFO_MESSAGE_CONTENT_UPDATED;
 		echo '</fieldset>';
 		echo '</div>';
 		break;
@@ -696,6 +698,8 @@ switch($action) {
 		$text = $_POST['text'];
 
 		content::create($title, $text, $language_id);
+		
+		echo INFO_MESSAGE_CONTENT_CREATED;
 
 		echo '</fieldset>';
 		echo '</div>';
@@ -751,6 +755,13 @@ switch($action) {
 		
 		echo '</fieldset>';
 		echo '</div>';
+		break;
+		
+	case 'msg_customizing_saved':
+		echo '<h1>'.LABEL_MY_SHOP.'</h1>';
+		echo '<div class="whitebox internal"><fieldset>';
+		echo INFO_MESSAGE_CUSTOMIZING_SAVED;
+		echo '</fieldset></div>';
 		break;
 
 }

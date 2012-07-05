@@ -88,10 +88,11 @@ body h1{
 	 font-size: 1.25em;
 	 letter-spacing: .2em;
 	 line-height: 1.1em;
-        margin: 20px 15px;
+        margin: 20px 15px 10px;
 	 text-align: left;
 	 text-transform: uppercase;
 	 color: #333;
+	 float: left;
 }
 
 h2
@@ -130,12 +131,43 @@ a:active {
 	color:black; text-decoration:underline; 
 }
 
+/* Button style for links */
 .button_style{
 	outline: thin outset;
     padding: 5px;
-    margin: 10px;
+    margin: 10px 0;
     font-weight: normal;
 }
+a.button_style:link{
+	font-weight: normal;
+}
+a.button_style:visited {
+	outline: thin outset;
+}
+a.button_style:focus {
+	outline: thick outset;
+}
+a.button_style:hover {
+	outline: thick outset;
+}
+a.button_style:active {
+	outline: thin outset;
+}
+
+
+/* Style for "back" link */
+.back{
+	float: right;
+	margin: 20px 0 0;
+}
+a.back{
+	color: #1874CD;
+	font-weight: bold;
+}
+a.back:hover{
+	text-decoration: underline;
+}
+
 
 
 

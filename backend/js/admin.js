@@ -94,6 +94,14 @@ $(function() {
 				$('a[id=edit_customizing]').show();
 			});
 			
+			$.ajax({
+				type: "POST",
+				url: "logic/process_action.php",
+				data: { action: "msg_customizing_saved"}
+			}).done(function( msg ) {
+				$('.content').html( msg );
+			});
+			
 		});
 		
 		// hide link
@@ -688,7 +696,22 @@ $(function() {
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "open_customer_editor", customer_id: customer_id }
+			data: { action: "show_customer_data", customer_id: customer_id }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+		
+	});	
+	
+	// get back from customer-data-view to customer-overview
+	$('body').on("click","a[id=back_to_mycontent]", function() {
+				
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_customers_overview" }
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});

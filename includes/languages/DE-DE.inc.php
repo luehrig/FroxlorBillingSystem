@@ -16,6 +16,7 @@ define('PAGE_TITLE_SHOPMAINTENANCE_BACKEND','Shopeinstellungen');
 
 /* general texts */
 define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
+define('LINK_BACK', '<< zurück');
 
 
 /* registration process */
@@ -286,16 +287,21 @@ define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des
 
 define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
 define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
-define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
+define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Produkt existiert bereits!');
 
-define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt');
+define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt.');
 
 
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server mit dieser IP-Adresse!');
 define('ERROR_INVOICE_NOT_PAYED','Die Rechnung %d ist noch nicht bezahlt!');
 
 
-define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Status von dem Produkt wurde erfolgreich geändert.');
-define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht');
+define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Produktstatus wurde erfolgreich geändert.');
+define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht.');
+
+define('INFO_MESSAGE_CUSTOMIZING_SAVED', 'Die Customizingänderungen wurden erfolgreich gespeichert.');
+
+define('INFO_MESSAGE_CONTENT_UPDATED', 'Der Inhalt wurde erfolgreich geändert.');
+define('INFO_MESSAGE_CONTENT_CREATED', 'Der Inhalt mit dem Titel wurde erfolgreich angelegt.');
 
 ?>
