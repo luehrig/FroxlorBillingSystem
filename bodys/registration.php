@@ -47,7 +47,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	<h1>
 		<?php echo PAGE_TITLE_REGISTRATION; ?>
 	</h1>
-	<div id="messagearea"></div>
+	<div class="messagearea"></div>
 	<form method="post" action="#" id="registrationform" class="registrationform"
 		accept-charset=utf-8>
 		<div class="registrationform">

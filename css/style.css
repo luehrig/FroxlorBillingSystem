@@ -547,6 +547,11 @@ legend
 .registrationform fieldset{
 	margin-top: 1em;
 }
+.registrationform input[type="reset"]{
+	margin-left: 80px;
+	margin-top: 10px;
+}
+
 /* --------------- Customer Center -------------------------------------- */
 
 .customer_content_container {

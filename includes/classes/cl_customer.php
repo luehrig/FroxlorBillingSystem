@@ -143,10 +143,10 @@ class customer {
 		$return_string = $return_string .'<fieldset>'.
 				//Login Data
 		'<legend>'. LABEL_LOGIN_DATA .'</legend>
-		<p><label for="generalemail">'. LABEL_EMAIL .'</label>
-		<input type="email" id="generalemail" name="generalemail" rel="mandatory" value="'. $this->email .'"></p>
-		<a href="#" id="change_pw"><'. BUTTON_CHANGE_PW. '></a>
-		</fieldset>'.
+		<label for="generalemail">'. LABEL_EMAIL .'</label>
+		<input type="email" id="generalemail" name="generalemail" rel="mandatory" value="'. $this->email .'">'.
+// 		<a href="#" id="change_pw"><'. BUTTON_CHANGE_PW. '></a>
+		'</fieldset>'.
 			
 		// General Inforamtion
 		'<fieldset><legend>'. FIELDSET_GENERAL_INFORMATION .'</legend>

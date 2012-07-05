@@ -63,7 +63,7 @@ $(function() {
 					}
 				}).done(function(msg) {
 					$('div[id=mandatory_fields]').remove();
-					$('#messagearea').append(msg);
+					$('.messagearea').append(msg);
 				});
 			});
 	
@@ -98,7 +98,7 @@ $(function() {
 						phone_no : phone_no
 					}
 				}).done(function(msg) {
-					$('#messagearea').html(msg);
+					$('.messagearea').html(msg);
 				});
 			});
 	
@@ -261,7 +261,7 @@ $(function() {
 					action : "get_message_mandatory_not_filled"
 				}
 			}).done(function(msg) {
-				$('#messagearea').append(msg);
+				$('.messagearea').append(msg);
 				return false;
 			});
 
@@ -286,7 +286,7 @@ $(function() {
 					action : "get_message_passwords_not_matching"
 				}
 			}).done(function(msg) {
-				$('#messagearea').html(msg);
+				$('.messagearea').html(msg);
 				return false;
 			});
 		} else {
@@ -312,7 +312,7 @@ $(function() {
 					action : "get_message_invalid_email"
 				}
 			}).done(function(msg) {
-				$('#messagearea').append(msg);
+				$('.messagearea').append(msg);
 			});
 
 			return true;
@@ -336,7 +336,7 @@ $(function() {
 					action : "get_message_invalid_fax"
 				}
 			}).done(function(msg) {
-				$('#messagearea').append(msg);
+				$('.messagearea').append(msg);
 				return false;
 			});
 		} else {
@@ -358,7 +358,7 @@ $(function() {
 					action : "get_message_invalid_telephone"
 				}
 			}).done(function(msg) {
-				$('#messagearea').append(msg);
+				$('.messagearea').append(msg);
 				return false;
 			});
 		} else {
@@ -436,7 +436,7 @@ $(function() {
 										})
 								.done(
 										function(msg) {
-											$('#messagearea').html(msg);
+											$('.messagearea').html(msg);
 											window.location.href = "../customercenter/index.php?content=customercenter";
 										});
 
