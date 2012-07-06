@@ -69,7 +69,6 @@ define('HEADING_PRODUCT','Produkt');
 define('HEADING_QUANTITY','Menge');
 define('HEADING_AMOUNT','Summe');
 
-define('BUTTON_MORE', 'Mehr');
 define('BUTTON_ADD_TO_CART', 'In den Einkaufswagen');
 define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
 define('BUTTON_LOGIN_CUSTOMER','Einloggen');
@@ -121,6 +120,16 @@ define('WARNING_INVALID_EMAIL_ADDRESS','Keine gültige E-Mail Adresse!');
 define('WARNING_INVALID_PHONE_NO','Keine gültige Telefonnummer!');
 
 define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
+
+/* product texts */
+define('PRODUCT_QUANTITY', 'Menge');
+define('PRODUCT_CONTRACT_PERIODE','Vertragslaufzeit');
+define('PRODUCT_PRICE','Preis');
+define('PRODUCT_DETAILS','Details');
+define('PRODUCT_DETAILS_MORE','Mehr');
+define('PRODUCT_DETAILS_LESS','Weniger');
+
+
 
 /* main menu texts */
 define('VIEW_MENU_HELP','Hilfe');

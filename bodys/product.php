@@ -51,15 +51,14 @@ foreach ($active_product_array as $product_id => $product_data){
 		$attribute_value_map[$existing_attributes[$attribute_id]] = $value;
 	}
 	
-	// @ Erol: Hier musst du dann die einzelnen divs für die einzelnen Produkte zusammenstellen
 	
-	
-	
+	// wrapper to hold the products in a line
 	if($index % 3 == 0){
 		echo'<div class="productwrapper"> ';
 	}
 	$return_string = '
 	
+
 	<div class="whitebox box_3inRow">
 		<img ID="littlelogo" src="images/logos/logo.png">
 		<fieldset>
@@ -68,6 +67,9 @@ foreach ($active_product_array as $product_id => $product_data){
 			</legend>
 			<p>'.$product_data['description'].'</p>
 		</fieldset>
+			<li>'.PRODUCT_CONTRACT_PERIODE.' '.$product_data['contract_periode'].'</li>
+			<li>'.PRODUCT_QUANTITY.' '.$product_data['quantity'].'</li>
+			<li>'.PRODUCT_PRICE.' '.$product_data['price'].'</li>
 		<button class="buttonlayout_buy" rel="'.$product_id.'">'.BUTTON_ADD_TO_CART.'</button>
 		<div id="book'.$product_id.'" class="slidebox">
 			<fieldset>
@@ -75,10 +77,7 @@ foreach ($active_product_array as $product_id => $product_data){
 					Details
 				</legend>
 	
-				<ul>
-					<li>Vertragslaufzeit'.$product_data['contract_periode'].'</li>
-					<li>Space '.$product_data['quantity'].'</li>
-					<li>Preis '.$product_data['price'].'</li>';
+				<ul>';
 	
 	foreach($attribute_value_map as $attr_name => $value){
 		$return_string = $return_string. '<li>'. $attr_name .' '. $value .'</li>';
@@ -89,7 +88,7 @@ foreach ($active_product_array as $product_id => $product_data){
 			</fieldset>
 		</div>
 	<!-- TODO: rel tag has to content the product id! -->
-	<button class="buttonlayout_more" rel="'.$product_id.'">'.BUTTON_MORE.'</button>
+	<button class="buttonlayout_more" rel="'.$product_id.'">'.PRODUCT_DETAILS_MORE.'</button>
 	</div>
 	
 	';

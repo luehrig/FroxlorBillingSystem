@@ -1,12 +1,6 @@
-
 /* --------------- General ------------------------------ */
-/*sets body 100% in firefox*/
-html, body {
-	min-height: 100%;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#F0F0F0'); /* for IE */
-}
 
-
+/*style of bodybackground*/
 body 
 {
 	color: #131313;
@@ -22,6 +16,7 @@ body
 
 }
 
+/*style of header*/
 .header {
 	background-color: #F0F0F0;
 	width: 900px;
@@ -31,6 +26,7 @@ body
 	box-shadow: inset 0 0 10px 0 #000;
 }
 
+/*for status messages and shoppingcart*/
 .header_right {
 	float: right;
 	width: 450px;
@@ -41,7 +37,7 @@ body
 	margin-bottom: 10px;
 }
 
-
+/*sytle of content background*/
 .content_container {
 	background-color: #F0F0F0;
 	width: 900px;
@@ -58,6 +54,7 @@ body
 	box-shadow: inset 0 0 10px 0 #000;
 }
 
+/*style of footer*/
 .footer
 {
 	width: 820px;
@@ -109,12 +106,14 @@ h3
 
 hr
 {
- border: 0px; /* Für Firefox und Opera */
+ border: 0px; /* for Firefox und Opera */
  border-top: solid 1px #FF0000;
- border-bottom: solid 1px #FFFFFF; /* Für I.Explorer (Seiten-Hintergrundfarbe!) */
+ border-bottom: solid 1px #FFFFFF; /* for I.Explorer () */
 }
 
-/* Hyperlinks */
+/*------------------------Hyperlinks-------------------------------------*/
+
+/**general Links*/
 a:link {
 	 color:black; text-decoration:none;
 }
@@ -242,6 +241,8 @@ th
 	border-bottom: 5px solid grey;
 	color: #1874CD;
 }
+
+
 .shoppingcart a:link[id="start_checkout"]{
 	text-align: right;
 	text-decoration: underline;
@@ -271,30 +272,35 @@ th
 
 
 /* --------------- wrapper ------------------------ */
+/*content boxes centered*/
 .boxwrapper 
 {
 	margin: 40px auto;
 	width: 780px;
 }
 
+/*style of lightbox*/
 .colorboxwrapper
 {
 	margin: 40px auto;
 	width: 450px;
 }
 
+/*style of small lightbox*/
 .colorboxwrapper_small
 {
 	margin: 10px auto;
 	width: 450px;
 }
 
+/*content boxes centered in customer and backend*/
 .internalwrapper
 {
 	margin-left: 200px;
 	margin-right: 40px;
 }
 
+/*sets product in a line*/
 .productwrapper
 {
 	width: 780px;
@@ -304,7 +310,7 @@ th
 
 /* --------------- Box Layouts ------------------------ */
 
-
+/*box background*/
 .whitebox 
 {
 	float: left;
@@ -338,12 +344,14 @@ th
 	height: auto;	
 }
 
+/*internal boxes*/
 .internal
 {
 	width: 660px;
 	height: auto;
 }
 
+/*box for product details*/
 .slidebox
 {
 	height: auto;
@@ -361,6 +369,7 @@ fieldset
 	width: auto;
 }
 
+/*frame in whiteboxes*/
 legend
 {
 	font-weight:bold;
@@ -370,12 +379,14 @@ legend
 
 
 /* --------------- images ------------------------ */
+/*Logo at products*/
 #littlelogo
 {
 	width: 120px;
 	margin: 5px;
 }
 
+/*logo for whiteboxes*/
 #minilogo
 {
 	width:40px;
@@ -384,11 +395,13 @@ legend
 	margin-bottom:5px;
 }
 
+/*logo for header*/
 #logo {
 	width: 400px;
 	margin: 10px;
 }
 
+/*logo for footer*/
 #froxcloud_white
 {
 	height: 20px;
@@ -399,6 +412,7 @@ legend
 
 
 /* --------------- Button Layouts ------------------------ */
+
 
 .buttonlayout_more
 {

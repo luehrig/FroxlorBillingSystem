@@ -3,6 +3,7 @@
 require '../includes/classes/cl_customizing.php';
 require '../includes/classes/cl_language.php';
 
+
 session_start();
 
 include_once '../configuration.inc.php';
