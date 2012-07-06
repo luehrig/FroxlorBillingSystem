@@ -91,7 +91,7 @@ class productInfo{
 						$return_string = $return_string. '<option id="'. $attribute_id .'">'. $description .'</option>';
 					}
 				}
-				$return_string = $return_string . '</select>';
+				$return_string = $return_string . '</select><br>';
 				$return_string = $return_string .
 						'<label for="value">'. LABEL_VALUE .' </label>'.
 						'<input type="text" id="value" name="value" value=""><br>'.

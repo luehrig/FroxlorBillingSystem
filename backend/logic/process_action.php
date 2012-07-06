@@ -91,7 +91,7 @@ switch($action) {
 
 	case 'open_create_new_attribute_for_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
-		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
+// 		echo'<a href="#" id="back_to_editproduct" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -479,6 +479,7 @@ switch($action) {
 
 	case 'open_create_server_form':
 		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -490,6 +491,7 @@ switch($action) {
 
 	case 'create_new_server':
 		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -534,6 +536,7 @@ switch($action) {
 
 	case 'open_server_editor':
 		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -549,6 +552,7 @@ switch($action) {
 
 	case 'edit_server':
 		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -586,6 +590,7 @@ switch($action) {
 
 	case 'delete_server':
 		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
+		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -641,6 +646,7 @@ switch($action) {
 
 	case 'open_new_content_editor':
 		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -659,6 +665,7 @@ switch($action) {
 
 	case 'open_content_editor':
 		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$content_id = $_POST['content_id'];
@@ -671,7 +678,7 @@ switch($action) {
 				
 			$data = db_fetch_array($single_content_query);
 				
-			$echo_string = '<form><div id="edit_content_title"><input type="text" id="title" value="'. $data['title'] .'"/></div>';
+			$echo_string = '<form><div id="edit_content_title"><label for="titel">'. LABEL_TITLE .':</label><input type="text" id="title" value="'. $data['title'] .'"/></div>';
 			$echo_string = $echo_string .'<div id="edit_content_text"><textarea id="text" class="editor">'. $data['text'] .'</textarea></div>';
 				
 			$echo_string = $echo_string .'<div id="edit_content_buttons"><input type="submit" id="save_content" value="'. BUTTON_SAVE .'"></div></form>';
@@ -691,6 +698,7 @@ switch($action) {
 
 	case 'update_content':
 		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -708,6 +716,7 @@ switch($action) {
 
 	case 'create_content':
 		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -725,6 +734,7 @@ switch($action) {
 
 	case 'delete_content':
 		echo'<h1>'.LABEL_MY_CONTENT.'</h1>';
+		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -751,6 +761,7 @@ switch($action) {
 
 	case 'change_invoice_status':
 		echo'<h1>'.LABEL_MY_INVOICES.'</h1>';
+		echo'<a href="#" id="back_to_myinvoices" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -761,16 +772,9 @@ switch($action) {
 			$invoice = new invoice( (int) $invoice_id);
 			$invoice->setStatus($status_id);
 		}
-			
-		echo '</fieldset>';
-		echo '</div>';
-		break;
-
-	case 'get_statistic_overview':
-		echo'<h1>'.LABEL_MY_STATISTICS.'</h1>';
-		echo'<div class="whitebox internal">';
-		echo'<fieldset>';
 		
+		echo INFO_MESSAGE_INVOICE_STATUS_CHANGED;
+			
 		echo '</fieldset>';
 		echo '</div>';
 		break;

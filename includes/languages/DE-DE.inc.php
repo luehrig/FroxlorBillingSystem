@@ -94,6 +94,7 @@ define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
 define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
 define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
+define('BUTTON_SAVE_CHANGES', 'Änderungen speichern');
 define('IMG_REMOVE_PRODUCT', 'Produkt entfernen');
 
 
@@ -318,5 +319,7 @@ define('INFO_MESSAGE_CUSTOMIZING_SAVED', 'Die Customizingänderungen wurden erfo
 
 define('INFO_MESSAGE_CONTENT_UPDATED', 'Der Inhalt wurde erfolgreich geändert.');
 define('INFO_MESSAGE_CONTENT_CREATED', 'Der Inhalt mit dem Titel wurde erfolgreich angelegt.');
+
+define('INFO_MESSAGE_INVOICE_STATUS_CHANGED', 'Der Rechnungsstatus wurde erfolgreich geändert.');
 
 ?>
