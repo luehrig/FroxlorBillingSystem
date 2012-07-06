@@ -83,7 +83,7 @@ switch($action) {
 		$attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
 
 
-		echo $product->printFormEdit($attributes_for_lang, $product_info, language::printLanguages($language_ids_for_existing_products, $language_id), $language_id);
+		echo $product->printFormEdit($attributes_for_lang, $product_info, language::printLanguages('product_edit_language_selection', $language_ids_for_existing_products, $language_id), $language_id);
 		
 		echo '</fieldset>';
 		echo '</div>';
@@ -215,7 +215,7 @@ switch($action) {
 
 		$product = new product($product_id, $language_id);
 
-		echo $product->printFormTranslate(language::printLanguages());
+		echo $product->printFormTranslate(language::printLanguages('product_translate_language_selection'));
 
 		echo '</fieldset>';
 		echo '</div>';
@@ -270,7 +270,7 @@ switch($action) {
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
-		echo product::printCreateProductForm(language::printLanguages());
+		echo product::printCreateProductForm(language::printLanguages('product_create_language_selection'));
 
 		echo '</fieldset>';
 		echo '</div>';
@@ -380,7 +380,7 @@ switch($action) {
 		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
 		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
-		echo productAttribute::printCreateAttributeForm(language::printLanguages());
+		echo productAttribute::printCreateAttributeForm(language::printLanguages('attribute_create_language_selection'));
 		echo '</fieldset>';
 		echo '</div>';
 		break;
@@ -434,7 +434,7 @@ switch($action) {
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
 		$language_ids_for_existing_product_attributes = $product_attribute->getLanguagesForExistingProductAttr($product_attribute_id);
 
-		echo $product_attribute->printFormEdit(language::printLanguages($language_ids_for_existing_product_attributes, $language_id));
+		echo $product_attribute->printFormEdit(language::printLanguages('attribute_edit_language_selection', $language_ids_for_existing_product_attributes, $language_id));
 
 		echo '</fieldset>';
 		echo '</div>';
@@ -653,7 +653,7 @@ switch($action) {
 		$echo_string = '<form><div id="new_content_title"><input type="text" id="title" /></div>';
 		$echo_string = $echo_string .'<div id="new_content_text"><textarea id="text" class="editor"></textarea></div>';
 			
-		$echo_string = $echo_string . language::printLanguages();
+		$echo_string = $echo_string . language::printLanguages('content_language_selection');
 
 		$echo_string = $echo_string .'<div id="new_content_buttons"><input type="submit" id="create_content" value="'. BUTTON_SAVE .'"></div></form>';
 			
@@ -678,7 +678,7 @@ switch($action) {
 				
 			$data = db_fetch_array($single_content_query);
 				
-			$echo_string = '<form><div id="edit_content_title"><label for="titel">'. LABEL_TITLE .':</label><input type="text" id="title" value="'. $data['title'] .'"/></div>';
+			$echo_string = '<form><div id="edit_content_title"><input type="text" id="title" value="'. $data['title'] .'"/></div>';
 			$echo_string = $echo_string .'<div id="edit_content_text"><textarea id="text" class="editor">'. $data['text'] .'</textarea></div>';
 				
 			$echo_string = $echo_string .'<div id="edit_content_buttons"><input type="submit" id="save_content" value="'. BUTTON_SAVE .'"></div></form>';

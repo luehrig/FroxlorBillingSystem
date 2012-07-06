@@ -27,8 +27,7 @@ $(function() {
 					if (msg == 'true') {
 						$.colorbox.close();
 						$('a[id=customercenter]').addClass('nav');
-						
-						// if position parameter was given redirect specific page
+
 						if (position != '') {
 							$.ajax({
 								type : "POST",
@@ -40,7 +39,6 @@ $(function() {
 							}).done(function(msg) {
 								
 							});
-						// default redirect to customer center	
 						} else {
 							$.ajax({
 								type : "POST",
@@ -63,20 +61,8 @@ $(function() {
 							$('#customer_header_ajax').html(msg);
 						});
 
-						
-						$.ajax({
-							type : "POST",
-							url : "logic/get_texts.php",
-							data : {
-								action : "get_message_successfully_logged_in_customer",
-							}
-						}).done(function(msg) {
-							$('.messagearea').html(msg);
-						});
-						
 					} else {
 						$('#messagearea').html(msg);
-						$.fn.colorbox.resize({});
 					}
 				});
 
@@ -124,26 +110,14 @@ $(function() {
 			type : "POST",
 			url : "logic/process_customer_action.php",
 			data : {
-				action : "get_customer_data_headline",
-				customer_id : customer_id
-			}
-		}).done(function(msg) {
-			$('.headline_customercenter').html(msg);
-		});
-		
-		$.ajax({
-			type : "POST",
-			url : "logic/process_customer_action.php",
-			data : {
 				action : "get_customer_data",
 				customer_id : customer_id
 			}
 		}).done(function(msg) {
 			$('.customer_content_container').html(msg);
-			$('#error_msg_area').html('');
-			$('.messagearea').html('');
+			// $('a[id=save_customizing]').hide();
 		});
-		
+
 		return false;
 	});
 
@@ -200,6 +174,7 @@ $(function() {
 						$('html, body').animate({
 							scrollTop : $('.messagearea').offset().top
 						}, 1000);
+
 					});
 				} else {
 					// get all input fields for customer data
@@ -270,8 +245,6 @@ $(function() {
 						}
 					}).done(function(msg) {
 						$('.customer_content_container').html(msg);
-						// clear error message area
-						$('#error_msg_area').html('');
 					});
 
 					// get overview page with all customizing entries
@@ -351,19 +324,6 @@ $(function() {
 
 		var customer_id = $(this).attr('rel');
 
-		// get headline
-		$.ajax({
-			type : "POST",
-			url : "logic/process_customer_action.php",
-			data : {
-				action : "get_customer_invoices_headline",
-				customer_id : customer_id
-			}
-		}).done(function(msg) {
-			$('.headline_customercenter').html(msg);
-		});
-		
-		// get content
 		$.ajax({
 			type : "POST",
 			url : "logic/process_customer_action.php",
@@ -373,6 +333,7 @@ $(function() {
 			}
 		}).done(function(msg) {
 			$('.customer_content_container').html(msg);
+			// $('a[id=save_customizing]').hide();
 		});
 
 		return false;
@@ -382,18 +343,6 @@ $(function() {
 
 function getCustomerProducts() {
 
-	// get headline
-	$.ajax({
-		type : "POST",
-		url : "logic/process_customer_action.php",
-		data : {
-			action : "get_customer_products_headline"
-		}
-	}).done(function(msg) {
-		$('.headline_customercenter').html(msg);
-	});
-	
-	// get content
 	$.ajax({
 		type : "POST",
 		url : "logic/process_customer_action.php",
@@ -402,6 +351,7 @@ function getCustomerProducts() {
 		}
 	}).done(function(msg) {
 		$('.customer_content_container').html(msg);
+		// $('a[id=save_customizing]').hide();
 	});
 
 }

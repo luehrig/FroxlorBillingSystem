@@ -86,7 +86,6 @@ class contract {
 		<th>'. TABLE_HEADING_CONTRACT_START_DATE .'</th>
 		<th>'. TABLE_HEADING_CONTRACT_EXPIRATION_DATE .'</th>
 		<th>'. TABLE_HEADING_CONTRACT_CONTRACT_PERIODE .'</th>
-		<th></th>;
 		</tr>';
 
 		while($data = db_fetch_array($contract_query)) {
@@ -101,7 +100,7 @@ class contract {
 				$return_string = $return_string . sprintf(LABEL_CONTRACT_TERMINATION_EXECUTION_DATE, mysql_date2german( $data['expiration_date'] ) );
 			}
 			else {
-				$return_string = $return_string .'<a href="#!terminate_contract" id="terminate_contract" rel="'. $data['contract_id'] .'" ><img src="'. PATH_IMAGES_REL .'delete.png" title="'. LINK_CANCEL_PRODUCT . '"></a>';
+				$return_string = $return_string .'<a href="#!terminate_contract" id="terminate_contract" rel="'. $data['contract_id'] .'" >deleteicon</a>';
 			}	
 			$return_string = $return_string .'</td>
 			</tr>';

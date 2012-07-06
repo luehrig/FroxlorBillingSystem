@@ -17,16 +17,17 @@ $(function() {
 
 	// Bind a callback that executes when document.location.hash changes.
 	$(window).bind("hashchange", function(e) {
-		//var url = $.bbq.getState("");
+		// var url = $.bbq.getState("!page");
 		var lang = $.bbq.getState("lang");
+
 		var fragment = $.param.fragment();
+
 		var newurl = fragment.substr(0, fragment.indexOf('.'));
 
-		// if no fragment was found redirect to home page
 		if (newurl == '') {
 			newurl = 'home';
 		}
-		
+
 		// dynamic content loading
 		loadContent(newurl, lang);
 
@@ -62,7 +63,7 @@ $(function() {
 					}
 				}).done(function(msg) {
 					$('div[id=mandatory_fields]').remove();
-					$('.messagearea').append(msg);
+					$('#messagearea').append(msg);
 				});
 			});
 	
@@ -97,7 +98,7 @@ $(function() {
 						phone_no : phone_no
 					}
 				}).done(function(msg) {
-					$('.messagearea').html(msg);
+					$('#messagearea').html(msg);
 				});
 			});
 	
@@ -112,7 +113,7 @@ $(function() {
 				var password = $("input[id=password]").val();
 				var passwordagain = $(this).val();
 
-//				passwordsMatching(password, passwordagain);
+				passwordsMatching(password, passwordagain);
 
 			});
 
@@ -260,7 +261,7 @@ $(function() {
 					action : "get_message_mandatory_not_filled"
 				}
 			}).done(function(msg) {
-				$('.messagearea').append(msg);
+				$('#messagearea').append(msg);
 				return false;
 			});
 
@@ -285,7 +286,7 @@ $(function() {
 					action : "get_message_passwords_not_matching"
 				}
 			}).done(function(msg) {
-				$('.messagearea').html(msg);
+				$('#messagearea').html(msg);
 				return false;
 			});
 		} else {
@@ -311,7 +312,7 @@ $(function() {
 					action : "get_message_invalid_email"
 				}
 			}).done(function(msg) {
-				$('.messagearea').append(msg);
+				$('#messagearea').append(msg);
 			});
 
 			return true;
@@ -335,7 +336,7 @@ $(function() {
 					action : "get_message_invalid_fax"
 				}
 			}).done(function(msg) {
-				$('.messagearea').append(msg);
+				$('#messagearea').append(msg);
 				return false;
 			});
 		} else {
@@ -357,7 +358,7 @@ $(function() {
 					action : "get_message_invalid_telephone"
 				}
 			}).done(function(msg) {
-				$('.messagearea').append(msg);
+				$('#messagearea').append(msg);
 				return false;
 			});
 		} else {
@@ -435,7 +436,7 @@ $(function() {
 										})
 								.done(
 										function(msg) {
-											$('.messagearea').html(msg);
+											$('#messagearea').html(msg);
 											window.location.href = "../customercenter/index.php?content=customercenter";
 										});
 

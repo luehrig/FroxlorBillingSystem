@@ -748,6 +748,7 @@ legend
 
 .admin_logout{
 	float: right;
+	margin: 10px;
 	font-weight:bold;
 	font-size: 0.8em;
 	color:#A0A0A0;

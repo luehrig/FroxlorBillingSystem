@@ -781,13 +781,13 @@ INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) 
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_webpage', NULL, 'http://projektplatz.eu');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_country', NULL, 'Germany');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_billing_sender', NULL, 'billing@projektplatz.eu');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms', NULL, '4');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms', NULL, '1');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_tax', NULL, '2');
 INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_currency', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_home', NULL, '2');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_imprint', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_sitemap', NULL, '5');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_help', NULL, '6');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_home', NULL, '1');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_imprint', NULL, '2');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_sitemap', NULL, '4');
+INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_help', NULL, '3');
 
 COMMIT;
 
@@ -817,16 +817,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `froxlor_billing`;
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 1, 'Impressum', '<h1>Impressum</h1><p>Angaben gemäß § 5 TMG:<br/><br/></p>Max Mustermann<br />Froxcloud<br />Musterstraße 111<br />90210 Musterstadt<br /></p><h2>Kontakt:</h2><table><tr><td><p>Telefon:</p></td><td><p>+49 (0) 123 44 55 66</p></td></tr><tr><td><p>Telefax:</p></td><td><p>+49 (0) 123 44 55 99</p></td></tr><tr><td><p>E-Mail:</p></td><td><p>info@projektplatz.eu</p></td></tr></table><h2>Umsatzsteuer-ID:</h2><p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br />');
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 1, 'Impressum', 'Hier kommt ein Impressum hin!');
 INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 2, 'imprint', 'This will be the imprint');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 1, 'Startseite', '<p> Herzlich Willkommen auf Froxcloud!</p><p> Wir freuen Sie hier als Besucher begrüßen zu dürfen und hoffen, dass Sie bald auch Kunde von uns sind.</p><p> &nbsp;</p><p> Froxcloud ist eine Musterfirma, welche virtuelle Webserverkapazitäten auf Basis der Server Management Software Froxlor anbietet.</p><p> &nbsp;</p><p> Viel Spaß beim weiteren Durchstöbern der Seiten.</p><p> &nbsp;</p><p> Ihr Froxcloud Team!</p>');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 2, 'home', '<p> Welcome to Froxcloud!</p><p>Froxcloud is a demo enterprise that sell virtual webspace on a Froxlor based infrastructure.</p><p> &nbsp;</p><p>Best regards,</p><p> &nbsp;</p><p> The Froxcloud Team</p>');
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 1, 'Startseite', 'Eine ganz tolle Startseite');
+INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 2, 'home', 'This will be the landing page');
 INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (3, 1, 'Allgemeine Geschäftsbedingungen', '<div align=\"center\"><b>Allgemeine Geschäftsbedingungen (AGB)</b></div><br />');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (4, 1, 'Zahlbedingungen', 'Die Rechnung ist zahlbar innerhalb von 14 Tagen nach Erhalt der Rechnung.');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (4, 2, 'terms', 'Invoice payable within 14 days of receipt of the invoice.');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (5, 1, 'Sitemap', 'Eine tolle Sitemap!');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (5, 2, 'sitemap', 'Here will be the sitemap');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (6, 1, 'Hilfe', 'Grundsätzliche Hilfe zur Anwendung!');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (6, 2, 'help', 'This will be the help page!');
 
 COMMIT;

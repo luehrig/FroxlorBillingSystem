@@ -15,7 +15,7 @@ class language {
 	
 	/* public section */
 
-	public static function printLanguages($filter = NULL, $pre_selected = NULL, $div_containerid = 'languages') {
+	public static function printLanguages($selectbox_id, $filter = NULL, $pre_selected = NULL, $div_containerid = 'languages') {
 		
 		$sql_statement = 'SELECT l.language_id, l.language_name FROM '. TBL_LANGUAGE .' AS l';
 		$language_query = db_query($sql_statement);
@@ -24,7 +24,7 @@ class language {
 		
 			$return_string = '<div id="'. $div_containerid .'">';
 		
-			$return_string = $return_string .'<select id="language_selection" class="languageSelectBox" name="language_selection" size="1">';
+			$return_string = $return_string .'<select id="'. $selectbox_id .'" class="languageSelectBox" name="language_selection" size="1">';
 			if($filter != NULL){		
 				while($data = db_fetch_array($language_query)) {
 	
