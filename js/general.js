@@ -597,7 +597,7 @@ $(function() {
 			function() {
 				// disable link to prevent customer to click multiple times if
 				// save order is in ajax call
-				$(this).attr('href', '#');
+				$(this).hide();
 
 				// get address information
 				var shipping_address_id = $(
