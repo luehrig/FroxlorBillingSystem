@@ -16,6 +16,7 @@ define('PAGE_TITLE_SHOPMAINTENANCE_BACKEND','Shopeinstellungen');
 
 /* general texts */
 define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
+define('LINK_BACK', 'zurück');
 
 
 /* registration process */
@@ -94,6 +95,7 @@ define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
 define('BUTTON_SAVE_CHANGES', 'Änderungen speichern');
 define('IMG_REMOVE_PRODUCT', 'Produkt entfernen');
+define('BUTTON_CREATE_PRODUCT_ATTRIBUTE', 'Attribut anlegen');
 
 
 /* message texts */
@@ -184,7 +186,9 @@ define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
 define('LINK_DELETE', 'Löschen');
 define('LINK_DISPLAY', 'Anzeigen');
+define('LINK_SAVE_INVOICE_STATUS', 'Statusänderung übernehmen');
 define('BUTTON_CREATE_SERVER', 'Server anlegen');
+
 
 define('LABEL_MY_SHOP','Mein Shop');
 define('LABEL_MY_PRODUCTS','Meine Produkte');
@@ -296,7 +300,6 @@ define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server
 define('ERROR_INVOICE_NOT_PAYED','Die Rechnung %d ist noch nicht bezahlt!');
 
 
-<<<<<<< HEAD
 define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Produktstatus wurde erfolgreich geändert.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht.');
 
@@ -306,9 +309,6 @@ define('INFO_MESSAGE_CONTENT_UPDATED', 'Der Inhalt wurde erfolgreich geändert.'
 define('INFO_MESSAGE_CONTENT_CREATED', 'Der Inhalt mit dem Titel wurde erfolgreich angelegt.');
 
 define('INFO_MESSAGE_INVOICE_STATUS_CHANGED', 'Der Rechnungsstatus wurde erfolgreich geändert.');
-=======
-define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Status von dem Produkt wurde erfolgreich geändert.');
-define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht');
->>>>>>> c51f3c114cd666f6f48fe55fa5056539a57c017b
+
 
 ?>

@@ -781,7 +781,7 @@ $(function() {
 	});	
 	
 	// get back to customer overview
-	$('body').on("click","a[id=back_to_mycontent]", function() {
+	$('body').on("click","a[id=back_to_mycustomer]", function() {
 				
 		$.ajax({
 			type: "POST",

@@ -833,7 +833,7 @@ legend
     float: left;
     width: auto;
 }
-.content label[for="titel"]{
+.content label[for="title"]{
 	font-weight: bold;
 	width: 45px;
 }

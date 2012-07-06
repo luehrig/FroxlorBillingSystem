@@ -617,7 +617,7 @@ switch($action) {
 
 	case 'show_customer_data':
 		echo'<h1>'.LABEL_MY_CUSTOMERS.'</h1>';
-		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
+		echo'<a href="#" id="back_to_mycustomer" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$customer_id = $_POST['customer_id'];
@@ -650,7 +650,7 @@ switch($action) {
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
-		$echo_string = '<form><div id="new_content_title"><input type="text" id="title" /></div>';
+		$echo_string = '<form><label for="title">'. LABEL_TITLE .':</label><div id="new_content_title"><input type="text" id="title" /></div>';
 		$echo_string = $echo_string .'<div id="new_content_text"><textarea id="text" class="editor"></textarea></div>';
 			
 		$echo_string = $echo_string . language::printLanguages('content_language_selection');
@@ -678,7 +678,7 @@ switch($action) {
 				
 			$data = db_fetch_array($single_content_query);
 				
-			$echo_string = '<form><div id="edit_content_title"><input type="text" id="title" value="'. $data['title'] .'"/></div>';
+			$echo_string = '<form><label for="title">'. LABEL_TITLE .':</label><div id="edit_content_title"><input type="text" id="title" value="'. $data['title'] .'"/></div>';
 			$echo_string = $echo_string .'<div id="edit_content_text"><textarea id="text" class="editor">'. $data['text'] .'</textarea></div>';
 				
 			$echo_string = $echo_string .'<div id="edit_content_buttons"><input type="submit" id="save_content" value="'. BUTTON_SAVE .'"></div></form>';
