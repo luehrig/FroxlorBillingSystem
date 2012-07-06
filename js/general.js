@@ -66,25 +66,17 @@ $(function() {
 					$('#messagearea').append(msg);
 				});
 			});
-	
-	// check valid e-mail address
-	/* $("body").on("change", "form[id=registrationform] input[id=email]",
-			function() {
-				var email = $(this).val();
 
-				$.ajax({
-					type : "POST",
-					url : "logic/process_inputcheck.php",
-					data : {
-						action : "check_email",
-						email : email
-					}
-				}).done(function(msg) {
-					$('#messagearea').html(msg);
-				});
-			});
-	*/
-	
+	// check valid e-mail address
+	/*
+	 * $("body").on("change", "form[id=registrationform] input[id=email]",
+	 * function() { var email = $(this).val();
+	 * 
+	 * $.ajax({ type : "POST", url : "logic/process_inputcheck.php", data : {
+	 * action : "check_email", email : email } }).done(function(msg) {
+	 * $('#messagearea').html(msg); }); });
+	 */
+
 	// check valid phone no.
 	$("body").on("change", "form[id=registrationform] input[id=telephone]",
 			function() {
@@ -101,7 +93,6 @@ $(function() {
 					$('#messagearea').html(msg);
 				});
 			});
-	
 
 	/*
 	 * 
@@ -176,10 +167,9 @@ $(function() {
 									'input[type=password][id=passwordagain]')
 									.val();
 
-							// check if any input is invalid 
+							// check if any input is invalid
 							if (passwordsMatching(customerData['password'],
-									passwordretry) == false)
-									 {
+									passwordretry) == false) {
 								return false;
 							} else {
 								// get all select fields
@@ -371,16 +361,14 @@ $(function() {
 	 * check if input matches the regular phone/fax numbers
 	 * 
 	 */
-	function isPhoneOrFaxNo(input){
+	function isPhoneOrFaxNo(input) {
 		var reg_exp = /^(((\+|00)\d{2})|0)\d+\s?(\/|-)?\s?\d+/;
-		if(input.match(reg_exp)){
-			return true;	
-		}
-		else{
+		if (input.match(reg_exp)) {
+			return true;
+		} else {
 			return false;
 		}
 	}
-	
 
 	// ask customer if reset should be done now
 	$("body").on("click", "form[id=registrationform] input[id=clear]",
@@ -607,6 +595,9 @@ $(function() {
 			"click",
 			"a[id=save_order][class=nonav]",
 			function() {
+				// disable link to prevent customer to click multiple times if
+				// save order is in ajax call
+				$(this).attr('href', '#');
 
 				// get address information
 				var shipping_address_id = $(
@@ -625,6 +616,8 @@ $(function() {
 					}
 				}).done(function(msg) {
 					$('.content_container').html(msg);
+
+					showMessagePopup('success', msg, null, null);
 
 					// clear quantity counter in header for cart
 					setProductCountInCart();
@@ -809,4 +802,75 @@ function loadContent(areacode, language_id) {
 	}).done(function(msg) {
 		$('.content_container').html(msg);
 	});
+}
+
+/*
+ * 
+ * display message in colorbox popup
+ * 
+ * possible msgtypes are: success, info, error, warning
+ * 
+ */
+function showMessagePopup(msgtype, msg, msg_code, language_id) {
+
+	var msgtext;
+	var msgoutput = '';
+
+	// check if icon has to be displayed
+	switch (msgtype) {
+
+	case 'success':
+
+		msgoutput = '<img src="images/success.png">';
+
+		break;
+
+	case 'info':
+
+		msgoutput = '<img src="images/info.png">';
+
+		break;
+
+	case 'error':
+
+		msgoutput = '<img src="images/error.png">';
+
+		break;
+	case 'warning':
+
+		msgoutput = '<img src="images/warning.png">';
+
+		break;
+
+	}
+
+	// get message text
+	if (msg_code != null) {
+		$.ajax({
+			type : "POST",
+			url : "logic/get_texts.php",
+			data : {
+				action : "get_message_" + msg_code,
+				language_id : language_id
+			}
+		}).done(function(msg) {
+			// write received message text to local variable
+			msgtext = msg;
+
+			msgoutput = msgoutput + ' ' + msgtext;
+
+			$.colorbox({
+				html : msgoutput
+			});
+
+		});
+
+	} else {
+		msgoutput = msgoutput + ' ' + msg;
+
+		$.colorbox({
+			html : msgoutput
+		});
+	}
+
 }
