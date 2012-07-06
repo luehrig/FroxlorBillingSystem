@@ -61,8 +61,9 @@ $(function() {
 		return false;
 	});	
 	
-	// get back from edit-customizing-view to customizing overview
+	// get back to customizing overview
 	$("body").on("click", "a[id=back_to_myshop]", function() {
+
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
@@ -88,10 +89,11 @@ $(function() {
 		$(this).hide();
 		// show save link
 		$('a[id=save_customizing]').show();
+
 		$('a[id=back_to_myshop]').show();
 	});	
 	
-	// save customizing changes
+	// set customizing fields editable
 	$('body').on("click","a[id=save_customizing]", function() {
 		// set all input fields as editable
 		$('input[type=text]').each(function() {
@@ -124,6 +126,7 @@ $(function() {
 		$(this).hide();
 		// show save link
 		$('a[id=modify_customizing]').show();
+	
 	});	
 	
 	// get overview page with all products
@@ -140,7 +143,7 @@ $(function() {
 		return false;
 	});	
 	
-	// get back to product overview
+	// get back to products overview
 	$("body").on("click", "a[id=back_to_myproducts]", function() {
 
 		$.ajax({
@@ -153,7 +156,6 @@ $(function() {
 		
 		return false;
 	});	
-	
 	
 	// set customizing fields editable for products
 	$('body').on("click","a[id=edit_product]", function() {
@@ -474,7 +476,7 @@ $(function() {
 		return false;
 	});	
 	
-	// get back to my product attributes overview
+	// get back to product attribute overview
 	$("body").on("click", "a[id=back_to_myproductattribute]", function() {
 
 		$.ajax({
@@ -764,7 +766,21 @@ $(function() {
 		return false;
 	});	
 	
-	// set customizing fields editable for customer
+	// get back to customer overview
+	$("body").on("click", "a[id=back_to_mycustomer]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_customers_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// show customer data in detail
 	$('body').on("click","a[id=edit_customer]", function() {
 		var customer_id = $(this).attr('rel');
 		
@@ -772,21 +788,6 @@ $(function() {
 			type: "POST",
 			url: "logic/process_action.php",
 			data: { action: "show_customer_data", customer_id: customer_id }
-		}).done(function( msg ) {
-			$('.content').html( msg );
-		});
-		
-		return false;
-		
-	});	
-	
-	// get back to customer overview
-	$('body').on("click","a[id=back_to_mycustomer]", function() {
-				
-		$.ajax({
-			type: "POST",
-			url: "logic/process_action.php",
-			data: { action: "get_customers_overview" }
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -809,7 +810,7 @@ $(function() {
 		return false;
 	});	
 	
-	// get back to content overview
+	// get overview page with all contents
 	$("body").on("click", "a[id=back_to_mycontent]", function() {
 		
 		$.ajax({
@@ -980,7 +981,6 @@ $(function() {
 		return false;
 	});	
 	
-	
 	// logout customer and redirect to main page
 	$("body").on("click", "a[id=logout]", function() {
 		
@@ -998,8 +998,8 @@ $(function() {
 	
 	// sets current custermenu active 
 	$("body").on("click", "a[class=cm]", function(){
-		$("a").removeClass("cm_active");
-		$(this).addClass("cm_active");
+		$("a").removeClass("active");
+		$(this).addClass("active");
 	});
 	
 	// alert message with

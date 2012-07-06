@@ -238,10 +238,10 @@ class product {
 			$active = $data['active'];
 			$change_state;
 			if($active==1){
-				$change_state = '<img src="'. PATH_IMAGES_REL .'activate.png" title="'. LINK_ACTIVATE_PRODUCT .'">';
+				$change_state = '<img src="'. PATH_IMAGES_REL .'deactivate.png" title="'. LINK_DEACTIVATE_PRODUCT .'">';
 			}
 			elseif($active==0){
-				$change_state = '<img src="'. PATH_IMAGES_REL .'deactivate.png" title="'. LINK_DEACTIVATE_PRODUCT .'">';
+				$change_state = '<img src="'. PATH_IMAGES_REL .'activate.png" title="'. LINK_ACTIVATE_PRODUCT .'">';
 			}
 			$table_content = $table_content .'<tr>
 			<td>'. $id_language_map[$data['language_id']] .'</td>
@@ -470,7 +470,7 @@ class product {
 					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
 					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
 					'<input type="text" id="'.$att_id.'" name="'.$att_id.'" value="'. $att_val .'">'.
-					'<a href="#" id="delete_product_info" rel="'. $att_id .'">'. LINK_DELETE . '</a><br>';
+					'<a href="#" id="delete_product_info" rel="'. $att_id .'"><img id="img_delete" src="'. PATH_IMAGES_REL .'delete_small.png" title="'. LINK_DELETE . '"></a><br>';
 		}
 		$trimmed_attr_ids = trim($attr_ids, ",");
 		$return_string = $return_string. '<input type="hidden" id = "attr_array" name = "attr_array" value = '.$trimmed_attr_ids.'>';
