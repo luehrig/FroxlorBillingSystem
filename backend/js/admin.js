@@ -187,11 +187,12 @@ $(function() {
 		var description = $('textarea[id=description]').val();
 		var quantity = $('input[type=text][id=quantity]').val();
 		var price = $('input[type=text][id=price]').val();
+		var active = $('input[type=hidden][id=active]').val();
 		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "edit_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price }
+			data: { action: "edit_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price, active: active}
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
