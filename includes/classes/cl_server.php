@@ -164,7 +164,6 @@ class server {
 		<th>'. TABLE_HEADING_SERVER_NAME .'</th>
 		<th>'. TABLE_HEADING_SERVER_DISK_SPACE .'</th>
 		<th>'. TABLE_HEADING_SERVER_STATUS.'</th>
-		<th></th><th></th>
 		</tr>';
 
 		$table_content = '';
@@ -198,29 +197,29 @@ class server {
 		<form method="post">'.'<fieldset>'.
 		'<legend>'. FIELDSET_SERVER_SERVER_DATA .'</legend>'.
 		'<label for="name">'. LABEL_SERVER_NAME .'</label>'.
-		'<input type="text" id="name" name="name">'.
+		'<input type="text" id="name" name="name"><br>'.
 		'<label for="mngmnt_ui">'. LABEL_SERVER_MNGMNT_UI .'</label>'.
-		'<input type="text" id="mngmnt_ui" name="mngmnt_ui">'.
+		'<input type="text" id="mngmnt_ui" name="mngmnt_ui"><br>'.
 		'<label for="ipv4">'. LABEL_SERVER_IPV4 .'</label>'.
-		'<input type="text" id="ipv4" name="ipv4" >'.
+		'<input type="text" id="ipv4" name="ipv4" ><br>'.
 		'<label for="ipv6">'. LABEL_SERVER_IPV6 .'</label>'.
-		'<input type="text" id="ipv6" name="ipv6">'.
+		'<input type="text" id="ipv6" name="ipv6"><br>'.
 		'<label for="total_space">'. LABEL_SERVER_TOTAL_SPACE .'</label>'.
-		'<input type="text" id="total_space" name="total_space">'.
+		'<input type="text" id="total_space" name="total_space"><br>'.
 		'<label for="free_space">'. LABEL_SERVER_FREE_SPACE .'</label>'.
-		'<input type="text" id="free_space" name="free_space">'.
+		'<input type="text" id="free_space" name="free_space"><br>'.
 		'<label for="active">'. LABEL_SERVER_AVAILABLE .'</label>'.
 		'<input type="checkbox" id="active" name="active" value="1">'.
 		'</fieldset>'.
 		'<fieldset>'.'<legend>'. FIELDSET_SERVER_FROXLOR_DATA .'</legend>'.
 		'<label for="froxlor_username">'. LABEL_SERVER_FROXLOR_USERNAME .'</label>'.
-		'<input type="text" id="froxlor_username" name="froxlor_username">'.
+		'<input type="text" id="froxlor_username" name="froxlor_username"><br>'.
 		'<label for="froxlor_password">'. LABEL_SERVER_FROXLOR_PASSWORD .'</label>'.
-		'<input type="password" id="froxlor_password" name="froxlor_password">'.
+		'<input type="password" id="froxlor_password" name="froxlor_password"><br>'.
 		'<label for="froxlor_db_host">'. LABEL_SERVER_FROXLOR_DB_HOST .'</label>'.
-		'<input type="text" id="froxlor_db_host" name="froxlor_db_host">'.
+		'<input type="text" id="froxlor_db_host" name="froxlor_db_host"><br>'.
 		'<label for="froxlor_db">'. LABEL_SERVER_FROXLOR_DB .'</label>'.
-		'<input type="text" id="froxlor_db" name="froxlor_db">'.
+		'<input type="text" id="froxlor_db" name="froxlor_db"><br>'.
 		'</fieldset>';
 
 		$return_string = $return_string . '<input type="submit" name="create_server" id="create_server" value="'. BUTTON_CREATE_SERVER .'">';

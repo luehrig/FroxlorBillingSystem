@@ -239,6 +239,7 @@ td
 th
 {
 	border-bottom: 5px solid grey;
+	color: #1874CD;
 }
 
 
@@ -364,7 +365,7 @@ fieldset
 	border-color: grey;
 	padding: 10px;
 	margin:10px;
-	min-height:150px;
+	min-height:100px;
 	width: auto;
 }
 
@@ -761,6 +762,7 @@ legend
 
 .admin_logout{
 	float: right;
+	margin: 10px;
 	font-weight:bold;
 	font-size: 0.8em;
 	color:#A0A0A0;
@@ -788,7 +790,6 @@ legend
     right: 10px;
     text-align: right;
 }
-
 #customizing_entries{
 	text-aling: left;
 }
@@ -809,35 +810,67 @@ legend
 .content img{
 	margin: 5px;
 }
-.content form{
-	text-align: left;
-}
-.content legend{
-	font-weight: bold;
-}
-.content label{
-	margin-left: 10px;
-	width: 7em;
-    float: left;	
-}
 .content table{
 	margin-top: 20px;
 	margin-bottom: 15px;
 }
-
-.content input[id="edit_customer"]{
-	visibility: hidden;
+.content th{
+	color: black;
 }
-
-
 .content a:focus { 
 	font-weight:bold; color:black; text-decoration:none; 
 }
 .content a:active {
 	color:black; text-decoration:none; 
 }
-
-
+.content form{
+	text-align: left;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.content legend{
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.content label{
+	margin-left: 10px;
+	width: 7em;
+    float: left;	
+}
+.content label[for="label_attribute"], label[for="value"]{
+	margin-left: 10px;
+	width: 4em;
+    float: left;	
+}
+.content legend label{
+	margin-left: 10px;
+    float: left;
+    width: auto;
+}
+.content label[for="title"]{
+	font-weight: bold;
+	width: 45px;
+}
+.content input{
+	margin-left: 10px;
+}
+.content input[id="edit_customer"]{
+	visibility: hidden;
+}
+.content input[type="submit"]{
+	margin: 10px;
+}
+.content textarea{
+	margin-bottom: 10px;
+    margin-left: 10px;
+    width: 550px;
+}
+.content select{
+	margin-left: 10px;
+}
+#new_server_editor label{
+	width: 13em;
+}
 
 /*---------------- contact form --------------------------------------*/
 .contact_message{

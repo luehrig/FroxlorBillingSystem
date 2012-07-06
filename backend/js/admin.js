@@ -177,6 +177,21 @@ $(function() {
 	
 	
 	
+	$("body").on("change", "select[id=product_edit_language_selection]", (function(){
+		var language_id = $('select[id=product_edit_language_selection] option:selected').attr('id');
+		var product_id = $('input[type=hidden][id=product_id]').val();
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_product_editor", product_id: product_id , language_id: language_id}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+			
+		}));	
+	
 //	$("body").on("change", "select[id=language_selection] option:selected)",(function(){
 //		var language_id = $('select[id=language_selection] option:selected').attr('id');
 //		alert('trigger me');
@@ -226,11 +241,12 @@ $(function() {
 		var description = $('textarea[id=description]').val();
 		var quantity = $('input[type=text][id=quantity]').val();
 		var price = $('input[type=text][id=price]').val();
+		var active = $('input[type=hidden][id=active]').val();
 		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "edit_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price }
+			data: { action: "edit_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price, active: active}
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -579,6 +595,20 @@ $(function() {
 		return false;
 	});	
 	
+	// get back to servers overview
+	$("body").on("click", "a[id=back_to_myserver]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_server_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
 	// get form to enter new server
 	$('body').on("click","a[id=create_new_server]", function() {
 		
@@ -750,8 +780,8 @@ $(function() {
 		
 	});	
 	
-	// get back from customer-data-view to customer-overview
-	$('body').on("click","a[id=back_to_mycontent]", function() {
+	// get back to customer overview
+	$('body').on("click","a[id=back_to_mycustomer]", function() {
 				
 		$.ajax({
 			type: "POST",
@@ -767,6 +797,20 @@ $(function() {
 	
     // get overview page with all contents
 	$("body").on("click", "a[id=mycontent]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_content_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// get back to content overview
+	$("body").on("click", "a[id=back_to_mycontent]", function() {
 		
 		$.ajax({
 			type: "POST",
@@ -879,6 +923,20 @@ $(function() {
 	
 	// get overview page with all invoices
 	$("body").on("click", "a[id=myinvoices]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_invoice_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// get back to invoices overview
+	$("body").on("click", "a[id=back_to_myinvoices]", function() {
 		
 		$.ajax({
 			type: "POST",
