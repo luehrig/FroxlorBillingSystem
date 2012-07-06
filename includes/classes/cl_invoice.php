@@ -190,7 +190,7 @@ class invoice {
 		$customer = new customer($this->getCustomerID());
 	
 		$invoice_file = $this->downloadInvoice();
-	
+		
 		// if no smtp server credentials were entered in configuration.inc.php use standard mail function
 		if(SMTP_SERVER == '' && SMTP_USER == '' && SMTP_PASSWORD == '') {
 	
@@ -228,8 +228,6 @@ class invoice {
 			}
 		}
 		else {
-			//include("class.smtp.php"); // optional, gets called from within class.phpmailer.php if not already loaded
-	
 			$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
 	
 			$mail->IsSMTP(); // telling the class to use SMTP
@@ -280,7 +278,7 @@ class invoice {
 		}
 	
 		// delete invoice file after processing
-		unlink($invoice_file);
+		unlink(PATH_TEMP . $this->getInvoiceNumber() .'.pdf');
 	}
 	
 	public function setStatus($status_id) {

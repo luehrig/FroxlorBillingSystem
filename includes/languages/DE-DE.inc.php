@@ -180,8 +180,8 @@ define('BUTTON_CHECKOUT_SEND_ORDER','Bestellung abschicken');
 
 /* communications */
 define('NOTICE_COMMUNICATION_HTML_EMAIL','Um diese E-Mail korrekt darzustellen, verwenden Sie bitte ein HTML kompatibles E-Mail Programm!');
-define('LABEL_COMMUNICATION_INVOICE_SUBJECT','Ihre Rechnung %d');
-define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','Rechnung %d');
+define('LABEL_COMMUNICATION_INVOICE_SUBJECT','Ihre Rechnung %s');
+define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','Rechnung %s');
 
 /* help / contact */
 define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetreiber gesendet!');
