@@ -238,10 +238,10 @@ class product {
 			$active = $data['active'];
 			$change_state;
 			if($active==1){
-				$change_state = '<img src="'. PATH_IMAGES_REL .'activate.png" title="'. LINK_ACTIVATE_PRODUCT .'">';
+				$change_state = '<img src="'. PATH_IMAGES_REL .'deactivate.png" title="'. LINK_DEACTIVATE_PRODUCT .'">';
 			}
 			elseif($active==0){
-				$change_state = '<img src="'. PATH_IMAGES_REL .'deactivate.png" title="'. LINK_DEACTIVATE_PRODUCT .'">';
+				$change_state = '<img src="'. PATH_IMAGES_REL .'activate.png" title="'. LINK_ACTIVATE_PRODUCT .'">';
 			}
 			$table_content = $table_content .'<tr>
 			<td>'. $id_language_map[$data['language_id']] .'</td>
@@ -264,11 +264,11 @@ class product {
 	public function printFormEdit($attributesForLang, $product_info, $language_select_box, $container_id = 'product_editor'){
 		$return_string = '<div id="'.$container_id.'">'.
 		$this->getFilledProductEditForm($language_select_box);
-		$return_string = $return_string . '<input type="submit" name="submit_edit_product" id="submit_edit_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
+		$return_string = $return_string . '<input type="submit" name="submit_edit_product" id="submit_edit_product" value="'. BUTTON_SAVE_CHANGES .'">';
 		$return_string = $return_string . '</form></fieldset>';
 		
 		$return_string = $return_string . $this->getAttributeEditForm($attributesForLang, $product_info);
-		$return_string = $return_string . '<input type="submit" name="submit_edit_attributes" id="submit_edit_attributes" value="'. BUTTON_CHANGE_ATTRIBUTES .'">';
+		$return_string = $return_string . '<input type="submit" name="submit_edit_attributes" id="submit_edit_attributes" value="'. BUTTON_SAVE_CHANGES .'">';
 		$return_string = $return_string . '<input type="submit" name="give_prod_new_attr" id="give_prod_new_attr" value="'. BUTTON_NEW_ATTR_FOR_PROD .'">'; 
 		$return_string = $return_string . '</form></fieldset>';
 		$return_string = $return_string. '</div>';
@@ -279,7 +279,7 @@ class product {
 	public function printFormTranslate($language_select_box, $container_id = 'product_editor'){
 		$return_string = '<div id="'.$container_id.'">'.
 		$this->getFilledProductEditForm($language_select_box);
-		$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_CHANGE_PRODUCT .'">';
+		$return_string = $return_string . '<input type="submit" name="submit_translate_product" id="submit_translate_product" value="'. BUTTON_SAVE_CHANGES .'">';
 		
 		$return_string = $return_string . '</form>';
 		$return_string = $return_string. '</div>';
@@ -301,7 +301,7 @@ class product {
 		$new_product_id = $number_of_products + 1;
 		
 		$return_string = '<div id="'.$container_id.'">.
-		<form method="post">'.'<fieldset>'.
+		<form method="post" class="form_backend">'.'<fieldset>'.
 		'<legend>'.
 		'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
 		'<label for="product_id">'. $new_product_id.' </label>'.
@@ -430,7 +430,7 @@ class product {
 	}
 	
 	private function getFilledProductEditForm($language_select_box){
-		$return_string = '<form name="myForm">'.'<fieldset>'.
+		$return_string = '<form name="myForm" class="form_backend">'.'<fieldset>'.
 					'<legend>'.
 						'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
 						'<label for="product_id">'. $this->product_id.' </label>'.
@@ -470,7 +470,7 @@ class product {
 					'<input type="hidden" id = "attribute_id" name = attribute_id value = '. $att_id .'>'.
 					'<label for="attribute_describtion">'. $attributes_for_lang[$att_id] .'</label>'.
 					'<input type="text" id="'.$att_id.'" name="'.$att_id.'" value="'. $att_val .'">'.
-					'<a href="#" id="delete_product_info" rel="'. $att_id .'">'. LINK_DELETE . '</a><br>';
+					'<a href="#" id="delete_product_info" rel="'. $att_id .'"><img id="img_delete" src="'. PATH_IMAGES_REL .'delete_small.png" title="'. LINK_DELETE . '"></a><br>';
 		}
 		$trimmed_attr_ids = trim($attr_ids, ",");
 		$return_string = $return_string. '<input type="hidden" id = "attr_array" name = "attr_array" value = '.$trimmed_attr_ids.'>';

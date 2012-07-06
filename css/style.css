@@ -1,12 +1,6 @@
-
 /* --------------- General ------------------------------ */
-/*sets body 100% in firefox*/
-html, body {
-	min-height: 100%;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#F0F0F0'); /* for IE */
-}
 
-
+/*style of bodybackground*/
 body 
 {
 	color: #131313;
@@ -22,6 +16,7 @@ body
 
 }
 
+/*style of header*/
 .header {
 	background-color: #F0F0F0;
 	width: 900px;
@@ -31,6 +26,7 @@ body
 	box-shadow: inset 0 0 10px 0 #000;
 }
 
+/*for status messages and shoppingcart*/
 .header_right {
 	float: right;
 	width: 450px;
@@ -41,7 +37,7 @@ body
 	margin-bottom: 10px;
 }
 
-
+/*sytle of content background*/
 .content_container {
 	background-color: #F0F0F0;
 	width: 900px;
@@ -58,6 +54,7 @@ body
 	box-shadow: inset 0 0 10px 0 #000;
 }
 
+/*style of footer*/
 .footer
 {
 	width: 820px;
@@ -80,7 +77,7 @@ body
 }
 
 
-/* --------------- Headers ------------------------------ */
+/* --------------- Headlines ------------------------------ */
 body h1{
 	 
 	 font-family: Arial, Helvetica, sans-serif;
@@ -88,7 +85,7 @@ body h1{
 	 font-size: 1.25em;
 	 letter-spacing: .2em;
 	 line-height: 1.1em;
-        margin: 20px 15px 10px;
+        margin: 20px 30px 10px;
 	 text-align: left;
 	 text-transform: uppercase;
 	 color: #333;
@@ -109,12 +106,14 @@ h3
 
 hr
 {
- border: 0px; /* Für Firefox und Opera */
+ border: 0px; /* for Firefox und Opera */
  border-top: solid 1px #FF0000;
- border-bottom: solid 1px #FFFFFF; /* Für I.Explorer (Seiten-Hintergrundfarbe!) */
+ border-bottom: solid 1px #FFFFFF; /* for I.Explorer () */
 }
 
-/* Hyperlinks */
+/*------------------------Hyperlinks-------------------------------------*/
+
+/**general Links*/
 a:link {
 	 color:black; text-decoration:none;
 }
@@ -175,10 +174,15 @@ a.back:hover{
 	padding: 15px;
 }
 
-/*Message Area*/
-.messagearea{
+/* Message area wrapper */
+.messagearea_wrapper{
 	margin: 5px;
 	font-weight: bold;
+}
+
+/*Message Area*/
+.messagearea{
+	color: black;
 }
 
 /*Error Message Area*/
@@ -218,8 +222,7 @@ table
 	width: 100%;
 	text-align: center;
 	margin-bottom: 15px;
-	margin-top: 15 px;
-	
+	margin-top: 15 px;	
 }
 
 td
@@ -230,12 +233,16 @@ td
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
 	padding:5px;
+	border-color: grey;
 }
 
 th
 {
-	border-bottom: 5px solid black;
+	border-bottom: 5px solid grey;
+	color: #1874CD;
 }
+
+
 .shoppingcart a:link[id="start_checkout"]{
 	text-align: right;
 	text-decoration: underline;
@@ -265,30 +272,35 @@ th
 
 
 /* --------------- wrapper ------------------------ */
+/*content boxes centered*/
 .boxwrapper 
 {
 	margin: 40px auto;
 	width: 780px;
 }
 
+/*style of lightbox*/
 .colorboxwrapper
 {
 	margin: 40px auto;
 	width: 450px;
 }
 
+/*style of small lightbox*/
 .colorboxwrapper_small
 {
 	margin: 10px auto;
 	width: 450px;
 }
 
+/*content boxes centered in customer and backend*/
 .internalwrapper
 {
 	margin-left: 200px;
 	margin-right: 40px;
 }
 
+/*sets product in a line*/
 .productwrapper
 {
 	width: 780px;
@@ -298,7 +310,7 @@ th
 
 /* --------------- Box Layouts ------------------------ */
 
-
+/*box background*/
 .whitebox 
 {
 	float: left;
@@ -332,12 +344,14 @@ th
 	height: auto;	
 }
 
+/*internal boxes*/
 .internal
 {
 	width: 660px;
 	height: auto;
 }
 
+/*box for product details*/
 .slidebox
 {
 	height: auto;
@@ -348,12 +362,14 @@ fieldset
 {
 	border: black solid 1px;
 	border-radius: 10px;
+	border-color: grey;
 	padding: 10px;
 	margin:10px;
-	min-height:150px;
+	min-height:100px;
 	width: auto;
 }
 
+/*frame in whiteboxes*/
 legend
 {
 	font-weight:bold;
@@ -363,12 +379,14 @@ legend
 
 
 /* --------------- images ------------------------ */
+/*Logo at products*/
 #littlelogo
 {
 	width: 120px;
 	margin: 5px;
 }
 
+/*logo for whiteboxes*/
 #minilogo
 {
 	width:40px;
@@ -377,11 +395,13 @@ legend
 	margin-bottom:5px;
 }
 
+/*logo for header*/
 #logo {
 	width: 400px;
 	margin: 10px;
 }
 
+/*logo for footer*/
 #froxcloud_white
 {
 	height: 20px;
@@ -392,6 +412,7 @@ legend
 
 
 /* --------------- Button Layouts ------------------------ */
+
 
 .buttonlayout_more
 {
@@ -677,8 +698,7 @@ legend
 /* Customer Data Table */
 .customer_data {
 	vertical-align: top;
-	margin: 15px;
-	float: left;
+	margin: 5px;
 }
 
 .customer_data th{
@@ -700,10 +720,6 @@ legend
 	margin: 15px;
 	clear: left;
 	float: left;
-}
-
-.edit_cust_data{
-	margin: 15px;
 }
 
 .edit_cust_data label{
@@ -746,6 +762,7 @@ legend
 
 .admin_logout{
 	float: right;
+	margin: 10px;
 	font-weight:bold;
 	font-size: 0.8em;
 	color:#A0A0A0;
@@ -773,7 +790,6 @@ legend
     right: 10px;
     text-align: right;
 }
-
 #customizing_entries{
 	text-aling: left;
 }
@@ -794,35 +810,71 @@ legend
 .content img{
 	margin: 5px;
 }
-.content form{
-	text-align: left;
-}
-.content legend{
-	font-weight: bold;
-}
-.content label{
-	margin-left: 10px;
-	width: 7em;
-    float: left;	
-}
 .content table{
 	margin-top: 20px;
 	margin-bottom: 15px;
 }
-
-.content input[id="edit_customer"]{
-	visibility: hidden;
+.content th{
+	color: black;
 }
-
-
 .content a:focus { 
 	font-weight:bold; color:black; text-decoration:none; 
 }
 .content a:active {
 	color:black; text-decoration:none; 
 }
+.content form{
+	text-align: left;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.content legend{
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.content label{
+	margin-left: 10px;
+	width: 7em;
+    float: left;	
+}
+.content label[for="label_attribute"], label[for="value"]{
+	margin-left: 10px;
+	width: 4em;
+    float: left;	
+}
+.content legend label{
+	margin-left: 10px;
+    float: left;
+    width: auto;
+}
+.content label[for="content_title"]{
+	font-weight: bold;
+	width: 45px;
+}
+.content input{
+	margin-left: 10px;
+}
+.content input[id="edit_customer"]{
+	visibility: hidden;
+}
+.content input[type="submit"]{
+	margin: 10px;
+}
+.content textarea{
+	margin-bottom: 10px;
+    margin-left: 10px;
+    width: 550px;
+}
+.content select{
+	margin-left: 10px;
+}
+#new_server_editor label{
+	width: 13em;
+}
 
-
+#img_delete{
+	margin: 0 10px;
+}
 
 /*---------------- contact form --------------------------------------*/
 .contact_message{

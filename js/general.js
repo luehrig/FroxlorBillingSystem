@@ -17,16 +17,17 @@ $(function() {
 
 	// Bind a callback that executes when document.location.hash changes.
 	$(window).bind("hashchange", function(e) {
-		//var url = $.bbq.getState("");
+		// var url = $.bbq.getState("!page");
 		var lang = $.bbq.getState("lang");
+
 		var fragment = $.param.fragment();
+
 		var newurl = fragment.substr(0, fragment.indexOf('.'));
 
-		// if no fragment was found redirect to home page
 		if (newurl == '') {
 			newurl = 'home';
 		}
-		
+
 		// dynamic content loading
 		loadContent(newurl, lang);
 
@@ -62,28 +63,20 @@ $(function() {
 					}
 				}).done(function(msg) {
 					$('div[id=mandatory_fields]').remove();
-					$('.messagearea').append(msg);
+					$('#messagearea').append(msg);
 				});
 			});
-	
-	// check valid e-mail address
-	/* $("body").on("change", "form[id=registrationform] input[id=email]",
-			function() {
-				var email = $(this).val();
 
-				$.ajax({
-					type : "POST",
-					url : "logic/process_inputcheck.php",
-					data : {
-						action : "check_email",
-						email : email
-					}
-				}).done(function(msg) {
-					$('#messagearea').html(msg);
-				});
-			});
-	*/
-	
+	// check valid e-mail address
+	/*
+	 * $("body").on("change", "form[id=registrationform] input[id=email]",
+	 * function() { var email = $(this).val();
+	 * 
+	 * $.ajax({ type : "POST", url : "logic/process_inputcheck.php", data : {
+	 * action : "check_email", email : email } }).done(function(msg) {
+	 * $('#messagearea').html(msg); }); });
+	 */
+
 	// check valid phone no.
 	$("body").on("change", "form[id=registrationform] input[id=telephone]",
 			function() {
@@ -97,10 +90,9 @@ $(function() {
 						phone_no : phone_no
 					}
 				}).done(function(msg) {
-					$('.messagearea').html(msg);
+					$('#messagearea').html(msg);
 				});
 			});
-	
 
 	/*
 	 * 
@@ -175,10 +167,9 @@ $(function() {
 									'input[type=password][id=passwordagain]')
 									.val();
 
-							// check if any input is invalid 
+							// check if any input is invalid
 							if (passwordsMatching(customerData['password'],
-									passwordretry) == false)
-									 {
+									passwordretry) == false) {
 								return false;
 							} else {
 								// get all select fields
@@ -260,7 +251,7 @@ $(function() {
 					action : "get_message_mandatory_not_filled"
 				}
 			}).done(function(msg) {
-				$('.messagearea').append(msg);
+				$('#messagearea').append(msg);
 				return false;
 			});
 
@@ -285,7 +276,7 @@ $(function() {
 					action : "get_message_passwords_not_matching"
 				}
 			}).done(function(msg) {
-				$('.messagearea').html(msg);
+				$('#messagearea').html(msg);
 				return false;
 			});
 		} else {
@@ -311,7 +302,7 @@ $(function() {
 					action : "get_message_invalid_email"
 				}
 			}).done(function(msg) {
-				$('.messagearea').append(msg);
+				$('#messagearea').append(msg);
 			});
 
 			return true;
@@ -335,7 +326,7 @@ $(function() {
 					action : "get_message_invalid_fax"
 				}
 			}).done(function(msg) {
-				$('.messagearea').append(msg);
+				$('#messagearea').append(msg);
 				return false;
 			});
 		} else {
@@ -357,7 +348,7 @@ $(function() {
 					action : "get_message_invalid_telephone"
 				}
 			}).done(function(msg) {
-				$('.messagearea').append(msg);
+				$('#messagearea').append(msg);
 				return false;
 			});
 		} else {
@@ -370,16 +361,14 @@ $(function() {
 	 * check if input matches the regular phone/fax numbers
 	 * 
 	 */
-	function isPhoneOrFaxNo(input){
+	function isPhoneOrFaxNo(input) {
 		var reg_exp = /^(((\+|00)\d{2})|0)\d+\s?(\/|-)?\s?\d+/;
-		if(input.match(reg_exp)){
-			return true;	
-		}
-		else{
+		if (input.match(reg_exp)) {
+			return true;
+		} else {
 			return false;
 		}
 	}
-	
 
 	// ask customer if reset should be done now
 	$("body").on("click", "form[id=registrationform] input[id=clear]",
@@ -435,7 +424,7 @@ $(function() {
 										})
 								.done(
 										function(msg) {
-											$('.messagearea').html(msg);
+											$('#messagearea').html(msg);
 											window.location.href = "../customercenter/index.php?content=customercenter";
 										});
 
@@ -606,6 +595,9 @@ $(function() {
 			"click",
 			"a[id=save_order][class=nonav]",
 			function() {
+				// disable link to prevent customer to click multiple times if
+				// save order is in ajax call
+				$(this).attr('href', '#');
 
 				// get address information
 				var shipping_address_id = $(
@@ -624,6 +616,8 @@ $(function() {
 					}
 				}).done(function(msg) {
 					$('.content_container').html(msg);
+
+					showMessagePopup('success', msg, null, null);
 
 					// clear quantity counter in header for cart
 					setProductCountInCart();
@@ -694,10 +688,10 @@ $(function() {
 
 		if ($(detailboxid).is(":hidden")) {
 			$(detailboxid).slideDown("slow");
-			$(this).text("weniger");
+			$(this).text("Weniger");
 		} else {
 			$(detailboxid).slideUp();
-			$(this).text("mehr");
+			$(this).text("Mehr");
 		}
 	});
 
@@ -736,6 +730,7 @@ $(function() {
 
 	// sets current custermenu active
 	$("body").on("click", "a[class=cm]", function() {
+		alert("jaaaaa");
 		$("a").removeClass("cm_active");
 		$(this).addClass("cm_active");
 	});
@@ -807,4 +802,80 @@ function loadContent(areacode, language_id) {
 	}).done(function(msg) {
 		$('.content_container').html(msg);
 	});
+}
+
+/*
+ * 
+ * display message in colorbox popup
+ * 
+ * possible msgtypes are: success, info, error, warning
+ * 
+ */
+function showMessagePopup(msgtype, msg, msg_code, language_id) {
+
+	var msgtext;
+	var msgoutput = '';
+
+	// check if icon has to be displayed
+	switch (msgtype) {
+
+	case 'success':
+
+		msgoutput = '<img src="images/success.png">';
+
+		break;
+
+	case 'info':
+
+		msgoutput = '<img src="images/info.png">';
+
+		break;
+
+	case 'error':
+
+		msgoutput = '<img src="images/error.png">';
+
+		break;
+	case 'warning':
+
+		msgoutput = '<img src="images/warning.png">';
+
+		break;
+
+	}
+
+	// get message text
+	if (msg_code != null) {
+		$.ajax({
+			type : "POST",
+			url : "logic/get_texts.php",
+			data : {
+				action : "get_message_" + msg_code,
+				language_id : language_id
+			}
+		}).done(function(msg) {
+			// write received message text to local variable
+			msgtext = msg;
+
+			msgoutput = msgoutput + ' ' + msgtext;
+
+			$.colorbox({
+				html : msgoutput
+			});
+
+		});
+
+	} else {
+		msgoutput = msgoutput + ' ' + msg;
+
+		$.colorbox({
+			html : msgoutput
+		});
+	}
+
+	// start timer for auto close
+	var timer = setTimeout(function() {
+	    $.fn.colorbox.close();
+	}, 5000);
+	
 }

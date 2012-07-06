@@ -63,7 +63,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	    	<label for="password"><?php echo LABEL_PASSWORD; ?></label>
 	    	<input type="password" id="password" name="password" rel="mandatory">    	
 	 		
-	 		<input type="hidden" id="position" name="position" value="<?php if(isset($_GET['position'])) { echo $_GET['position']; } ?>">
+	 		<input type="hidden" id="position" name="position" value="<?php echo $_GET['position']; ?>">
 	 		
 	 		<input type="submit" id="ajaxlogin" name="ajaxlogin" value="<?php echo BUTTON_LOGIN_CUSTOMER; ?>">   
 	    </fieldset>  
@@ -71,7 +71,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	
 
 	<div id="link_register">
-		<a href="#registration.html&lang=" id="registration" class="nav" rel="<?php echo $site_language; ?>"><span><?php echo LINK_REGISTRATION; ?></span></a>
+		<a href="registration.html&lang=" id="registration" rel="<?php echo $site_language; ?>"><span><?php echo LINK_REGISTRATION; ?></span></a>
 	</div>
 	
 </div>

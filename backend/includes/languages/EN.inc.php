@@ -49,6 +49,29 @@ define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('SELECT_GENDER_MALE','Herr');
 define('SELECT_GENDER_FEMALE','Frau');
 
+/* Login process */
+define('FIELDSET_LOGIN_FORM_CUSTOMER','Customer Login');
+define('LINK_REGISTRATION','Register');
+
+/* shopping cart */
+define('HEADING_PRODUCT','Product');
+define('HEADING_QUANTITY','Quantity');
+define('HEADING_AMOUNT','Amount');
+
+define('BUTTON_MORE', 'More');
+define('BUTTON_ADD_TO_CART', 'Add to shopping cart');
+define('BUTTON_CREATE_ACCOUNT','Create Account');
+define('BUTTON_LOGIN_CUSTOMER','Login');
+define('BUTTON_LOGOUT_CUSTOMER','Logout');
+define('BUTTON_EDIT_CUSTOMER','Change Data ');
+define('BUTTON_SAVE','Speichern');
+define('BUTTON_CHECKOUT','Kasse');
+define('BUTTON_CHECKOUT_NEXT','Weiter');
+
+define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den Shopbetreiber');
+
+
+
 
 
 

@@ -16,7 +16,7 @@ define('PAGE_TITLE_SHOPMAINTENANCE_BACKEND','Shopeinstellungen');
 
 /* general texts */
 define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
-define('LINK_BACK', '<< zurück');
+define('LINK_BACK', 'zurück');
 
 
 /* registration process */
@@ -69,7 +69,6 @@ define('HEADING_PRODUCT','Produkt');
 define('HEADING_QUANTITY','Menge');
 define('HEADING_AMOUNT','Summe');
 
-define('BUTTON_MORE', 'Mehr');
 define('BUTTON_ADD_TO_CART', 'In den Einkaufswagen');
 define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
 define('BUTTON_LOGIN_CUSTOMER','Einloggen');
@@ -78,6 +77,7 @@ define('BUTTON_EDIT_CUSTOMER','Meine Daten bearbeiten');
 define('BUTTON_SAVE','Speichern');
 define('BUTTON_CHECKOUT','Kasse');
 define('BUTTON_CHECKOUT_NEXT','Weiter');
+define('IMG_TITEL_REMOVE', 'Entfernen');
 
 define('BUTTON_LOGOUT_BACKEND','Abmelden');
 define('BUTTON_LOGIN_BACKEND','Einloggen');
@@ -93,7 +93,9 @@ define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
 define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
 define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
 define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
+define('BUTTON_SAVE_CHANGES', 'Änderungen speichern');
 define('IMG_REMOVE_PRODUCT', 'Produkt entfernen');
+define('BUTTON_CREATE_PRODUCT_ATTRIBUTE', 'Attribut anlegen');
 
 
 /* message texts */
@@ -118,6 +120,16 @@ define('WARNING_INVALID_EMAIL_ADDRESS','Keine gültige E-Mail Adresse!');
 define('WARNING_INVALID_PHONE_NO','Keine gültige Telefonnummer!');
 
 define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
+
+/* product texts */
+define('PRODUCT_QUANTITY', 'Menge');
+define('PRODUCT_CONTRACT_PERIODE','Vertragslaufzeit');
+define('PRODUCT_PRICE','Preis');
+define('PRODUCT_DETAILS','Details');
+define('PRODUCT_DETAILS_MORE','Mehr');
+define('PRODUCT_DETAILS_LESS','Weniger');
+
+
 
 /* main menu texts */
 define('VIEW_MENU_HELP','Hilfe');
@@ -146,7 +158,6 @@ define('TABLE_HEADING_CONTRACT_EXPIRATION_DATE_UNIT','Monat(e)');
 
 define('LABEL_CONTRACT_TERMINATION_EXECUTION_DATE','zum %s gekündigt');
 
-define('MSG_SUCCESSFULLY_LOGGED_IN_CUSTOMER','Sie haben sich erfolgreich im Kundenbereich angemeldet!');
 
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');
@@ -185,7 +196,9 @@ define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
 define('LINK_DELETE', 'Löschen');
 define('LINK_DISPLAY', 'Anzeigen');
+define('LINK_SAVE_INVOICE_STATUS', 'Statusänderung übernehmen');
 define('BUTTON_CREATE_SERVER', 'Server anlegen');
+
 
 define('LABEL_MY_SHOP','Mein Shop');
 define('LABEL_MY_PRODUCTS','Meine Produkte');
@@ -288,9 +301,9 @@ define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des
 
 define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
 define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
-define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Produkt existiert bereits!');
+define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
 
-define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt.');
+define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt');
 
 
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server mit dieser IP-Adresse!');
@@ -304,5 +317,9 @@ define('INFO_MESSAGE_CUSTOMIZING_SAVED', 'Die Customizingänderungen wurden erfo
 
 define('INFO_MESSAGE_CONTENT_UPDATED', 'Der Inhalt wurde erfolgreich geändert.');
 define('INFO_MESSAGE_CONTENT_CREATED', 'Der Inhalt mit dem Titel wurde erfolgreich angelegt.');
+
+define('INFO_MESSAGE_INVOICE_STATUS_CHANGED', 'Der Rechnungsstatus wurde erfolgreich geändert.');
+define('INFO_MESSAGE_PRODUCT_INFO_SUCCESSFULLY_DELETED', 'Das Produktattribut wurde erfolgreich gelöscht.');
+
 
 ?>

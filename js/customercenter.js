@@ -27,8 +27,7 @@ $(function() {
 					if (msg == 'true') {
 						$.colorbox.close();
 						$('a[id=customercenter]').addClass('nav');
-						
-						// if position parameter was given redirect specific page
+
 						if (position != '') {
 							$.ajax({
 								type : "POST",
@@ -40,7 +39,6 @@ $(function() {
 							}).done(function(msg) {
 								
 							});
-						// default redirect to customer center	
 						} else {
 							$.ajax({
 								type : "POST",
@@ -63,20 +61,8 @@ $(function() {
 							$('#customer_header_ajax').html(msg);
 						});
 
-						
-						$.ajax({
-							type : "POST",
-							url : "logic/get_texts.php",
-							data : {
-								action : "get_message_successfully_logged_in_customer",
-							}
-						}).done(function(msg) {
-							$('.messagearea').html(msg);
-						});
-						
 					} else {
 						$('#messagearea').html(msg);
-						$.fn.colorbox.resize({});
 					}
 				});
 
@@ -188,6 +174,7 @@ $(function() {
 						$('html, body').animate({
 							scrollTop : $('.messagearea').offset().top
 						}, 1000);
+
 					});
 				} else {
 					// get all input fields for customer data

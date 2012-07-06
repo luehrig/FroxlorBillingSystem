@@ -55,11 +55,27 @@ $(function() {
 		}).done(function( msg ) {
 			$('.content').html( msg );
 			$('a[id=save_customizing]').hide();
+			$('a[id=back_to_myshop]').hide();
 		});
 		
 		return false;
 	});	
 	
+	// get back to customizing overview
+	$("body").on("click", "a[id=back_to_myshop]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_customizing_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+			$('a[id=save_customizing]').hide();
+			$('a[id=back_to_myshop]').hide();
+		});
+		
+		return false;
+	});	
 
 	
 	// set customizing fields editable
@@ -73,6 +89,8 @@ $(function() {
 		$(this).hide();
 		// show save link
 		$('a[id=save_customizing]').show();
+
+		$('a[id=back_to_myshop]').show();
 	});	
 	
 	// set customizing fields editable
@@ -108,10 +126,25 @@ $(function() {
 		$(this).hide();
 		// show save link
 		$('a[id=modify_customizing]').show();
+	
 	});	
 	
 	// get overview page with all products
 	$("body").on("click", "a[id=myproducts]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_products_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// get back to products overview
+	$("body").on("click", "a[id=back_to_myproducts]", function() {
 
 		$.ajax({
 			type: "POST",
@@ -145,6 +178,21 @@ $(function() {
 	});	
 	
 	
+	
+	$("body").on("change", "select[id=product_edit_language_selection]", (function(){
+		var language_id = $('select[id=product_edit_language_selection] option:selected').attr('id');
+		var product_id = $('input[type=hidden][id=product_id]').val();
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_product_editor", product_id: product_id , language_id: language_id}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+			
+		}));	
 	
 	$("body").on("change", "select[id=language_selection]",(function(){
 		/* var language_id = $('select[id=language_selection] option:selected').attr('id');
@@ -199,11 +247,12 @@ $(function() {
 		var description = $('textarea[id=description]').val();
 		var quantity = $('input[type=text][id=quantity]').val();
 		var price = $('input[type=text][id=price]').val();
+		var active = $('input[type=hidden][id=active]').val();
 		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "edit_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price }
+			data: { action: "edit_product", product_id: product_id, language_id: language_id, title: title, contract_periode: contract_periode, description: description, quantity: quantity, price: price, active: active}
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -431,6 +480,20 @@ $(function() {
 		return false;
 	});	
 	
+	// get back to product attribute overview
+	$("body").on("click", "a[id=back_to_myproductattribute]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_product_attributes_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
 	// open form to create new attribute
 	
 	$("body").on("click", "a[id=create_new_product_attribute]", function() {
@@ -526,6 +589,20 @@ $(function() {
 	
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_server_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// get back to servers overview
+	$("body").on("click", "a[id=back_to_myserver]", function() {
 
 		$.ajax({
 			type: "POST",
@@ -693,7 +770,21 @@ $(function() {
 		return false;
 	});	
 	
-	// set customizing fields editable for customer
+	// get back to customer overview
+	$("body").on("click", "a[id=back_to_mycustomer]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_customers_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// show customer data in detail
 	$('body').on("click","a[id=edit_customer]", function() {
 		var customer_id = $(this).attr('rel');
 		
@@ -709,23 +800,22 @@ $(function() {
 		
 	});	
 	
-	// get back from customer-data-view to customer-overview
-	$('body').on("click","a[id=back_to_mycontent]", function() {
-				
+    // get overview page with all contents
+	$("body").on("click", "a[id=mycontent]", function() {
+		
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "get_customers_overview" }
+			data: { action: "get_content_overview" }
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
 		
 		return false;
-		
 	});	
 	
-    // get overview page with all contents
-	$("body").on("click", "a[id=mycontent]", function() {
+	// get overview page with all contents
+	$("body").on("click", "a[id=back_to_mycontent]", function() {
 		
 		$.ajax({
 			type: "POST",
@@ -838,6 +928,20 @@ $(function() {
 	
 	// get overview page with all invoices
 	$("body").on("click", "a[id=myinvoices]", function() {
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_invoice_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// get back to invoices overview
+	$("body").on("click", "a[id=back_to_myinvoices]", function() {
 		
 		$.ajax({
 			type: "POST",
