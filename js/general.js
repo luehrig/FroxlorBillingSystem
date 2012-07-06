@@ -694,10 +694,10 @@ $(function() {
 
 		if ($(detailboxid).is(":hidden")) {
 			$(detailboxid).slideDown("slow");
-			$(this).text("weniger");
+			$(this).text("Weniger");
 		} else {
 			$(detailboxid).slideUp();
-			$(this).text("mehr");
+			$(this).text("Mehr");
 		}
 	});
 
@@ -736,6 +736,7 @@ $(function() {
 
 	// sets current custermenu active
 	$("body").on("click", "a[class=cm]", function() {
+		alert("jaaaaa");
 		$("a").removeClass("cm_active");
 		$(this).addClass("cm_active");
 	});
