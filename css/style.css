@@ -80,7 +80,7 @@ body
 }
 
 
-/* --------------- Headlines ------------------------------ */
+/* --------------- Headers ------------------------------ */
 body h1{
 	 
 	 font-family: Arial, Helvetica, sans-serif;
@@ -88,11 +88,10 @@ body h1{
 	 font-size: 1.25em;
 	 letter-spacing: .2em;
 	 line-height: 1.1em;
-        margin: 20px 30px 10px;
+        margin: 20px 15px;
 	 text-align: left;
 	 text-transform: uppercase;
 	 color: #333;
-	 float: left;
 }
 
 h2
@@ -131,43 +130,12 @@ a:active {
 	color:black; text-decoration:underline; 
 }
 
-/* Button style for links */
 .button_style{
 	outline: thin outset;
     padding: 5px;
-    margin: 10px 0;
+    margin: 10px;
     font-weight: normal;
 }
-a.button_style:link{
-	font-weight: normal;
-}
-a.button_style:visited {
-	outline: thin outset;
-}
-a.button_style:focus {
-	outline: thick outset;
-}
-a.button_style:hover {
-	outline: thick outset;
-}
-a.button_style:active {
-	outline: thin outset;
-}
-
-
-/* Style for "back" link */
-.back{
-	float: right;
-	margin: 20px 0 0;
-}
-a.back{
-	color: #1874CD;
-	font-weight: bold;
-}
-a.back:hover{
-	text-decoration: underline;
-}
-
 
 
 
@@ -175,15 +143,10 @@ a.back:hover{
 	padding: 15px;
 }
 
-/* Message area wrapper */
-.messagearea_wrapper{
-	margin: 5px;
-	font-weight: bold;
-}
-
 /*Message Area*/
 .messagearea{
-	color: black;
+	margin: 5px;
+	font-weight: bold;
 }
 
 /*Error Message Area*/
@@ -223,7 +186,8 @@ table
 	width: 100%;
 	text-align: center;
 	margin-bottom: 15px;
-	margin-top: 15 px;	
+	margin-top: 15 px;
+	
 }
 
 td
@@ -234,13 +198,11 @@ td
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
 	padding:5px;
-	border-color: grey;
 }
 
 th
 {
-	border-bottom: 5px solid grey;
-	color: #1874CD;
+	border-bottom: 5px solid black;
 }
 .shoppingcart a:link[id="start_checkout"]{
 	text-align: right;
@@ -354,7 +316,6 @@ fieldset
 {
 	border: black solid 1px;
 	border-radius: 10px;
-	border-color: grey;
 	padding: 10px;
 	margin:10px;
 	min-height:150px;
@@ -586,11 +547,6 @@ legend
 .registrationform fieldset{
 	margin-top: 1em;
 }
-.registrationform input[type="reset"]{
-	margin-left: 80px;
-	margin-top: 10px;
-}
-
 /* --------------- Customer Center -------------------------------------- */
 
 .customer_content_container {
@@ -684,7 +640,7 @@ legend
 /* Customer Data Table */
 .customer_data {
 	vertical-align: top;
-	margin: 5px;
+	margin: 15px;
 }
 
 .customer_data th{
@@ -704,8 +660,10 @@ legend
 
 #edit_customer{
 	margin: 15px;
-	clear: left;
-	float: left;
+}
+
+.edit_cust_data{
+	margin: 15px;
 }
 
 .edit_cust_data label{
@@ -748,32 +706,17 @@ legend
 
 .admin_logout{
 	float: right;
+	margin: 10px;
 	font-weight:bold;
 	font-size: 0.8em;
 	color:#A0A0A0;
 	clear:both;
-	right: 10px;
-	position: absolute;
-}
-.admin_logout img[id="logout"]{
-	position: absolute;
-    right: 0px;
-    top: 0px;
-}
-#logout_text{
-	position: absolute;
-    right: 24px;
-    top: 1px;
 }
 
 #admin_welcome
 {
-	bottom: 0;
-    font-size: 0.8em;
-    font-weight: bold;
-    position: absolute;
-    right: 10px;
-    text-align: right;
+	margin-top: 80px;
+	margin-right:5px;
 }
 
 #customizing_entries{
@@ -810,10 +753,6 @@ legend
 .content table{
 	margin-top: 20px;
 	margin-bottom: 15px;
-}
-
-.content th{
-	color: black;
 }
 
 .content input[id="edit_customer"]{

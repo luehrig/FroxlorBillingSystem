@@ -110,7 +110,7 @@ class shoppingcart {
 		
 		while($result_data = db_fetch_array($query)) {
 			$return_string = $return_string .'<tr><td>'. $result_data['title'] .'</td><td><span id="decrease_'. $result_data['product_id'] .'"><img class="img_plus_minus" src="'. PATH_IMAGES_REL .'minus.png"></span><input type="text" id="quantity_'. $result_data['product_id'] .'" value="'. $result_data['quantity'] .'"><span id="increase_'. $result_data['product_id'] .'"><img class="img_plus_minus" src="'. PATH_IMAGES_REL .'plusicon.png"></span></td>
-			<td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td><td><a href="#" id="removeproduct_'. $result_data['product_id'] .'" rel="'. $result_data['product_id'] .'"><img src="'. PATH_IMAGES_REL .'delete.png" title="'. IMG_REMOVE_PRODUCT .'"></a></td></tr>';
+			<td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td><td><a href="#" id="removeproduct_'. $result_data['product_id'] .'" rel="'. $result_data['product_id'] .'"><img src="'. PATH_IMAGES_REL .'delete.png" title="'. IMG_TITEL_REMOVE .'"></a></td></tr>';
 		}
 		
 		//for($i=0; $i < count($this->products); $i++) {
@@ -121,7 +121,7 @@ class shoppingcart {
 		
 		$return_string = $return_string .'<div id="buttons">';
 											if($display_checkout == true) {
-												$return_string = $return_string .'<a href="checkout_step1.html" id="start_checkout" class="button_style">'. BUTTON_CHECKOUT .'</a>';
+												$return_string = $return_string .'<a href="checkout_step1.html" id="start_checkout">'. BUTTON_CHECKOUT .'</a>';
 											}	
 		$return_string = $return_string .'</div>';
 		

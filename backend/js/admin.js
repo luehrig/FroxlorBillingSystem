@@ -55,26 +55,11 @@ $(function() {
 		}).done(function( msg ) {
 			$('.content').html( msg );
 			$('a[id=save_customizing]').hide();
-			$('a[id=back_to_myshop]').hide();
 		});
 		
 		return false;
 	});	
 	
-	// get back from edit-customizing-view to customizing overview
-	$("body").on("click", "a[id=back_to_myshop]", function() {
-		$.ajax({
-			type: "POST",
-			url: "logic/process_action.php",
-			data: { action: "get_customizing_overview" }
-		}).done(function( msg ) {
-			$('.content').html( msg );
-			$('a[id=save_customizing]').hide();
-			$('a[id=back_to_myshop]').hide();
-		});
-		
-		return false;
-	});	
 
 	
 	// set customizing fields editable
@@ -88,10 +73,9 @@ $(function() {
 		$(this).hide();
 		// show save link
 		$('a[id=save_customizing]').show();
-		$('a[id=back_to_myshop]').show();
 	});	
 	
-	// save customizing changes
+	// set customizing fields editable
 	$('body').on("click","a[id=save_customizing]", function() {
 		// set all input fields as editable
 		$('input[type=text]').each(function() {
@@ -108,14 +92,6 @@ $(function() {
 			}).done(function( msg ) {
 				//$('.content').html( msg );
 				$('a[id=edit_customizing]').show();
-			});
-			
-			$.ajax({
-				type: "POST",
-				url: "logic/process_action.php",
-				data: { action: "msg_customizing_saved"}
-			}).done(function( msg ) {
-				$('.content').html( msg );
 			});
 			
 		});
@@ -139,21 +115,6 @@ $(function() {
 		
 		return false;
 	});	
-	
-	// get back to product overview
-	$("body").on("click", "a[id=back_to_myproducts]", function() {
-
-		$.ajax({
-			type: "POST",
-			url: "logic/process_action.php",
-			data: { action: "get_products_overview" }
-		}).done(function( msg ) {
-			$('.content').html( msg );
-		});
-		
-		return false;
-	});	
-	
 	
 	// set customizing fields editable for products
 	$('body').on("click","a[id=edit_product]", function() {
@@ -458,20 +419,6 @@ $(function() {
 		return false;
 	});	
 	
-	// get back to my product attributes overview
-	$("body").on("click", "a[id=back_to_myproductattribute]", function() {
-
-		$.ajax({
-			type: "POST",
-			url: "logic/process_action.php",
-			data: { action: "get_product_attributes_overview" }
-		}).done(function( msg ) {
-			$('.content').html( msg );
-		});
-		
-		return false;
-	});	
-	
 	// open form to create new attribute
 	
 	$("body").on("click", "a[id=create_new_product_attribute]", function() {
@@ -741,22 +688,7 @@ $(function() {
 		$.ajax({
 			type: "POST",
 			url: "logic/process_action.php",
-			data: { action: "show_customer_data", customer_id: customer_id }
-		}).done(function( msg ) {
-			$('.content').html( msg );
-		});
-		
-		return false;
-		
-	});	
-	
-	// get back from customer-data-view to customer-overview
-	$('body').on("click","a[id=back_to_mycontent]", function() {
-				
-		$.ajax({
-			type: "POST",
-			url: "logic/process_action.php",
-			data: { action: "get_customers_overview" }
+			data: { action: "open_customer_editor", customer_id: customer_id }
 		}).done(function( msg ) {
 			$('.content').html( msg );
 		});
@@ -921,7 +853,6 @@ $(function() {
 		
 		return false;
 	});	
-	
 	
 	// logout customer and redirect to main page
 	$("body").on("click", "a[id=logout]", function() {

@@ -143,10 +143,10 @@ class customer {
 		$return_string = $return_string .'<fieldset>'.
 				//Login Data
 		'<legend>'. LABEL_LOGIN_DATA .'</legend>
-		<label for="generalemail">'. LABEL_EMAIL .'</label>
-		<input type="email" id="generalemail" name="generalemail" rel="mandatory" value="'. $this->email .'">'.
-// 		<a href="#" id="change_pw"><'. BUTTON_CHANGE_PW. '></a>
-		'</fieldset>'.
+		<p><label for="generalemail">'. LABEL_EMAIL .'</label>
+		<input type="email" id="generalemail" name="generalemail" rel="mandatory" value="'. $this->email .'"></p>
+		<a href="#" id="change_pw"><'. BUTTON_CHANGE_PW. '></a>
+		</fieldset>'.
 			
 		// General Inforamtion
 		'<fieldset><legend>'. FIELDSET_GENERAL_INFORMATION .'</legend>
@@ -195,7 +195,7 @@ class customer {
 		<p><label for="shippingcity">'. LABEL_CITY .'</label>
 		<input type="text" id="shippingcity" name="shippingcity" rel="mandatory" value="'. $shipping_address_data['city'] .'"></p>
 		<p><label for="shippingcountry">'. LABEL_COUNTRY .'</label>'.
-		'<div class="country">'. $country->printSelectBox("shippingcountry_code","shippingcountry_code", $shipping_address_data['country_code'], 'rel="mandatory"').
+		'<div class="country">'. $country->printSelectBox("shippingcountry_code","shippingcountry_code", $shipping_address_data['country_code']).
 		'<input type="hidden" id="address_id_shipping" name="address_id_shipping" value="'. $shipping_address_data['customer_address_id'] .'">
 		</div></p>
 		</fieldset>';
@@ -215,7 +215,7 @@ class customer {
 		<p><label for="billingcity">'. LABEL_CITY .'</label>
 		<input type="text" id="billingcity" name="billingcity" rel="mandatory" value="'. $billing_address_data['city'] .'"></p>
 		<p><label for="billingcountry">'. LABEL_COUNTRY .'</label>'.
-		$country->printSelectBox("billingcountry_code","billingcountry_code",$billing_address_data['country_code'], 'rel="mandatory"') .'</p>
+		$country->printSelectBox("billingcountry_code","billingcountry_code",$billing_address_data['country_code']) .'</p>
 		<input type="hidden" id="address_id_billing" name="address_id_billing" value="'. $billing_address_data['customer_address_id'] .'">
 		</div>
 		</fieldset>
@@ -551,7 +551,6 @@ class customer {
 		<th>'. TABLE_HEADING_CUSTOMER_CUSTOMER_NUMBER .'</th>
 		<th>'. TABLE_HEADING_CUSTOMER_FIRST_NAME .'</th>
 		<th>'. TABLE_HEADING_CUSTOMER_LAST_NAME .'</th>
-		<th></th>
 		</tr>';
 
 		while($data = db_fetch_array($customer_query)) {

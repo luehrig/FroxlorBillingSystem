@@ -47,7 +47,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 	<h1>
 		<?php echo PAGE_TITLE_REGISTRATION; ?>
 	</h1>
-	<div class="messagearea"></div>
+	<div id="messagearea"></div>
 	<form method="post" action="#" id="registrationform" class="registrationform"
 		accept-charset=utf-8>
 		<div class="registrationform">
@@ -58,7 +58,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 					<?php echo FIELDSET_GENERAL_INFORMATION; ?>
 				</legend>
 				<p>
-					<label for="gender"><?php echo LABEL_GENDER . '*'; ?> </label> <select
+					<label for="gender"><?php echo LABEL_GENDER; ?> </label> <select
 						name="gender" id="gender" size="1" rel="mandatory">
 						<option value="" style="display: none;"></option>
 						<option
@@ -77,9 +77,9 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 						type="text" id="title" name="title">
 				</p>	
 				<p>
-					<label for="first_name"><?php echo LABEL_FIRST_NAME  . '*'; ?> </label> <input
+					<label for="first_name"><?php echo LABEL_FIRST_NAME; ?> </label> <input
 						type="text" id="first_name" name="first_name" rel="mandatory">
-					<label for="last_name"><?php echo LABEL_LAST_NAME . '*'; ?> </label> <input
+					<label for="last_name"><?php echo LABEL_LAST_NAME; ?> </label> <input
 						type="text" id="last_name" name="last_name" rel="mandatory">
 				</p>
 				<p>
@@ -88,11 +88,11 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 				</p>
 				<br>
 				<p>
-					<label for="password"><?php echo LABEL_PASSWORD . '*'; ?> </label> <input
+					<label for="password"><?php echo LABEL_PASSWORD; ?> </label> <input
 						type="password" id="password" name="password" rel="mandatory">
 				</p>
 				<p>
-					<label for="password"><?php echo LABEL_PASSWORDAGAIN . '*'; ?> </label> <input
+					<label for="password"><?php echo LABEL_PASSWORDAGAIN; ?> </label> <input
 						type="password" id="passwordagain" name="passwordagain"
 						rel="mandatory">
 				</p>
@@ -104,7 +104,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 					<?php echo FIELDSET_CONTACT_INFORMATION; ?>
 				</legend>
 				<p>
-					<label for="email"><?php echo LABEL_EMAIL . '*'; ?> </label> <input
+					<label for="email"><?php echo LABEL_EMAIL; ?> </label> <input
 						type="email" id="email" name="email" rel="mandatory">
 				</p>
 				<p>
@@ -124,23 +124,23 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 				</legend>
 				<div id="shippingaddress">
 					<p>
-						<label for="shippingstreet"><?php echo LABEL_STREET . '*'; ?> </label> <input
+						<label for="shippingstreet"><?php echo LABEL_STREET; ?> </label> <input
 							type="text" id="shippingstreet" name="shippingstreet"
 							rel="mandatory">
-						<label for="shippingstreetnumber" class="streetnumber"><?php echo LABEL_STREETNUMBER . '*'; ?>
+						<label for="shippingstreetnumber" class="streetnumber"><?php echo LABEL_STREETNUMBER; ?>
 						</label> <input type="text" id="shippingstreetnumber" class="streetnumber"
 							name="shippingstreetnumber" rel="mandatory">
 					</p>
 					<p>
-						<label for="shippingpostcode"><?php echo LABEL_POSTCODE . '*'; ?> </label>
+						<label for="shippingpostcode"><?php echo LABEL_POSTCODE; ?> </label>
 						<input type="text" id="shippingpostcode" class="postcode" name="shippingpostcode"
 							rel="mandatory">
-						<label for="shippingcity" class="city"><?php echo LABEL_CITY . '*'; ?> </label> <input
+						<label for="shippingcity" class="city"><?php echo LABEL_CITY; ?> </label> <input
 							type="text" id="shippingcity" class="city" name="shippingcity" rel="mandatory">
 					</p>
 					<p>
-						<label for="shippingcountry"><?php echo LABEL_COUNTRY . '*'; ?> </label>
-						<?php echo $country->printSelectBox("shippingcountry","shippingcountry", NULL, 'rel="mandatory"'); ?>
+						<label for="shippingcountry"><?php echo LABEL_COUNTRY; ?> </label>
+						<?php echo $country->printSelectBox("shippingcountry","shippingcountry"); ?>
 					</p>
 				</div>
 				<div id="billingaddress"></div>

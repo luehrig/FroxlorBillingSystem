@@ -228,7 +228,6 @@ class product {
 		<th>'. TABLE_HEADING_PRODUCT_DESCRIPTION.'</th>
 		<th>'. TABLE_HEADING_PRODUCT_QUANTITY .'</th>
 		<th>'. TABLE_HEADING_PRODUCT_PRICE .'</th>
-		<th></th>
 		</tr>';
 		
 		$table_content = '';
@@ -239,10 +238,10 @@ class product {
 			$active = $data['active'];
 			$change_state;
 			if($active==1){
-				$change_state = '<img src="'. PATH_IMAGES_REL .'deactivate.png" title="'. LINK_DEACTIVATE_PRODUCT .'">';
+				$change_state = '<img src="'. PATH_IMAGES_REL .'activate.png" title="'. LINK_ACTIVATE_PRODUCT .'">';
 			}
 			elseif($active==0){
-				$change_state = '<img src="'. PATH_IMAGES_REL .'activate.png" title="'. LINK_ACTIVATE_PRODUCT .'">';
+				$change_state = '<img src="'. PATH_IMAGES_REL .'deactivate.png" title="'. LINK_DEACTIVATE_PRODUCT .'">';
 			}
 			$table_content = $table_content .'<tr>
 			<td>'. $id_language_map[$data['language_id']] .'</td>

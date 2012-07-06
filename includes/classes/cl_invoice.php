@@ -357,7 +357,6 @@ class invoice {
 		<th>'. TABLE_HEADING_INVOICE_ISSUE_DATE .'</th>
 		<th>'. TABLE_HEADING_INVOICE_AMOUNT .'</th>
 		<th>'. TABLE_HEADING_INVOICE_INVOICE_STATUS .'</th>
-		<th></th><th></th>
 		</tr>';
 
 		while($data = db_fetch_array($invoice_query)) {
@@ -369,8 +368,8 @@ class invoice {
 			<td>'. mysql_date2german($invoice->getIssueDate()) .'</td>
 			<td>'. sprintf("%9.2f", $invoice->getGrossAmount()) . $currency->getCurrencySign() .'</td>
 			<td>'. invoice::getStatusBox($invoice->getStatusID(), NULL, 'statusbox_'. $invoice->getInvoiceID() ) .'</td>
-			<td><a href="../display_invoice.php?invoice_id='. $invoice->getInvoiceID() .'" id="display_invoice" target="_blank"><img src="'. PATH_IMAGES_REL .'show.png" title="'. LINK_DISPLAY_INVOICE_PDF . '"></a></td>
-			<td><a href="#!change_invoice_invoice" rel="'. $invoice->getInvoiceID() .'" id="change_invoice_status"><img src="'. PATH_IMAGES_REL .'activate.png" title="'. LINK_CONFIRM_INVOICE_STATUS . '"></a></td>
+			<td><a href="../display_invoice.php?invoice_id='. $invoice->getInvoiceID() .'" id="display_invoice" target="_blank"><img src="'. PATH_IMAGES_REL .'images/show.png" title="'. LINK_DISPLAY . '"></a></td>
+			<td><a href="#!change_invoice_invoice" rel="'. $invoice->getInvoiceID() .'" id="change_invoice_status">changeicon</a></td>
 			</tr>';
 		}
 
