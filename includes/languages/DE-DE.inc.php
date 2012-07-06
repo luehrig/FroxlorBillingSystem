@@ -185,6 +185,7 @@ define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
 define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
 define('LINK_DELETE', 'Löschen');
+define('LINK_CANCEL_PRODUCT', 'Kündigen');
 define('LINK_DISPLAY', 'Anzeigen');
 define('LINK_CONFIRM_INVOICE_STATUS', 'Geänderten Status bestätigen');
 define('LINK_DISPLAY_INVOICE_PDF', 'Rechnung als PDF öffnen');
