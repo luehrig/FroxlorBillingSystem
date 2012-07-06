@@ -147,6 +147,7 @@ define('TABLE_HEADING_CONTRACT_EXPIRATION_DATE_UNIT','Monat(e)');
 
 define('LABEL_CONTRACT_TERMINATION_EXECUTION_DATE','zum %s gekündigt');
 
+define('MSG_SUCCESSFULLY_LOGGED_IN_CUSTOMER','Sie haben sich erfolgreich im Kundenbereich angemeldet!');
 
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');

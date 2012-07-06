@@ -49,6 +49,12 @@ switch($action) {
 		echo WARNING_REGISTRATION_RESET_FORM_CONFIRM;
 
 		break;
+		
+	case 'get_message_successfully_logged_in_customer':
+
+		echo MSG_SUCCESSFULLY_LOGGED_IN_CUSTOMER;
+		
+		break;
 
 }
 

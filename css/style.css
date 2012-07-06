@@ -703,6 +703,8 @@ legend
 
 #edit_customer{
 	margin: 15px;
+	clear: left;
+	float: left;
 }
 
 .edit_cust_data label{
