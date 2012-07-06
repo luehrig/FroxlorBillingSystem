@@ -146,20 +146,24 @@ $(function() {
 	
 	
 	
-//	$("body").on("change", "select[id=language_selection] option:selected)",(function(){
-//		var language_id = $('select[id=language_selection] option:selected').attr('id');
-//		alert('trigger me');
-//		$.ajax({
-//			type: "POST",
-//			url: "logic/process_action.php",
-//			data: { action: "open_product_editor", product_id: product_id , language_id: language_id}
-//		}).done(function( msg ) {
-//			$('.content').html( msg );
-//		});
-//		
-//		return false;
-//			
-//		}));	
+	$("body").on("change", "select[id=language_selection]",(function(){
+		/* var language_id = $('select[id=language_selection] option:selected').attr('id');
+		alert('trigger me');
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_product_editor", product_id: product_id , language_id: language_id}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		*/
+		
+		alert('trigger me');
+		
+		return false;
+			
+		}));	
 	
 //	$(".languageSelectBox").change(function(){
 //		  $(this).css("background-color","#FFFFCC");
