@@ -873,4 +873,9 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 		});
 	}
 
+	// start timer for auto close
+	var timer = setTimeout(function() {
+	    $.fn.colorbox.close();
+	}, 5000);
+	
 }
