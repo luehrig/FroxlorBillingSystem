@@ -833,7 +833,7 @@ legend
     float: left;
     width: auto;
 }
-.content label[for="title"]{
+.content label[for="content_title"]{
 	font-weight: bold;
 	width: 45px;
 }
@@ -856,6 +856,10 @@ legend
 }
 #new_server_editor label{
 	width: 13em;
+}
+
+#img_delete{
+	margin: 0 10px;
 }
 
 /*---------------- contact form --------------------------------------*/

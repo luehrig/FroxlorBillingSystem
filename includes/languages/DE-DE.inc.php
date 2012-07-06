@@ -78,6 +78,7 @@ define('BUTTON_EDIT_CUSTOMER','Meine Daten bearbeiten');
 define('BUTTON_SAVE','Speichern');
 define('BUTTON_CHECKOUT','Kasse');
 define('BUTTON_CHECKOUT_NEXT','Weiter');
+define('IMG_TITEL_REMOVE', 'Entfernen');
 
 define('BUTTON_LOGOUT_BACKEND','Abmelden');
 define('BUTTON_LOGIN_BACKEND','Einloggen');
@@ -309,6 +310,7 @@ define('INFO_MESSAGE_CONTENT_UPDATED', 'Der Inhalt wurde erfolgreich geändert.'
 define('INFO_MESSAGE_CONTENT_CREATED', 'Der Inhalt mit dem Titel wurde erfolgreich angelegt.');
 
 define('INFO_MESSAGE_INVOICE_STATUS_CHANGED', 'Der Rechnungsstatus wurde erfolgreich geändert.');
+define('INFO_MESSAGE_PRODUCT_INFO_SUCCESSFULLY_DELETED', 'Das Produktattribut wurde erfolgreich gelöscht.');
 
 
 ?>
