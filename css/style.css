@@ -80,7 +80,7 @@ body
 }
 
 
-/* --------------- Headers ------------------------------ */
+/* --------------- Headlines ------------------------------ */
 body h1{
 	 
 	 font-family: Arial, Helvetica, sans-serif;
@@ -88,7 +88,7 @@ body h1{
 	 font-size: 1.25em;
 	 letter-spacing: .2em;
 	 line-height: 1.1em;
-        margin: 20px 15px 10px;
+        margin: 20px 30px 10px;
 	 text-align: left;
 	 text-transform: uppercase;
 	 color: #333;
@@ -175,10 +175,15 @@ a.back:hover{
 	padding: 15px;
 }
 
-/*Message Area*/
-.messagearea{
+/* Message area wrapper */
+.messagearea_wrapper{
 	margin: 5px;
 	font-weight: bold;
+}
+
+/*Message Area*/
+.messagearea{
+	color: black;
 }
 
 /*Error Message Area*/
@@ -218,8 +223,7 @@ table
 	width: 100%;
 	text-align: center;
 	margin-bottom: 15px;
-	margin-top: 15 px;
-	
+	margin-top: 15 px;	
 }
 
 td
@@ -230,11 +234,12 @@ td
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
 	padding:5px;
+	border-color: grey;
 }
 
 th
 {
-	border-bottom: 5px solid black;
+	border-bottom: 5px solid grey;
 }
 .shoppingcart a:link[id="start_checkout"]{
 	text-align: right;
@@ -348,6 +353,7 @@ fieldset
 {
 	border: black solid 1px;
 	border-radius: 10px;
+	border-color: grey;
 	padding: 10px;
 	margin:10px;
 	min-height:150px;
@@ -677,7 +683,7 @@ legend
 /* Customer Data Table */
 .customer_data {
 	vertical-align: top;
-	margin: 15px;
+	margin: 5px;
 }
 
 .customer_data th{
@@ -696,10 +702,6 @@ legend
 }
 
 #edit_customer{
-	margin: 15px;
-}
-
-.edit_cust_data{
 	margin: 15px;
 }
 

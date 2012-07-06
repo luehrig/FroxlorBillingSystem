@@ -111,14 +111,24 @@ $(function() {
 			type : "POST",
 			url : "logic/process_customer_action.php",
 			data : {
+				action : "get_customer_data_headline",
+				customer_id : customer_id
+			}
+		}).done(function(msg) {
+			$('.headline_customercenter').html(msg);
+		});
+		
+		$.ajax({
+			type : "POST",
+			url : "logic/process_customer_action.php",
+			data : {
 				action : "get_customer_data",
 				customer_id : customer_id
 			}
 		}).done(function(msg) {
 			$('.customer_content_container').html(msg);
-			// $('a[id=save_customizing]').hide();
 		});
-
+		
 		return false;
 	});
 
@@ -246,6 +256,8 @@ $(function() {
 						}
 					}).done(function(msg) {
 						$('.customer_content_container').html(msg);
+						// clear error message area
+						$('#error_msg_area').html('');
 					});
 
 					// get overview page with all customizing entries
@@ -325,6 +337,19 @@ $(function() {
 
 		var customer_id = $(this).attr('rel');
 
+		// get headline
+		$.ajax({
+			type : "POST",
+			url : "logic/process_customer_action.php",
+			data : {
+				action : "get_customer_invoices_headline",
+				customer_id : customer_id
+			}
+		}).done(function(msg) {
+			$('.headline_customercenter').html(msg);
+		});
+		
+		// get content
 		$.ajax({
 			type : "POST",
 			url : "logic/process_customer_action.php",
@@ -334,7 +359,6 @@ $(function() {
 			}
 		}).done(function(msg) {
 			$('.customer_content_container').html(msg);
-			// $('a[id=save_customizing]').hide();
 		});
 
 		return false;
@@ -344,6 +368,18 @@ $(function() {
 
 function getCustomerProducts() {
 
+	// get headline
+	$.ajax({
+		type : "POST",
+		url : "logic/process_customer_action.php",
+		data : {
+			action : "get_customer_products_headline"
+		}
+	}).done(function(msg) {
+		$('.headline_customercenter').html(msg);
+	});
+	
+	// get content
 	$.ajax({
 		type : "POST",
 		url : "logic/process_customer_action.php",
@@ -352,7 +388,6 @@ function getCustomerProducts() {
 		}
 	}).done(function(msg) {
 		$('.customer_content_container').html(msg);
-		// $('a[id=save_customizing]').hide();
 	});
 
 }

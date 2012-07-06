@@ -39,6 +39,7 @@ switch($action) {
 
 	case 'get_customizing_overview':
 		echo'<h1>'.LABEL_MY_SHOP.'</h1>';
+		echo'<a href="#" id="back_to_myshop" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -70,6 +71,7 @@ switch($action) {
 
 	case 'open_product_editor':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -89,6 +91,7 @@ switch($action) {
 
 	case 'open_create_new_attribute_for_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -103,6 +106,7 @@ switch($action) {
 
 	case 'create_new_product_info':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -163,6 +167,7 @@ switch($action) {
 		
 	case 'edit_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -202,6 +207,7 @@ switch($action) {
 
 	case 'open_translate_product_form':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -217,6 +223,7 @@ switch($action) {
 
 	case 'translate_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -259,6 +266,7 @@ switch($action) {
 
 	case 'open_create_product_form':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		
@@ -270,6 +278,7 @@ switch($action) {
 
 	case 'create_new_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = null;
@@ -306,6 +315,7 @@ switch($action) {
 
 	case 'change_product_state':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -336,6 +346,7 @@ switch($action) {
 
 	case 'delete_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -367,6 +378,7 @@ switch($action) {
 
 	case 'open_create_attribute_form':
 		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
+		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo productAttribute::printCreateAttributeForm(language::printLanguages());
 		echo '</fieldset>';
@@ -381,6 +393,9 @@ switch($action) {
 		$product_attribute_data['language_id'] = $language_id;
 		$product_attribute_data['description'] = $description;
 		
+		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
+		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
+		echo'<div class="whitebox internal">';
 		if(productAttribute::descriptionAlreadyExists($language_id, $description)){
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS;
 		}
@@ -392,6 +407,8 @@ switch($action) {
 				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED;
 			}
 		}
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 		
 	case 'delete_product_attribute':
@@ -409,6 +426,7 @@ switch($action) {
 
 	case 'open_product_attribute_editor':
 		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
+		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_attribute_id = $_POST['product_attribute_id'];

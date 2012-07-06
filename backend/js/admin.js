@@ -55,11 +55,26 @@ $(function() {
 		}).done(function( msg ) {
 			$('.content').html( msg );
 			$('a[id=save_customizing]').hide();
+			$('a[id=back_to_myshop]').hide();
 		});
 		
 		return false;
 	});	
 	
+	// get back from edit-customizing-view to customizing overview
+	$("body").on("click", "a[id=back_to_myshop]", function() {
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_customizing_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+			$('a[id=save_customizing]').hide();
+			$('a[id=back_to_myshop]').hide();
+		});
+		
+		return false;
+	});	
 
 	
 	// set customizing fields editable
@@ -73,9 +88,10 @@ $(function() {
 		$(this).hide();
 		// show save link
 		$('a[id=save_customizing]').show();
+		$('a[id=back_to_myshop]').show();
 	});	
 	
-	// set customizing fields editable
+	// save customizing changes
 	$('body').on("click","a[id=save_customizing]", function() {
 		// set all input fields as editable
 		$('input[type=text]').each(function() {
@@ -123,6 +139,21 @@ $(function() {
 		
 		return false;
 	});	
+	
+	// get back to product overview
+	$("body").on("click", "a[id=back_to_myproducts]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_products_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
 	
 	// set customizing fields editable for products
 	$('body').on("click","a[id=edit_product]", function() {
@@ -415,6 +446,20 @@ $(function() {
 	
 	// get overview page with all product attributes.
 	$("body").on("click", "a[id=myproductattributes]", function() {
+
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "get_product_attributes_overview" }
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	// get back to my product attributes overview
+	$("body").on("click", "a[id=back_to_myproductattribute]", function() {
 
 		$.ajax({
 			type: "POST",
@@ -876,6 +921,7 @@ $(function() {
 		
 		return false;
 	});	
+	
 	
 	// logout customer and redirect to main page
 	$("body").on("click", "a[id=logout]", function() {

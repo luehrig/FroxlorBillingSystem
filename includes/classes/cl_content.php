@@ -93,7 +93,7 @@ class content {
 		
 		$return_string = $return_string . EXPLANATION_CONTENT;
 		
-		$return_string = $return_string . '<table><tr><th>'. TABLE_HEADING_CONTENT_TITLE .'</th></tr>';
+		$return_string = $return_string . '<table><tr><th>'. TABLE_HEADING_CONTENT_TITLE .'</th><th></th><th></th></tr>';
 		
 		while($data = db_fetch_array($content_query)) {
 			$return_string = $return_string . '<tr id="'. $data['content_id'] .'_'. $data['language_id'] .'"><td name="title" title="'. $data['content_id'] .'">'. $data['title'] .'</td><td><a href="#" id="edit_content" rel="'. $data['content_id'] .'_'. $data['language_id'] .'"><img src="'. PATH_IMAGES_REL .'edit.png" title="'. LINK_EDIT_PRODUCT .'"></a></td>

@@ -551,6 +551,7 @@ class customer {
 		<th>'. TABLE_HEADING_CUSTOMER_CUSTOMER_NUMBER .'</th>
 		<th>'. TABLE_HEADING_CUSTOMER_FIRST_NAME .'</th>
 		<th>'. TABLE_HEADING_CUSTOMER_LAST_NAME .'</th>
+		<th></th>
 		</tr>';
 
 		while($data = db_fetch_array($customer_query)) {

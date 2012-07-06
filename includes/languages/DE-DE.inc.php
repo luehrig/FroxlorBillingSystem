@@ -88,6 +88,7 @@ define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
 define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
 define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
 define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
+define('BUTTON_CREATE_PRODUCT_ATTRIBUTE', 'Attribut anlegen');
 define('BUTTON_CHANGE_ATTRIBUTES', 'Attribute ändern');
 define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
 define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
@@ -184,6 +185,9 @@ define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
 define('LINK_DELETE', 'Löschen');
 define('LINK_DISPLAY', 'Anzeigen');
+define('LINK_CONFIRM_INVOICE_STATUS', 'Geänderten Status bestätigen');
+define('LINK_DISPLAY_INVOICE_PDF', 'Rechnung als PDF öffnen');
+
 define('BUTTON_CREATE_SERVER', 'Server anlegen');
 
 define('LABEL_MY_SHOP','Mein Shop');
@@ -288,6 +292,15 @@ define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des
 define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
 define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Produkt existiert bereits!');
+
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS', 'Dieses Produktattribut existiert bereits!');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_SUCCESSFUL', 'Änderungen wurden erfolgreich gespeichert.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_SUCCESSFUL', 'Produktattribut erfolgreich angelegt.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED', 'Es ist ein Fehler beim Anlegen des Produktattributs aufgetreten.');
+
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED', 'Produktattribut wurde erfolgreich entfernt.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_DELETION_FAILED', 'Es ist ein Fehler beim Löschen des Produktattributs aufgetreten.');
 
 define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt.');
 
