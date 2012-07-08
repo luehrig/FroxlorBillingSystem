@@ -425,24 +425,6 @@ ENGINE = MyISAM;
 
 
 -- -----------------------------------------------------
--- Table `froxlor_billing`.`tbl_customizing`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `froxlor_billing`.`tbl_customizing` ;
-
-CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_customizing` (
-  `key` VARCHAR(100) NOT NULL ,
-  `language_id` INT NULL ,
-  `value` VARCHAR(255) NOT NULL ,
-  INDEX `fk_customizing_language_id` (`language_id` ASC) ,
-  CONSTRAINT `fk_customizing_language_id`
-    FOREIGN KEY (`language_id` )
-    REFERENCES `froxlor_billing`.`tbl_language` (`language_id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = MyISAM;
-
-
--- -----------------------------------------------------
 -- Table `froxlor_billing`.`tbl_backend_user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `froxlor_billing`.`tbl_backend_user` ;
@@ -549,26 +531,6 @@ CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_contract` (
     FOREIGN KEY (`order_position_id` )
     REFERENCES `froxlor_billing`.`tbl_order_position` (`order_position_id` )
     ON DELETE NO ACTION
-    ON UPDATE CASCADE)
-ENGINE = MyISAM;
-
-
--- -----------------------------------------------------
--- Table `froxlor_billing`.`tbl_content`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `froxlor_billing`.`tbl_content` ;
-
-CREATE  TABLE IF NOT EXISTS `froxlor_billing`.`tbl_content` (
-  `content_id` INT NOT NULL AUTO_INCREMENT ,
-  `language_id` INT NOT NULL ,
-  `title` VARCHAR(255) NULL ,
-  `text` MEDIUMTEXT NULL ,
-  PRIMARY KEY (`content_id`, `language_id`) ,
-  INDEX `fk_content_language_id` (`language_id` ASC) ,
-  CONSTRAINT `fk_content_language_id`
-    FOREIGN KEY (`language_id` )
-    REFERENCES `froxlor_billing`.`tbl_language` (`language_id` )
-    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = MyISAM;
 
@@ -747,51 +709,6 @@ INSERT INTO `froxlor_billing`.`tbl_server` (`server_id`, `name`, `mngmnt_ui`, `i
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `froxlor_billing`.`tbl_customizing`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `froxlor_billing`;
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('site_title', 1, 'Froxlorcloud');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('site_title', 2, 'Froxlorcloud');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('default_language', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('min_password_length', NULL, '8');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_gender_male', NULL, 'm');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_gender_female', NULL, 'f');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_customer_prefix', NULL, 'K');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_invoice_prefix', NULL, 'R');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_standard_invoice_status', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_standard_order_status', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_standard_payment_periode', NULL, '14');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_name', NULL, 'Froxlor Hosting Company');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_president', NULL, 'Max Mustermann');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_bank_account', NULL, '12345678');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_bank_code', NULL, '09871100');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_swift_code', NULL, 'DE0111111111');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_street', NULL, 'Mustergasse 1a');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_founder_year', NULL, '2012');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_city', NULL, 'Musterstadt');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_post_code', NULL, '12345');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_tel', NULL, '49 123 456789');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_fax', NULL, '49 123 09876543');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_product_attribute_discspace', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_froxlor_client_prefix', NULL, 'FBS');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_bank_name', NULL, 'Hausbank');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_tax_id_number', NULL, '0987654321');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_email', NULL, 'info@projektplatz.eu');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_webpage', NULL, 'http://projektplatz.eu');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_country', NULL, 'Germany');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_company_billing_sender', NULL, 'billing@projektplatz.eu');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_payment_terms', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_tax', NULL, '2');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('business_payment_default_currency', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_home', NULL, '1');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_imprint', NULL, '2');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_sitemap', NULL, '4');
-INSERT INTO `froxlor_billing`.`tbl_customizing` (`key`, `language_id`, `value`) VALUES ('sys_page_help', NULL, '3');
-
-COMMIT;
-
--- -----------------------------------------------------
 -- Data for table `froxlor_billing`.`tbl_backend_user`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -812,15 +729,90 @@ INSERT INTO `froxlor_billing`.`tbl_reminder_type` (`reminder_type_id`, `language
 
 COMMIT;
 
--- -----------------------------------------------------
--- Data for table `froxlor_billing`.`tbl_content`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `froxlor_billing`;
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 1, 'Impressum', 'Hier kommt ein Impressum hin!');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (1, 2, 'imprint', 'This will be the imprint');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 1, 'Startseite', 'Eine ganz tolle Startseite');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (2, 2, 'home', 'This will be the landing page');
-INSERT INTO `froxlor_billing`.`tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES (3, 1, 'Allgemeine Geschäftsbedingungen', '<div align=\"center\"><b>Allgemeine Geschäftsbedingungen (AGB)</b></div><br />');
+--
+-- Tabellenstruktur für Tabelle `tbl_content`
+--
 
-COMMIT;
+DROP TABLE IF EXISTS `tbl_content`;
+CREATE TABLE IF NOT EXISTS `tbl_content` (
+  `content_id` int(11) NOT NULL AUTO_INCREMENT,
+  `language_id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `text` mediumtext,
+  PRIMARY KEY (`content_id`,`language_id`),
+  KEY `fk_content_language_id` (`language_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Daten für Tabelle `tbl_content`
+--
+
+INSERT INTO `tbl_content` (`content_id`, `language_id`, `title`, `text`) VALUES
+(1, 1, 'Impressum', '<h1>Impressum</h1><p>Angaben gemäß § 5 TMG:<br/><br/></p>Max Mustermann<br />Froxcloud<br />Musterstraße 111<br />90210 Musterstadt<br /></p><h2>Kontakt:</h2><table><tr><td><p>Telefon:</p></td><td><p>+49 (0) 123 44 55 66</p></td></tr><tr><td><p>Telefax:</p></td><td><p>+49 (0) 123 44 55 99</p></td></tr><tr><td><p>E-Mail:</p></td><td><p>info@projektplatz.eu</p></td></tr></table><h2>Umsatzsteuer-ID:</h2><p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br />'),
+(1, 2, 'imprint', 'This will be the imprint'),
+(2, 1, 'Startseite', '<p> Herzlich Willkommen auf Froxcloud!</p><p> Wir freuen Sie hier als Besucher begrüßen zu dürfen und hoffen, dass Sie bald auch Kunde von uns sind.</p><p> &nbsp;</p><p> Froxcloud ist eine Musterfirma, welche virtuelle Webserverkapazitäten auf Basis der Server Management Software Froxlor anbietet.</p><p> &nbsp;</p><p> Viel Spaß beim weiteren Durchstöbern der Seiten.</p><p> &nbsp;</p><p> Ihr Froxcloud Team!</p>'),
+(2, 2, 'home', '<p> Welcome to Froxcloud!</p><p>Froxcloud is a demo enterprise that sell virtual webspace on a Froxlor based infrastructure.</p><p> &nbsp;</p><p>Best regards,</p><p> &nbsp;</p><p> The Froxcloud Team</p>'),
+(3, 1, 'Allgemeine Geschäftsbedingungen', '<div align="center"><b>Allgemeine Geschäftsbedingungen (AGB)</b></div><br />'),
+(4, 1, 'Zahlbedingungen', 'Die Rechnung ist zahlbar innerhalb von 14 Tagen nach Erhalt der Rechnung.'),
+(4, 2, 'terms', 'Invoice payable within 14 days of receipt of the invoice.'),
+(5, 1, 'Sitemap', 'Eine tolle Sitemap!'),
+(5, 2, 'sitemap', 'Here will be the sitemap'),
+(6, 1, 'Hilfe', 'Grundsätzliche Hilfe zur Anwendung!'),
+(6, 2, 'help', 'This will be the help page!');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tbl_customizing`
+--
+
+DROP TABLE IF EXISTS `tbl_customizing`;
+CREATE TABLE IF NOT EXISTS `tbl_customizing` (
+  `key` varchar(100) NOT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `value` varchar(255) NOT NULL,
+  KEY `fk_customizing_language_id` (`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `tbl_customizing`
+--
+
+INSERT INTO `tbl_customizing` (`key`, `language_id`, `value`) VALUES
+('site_title', 1, 'Froxlorcloud'),
+('site_title', 2, 'Froxlorcloud'),
+('default_language', NULL, '1'),
+('min_password_length', NULL, '8'),
+('sys_gender_male', NULL, 'm'),
+('sys_gender_female', NULL, 'f'),
+('sys_customer_prefix', NULL, 'K'),
+('sys_invoice_prefix', NULL, 'R'),
+('business_standard_invoice_status', NULL, '1'),
+('business_standard_order_status', NULL, '1'),
+('business_standard_payment_periode', NULL, '14'),
+('business_company_name', NULL, 'Froxlor Hosting Company'),
+('business_company_president', NULL, 'Max Mustermann'),
+('business_payment_bank_account', NULL, '12345678'),
+('business_payment_bank_code', NULL, '09871100'),
+('business_payment_swift_code', NULL, 'DE0111111111'),
+('business_company_street', NULL, 'Mustergasse 1a'),
+('business_company_founder_year', NULL, '2012'),
+('business_company_city', NULL, 'Musterstadt'),
+('business_company_post_code', NULL, '12345'),
+('business_company_tel', NULL, '49 123 456789'),
+('business_company_fax', NULL, '49 123 09876543'),
+('sys_product_attribute_discspace', NULL, '1'),
+('business_froxlor_client_prefix', NULL, 'FBS'),
+('business_payment_bank_name', NULL, 'Hausbank'),
+('business_payment_tax_id_number', NULL, '0987654321'),
+('business_company_email', NULL, 'info@projektplatz.eu'),
+('business_company_webpage', NULL, 'http://projektplatz.eu'),
+('business_company_country', NULL, 'Germany'),
+('business_company_billing_sender', NULL, 'billing@projektplatz.eu'),
+('business_payment_payment_terms', NULL, '4'),
+('business_payment_default_tax', NULL, '2'),
+('business_payment_default_currency', NULL, '1'),
+('sys_page_home', NULL, '2'),
+('sys_page_imprint', NULL, '1'),
+('sys_page_sitemap', NULL, '5'),
+('sys_page_help', NULL, '6');
