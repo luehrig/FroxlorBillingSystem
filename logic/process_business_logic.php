@@ -4,6 +4,7 @@ include_once '../configuration.inc.php';
 
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
+require_once PATH_CLASSES .'cl_product.php';
 require_once PATH_CLASSES .'cl_shoppingcart.php';
 require_once PATH_CLASSES .'cl_contract.php';
 require_once PATH_CLASSES .'cl_notice.php';
@@ -71,6 +72,35 @@ switch($action) {
 
 		break;
 
+	case 'decrease_product_in_cart':
+
+		$product_id = $_POST['product_id'];
+		$quantity = $_POST['quantity'];
+
+		$cart = new shoppingcart(session_id());
+		$cart->removeProduct($product_id,$quantity);
+
+		break;
+
+	case 'increase_product_in_cart':
+
+		$product_id = $_POST['product_id'];
+		$quantity = $_POST['quantity'];
+
+		$cart = new shoppingcart(session_id());
+		$cart->addProduct($product_id,$quantity);
+
+		break;
+
+	case 'get_product_amount_in_cart':
+
+		$product_id = $_POST['product_id'];
+
+		$cart = new shoppingcart(session_id());
+		echo $cart->getProductAmount($product_id);
+
+		break;
+
 		/*
 		 *
 	 * customer center
@@ -80,9 +110,9 @@ switch($action) {
 	case 'terminate_contract':
 
 		$contract_id = $_POST['contract_id'];
-		
+
 		$notice = notice::create($contract_id);
-		
+
 		if($notice != NULL) {
 			echo sprintf(SUCCESS_CONTRACT_TERMINATION, mysql_date2german( $notice->getExecutionDate() ) );
 		}

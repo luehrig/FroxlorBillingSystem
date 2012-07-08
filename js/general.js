@@ -462,6 +462,101 @@ $(function() {
 
 	});
 
+	// decrease number of product in shopping cart
+	$("body").on("click", "span[id=decrease_cart]", function() {
+		var product_id = $(this).attr('rel');
+		var quantity = $('input[id=quantity_'+product_id+']').val();
+		
+		// if quantity is greater than 1 decrease product by one
+		if(parseInt(quantity) > 1) {
+		
+		quantity = parseInt(quantity) - parseInt(1);
+		
+		$.ajax({
+			type : "POST",
+			url : "logic/process_business_logic.php",
+			data : {
+				action : "decrease_product_in_cart",
+				product_id : product_id, quantity : 1
+			}
+		}).done(function(msg) {
+			setProductCountInCart();
+
+			$.ajax({
+				type : "POST",
+				url : "logic/process_business_logic.php",
+				data : {
+					action : "get_product_amount_in_cart", product_id : product_id
+				}
+			}).done(function(amount) {
+				$('span[id=amount_'+product_id+']').text(amount);
+			});
+			
+			// set new quantity in product field
+			$('input[id=quantity_'+product_id+']').val(quantity);
+		});
+
+		}
+		// if quantity is lower than zero -> remove product from cart
+		else {
+			$.ajax({
+				type : "POST",
+				url : "logic/process_business_logic.php",
+				data : {
+					action : "remove_product_from_cart",
+					product_id : product_id
+				}
+			}).done(function(msg) {
+				setProductCountInCart();
+
+				$.ajax({
+					type : "POST",
+					url : "logic/process_content_handling.php",
+					data : {
+						action : "show_shoppingcart"
+					}
+				}).done(function(msg) {
+					$('.content_container').html(msg);
+				});
+			});
+		}
+		
+	});
+	
+	// decrease number of product in shopping cart
+	$("body").on("click", "span[id=increase_cart]", function() {
+		var product_id = $(this).attr('rel');
+		var quantity = $('input[id=quantity_'+product_id+']').val();
+		
+		quantity = parseInt(quantity) + parseInt(1);
+		
+		$.ajax({
+			type : "POST",
+			url : "logic/process_business_logic.php",
+			data : {
+				action : "increase_product_in_cart",
+				product_id : product_id, quantity : 1
+			}
+		}).done(function(msg) {
+			setProductCountInCart();
+
+			$.ajax({
+				type : "POST",
+				url : "logic/process_business_logic.php",
+				data : {
+					action : "get_product_amount_in_cart", product_id : product_id
+				}
+			}).done(function(amount) {
+				$('span[id=amount_'+product_id+']').text(amount);
+			});
+			
+			// set new quantity in product field
+			$('input[id=quantity_'+product_id+']').val(quantity);
+		});
+
+	});
+	
+	
 	// first step in checkout process
 	$("body").on("click", "a[id=start_checkout]", function() {
 		$.ajax({

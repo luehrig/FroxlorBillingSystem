@@ -24,9 +24,7 @@ class product {
 			$this->description = $product_data['description'];
 			$this->quantity = $product_data['quantity'];
 			$this->price = $product_data['price'];
-			$this->active = $product_data['active'];
-			//echo $this->active;
-			
+			$this->active = $product_data['active'];		
 		}		
 	}
 	/* public section */

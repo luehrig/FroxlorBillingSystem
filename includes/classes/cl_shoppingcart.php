@@ -88,6 +88,28 @@ class shoppingcart {
 		}
 	}
 	
+	// returns product count in cart for specific product
+	public function getProductCount($product_id) {
+		
+		$sql_statement = 'SELECT sc.quantity FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.product_id = '. (int) $product_id;
+		$quantity_query = db_query($sql_statement);
+		
+		if($quantity_query != NULL && db_num_results($quantity_query) == 1) {
+			$result = db_fetch_array($quantity_query);
+			return $result['quantity'];
+		}
+		else {
+			return null;
+		}
+	}
+	
+	// returns amount for single product
+	public function getProductAmount($product_id) {		
+		$product = new product($product_id, language::ISOTointernal( language::getBrowserLanguage() ) );
+		
+		return $product->getPrice() * $this->getProductCount($product_id);
+	}
+	
 	// returns shopping cart as html form with table
 	public function printCart($language_id = NULL, $display_checkout = false) {
 		
@@ -109,7 +131,7 @@ class shoppingcart {
 								</tr>';
 		
 		while($result_data = db_fetch_array($query)) {
-			$return_string = $return_string .'<tr><td>'. $result_data['title'] .'</td><td><span id="decrease_'. $result_data['product_id'] .'"><img class="img_plus_minus" src="'. PATH_IMAGES_REL .'minus.png"></span><input type="text" id="quantity_'. $result_data['product_id'] .'" value="'. $result_data['quantity'] .'"><span id="increase_'. $result_data['product_id'] .'"><img class="img_plus_minus" src="'. PATH_IMAGES_REL .'plusicon.png"></span></td>
+			$return_string = $return_string .'<tr><td>'. $result_data['title'] .'</td><td><span id="decrease_cart" rel="'. $result_data['product_id'] .'"><img class="img_plus_minus" src="'. PATH_IMAGES_REL .'minus.png"></span><input type="text" id="quantity_'. $result_data['product_id'] .'" value="'. $result_data['quantity'] .'" readonly="readonly"><span id="increase_cart" rel="'. $result_data['product_id'] .'"><img class="img_plus_minus" src="'. PATH_IMAGES_REL .'plusicon.png"></span></td>
 			<td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td><td><a href="#" id="removeproduct_'. $result_data['product_id'] .'" rel="'. $result_data['product_id'] .'"><img src="'. PATH_IMAGES_REL .'delete.png" title="'. IMG_TITEL_REMOVE .'"></a></td></tr>';
 		}
 		
