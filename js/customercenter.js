@@ -48,6 +48,8 @@ $(function() {
 								}
 							}).done(function(msg) {
 								$('.content_container').html(msg);
+								$("a").removeClass("mm_active");
+								$('a[id=customercenter]').addClass("mm_active");
 							});
 						}
 
