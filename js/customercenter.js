@@ -27,7 +27,7 @@ $(function() {
 					if (msg == 'true') {
 						$.colorbox.close();
 						$('a[id=customercenter]').addClass('nav');
-
+						
 						if (position != '') {
 							$.ajax({
 								type : "POST",
