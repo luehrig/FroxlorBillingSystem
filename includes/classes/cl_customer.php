@@ -93,11 +93,18 @@ class customer {
 		'<br>'.$billing_address_data['post_code'].' '.$billing_address_data['city']. // post code + city
 		'<br>'. $country->getCountryName($billing_address_data['country_code']) .'</td></tr>'. // country
 		'<tr><th>'.LABEL_S_ADDRESS.': </th><td>';
-		if($shipping_address_data == $shipping_address_data){ // if billing address equals shipping address show checked checkbox
+		if($this->shipping_address == $this->billing_address){ // if billing address equals shipping address show checked checkbox
 			$return_string = $return_string.'<input type="checkbox" name="same_adress" readonly checked>'. LABEL_SAME_ADRESS;
 		}
 		else{ // if not show shipping address
-			$return_string = $return_string.
+			$return_string = $return_string.' '.$this->company.'<br>';
+			if($this->gender == $customizing->getCustomizingValue('sys_gender_male') ){ // Gender
+				$return_string = $return_string .SELECT_CUSTOMER_GENDER_MALE;
+			}
+			else{
+				$return_string = $return_string .SELECT_CUSTOMER_GENDER_FEMALE;
+			}
+			$return_string = $return_string.' '.$this->title.' '.$this->first_name.' '.$this->last_name. // name
 			$shipping_address_data['street'].' '.$shipping_address_data['street_number']. // street + number
 			'<br>'.$shipping_address_data['post_code'].' '.$shipping_address_data['city']. // post code + city
 			'<br>'.$country->getCountryName($shipping_address_data['country_code']).'</td></tr>'; // country

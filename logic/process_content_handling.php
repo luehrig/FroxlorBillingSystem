@@ -274,8 +274,10 @@ switch($action) {
 		echo '<div class="whitebox internal">';
 		echo '<fieldset>';
 		
+		// message area wrapper
+		echo '<div class="messagearea_wrapper">';
 		// message area
-		echo '<div class="messagearea">'; 
+		echo '<div class="messagearea"></div>'; 
 		// error message area
 		echo '<div id="error_msg_area">'.'</div>';
 		echo '</div>';

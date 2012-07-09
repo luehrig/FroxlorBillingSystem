@@ -109,6 +109,10 @@ $(function() {
 
 		var customer_id = $(this).attr('rel');
 
+		// clear message area
+		$('#error_msg_area').html('');
+		$('.messagearea').html('');
+		
 		// get headline
 		$.ajax({
 			type : "POST",
@@ -341,6 +345,10 @@ $(function() {
 
 		var customer_id = $(this).attr('rel');
 
+		// clear message area
+		$('#error_msg_area').html('');
+		$('.messagearea').html('');
+		
 		// get headline
 		$.ajax({
 			type : "POST",

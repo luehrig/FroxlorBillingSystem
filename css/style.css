@@ -743,19 +743,16 @@ legend
 	margin-left: 20px;
 }
 
-#change_pw{
-	
-	
-}
-
 #checkbox_same_address{
 	width: 10px;
 	margin: 10px;
 }
 
-#shippingcountry{
-	
+table td[id="small_font"]{
+	font-size: 8pt;
+    max-width: 70px;
 }
+
 
 
 /*----------------------Backend--------------------------*/

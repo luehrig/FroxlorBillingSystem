@@ -95,7 +95,7 @@ class contract {
 			<td>'. mysql_date2german($data['start_date']) .'</td>
 			<td>'. mysql_date2german($data['expiration_date']) .'</td>
 			<td>'. $data['contract_periode'] .' '. TABLE_HEADING_CONTRACT_EXPIRATION_DATE_UNIT .'</td>
-			<td>';
+			<td id="small_font">';
 			
 			if($data['termination_date'] != NULL) {
 				$return_string = $return_string . sprintf(LABEL_CONTRACT_TERMINATION_EXECUTION_DATE, mysql_date2german( $data['expiration_date'] ) );
