@@ -72,11 +72,11 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 			echo $customer->printForm();
 
 			break;
-			
+
 		case 'get_customer_data_headline':
-				
+
 			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
-		
+
 			break;
 
 		case 'get_edit_customer_data':
@@ -96,11 +96,11 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 			echo contract::printOverviewCustomer($customer_id);
 
 			break;
-			
+
 		case 'get_customer_products_headline':
-		
+
 			echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
-		
+
 			break;
 
 		case 'get_customer_invoices':
@@ -113,83 +113,117 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 			echo invoice::printOverviewCustomer($customer_id);
 
 			break;
-			
+
 		case 'get_customer_invoices_headline':
-		
+
 			echo '<h1>'.PAGE_TITLE_CUSTOMERINVOICES.'</h1>';
-		
+
 			break;
-				
+
 
 		case 'send_email':
-	
-		$first_name = $_POST['first_name'];
-		$last_name = $_POST['last_name'];
-		$customer_email = $_POST['email'];
-		$msg_type = $_POST['msg_type'];
-		$message = $_POST['message'];
-// 		$customer_id = $_POST['customer_id'];
-		
-		// get admin email address
-		$customizing = new customizing();
-		$customizing_entries = $customizing->getCustomizingComplete();
-		$recipient = $customizing_entries['business_company_email'];
-		
-		// full name
-		$full_name = $first_name.' '.$last_name;
-		
-		// create subject text: message type (question/problem/feedbacke) + name
-		$subject = $msg_type. ' / ' . $first_name .' '. $last_name;
-		
-		// if no smtp server credentials were entered in configuration.inc.php use standard mail function
-		if(SMTP_SERVER == '' && SMTP_USER == '' && SMTP_PASSWORD == '') {
-		
-			$mail = new PHPMailer(true); //defaults to using php "mail()"; the true param means it will throw exceptions on errors, which we need to catch
-		
-			// send invoice to customer
-			try {
-				$mail->AddAddress( $recipient, $customizing->getCustomizingValue('business_company_name') );
-				$mail->SetFrom( $customer_email , $full_name );
-				$mail->Subject = $subject;
-				$mail->setMessage = $message;
-				$mail->Send();
-				echo MSG_SUCCESSFULLY_SENT;
-			} catch (phpmailerException $e) {
-				//echo $e->errorMessage(); //Pretty error messages from PHPMailer
-			} catch (Exception $e) {
-				//echo $e->getMessage(); //Boring error messages from anything else!
-			}
-		}
-		else {
-			//include("class.smtp.php"); // optional, gets called from within class.phpmailer.php if not already loaded
-		
-			$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
-		
-			$mail->IsSMTP(); // telling the class to use SMTP
-		
-			// send invoice to customer
-			try {
-				$mail->Host       = SMTP_SERVER; // SMTP server
-				//$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
-				$mail->SMTPAuth   = true;                  // enable SMTP authentication
-				$mail->Host       = SMTP_SERVER; // sets the SMTP server
-				$mail->Port       = 25;                    // set the SMTP port for the GMAIL server
-				$mail->Username   = SMTP_USER; // SMTP account username
-				$mail->Password   = SMTP_PASSWORD;        // SMTP account password
-				$mail->AddAddress( $recipient, $customizing->getCustomizingValue('business_company_name') );
-				$mail->SetFrom( $customer_email , $full_name );
-				$mail->Subject = $subject;
-				$mail->setMessage = $message;
-				$mail->Send();
-				echo MSG_SUCCESSFULLY_SENT;
-			} catch (phpmailerException $e) {
-				//echo $e->errorMessage(); //Pretty error messages from PHPMailer
-			} catch (Exception $e) {
-				//echo $e->getMessage(); //Boring error messages from anything else!
-			}
-		}	
+			// read post variables from request
+			$first_name = $_POST['first_name'];
+			$last_name = $_POST['last_name'];
+			$customer_email = $_POST['email'];
+			$msg_type = $_POST['msg_type'];
+			$message = $_POST['message'];
 
-		break;
+			// get admin email address
+			$customizing = new customizing();
+
+			// full name
+			$full_name = $first_name.' '.$last_name;
+			
+			// create subject text: message type (question/problem/feedbacke) + name
+			$subject = $msg_type. ' / ' . $first_name .' '. $last_name;
+
+			// if no smtp server credentials were entered in configuration.inc.php use standard mail function
+			if(SMTP_SERVER == '' && SMTP_USER == '' && SMTP_PASSWORD == '') {
+					
+				$mail = new PHPMailer(true); //defaults to using php "mail()"; the true param means it will throw exceptions on errors, which we need to catch
+					
+				// send message to customer
+				try {
+					$mail->AddAddress( $customer_email, $full_name );
+					$mail->SetFrom( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
+					$mail->Subject = $subject;
+					$mail->Body = $message;
+					$mail->Send();
+					echo "Message Sent OK</p>\n";
+				} catch (phpmailerException $e) {
+					//echo $e->errorMessage(); //Pretty error messages from PHPMailer
+				} catch (Exception $e) {
+					//echo $e->getMessage(); //Boring error messages from anything else!
+				}
+					
+				
+				// send message to admin
+				try {
+					$mail->AddAddress( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
+					$mail->SetFrom( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
+					$mail->Subject = $subject;
+					$mail->Body = $message;
+					$mail->Send();
+					echo "Message Sent OK</p>\n";
+				} catch (phpmailerException $e) {
+					//echo $e->errorMessage(); //Pretty error messages from PHPMailer
+				} catch (Exception $e) {
+					//echo $e->getMessage(); //Boring error messages from anything else!
+				}
+				
+			}
+			else {
+				$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
+					
+				$mail->IsSMTP(); // telling the class to use SMTP
+				
+				// send message to customer
+				try {
+					$mail->Host       = SMTP_SERVER; // SMTP server
+					//$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
+					$mail->SMTPAuth   = true;                  // enable SMTP authentication
+					$mail->Host       = SMTP_SERVER; // sets the SMTP server
+					$mail->Port       = 25;                    // set the SMTP port for the GMAIL server
+					$mail->Username   = SMTP_USER; // SMTP account username
+					$mail->Password   = SMTP_PASSWORD;        // SMTP account password
+					$mail->AddAddress( $customer_email, $full_name );
+					$mail->SetFrom( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
+					$mail->CharSet 	  = 'utf-8';
+					$mail->Subject 	  = $subject;
+					$mail->Body 	  = $message;
+					$mail->Send();
+				} catch (phpmailerException $e) {
+					//echo $e->errorMessage();
+				} catch (Exception $e) {
+					//echo $e->getMessage();
+				}
+				
+				
+				// send message to shop admin
+				try {
+					$mail->Host       = SMTP_SERVER; // SMTP server
+					//$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
+					$mail->SMTPAuth   = true;                  // enable SMTP authentication
+					$mail->Host       = SMTP_SERVER; // sets the SMTP server
+					$mail->Port       = 25;                    // set the SMTP port for the GMAIL server
+					$mail->Username   = SMTP_USER; // SMTP account username
+					$mail->Password   = SMTP_PASSWORD;        // SMTP account password
+					$mail->AddAddress( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
+					$mail->SetFrom( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
+					$mail->CharSet 	  = 'utf-8';
+					$mail->Subject 	  = $subject;
+					$mail->Body 	  = $message;
+					$mail->Send();
+				} catch (phpmailerException $e) {
+					//echo $e->errorMessage();
+				} catch (Exception $e) {
+					//echo $e->getMessage();
+				}
+					
+			}
+
+			break;
 	}
 
 }
@@ -197,7 +231,7 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 
 else {
 	echo WARNING_NOT_LOGGED_IN;
-	
+
 }
 
 ?>
