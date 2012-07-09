@@ -957,6 +957,8 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 			$.colorbox({
 				html : msgoutput
 			});
+			
+			$.fn.colorbox.resize();
 
 		});
 
