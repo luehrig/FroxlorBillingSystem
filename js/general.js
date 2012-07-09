@@ -91,7 +91,8 @@ $(function() {
 						phone_no : phone_no
 					}
 				}).done(function(msg) {
-					$('#messagearea').html(msg);
+					$('#invalid_telephone').remove();
+					$('#messagearea').append(msg);
 				});
 			});
 
@@ -252,6 +253,7 @@ $(function() {
 					action : "get_message_mandatory_not_filled"
 				}
 			}).done(function(msg) {
+				$('div[id=mandatory_fields]').remove();
 				$('#messagearea').append(msg);
 				return false;
 			});
@@ -277,7 +279,8 @@ $(function() {
 					action : "get_message_passwords_not_matching"
 				}
 			}).done(function(msg) {
-				$('#messagearea').html(msg);
+				$('div[id=passwords_not_matching]').remove();
+				$('#messagearea').append(msg);
 				return false;
 			});
 		} else {
@@ -303,6 +306,7 @@ $(function() {
 					action : "get_message_invalid_email"
 				}
 			}).done(function(msg) {
+				$('#invalid_email_message').remove();
 				$('#messagearea').append(msg);
 			});
 
@@ -327,6 +331,7 @@ $(function() {
 					action : "get_message_invalid_fax"
 				}
 			}).done(function(msg) {
+				$('#invalid_fax').remove();
 				$('#messagearea').append(msg);
 				return false;
 			});
