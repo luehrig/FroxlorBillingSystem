@@ -525,6 +525,43 @@ $(function() {
 		
 		return false;
 	});	
+	
+	// open form to translate product attributes
+	$("body").on("click", "a[id=translate_product_atrribute]", function() {
+		var primaryKeysFromPhp = $(this).attr('rel');
+		var primaryKeys = primaryKeysFromPhp.split(",");
+		
+		var product_attribute_id = primaryKeys[0];
+		var language_id = primaryKeys[1];
+		
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_translate_attribute_form", product_attribute_id: product_attribute_id , language_id: language_id}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+	});	
+	
+	//translate attribute
+	$("body").on("click", "input[type=submit][id=submit_translate_product_attribute]", function(){
+		
+		var product_attribute_id = $('input[type=hidden][id=product_attribute_id]').val();
+		var language_id = $('select[name=language_selection] option:selected').attr('id');
+		var description = $('textarea[id=description]').val();
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "translate_attribute", product_attribute_id: product_attribute_id , language_id: language_id, description: description}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		
+		return false;
+	});	
 		
 	// delete attribute
 	$("body").on("click", "a[id=delete_product_attribute_description]", function() {
@@ -564,6 +601,21 @@ $(function() {
 		return false;
 	});	
 	
+	// Open Product attribute Editor for product with the language which was choosen from the select box
+	$("body").on("change", "select[id=attribute_edit_language_selection]", (function(){
+		var language_id = $('select[id=attribute_edit_language_selection] option:selected').attr('id');
+		var product_attribute_id = $('input[type=hidden][id=product_attribute_id]').val();
+		$.ajax({
+			type: "POST",
+			url: "logic/process_action.php",
+			data: { action: "open_product_attribute_editor", product_attribute_id: product_attribute_id , language_id: language_id}
+		}).done(function( msg ) {
+			$('.content').html( msg );
+		});
+		
+		return false;
+			
+		}));	
 	
 	// save changed attribute
 	$("body").on("click", "input[type=submit][id=submit_edit_product_attribute]", function() {

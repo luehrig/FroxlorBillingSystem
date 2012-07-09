@@ -407,8 +407,43 @@ switch($action) {
 				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED;
 			}
 		}
-		echo '</fieldset>';
-		echo '</div>';
+		break;
+		
+	case 'open_translate_attribute_form':
+		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
+		$product_attribute_id = $_POST['product_attribute_id'];
+		$language_id = $_POST['language_id'];
+		
+		$language = new language();
+		$product_attribute = new productAttribute($product_attribute_id, $language_id);
+		$used_languages = $product_attribute->getLanguagesForExistingProductAttr($product_attribute_id);
+		$languages_not_translated = $language->getLanguagesNotInUse($used_languages);
+		if(empty($languages_not_translated)){
+			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATIONS_FOR_ALL_SUPPORTED_LANGUAGES_ALREADY_EXIST;
+		}
+		else{
+			echo $product_attribute->printFormTranslate(language::printLanguages('product_translate_language_selection', $languages_not_translated, $language_id));
+			echo '</fieldset>';
+			echo '</div>';
+		}
+		break;
+	
+	case 'translate_attribute':
+		$product_attribute_data = array();
+		$product_attribute_data['product_attribute_id'] = $_POST['product_attribute_id'];
+		$product_attribute_data['language_id'] = $_POST['language_id'];
+		$product_attribute_data['description'] = $_POST['description'];
+		$product_attribute = new productAttribute();
+		
+		if($product_attribute->translateAttribute($product_attribute_data)){
+			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED;
+		}
+		else{
+			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATION_FAILED;
+		}
+		
 		break;
 		
 	case 'delete_product_attribute':

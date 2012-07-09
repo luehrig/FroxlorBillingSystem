@@ -291,8 +291,18 @@ define('EXPLANATION_CONTENT','Hier können Sie den Inhalt Ihrer Seiten verwalten
 
 
 
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS', 'Dieses Produktattribut existiert bereits!');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_SUCCESSFUL', 'Änderungen wurden erfolgreich gespeichert.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_SUCCESSFUL', 'Produktattribut erfolgreich angelegt.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED', 'Es ist ein Fehler beim Anlegen des Produktattributs aufgetreten.');
 
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED', 'Produktattribut wurde erfolgreich entfernt.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_DELETION_FAILED', 'Es ist ein Fehler beim Löschen des Produktattributs aufgetreten.');
 
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED', 'Das Produktattribut wurde erfolgreich übersetzt.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATION_FAILED', 'Es ist ein Fehler beim Übersetzen des Produktattributs aufgetreten.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATIONS_FOR_ALL_SUPPORTED_LANGUAGES_ALREADY_EXIST', 'Für dieses Produktattribut existieren schon die Übersetzungen der unterstützten Sprachen.');
 
 define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Das Produkt wurde erfolgreich angelegt.');
 define('INFO_MESSAGE_DB_ACTION_FAILED', 'Es ist ein Fehler beim Ändern der Datenbank aufgetreten.');

@@ -134,6 +134,19 @@ class language {
 		return $supported_languages[$browser_language];
 	}
 	
+	//returns supported language_ids which are not in use 
+	public function getLanguagesNotInUse($used_languages){
+		$languages_not_in_use = array();
+		$supported_languages = $this->getSupportedLanguages();
+		
+		foreach ($supported_languages as $iso_code => $language_id){
+			if(!array_key_exists($language_id, $used_languages)){
+				$languages_not_in_use[$language_id] = '';
+			}
+		}
+		return $languages_not_in_use;
+	}
+	
 	/* private section */
 	private static function getSupportedLanguages() {
 		$sql_statement = 'SELECT l.language_id, l.iso_code FROM '. TBL_LANGUAGE .' AS l ORDER BY l.iso_code';

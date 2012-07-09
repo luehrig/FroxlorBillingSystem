@@ -86,6 +86,7 @@ class productAttribute{
 			<td>'. $id_language_map[$data['language_id']] .'</td>
 			<td>'. $data['description'] .'</td>
 			<td><a href="#" id="edit_product_atrribute" rel="'. $primary_keys .'"><img src="'. PATH_IMAGES_REL .'edit.png" title="'. LINK_EDIT_PRODUCT .'"></a></td>
+			<td><a href="#" id="translate_product_atrribute" rel="'. $primary_keys .'"><img src="'. PATH_IMAGES_REL .'translate.png" title="'. LINK_TRANSLATE_PRODUCT . '"></a></td>
 			<td><a href="#" id="delete_product_attribute_description" rel="'. $primary_keys .'"><img src="'. PATH_IMAGES_REL .'delete.png" title="'. LINK_DELETE . '"></a></td>
 			</tr>';
 		}
@@ -128,8 +129,8 @@ class productAttribute{
 		return $this->getProductAttributeFromDB($product_attribute_id, $language_id);
 	}
 	
-	public function getLanguagesForExistingProductAttr($product_attribute_id){
-		$sql_select_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p WHERE p.product_attribute_id = "'. $product_attribute_id .'"';
+	public function getLanguagesForExistingProductAttr(){
+		$sql_select_statement = 'SELECT p.language_id FROM '. TBL_PRODUCT_ATTRIBUTE .' AS p WHERE p.product_attribute_id = "'. $this->product_attribute_id .'"';
 		$language_query = db_query($sql_select_statement);
 		$language_id_array = array();
 		while($data = db_fetch_array($language_query)) {
@@ -140,15 +141,22 @@ class productAttribute{
 	
 	public function printFormEdit($language_select_box, $container_id = 'product_attribute_editor'){
 		$return_string = '<div id="'.$container_id.'">'.
-		'<form>'.'<fieldset>'. 
-			'<input type="hidden" id = "product_attribute_id" name = product_attribute_id value = '.$this->product_attribute_id.'>'.
-			'<label for="language_id">'. LABEL_PRODUCT_ATTRIBUTE_LANGUAGE .'</label><br> '.
-				$language_select_box.
-			'<label for="description">'. LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION .'</label><br>'.
-			'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>';
-		$return_string = $return_string . '<input type="submit" name="submit_edit_product_attribute" id="submit_edit_product_attribute" value="'. BUTTON_CHANGE_PRODUCT_ATTRIBUTE .'">';
+		$this->getFilledAttributeForm($language_select_box);
+		$return_string = $return_string . '<input type="submit" name="submit_edit_product_attribute" id="submit_edit_product_attribute" value="'. BUTTON_SAVE .'">';
 		$return_string = $return_string . '</form></div>';
 		return $return_string;
+	}
+	
+	public function printFormTranslate($language_select_box, $container_id = 'product_attribute_translate_editor'){
+		$return_string = '<div id="'.$container_id.'">'.
+		$this->getFilledAttributeForm($language_select_box);
+		$return_string = $return_string . '<input type="submit" name="submit_translate_product_attribute" id="submit_translate_product_attribute" value="'. BUTTON_SAVE .'">';
+		$return_string = $return_string . '</form></div>';
+		return $return_string;
+	}
+	
+	public function translateAttribute($product_attribute_data){
+		return $this->create($product_attribute_data);
 	}
 	
 	public static function getAllExistingAttrByLang($language_id){
@@ -178,6 +186,17 @@ class productAttribute{
 		$sql_select_statement = 'SELECT * FROM '. TBL_PRODUCT_ATTRIBUTE .' WHERE product_attribute_id ="'.  $product_attribute_id .'" AND language_id="' . $language_id . '"';
 		$info_query = db_query($sql_select_statement);
 		return db_fetch_array($info_query);
+	}
+	
+	private function getFilledAttributeForm($language_select_box){
+		$return_string = 
+		'<form>'.'<fieldset>'.
+		'<input type="hidden" id = "product_attribute_id" name = product_attribute_id value = '.$this->product_attribute_id.'>'.
+		'<label for="language_id">'. LABEL_PRODUCT_ATTRIBUTE_LANGUAGE .'</label><br> '.
+		$language_select_box.
+		'<label for="description">'. LABEL_PRODUCT_ATTRIBUTE_DESCRIPTION .'</label><br>'.
+		'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>';
+		return $return_string;
 	}
 }
 ?>
