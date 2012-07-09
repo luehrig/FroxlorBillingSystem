@@ -39,7 +39,7 @@ switch($action) {
 
 		// check password length
 		if(strlen($password_input) < $_SESSION['customizing']->getCustomizingValue('min_password_length')) {
-			echo 'div id="short_password">'. WARNING_SHORT_PASSWORD .'</div>';
+			echo '<div id="short_password">'. WARNING_SHORT_PASSWORD .'</div>';
 		}
 
 		break;

@@ -62,7 +62,8 @@ $(function() {
 						password : password
 					}
 				}).done(function(msg) {
-					$('div[id=mandatory_fields]').remove();
+					// clear old message, if exists and append new one
+					$('#short_password').remove();
 					$('#messagearea').append(msg);
 				});
 			});
