@@ -52,7 +52,7 @@ echo '
 						echo'<input type="text" id="first_name" name="first_name" rel="mandatory" value="'. $data['first_name'] .'">';
 					}
 					else{ // if not show empty input field
-						echo '<input type="text" id="first_name" name="first_name" rel="mandatory" value="blablabla">';
+						echo '<input type="text" id="first_name" name="first_name" rel="mandatory" value="">';
 					} 
 				echo'</p>
 				<p>
