@@ -102,55 +102,5 @@ foreach ($active_product_array as $product_id => $product_data){
 }
 echo'</div>'
 
-
-
-
-// echo '
-// 	<h1>'.VIEW_MENU_PRODUCTS.'</h1>
-// 	<div class="boxwrapper">
-// ';
-
-
-// while ($index <= $numberOfProducts) {
-// 	if($index % 3 == 0){
-// 		echo'<div class="productwrapper"> ';
-// 	}
-// echo'
-
-// 	<div class="whitebox box_3inRow">
-// 		<img ID="littlelogo" src="images/logos/logo.png">
-// 		<fieldset>
-// 			<legend>
-// 				'. $product_title.'
-// 			</legend>
-// 			<p>'.$description.'</p>
-// 		</fieldset>
-// 		<button class="buttonlayout_buy" rel="'.$index.'">'.BUTTON_ADD_TO_CART.'</button>
-// 		<div id="book'.$index.'" class="slidebox">
-// 			<fieldset>
-// 				<legend>
-// 					Details
-// 				</legend>
-				
-// 				<ul>
-//   					<li>Vertragslaufzeit'.$contract_periode.'</li>
-//   					<li>Space '.$quantity.'</li>
-//   					<li>Preis '.$price.'</li>
-// 				</ul>
-// 			</fieldset>
-// 		</div>
-// <!-- TODO: rel tag has to content the product id! -->			
-// 		<button class="buttonlayout_more" rel="'.$index.'">'.BUTTON_MORE.'</button>
-// 	</div>
-
-// ';
-
-// 	if($index % 3 == 0){
-// 		echo'</div> ';
-// 	}
-// 	$index++;
-// }
-// echo'</div>'
-
 ?>
 

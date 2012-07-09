@@ -279,7 +279,7 @@ switch($action) {
 		
 		echo '<div class="customer_content_container">';
 	 		/* content depends on menu click */
-		
+		echo MSG_CUSTOMER_WELCOME;	
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
