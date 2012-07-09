@@ -1002,8 +1002,8 @@ $(function() {
 	
 	// sets current custermenu active 
 	$("body").on("click", "a[class=cm]", function(){
-		$("a").removeClass("active");
-		$(this).addClass("active");
+		$("a").removeClass("cm_active");
+		$(this).addClass("cm_active");
 	});
 	
 	// alert message with
