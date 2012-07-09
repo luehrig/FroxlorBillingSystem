@@ -67,21 +67,21 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 
 			$customer_id = $_SESSION['customer_id'];
 
-
-			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
-
 			$customer = new customer($customer_id);
 
 			echo $customer->printForm();
 
 			break;
+			
+		case 'get_customer_data_headline':
+				
+			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
+		
+			break;
 
 		case 'get_edit_customer_data':
 
 			$customer_id = $_SESSION['customer_id'];
-
-
-			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
 
 			$customer = new customer($customer_id);
 
@@ -93,17 +93,19 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 
 			$customer_id = $_SESSION['customer_id'];
 
-			echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
-
 			echo contract::printOverviewCustomer($customer_id);
 
+			break;
+			
+		case 'get_customer_products_headline':
+		
+			echo '<h1>'.PAGE_TITLE_CUSTOMERPRODUCTS.'</h1>';
+		
 			break;
 
 		case 'get_customer_invoices':
 
 			$customer_id = $_SESSION['customer_id'];
-
-			echo '<h1>'.PAGE_TITLE_CUSTOMERINVOICES.'</h1>';
 
 			$customer = new customer($customer_id);
 
@@ -111,6 +113,13 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 			echo invoice::printOverviewCustomer($customer_id);
 
 			break;
+			
+		case 'get_customer_invoices_headline':
+		
+			echo '<h1>'.PAGE_TITLE_CUSTOMERINVOICES.'</h1>';
+		
+			break;
+				
 
 		case 'send_email':
 	

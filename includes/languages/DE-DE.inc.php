@@ -174,6 +174,8 @@ define('LABEL_SAME_ADRESS', 'Selbe Rechnungs- und Lieferanschrift');
 define('BUTTON_CHANGE_PW', 'Passwort ändern');
 define('MSG_CHANGES_SAVED', 'Ihre Daten wurden erfolgreich geändert!');
 
+define('LINK_CANCEL_PRODUCT', 'Kündigen');
+
 /* checkout process */
 define('LABEL_ACCEPT_TERMS','Hiermit bestätige ich, dass ich die oben aufgeführten Geschäftsbedingungen gelesen und verstanden habe, sowie diese akzeptiere.');
 define('HEADING_ORDER_OVERVIEW','Bestellübersicht');

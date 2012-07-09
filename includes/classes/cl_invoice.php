@@ -312,6 +312,7 @@ class invoice {
 		<th>'. TABLE_HEADING_INVOICE_ISSUE_DATE .'</th>
 		<th>'. TABLE_HEADING_INVOICE_AMOUNT .'</th>
 		<th>'. TABLE_HEADING_INVOICE_INVOICE_STATUS .'</th>
+		<th></th>
 		</tr>';
 
 		while($data = db_fetch_array($invoice_query)) {

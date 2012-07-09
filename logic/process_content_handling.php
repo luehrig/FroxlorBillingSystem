@@ -267,6 +267,9 @@ switch($action) {
 		<li><a class="cm" href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
 		</ul>
 		</div>';
+		
+		echo '<div class="customer_headline_container"></div>';
+		
 		echo '<div class="internalwrapper">';
 		echo '<div class="whitebox internal">';
 		echo '<fieldset>';
