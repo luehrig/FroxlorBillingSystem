@@ -638,33 +638,6 @@ $(function() {
 	});
 
 	// create new attribute
-<<<<<<< HEAD
-	$("body").on(
-			"click",
-			"input[type=submit][id=create_product_attribute]",
-			function() {
-
-				var language_id = $(
-						'select[name=language_selection] option:selected')
-						.attr('id');
-				var description = $('textarea[id=description]').val();
-
-				$.ajax({
-					type : "POST",
-					url : "logic/process_action.php",
-					data : {
-						action : "create_new_attribute",
-						language_id : language_id,
-						description : description
-					}
-				}).done(function(msg) {
-					$('.content').html(msg);
-				});
-
-				return false;
-			});
-
-=======
 	$("body").on("click", "input[type=submit][id=create_product_attribute]", function() {
 		
 		var language_id = $('select[name=language_selection] option:selected').attr('id');
@@ -718,10 +691,8 @@ $(function() {
 		return false;
 	});	
 		
->>>>>>> refs/remotes/origin/master
 	// delete attribute
-	$("body").on("click", "a[id=delete_product_attribute_description]",
-			function() {
+	$("body").on("click", "a[id=delete_product_attribute_description]", function(){
 
 				var primary_keys_from_php = $(this).attr('rel');
 				var primary_keys = primary_keys_from_php.split(",");
@@ -730,28 +701,22 @@ $(function() {
 				$.ajax({
 					type : "POST",
 					url : "logic/process_action.php",
-					data : {
-						action : "delete_product_attribute",
-						product_attribute_id : product_attribute_id,
-						language_id : language_id
-					}
+					data : {action : "delete_product_attribute", product_attribute_id : product_attribute_id, language_id : language_id}
 				}).done(function(msg) {
 					$('.content').html(msg);
 				});
 
 				return false;
-			});
+	});
 
 	// set customizing fields editable for product attributes
-	$("body").on("click", "a[id=edit_product_atrribute]", function() {
+	$("body").on("click", "a[id=edit_product_atrribute]", function(){
 
 		var primaryKeysFromPhp = $(this).attr('rel');
 		var primaryKeys = primaryKeysFromPhp.split(",");
 
 		var product_attribute_id = primaryKeys[0];
 		var language_id = primaryKeys[1];
-<<<<<<< HEAD
-=======
 		
 		$.ajax({
 			type: "POST",
@@ -786,8 +751,6 @@ $(function() {
 		var product_attribute_id = $('input[type=hidden][id=product_attribute_id]').val();
 		var language_id = $('select[name=language_selection] option:selected').attr('id');
 		var description = $('textarea[id=description]').val();
-	
-		
 		
 		$.ajax({
 			type: "POST",
@@ -799,52 +762,6 @@ $(function() {
 		
 		return false;
 	});		
-	
->>>>>>> refs/remotes/origin/master
-
-		$.ajax({
-			type : "POST",
-			url : "logic/process_action.php",
-			data : {
-				action : "open_product_attribute_editor",
-				product_attribute_id : product_attribute_id,
-				language_id : language_id
-			}
-		}).done(function(msg) {
-			$('.content').html(msg);
-		});
-
-		return false;
-	});
-
-	// save changed attribute
-	$("body").on(
-			"click",
-			"input[type=submit][id=submit_edit_product_attribute]",
-			function() {
-
-				var product_attribute_id = $(
-						'input[type=hidden][id=product_attribute_id]').val();
-				var language_id = $(
-						'select[name=language_selection] option:selected')
-						.attr('id');
-				var description = $('textarea[id=description]').val();
-
-				$.ajax({
-					type : "POST",
-					url : "logic/process_action.php",
-					data : {
-						action : "save_changed_product_attribute",
-						product_attribute_id : product_attribute_id,
-						language_id : language_id,
-						description : description,
-					}
-				}).done(function(msg) {
-					$('.content').html(msg);
-				});
-
-				return false;
-			});
 
 	// get overview page with all servers
 	$("body").on("click", "a[id=myservers]", function() {
