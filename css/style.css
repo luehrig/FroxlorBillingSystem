@@ -354,6 +354,7 @@ th
 /*box for product details*/
 .slidebox
 {
+	text-align:left;
 	height: auto;
 	display: none;
 }
@@ -442,6 +443,7 @@ legend
 
 .language_switch
 {
+	display:none;
 	float:right;
 	margin-right: 200px;
 }

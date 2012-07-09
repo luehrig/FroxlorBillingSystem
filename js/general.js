@@ -834,11 +834,11 @@ $(function() {
 	$("body").on("click", "input[id=send_email]", function() {
 
 		var first_name = $('input[type=text][id=first_name]').val();
-		var last_name = $('inputn[type=text][id=last_name]').val();
+		var last_name = $('input[type=text][id=last_name]').val();
 		var email = $('input[type=email][id=email]').val();
 		var message = $('textarea[id=message]').val();
 		var msg_type = '';
-s
+
 		if ($('input[type=radio][name=message_type]')[0].checked) {
 			msg_type = $('input[type=radio][id=question]').val();
 		} else if ($('input[type=radio][name=message_type]')[1].checked) {
@@ -861,6 +861,7 @@ s
 			}
 		}).done(function(msg) {
 			$('.contact').html(msg);
+			$.fn.colorbox.close();
 		});
 
 		return false;

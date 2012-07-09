@@ -67,9 +67,6 @@ foreach ($active_product_array as $product_id => $product_data){
 			</legend>
 			<p>'.$product_data['description'].'</p>
 		</fieldset>
-			<li>'.PRODUCT_CONTRACT_PERIODE.' '.$product_data['contract_periode'].'</li>
-			<li>'.PRODUCT_QUANTITY.' '.$product_data['quantity'].'</li>
-			<li>'.PRODUCT_PRICE.' '.$product_data['price'].'</li>
 		<button class="buttonlayout_buy" rel="'.$product_id.'">'.BUTTON_ADD_TO_CART.'</button>
 		<div id="book'.$product_id.'" class="slidebox">
 			<fieldset>
@@ -77,7 +74,10 @@ foreach ($active_product_array as $product_id => $product_data){
 					Details
 				</legend>
 	
-				<ul>';
+				<ul>
+	<li>'.PRODUCT_CONTRACT_PERIODE.' '.$product_data['contract_periode'].'</li>
+	<li>'.PRODUCT_QUANTITY.' '.$product_data['quantity'].'</li>
+	<li>'.PRODUCT_PRICE.' '.$product_data['price'].'</li>';
 	
 	foreach($attribute_value_map as $attr_name => $value){
 		$return_string = $return_string. '<li>'. $attr_name .' '. $value .'</li>';
