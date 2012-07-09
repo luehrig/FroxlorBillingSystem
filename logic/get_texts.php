@@ -49,6 +49,10 @@ switch($action) {
 		echo WARNING_REGISTRATION_RESET_FORM_CONFIRM;
 
 		break;
+		
+	case 'get_message_buy_confirm':
+		
+		echo SUCCESS_PRODUCT_TO_SHOPPINGCART;
 
 }
 

@@ -120,6 +120,7 @@ define('WARNING_INVALID_EMAIL_ADDRESS','Keine gültige E-Mail Adresse!');
 define('WARNING_INVALID_PHONE_NO','Keine gültige Telefonnummer!');
 
 define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
+define('SUCCESS_PRODUCT_TO_SHOPPINGCART', 'Das Produkt wurde erfolgreich in den Warenkorb gelegt.');
 
 /* product texts */
 define('PRODUCT_QUANTITY', 'Menge');
