@@ -643,9 +643,9 @@ legend
 #customer_header a:visited {
 	color:#A0A0A0; text-decoration:none; 
 }
-#customer_header div[class="welcome_text"]{
+#customer_header div[class="welcome_text"], #customer_header_ajax{
 	float: left;
-	margin-top: 2px;
+	margin-top: 5px;
 }
 #customer_header img[id="logout"]{
 	margin-top: 2px;

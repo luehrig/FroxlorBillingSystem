@@ -70,9 +70,7 @@ $cart = new shoppingcart(session_id());
 		<a href="shoppingcart.html?lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 		<br>
 		<div ID="customer_header">
-		<div class="welcome_text">	
-		<div ID="customer_header_ajax"></div>
-		</div>
+ 		<div ID="customer_header_ajax"></div> <!-- Container for customer head when page is reloaded -->
 		<?php 
 			if(customer::isLoggedIn(session_id())) {
 				$customer = new customer($_SESSION['customer_id']);

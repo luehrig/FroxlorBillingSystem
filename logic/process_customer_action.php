@@ -58,7 +58,7 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 			$customer = new customer($_SESSION['customer_id']);
 			$data = $customer->getData();
 
-			echo MSG_CUSTOMER_WELCOME .', '. $data['first_name'] .' '. $data['last_name'] .'!';
+			echo '<div class="welcome_text">'. MSG_CUSTOMER_WELCOME .', '. $data['first_name'] .' '. $data['last_name'] .'!</div>';
 			echo '<a href="#" id="logout"><img src="images/logout.png" id="logout" title="'. BUTTON_LOGOUT_CUSTOMER .'"></a>';
 
 			break;
