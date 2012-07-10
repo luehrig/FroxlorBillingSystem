@@ -147,6 +147,7 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 				try {
 					$mail->AddAddress( $customer_email, $full_name );
 					$mail->SetFrom( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
+					$mail->CharSet 	  = 'utf-8';
 					$mail->Subject = $subject;
 					$mail->Body = $message;
 					$mail->Send();
@@ -162,6 +163,7 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 				try {
 					$mail->AddAddress( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
 					$mail->SetFrom( $customizing->getCustomizingValue('business_company_email') , $customizing->getCustomizingValue('business_company_name') );
+					$mail->CharSet 	  = 'utf-8';
 					$mail->Subject = $subject;
 					$mail->Body = $message;
 					$mail->Send();
