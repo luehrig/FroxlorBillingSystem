@@ -698,6 +698,19 @@ legend
 }
 
 /* Customer Data Table */
+
+.back_customercenter {
+    float: right;
+    margin: 20px 35px 0;
+}
+a.back_customercenter {
+    color: #1874CD;
+    font-weight: bold;
+}
+a.back_customercenter:hover {
+    text-decoration: underline;
+}
+
 .customer_data {
 	vertical-align: top;
 	margin: 5px;

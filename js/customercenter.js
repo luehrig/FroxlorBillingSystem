@@ -141,6 +141,43 @@ $(function() {
 
 		return false;
 	});
+	
+	$("body").on("click", "a[id=back_to_customerdata]", function() {
+
+		var customer_id = $(this).attr('rel');
+
+		// clear message area
+		$('#error_msg_area').html('');
+		$('.messagearea').html('');
+		
+		// get headline
+		$.ajax({
+			type : "POST",
+			url : "logic/process_customer_action.php",
+			data : {
+				action : "get_customer_data_headline",
+				customer_id : customer_id
+			}
+		}).done(function(msg) {
+			$('.customer_headline_container').html(msg);
+			// $('a[id=save_customizing]').hide();
+		});
+		
+		// get content
+		$.ajax({
+			type : "POST",
+			url : "logic/process_customer_action.php",
+			data : {
+				action : "get_customer_data",
+				customer_id : customer_id
+			}
+		}).done(function(msg) {
+			$('.customer_content_container').html(msg);
+			// $('a[id=save_customizing]').hide();
+		});
+
+		return false;
+	});
 
 	// Handels button click "edit" --> get form with existing data as default
 	$('body').on("click", "input[id=edit_customer]", function() {
@@ -151,6 +188,19 @@ $(function() {
 
 		var customer_id = $(this).attr('rel');
 
+		// get headline and "back"-link
+		$.ajax({
+			type : "POST",
+			url : "logic/process_customer_action.php",
+			data : {
+				action : "get_edit_customer_data_headline",
+				customer_id : customer_id
+			}
+		}).done(function(msg) {
+			$('.customer_headline_container').html(msg);
+		});
+		
+		// get content
 		$.ajax({
 			type : "POST",
 			url : "logic/process_customer_action.php",

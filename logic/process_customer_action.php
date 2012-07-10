@@ -79,6 +79,14 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 
 			break;
 
+		case 'get_edit_customer_data_headline':
+			
+			echo '<h1>'.PAGE_TITLE_CUSTOMERDATA.'</h1>';
+			
+			echo'<a href="#" id="back_to_customerdata" class="back_customercenter">'. LINK_BACK .'</a>';
+			
+			break;
+
 		case 'get_edit_customer_data':
 
 			$customer_id = $_SESSION['customer_id'];
