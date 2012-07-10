@@ -105,7 +105,7 @@ class customer {
 				$return_string = $return_string .SELECT_CUSTOMER_GENDER_FEMALE;
 			}
 			$return_string = $return_string.' '.$this->title.' '.$this->first_name.' '.$this->last_name. // name
-			$shipping_address_data['street'].' '.$shipping_address_data['street_number']. // street + number
+			'<br>'.$shipping_address_data['street'].' '.$shipping_address_data['street_number']. // street + number
 			'<br>'.$shipping_address_data['post_code'].' '.$shipping_address_data['city']. // post code + city
 			'<br>'.$country->getCountryName($shipping_address_data['country_code']).'</td></tr>'; // country
 		}
