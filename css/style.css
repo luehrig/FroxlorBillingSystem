@@ -772,6 +772,21 @@ table td[id="small_font"]{
 
 /*----------------------Backend--------------------------*/
 
+#loginformbackend{
+	text-align: left;
+}
+#loginformbackend label{
+	float: left;
+    margin: 5px;
+    width: 7em;
+}
+#loginformbackend input{
+	margin: 5px;
+}
+#loginformbackend input[type="submit"]{
+	margin: 0 15px;	
+}
+
 .admin_logout{
 	float: right;
 	margin: 10px;
