@@ -21,11 +21,8 @@ $home_title = $content->getTitle($language_id);
 echo '<h1>'. $home_title .'</h1>'. '<div class="boxwrapper">'.
 
 		'<div class=" whitebox box_1inRow">
-		<fieldset>
-		<legend>
-		<img ID="minilogo" src="images/logos/logo.png">
-		</legend>'.
-		$home_text.
+		<fieldset>'
+		.$home_text.
 		'</fieldset>
 		</div>
 

@@ -91,7 +91,7 @@ class shoppingcart {
 	// returns product count in cart for specific product
 	public function getProductCount($product_id) {
 		
-		$sql_statement = 'SELECT sc.quantity FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.product_id = '. (int) $product_id;
+		$sql_statement = 'SELECT sc.quantity FROM '. TBL_SHOPPING_CART .' AS sc WHERE sc.session_id = "'. $this->session_id .'" AND sc.product_id = '. (int) $product_id;
 		$quantity_query = db_query($sql_statement);
 		
 		if($quantity_query != NULL && db_num_results($quantity_query) == 1) {
