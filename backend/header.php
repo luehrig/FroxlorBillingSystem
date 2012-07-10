@@ -64,7 +64,7 @@ $site_language = language::getBrowserLanguage();
 	<img ID="logo" src="../images/fcloud.png">
 	
  	<div class="header_right">
-		<a class="admin_logout" href="#" id="logout"><?php echo BUTTON_LOGOUT_BACKEND?></a>
+		<a class="admin_logout" href="#" id="logout"><img src="../images/logout.png" id="logout"><?php echo BUTTON_LOGOUT_BACKEND?></a>
 		<div ID="admin_welcome">Herzlich Willkommen im internen Bereich für den Shopbetreiber!
 		</div>
 	</div>

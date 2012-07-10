@@ -75,6 +75,9 @@ class productAttribute{
 		<tr>
 		<th>'. TABLE_HEADING_PRODUCT_ATTRIBUTE_LANGUAGE .'</th>
 		<th>'. TABLE_HEADING_PRODUCT_ATTRIBUTE_DESCRIPTION .'</th>
+		<th></th>
+		<th></th>
+		<th></th>
 		</tr>';
 		
 		$table_content = '';

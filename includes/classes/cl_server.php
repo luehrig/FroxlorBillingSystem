@@ -164,6 +164,7 @@ class server {
 		<th>'. TABLE_HEADING_SERVER_NAME .'</th>
 		<th>'. TABLE_HEADING_SERVER_DISK_SPACE .'</th>
 		<th>'. TABLE_HEADING_SERVER_STATUS.'</th>
+		<th></th><th></th>
 		</tr>';
 
 		$table_content = '';

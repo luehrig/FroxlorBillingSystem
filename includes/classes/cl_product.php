@@ -226,6 +226,7 @@ class product {
 		<th>'. TABLE_HEADING_PRODUCT_DESCRIPTION.'</th>
 		<th>'. TABLE_HEADING_PRODUCT_QUANTITY .'</th>
 		<th>'. TABLE_HEADING_PRODUCT_PRICE .'</th>
+		<th></th>
 		</tr>';
 		
 		$table_content = '';
