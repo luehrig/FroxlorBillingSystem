@@ -168,7 +168,6 @@ $(function() {
 			}
 		}).done(function(msg) {
 			$('.customer_content_container').html(msg);
-			// $('a[id=save_customizing]').hide();
 		});
 
 		return false;
@@ -213,10 +212,6 @@ $(function() {
 
 	// Handels button click "edit" --> get form with existing data as default
 	$('body').on("click", "input[id=edit_customer]", function() {
-
-		// clear message area
-		// $('#error_msg_area').html('');
-		// $('.messagearea').html('');
 
 		var customer_id = $(this).attr('rel');
 
@@ -347,21 +342,23 @@ $(function() {
 							billing_address_id : billing_address_id
 						}
 					}).done(function(msg) {
-						$('.customer_content_container').html(msg);
+						// show Message Popup with status message
+						showMessagePopup('success', msg, null, null);
+						
+						// get customer data overview
+						$.ajax({
+							type : "POST",
+							url : "logic/process_customer_action.php",
+							data : {
+								action : "get_customer_data",
+								customer_id : customer_id
+							}
+						}).done(function(msg) {
+							$('.customer_content_container').html(msg);
+							// $('a[id=save_customizing]').hide();
+						});
+						
 					});
-
-					// get overview page with all customizing entries
-					// $.ajax({
-					// type : "POST",
-					// url : "logic/process_customer_action.php",
-					// data : {
-					// action : "get_customer_data",
-					// customer_id : customer_id
-					// }
-					// }).done(function(msg) {
-					// $('.customer_content_container').html(msg);
-					// // $('a[id=save_customizing]').hide();
-					// });
 				}
 
 				return false;
@@ -409,8 +406,9 @@ $(function() {
 					}
 				}).done(function(msg) {
 
-					$('.messagearea').html(msg);
-
+					//$('.messagearea').html(msg);
+					showMessagePopup('success', msg, null, null);
+					
 					getCustomerProducts();
 
 				});

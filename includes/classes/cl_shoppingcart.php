@@ -135,9 +135,11 @@ class shoppingcart {
 			<td><span id="amount_'. $result_data['product_id'] .'">'. $result_data['amount'] .'</span></td><td><a href="#" id="removeproduct_'. $result_data['product_id'] .'" rel="'. $result_data['product_id'] .'"><img src="'. PATH_IMAGES_REL .'delete.png" title="'. IMG_TITEL_REMOVE .'"></a></td></tr>';
 		}
 		
-		//for($i=0; $i < count($this->products); $i++) {
-		//	$return_string = $return_string .'<tr><td>'. $this->products[$i]['title'] .'</td><td>'. $this->products[$i]['quantity'] .'</td></tr>';
-		//}
+		// check if products are in shopping cart -> if not do not display checkout button
+		if($this->getNumberOfProducts() == 0) {
+			$display_checkout = false;
+		}
+		
 		
 		$return_string = $return_string .'</table></form>';
 		
