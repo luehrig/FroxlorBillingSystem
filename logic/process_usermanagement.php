@@ -82,23 +82,15 @@ switch($action) {
 	case 'logout_customer':
 		
 		db_user_customer_logout(session_id());
-		
-		// check if customer is although logged in as admin -> if not destroy session
-		if(db_backend_user_is_logged_in(session_id()) == false) {
-			session_destroy();
-		}
+		session_destroy();
 	
 		break;
 		
 	case 'logout_backend':
 	
 		db_user_backend_logout(session_id());
-		
-		// check if admin is although logged in as customer -> if not destroy session
-		if(customer::isLoggedIn(session_id()) == false) {
-			session_destroy();
-		}
-			
+		session_destroy();
+	
 		break;
 	
 	// check if user is still logged in	

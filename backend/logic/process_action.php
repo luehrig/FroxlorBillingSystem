@@ -42,15 +42,15 @@ switch($action) {
 		echo'<a href="#" id="back_to_myshop" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		echo '<div id="customizing_explanation"><p>'. EXPLANATION_CUSTOMIZING_ENTRIES .'</p></div>';
 		echo $customizing->printCustomizingEntries();
-
+		
 		echo '<div class="space">';
-
+		
 		echo '<a href="#" id="edit_customizing" class="button_style">'. BUTTON_MODIFY_CUSTOMIZING_BACKEND .'</a>
 		<a href="#" id="save_customizing"  class="button_style">'. BUTTON_SAVE_CUSTOMIZING_BACKEND .'</a>';
-
+		
 		echo '</div></fieldset>';
 		echo '</div>';
 		break;
@@ -59,7 +59,7 @@ switch($action) {
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$shown_language_id = language::getShownLanguageId();
 		$id_language_map = language::getIdLanguageMap();
 		echo product::printOverview($shown_language_id, $id_language_map);
@@ -84,14 +84,14 @@ switch($action) {
 
 
 		echo $product->printFormEdit($attributes_for_lang, $product_info, language::printLanguages('product_edit_language_selection', $language_ids_for_existing_products, $language_id), $language_id);
-
+		
 		echo '</fieldset>';
 		echo '</div>';
 		break;
 
 	case 'open_create_new_attribute_for_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
-		// 		echo'<a href="#" id="back_to_editproduct" class="back">'. LINK_BACK .'</a>';
+// 		echo'<a href="#" id="back_to_editproduct" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
@@ -125,13 +125,13 @@ switch($action) {
 		echo '</fieldset>';
 		echo '</div>';
 		break;
-
+		
 	case 'delete_product_info':
 		$product_id = $_POST['product_id'];
 		$attribute_id = $_POST['attribute_id'];
-
+		
 		$product_info = new productInfo($product_id, $attribute_id);
-
+		
 		if($product_info->delete()){
 			echo INFO_MESSAGE_PRODUCT_INFO_SUCCESSFULLY_DELETED;
 		}
@@ -139,15 +139,15 @@ switch($action) {
 			echo INFO_MESSAGE_DB_ACTION_FAILED;
 		}
 		break;
-
-
-
+		
+		
+		
 	case 'update_attributes_in_prod_info':
 		$product_id = $_POST['product_id'];
-
+		
 		$attr_id_array = explode(",", $_POST['joined_attr_id_array']);
 		$value_array = explode(",", $_POST['joined_value_array']);
-
+		
 		$succeed = true;
 		foreach ($attr_id_array as $ind => $attr_id){
 			$value = $value_array[$ind];
@@ -164,7 +164,7 @@ switch($action) {
 
 		break;
 
-
+		
 	case 'edit_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
 		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
@@ -244,7 +244,7 @@ switch($action) {
 				"quantity"=>$quantity,
 				"price"=>$price,
 				"active"=>$active);
-
+				
 
 		if(product::translatedProductExists($product_data)){
 			echo sprintf(INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS, $product_id);
@@ -269,7 +269,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		echo product::printCreateProductForm(language::printLanguages('product_create_language_selection'));
 
 		echo '</fieldset>';
@@ -384,7 +384,7 @@ switch($action) {
 		echo '</fieldset>';
 		echo '</div>';
 		break;
-
+	
 	case 'create_new_attribute':
 		$language_id = $_POST['language_id'];
 		$description = $_POST['description'];
@@ -392,7 +392,7 @@ switch($action) {
 		$product_attribute_data['product_attribute_id'] = NULL;
 		$product_attribute_data['language_id'] = $language_id;
 		$product_attribute_data['description'] = $description;
-
+		
 		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
 		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
@@ -408,14 +408,14 @@ switch($action) {
 			}
 		}
 		break;
-
+		
 	case 'open_translate_attribute_form':
 		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		$product_attribute_id = $_POST['product_attribute_id'];
 		$language_id = $_POST['language_id'];
-
+		
 		$language = new language();
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
 		$used_languages = $product_attribute->getLanguagesForExistingProductAttr($product_attribute_id);
@@ -429,23 +429,23 @@ switch($action) {
 			echo '</div>';
 		}
 		break;
-
+	
 	case 'translate_attribute':
 		$product_attribute_data = array();
 		$product_attribute_data['product_attribute_id'] = $_POST['product_attribute_id'];
 		$product_attribute_data['language_id'] = $_POST['language_id'];
 		$product_attribute_data['description'] = $_POST['description'];
 		$product_attribute = new productAttribute();
-
+		
 		if($product_attribute->translateAttribute($product_attribute_data)){
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED;
 		}
 		else{
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATION_FAILED;
 		}
-
+		
 		break;
-
+		
 	case 'delete_product_attribute':
 		$product_attribute_id = $_POST['product_attribute_id'];
 		$language_id = $_POST['language_id'];
@@ -480,32 +480,32 @@ switch($action) {
 		$language_id = $_POST['language_id'];
 		$description = $_POST['description'];
 		$changed_atribute_data = array("language_id"=>$language_id, "description"=>$description);
-
+		
 		if(productAttribute::productAttributeExists($changed_atribute_data, $product_attribute_id)){
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS;
 		}
 		else{
 			$product_attribute = new productAttribute($product_attribute_id, $language_id);
 			;
-
+			
 			if($product_attribute->update($description)){
 				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_SUCCESSFUL;
 			}
 			else{
 				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED;
 			}
-
-
+				
+			
 		}
-
+		
 		break;
-
+		
 
 	case 'get_server_overview':
 		echo'<h1>'.LABEL_MY_SERVERS.'</h1>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		echo server::printOverview();
 
 		echo '</fieldset>';
@@ -517,7 +517,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		echo server::printCreateServerForm();
 
 		echo '</fieldset>';
@@ -529,7 +529,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$name = $_POST['name'];
 		$mngmnt_ui = $_POST['mngmnt_ui'];
 		$ipv4 = $_POST['ipv4'];
@@ -579,7 +579,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$server_id = $_POST['server_id'];
 
 		$server = new server($server_id);
@@ -595,7 +595,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$server_id = $_POST['server_id'];
 		$name = $_POST['name'];
 		$mngmnt_ui = $_POST['mngmnt_ui'];
@@ -633,7 +633,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$server_id = $_POST['server_id'];
 
 		$server = new server($server_id);
@@ -648,7 +648,7 @@ switch($action) {
 		echo'<h1>'.LABEL_MY_CUSTOMERS.'</h1>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		echo customer::printOverview();
 
 		echo '</fieldset>';
@@ -663,7 +663,7 @@ switch($action) {
 		$customer_id = $_POST['customer_id'];
 
 		$customer = new customer($customer_id);
-
+		
 		// get customer data
 		echo $customer->printForm();
 
@@ -689,7 +689,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$echo_string = '<form><label for="content_title">'. LABEL_TITLE .':</label><div id="new_content_title"><input type="text" id="title" /></div>';
 		$echo_string = $echo_string .'<div id="new_content_text"><textarea id="text" class="editor"></textarea></div>';
 			
@@ -715,17 +715,17 @@ switch($action) {
 		$single_content_query = db_query($sql_statement);
 
 		if(db_num_results($single_content_query) == 1) {
-
+				
 			$data = db_fetch_array($single_content_query);
-
+				
 			$echo_string = '<form><label for="content_title">'. LABEL_TITLE .':</label><div id="edit_content_title"><input type="text" id="title" value="'. $data['title'] .'"/></div>';
 			$echo_string = $echo_string .'<div id="edit_content_text"><textarea id="text" class="editor">'. $data['text'] .'</textarea></div>';
-
+				
 			$echo_string = $echo_string .'<div id="edit_content_buttons"><input type="submit" id="save_content" value="'. BUTTON_SAVE .'"></div></form>';
-
+				
 			$echo_string = $echo_string .'<input type="hidden" id="content_id" value="'. $content_id .'">';
 			$echo_string = $echo_string .'<input type="hidden" id="language_id" value="'. $language_id .'">';
-
+				
 			echo $echo_string;
 		}
 		else {
@@ -741,7 +741,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$content_id = $_POST['content_id'];
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
@@ -759,13 +759,13 @@ switch($action) {
 		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$language_id = $_POST['language_id'];
 		$title = $_POST['title'];
 		$text = $_POST['text'];
 
 		content::create($title, $text, $language_id);
-
+		
 		echo INFO_MESSAGE_CONTENT_CREATED;
 
 		echo '</fieldset>';
@@ -777,7 +777,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_mycontent" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$content_id = $_POST['content_id'];
 		$language_id = $_POST['language_id'];
 
@@ -792,7 +792,7 @@ switch($action) {
 		echo'<h1>'.LABEL_MY_INVOICES.'</h1>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		echo invoice::printOverviewBackend();
 
 		echo '</fieldset>';
@@ -804,7 +804,7 @@ switch($action) {
 		echo'<a href="#" id="back_to_myinvoices" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
+		
 		$invoice_id = $_POST['invoice_id'];
 		$status_id = $_POST['status_id'];
 
@@ -812,53 +812,13 @@ switch($action) {
 			$invoice = new invoice( (int) $invoice_id);
 			$invoice->setStatus($status_id);
 		}
-
+		
 		echo INFO_MESSAGE_INVOICE_STATUS_CHANGED;
 			
 		echo '</fieldset>';
 		echo '</div>';
 		break;
-
-	case 'get_admin_password':
-		echo'<h1>'.LABEL_MY_PASSWORD.'</h1>';
-		echo'<div class="whitebox internal">';
-		echo'<fieldset>';
-
-		echo '<label for="new_admin_password">'. LABEL_PASSWORD_NEW_ADMIN_PASSWORD .'</label><br />
-			  <input type="password" length="10" id="new_admin_password" name="new_admin_password">
-			  <input type="submit" id="change_admin_password" value="'. BUTTON_UPDATE_ADMIN_PASSWORD .'">';
 		
-		echo '</fieldset>';
-		echo '</div>';
-		break;
-
-	case 'update_admin_password':
-		
-		$new_password = $_POST['new_password'];
-		
-		// get current backend user id from session id
-		$sql_statement = 'SELECT bu.backend_user_id FROM '. TBL_ACTIVE_BACKEND_USER .' AS bu WHERE bu.session_id = "'. session_id() .'"';
-		$backend_user_id_query = db_query($sql_statement);
-		
-		if(db_num_results($backend_user_id_query) == 1) {
-			$select_data = db_fetch_array($backend_user_id_query);
-			
-			$update_statement = 'UPDATE '. TBL_BACKEND_USER .' SET password = "'. sha1($new_password) .'" WHERE backend_user_id = '. (int) $select_data['backend_user_id'];
-			$update_query = db_query($update_statement);
-			
-			if($update_query != false) {
-				echo INFO_MESSAGE_PASSWORT_SUCCESSFULLY_CHANGED;
-			}
-			else {
-				echo WARNING_MESSAGE_PASSWORT_CHANGE_ABORTED;
-			}
-		}
-		else {
-			echo WARNING_MESSAGE_PASSWORT_CHANGE_ABORTED;
-		}
-		
-		break;
-
 	case 'msg_customizing_saved':
 		echo '<h1>'.LABEL_MY_SHOP.'</h1>';
 		echo '<div class="whitebox internal"><fieldset>';
