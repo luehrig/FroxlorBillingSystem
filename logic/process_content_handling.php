@@ -70,17 +70,17 @@ switch($action) {
 
 		// display shopping cart with all products
 	case 'show_shoppingcart':
-		
+
 		$cart = new shoppingcart(session_id());
-		
+
 		echo '<h1>'. VIEW_MENU_SHOPPING_CART. '</h1>';
 		echo '<div class="boxwrapper">';
 		echo '<div class=" whitebox box_1inRow">';
 		echo '<fieldset>';
 		echo '<legend> Warenkorb </legend>';
-		
+
 		echo $cart->printCart(NULL, true);
-					
+			
 		echo '</fieldset>';
 		echo '</div>';
 		echo '</div>';
@@ -91,7 +91,7 @@ switch($action) {
 
 
 		echo 'Melden Sie sich an oder erstellen Sie ein neues Kundenkonto um zu bestellen.';
-		
+
 		echo '<a href="login.html" id="cartlogin" class="nonav">Einloggen</a>';
 
 
@@ -101,18 +101,18 @@ switch($action) {
 		$content = new content(3,$language_id);
 			
 		echo '<h1>'. $content->getTitle(). '</h1>';
-		
+
 		echo '<div class="boxwrapper">';
 		echo '<div class="whitebox box_1inRow">';
 		echo '<fieldset>';
-		
+
 		echo $content->getText();
-		
+
 		echo '</fieldset>';
 		echo '</div>';
-		
 
-		echo '<div class="whitebox box_1inRow">';	
+
+		echo '<div class="whitebox box_1inRow">';
 		echo '<fieldset>';
 		echo '<div id="accept_terms"><input type="checkbox" id="check_terms" name="check_terms" value="0">'. LABEL_ACCEPT_TERMS .'</div>';
 		echo '</fieldset>';
@@ -120,7 +120,7 @@ switch($action) {
 		echo '<div class="message_box"></div>';
 
 		echo '<a href="checkout_step3.html&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
-		
+
 
 		echo '</div>';
 		break;
@@ -137,16 +137,16 @@ switch($action) {
 		echo '<h1>Rechnungs- und Lieferadresse</h1>';
 		echo '<div class="boxwrapper">';
 		echo '<div class="whitebox box_1inRow">';
-		
+
 
 		$customer = new customer($_SESSION['customer_id']);
 		echo $customer->printAddressForm();
-		
+
 		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
-		
+
 		echo '</div>';
-		
-		
+
+
 
 		break;
 
@@ -155,27 +155,27 @@ switch($action) {
 		// get address arrays form address selction screen
 		$shippingAddress = $_POST['shippingAddress'];
 		$billingAddress = $_POST['billingAddress'];
-		
+
 		// get customer object
 		$customer = new customer($_SESSION['customer_id']);
-		
+
 		// check if shipping and billing address is still in database
 		// if this is not the case -> add address information
 		$identified_shipping_address = $customer->hasAddress($shippingAddress);
 		$identified_billing_address = $customer->hasAddress($billingAddress);
-		
+
 		if($identified_shipping_address == false) {
 			$identified_shipping_address = $customer->addAddress($shippingAddress);
 		}
-		
+
 		if($identified_billing_address == false) {
 			$identified_billing_address = $customer->addAddress($billingAddress);
 		}
-		
+
 		// write address information (address ids into hidden fields)
 		echo '<input type="hidden" id="shipping_address_id" name="shipping_address_id" value="'. $identified_shipping_address .'">';
-		echo '<input type="hidden" id="billing_address_id" name="billing_address_id" value="'. $identified_billing_address .'">'; 
-		
+		echo '<input type="hidden" id="billing_address_id" name="billing_address_id" value="'. $identified_billing_address .'">';
+
 		echo '<h1>'.HEADING_ORDER_OVERVIEW.'</h1>';
 		echo '<div class="boxwrapper">';
 		echo '<div class="whitebox box_1inRow">';
@@ -192,30 +192,30 @@ switch($action) {
 
 		// show info page to say "your order has been send successfully"
 	case 'show_order_received':
-		
+
 		// init neccessary objects for processing
 		$customizing = new customizing();
-		
+
 		$cart = new shoppingcart(session_id());
 		$cart_products = $cart->getProducts();
 			
 		$customer = new customer($_SESSION['customer_id']);
-		
-		
+
+
 		// get address information for order
 		$shipping_address_id = $_POST['shipping_address_id'];
 		$billing_address_id = $_POST['billing_address_id'];
-		
+
 		// if something went wrong with address id handling use default address information for customer
 		if(!isset($shipping_address_id)) {
 			$shipping_address_id = $customer->getDefaultShippingAddress();
 		}
-		
+
 		if(!isset($billing_address_id)) {
 			$billing_address_id = $customer->getDefaultBillingAddress();
 		}
-		
-		
+
+
 			
 		$order = order::create($_SESSION['customer_id'], $shipping_address_id, $billing_address_id, NULL, NULL, $cart_products);
 
@@ -251,7 +251,7 @@ switch($action) {
 		//contact form (is only used when javascript is not active)
 	case 'show_contact':
 		include PATH_BODYS .'contact.php';
-		break;		
+		break;
 
 		//content of help
 	case 'show_help':
@@ -260,41 +260,39 @@ switch($action) {
 
 	case 'show_customercenter':
 
-		echo '<div class="customermenu">
-		<ul>
-		<li><a class="cm cm_active" href="#!mydata&lang='. language::getBrowserLanguage() .'" id="mydata" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYDATA .'</span></a></li>
-		<li><a class="cm" href="#!myproducts&lang='. language::getBrowserLanguage() .'" id="myproducts" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYPRODUCTS .'</span></a></li>
-		<li><a class="cm" href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
-		</ul>
-		</div>';
-		
-		echo '<div class="customer_headline_container"></div>';
-		
-		echo '<div class="internalwrapper">';
-		echo '<div class="whitebox internal">';
-		echo '<fieldset>';
-		
-		// message area wrapper
-		echo '<div class="messagearea_wrapper">';
-		// message area
-		echo '<div class="messagearea"></div>'; 
-		// error message area
-		echo '<div id="error_msg_area">'.'</div>';
-		echo '</div>';
-		
-		echo '<div class="customer_content_container">';
-	 		/* content depends on menu click */
-		echo MSG_CUSTOMER_WELCOME;	
-		echo '</div>';
-		echo '</div>';
-		echo '</div>';
+		if(customer::isLoggedIn( session_id() )) {
+			echo '<div class="customermenu">
+			<ul>
+			<li><a class="cm cm_active" href="#!mydata&lang='. language::getBrowserLanguage() .'" id="mydata" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYDATA .'</span></a></li>
+			<li><a class="cm" href="#!myproducts&lang='. language::getBrowserLanguage() .'" id="myproducts" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYPRODUCTS .'</span></a></li>
+			<li><a class="cm" href="#!myinvoices&lang='. language::getBrowserLanguage() .'" id="myinvoices" rel="'. $_SESSION['customer_id'] .'"><span>'. VIEW_CMENU_MYINVOICES .'</span></a></li>
+			</ul>
+			</div>';
+
+			echo '<div class="customer_headline_container"></div>';
+
+			echo '<div class="internalwrapper">';
+			echo '<div class="whitebox internal">';
+			echo '<fieldset>';
+
+			// message area wrapper
+			echo '<div class="messagearea_wrapper">';
+			// message area
+			echo '<div class="messagearea"></div>';
+			// error message area
+			echo '<div id="error_msg_area">'.'</div>';
+			echo '</div>';
+
+			echo '<div class="customer_content_container">';
+			/* content depends on menu click */
+			echo MSG_CUSTOMER_WELCOME;
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+
+		}
 
 		break;
-
-		// TODO: is this correct?
-		// 	case 'show_help':
-		// 		include BASE_DIR .'help.php';
-		// 	break;
 
 	case 'show_registration':
 
@@ -304,11 +302,11 @@ switch($action) {
 
 	case 'show_specific_page':
 		$destination = $_POST['destination'];
-		
+
 		header($destination);
-		
+
 		break;
-		
+
 	default:
 		echo WARNING_CONTENT_NOT_FOUND;
 		break;

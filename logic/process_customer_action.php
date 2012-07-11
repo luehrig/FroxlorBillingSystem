@@ -46,13 +46,17 @@ if(!isset($language_id)) {
 
 include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) ) .'.inc.php';
 
-// check if customer is logged in
-if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
+$action = $_POST['action'];
 
-	$action = $_POST['action'];
+// check if customer is logged in
+if(customer::isLoggedIn( session_id() ) || $action == 'send_email') {
 
 	switch($action) {
 
+		case 'check_login':
+			
+			break;	
+		
 		case 'show_customer_header':
 
 			$customer = new customer($_SESSION['customer_id']);
