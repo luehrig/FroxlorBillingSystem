@@ -232,8 +232,8 @@ class server {
 	// form to edit a server in backend
 	public function printEditServerForm($container_id = 'edit_server_editor') {
 		'<div class="editserverlayout>"';
-		$return_string = '<div id="'. $container_id .'">
-		<form method="post">'.'<fieldset>'.
+		$return_string = '<div id="'. $container_id .'">'.
+		'<form method="post">'.'<fieldset>'.
 		'<legend>'. FIELDSET_SERVER_SERVER_DATA .'</legend>'.
 		'<p><label for="name">'. LABEL_SERVER_NAME .'</label><div class="space"></div>'.
 		'<input type="text" id="name" name="name" value="'. $this->name .'"></p><br>'.
