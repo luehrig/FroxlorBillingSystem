@@ -231,48 +231,48 @@ class server {
 	
 	// form to edit a server in backend
 	public function printEditServerForm($container_id = 'edit_server_editor') {
-		
+		'<div class="editserverlayout>"';
 		$return_string = '<div id="'. $container_id .'">.
 		<form method="post">'.'<fieldset>'.
 		'<legend>'. FIELDSET_SERVER_SERVER_DATA .'</legend>'.
-		'<label for="name">'. LABEL_SERVER_NAME .'</label>'.
-		'<input type="text" id="name" name="name" value="'. $this->name .'">'.
-		'<label for="mngmnt_ui">'. LABEL_SERVER_MNGMNT_UI .'</label>'.
-		'<input type="text" id="mngmnt_ui" name="mngmnt_ui" value="'. $this->mngmnt_ui .'">'.
-		'<label for="ipv4">'. LABEL_SERVER_IPV4 .'</label>'.
-		'<input type="text" id="ipv4" name="ipv4" value="'. $this->ipv4 .'">'.
-		'<label for="ipv6">'. LABEL_SERVER_IPV6 .'</label>'.
-		'<input type="text" id="ipv6" name="ipv6" value="'. $this->ipv6 .'">'.
-		'<label for="total_space">'. LABEL_SERVER_TOTAL_SPACE .'</label>'.
-		'<input type="text" id="total_space" name="total_space"  value="'. $this->total_space .'">'.
-		'<label for="free_space">'. LABEL_SERVER_FREE_SPACE .'</label>'.
-		'<input type="text" id="free_space" name="free_space" value="'. $this->free_space .'">'.
-		'<label for="active">'. LABEL_SERVER_AVAILABLE .'</label>';
+		'<p><label for="name">'. LABEL_SERVER_NAME .'</label><div class="space"></div>'.
+		'<input type="text" id="name" name="name" value="'. $this->name .'"></p><br>'.
+		'<p><label for="mngmnt_ui">'. LABEL_SERVER_MNGMNT_UI .'</label><div class="space"></div>'.
+		'<input type="text" id="mngmnt_ui" name="mngmnt_ui" value="'. $this->mngmnt_ui .'"></p><br>'.
+		'<p><label for="ipv4">'. LABEL_SERVER_IPV4 .'</label><div class="space"></div>'.
+		'<input type="text" id="ipv4" name="ipv4" value="'. $this->ipv4 .'"></p><br>'.
+		'<p><label for="ipv6">'. LABEL_SERVER_IPV6 .'</label><div class="space"></div>'.
+		'<input type="text" id="ipv6" name="ipv6" value="'. $this->ipv6 .'"></p><br>'.
+		'<p><label for="total_space">'. LABEL_SERVER_TOTAL_SPACE .'</label><div class="space"></div>'.
+		'<input type="text" id="total_space" name="total_space"  value="'. $this->total_space .'"></p><br>'.
+		'<p><label for="free_space">'. LABEL_SERVER_FREE_SPACE .'</label><div class="space"></div>'.
+		'<input type="text" id="free_space" name="free_space" value="'. $this->free_space .'"></p><br>'.
+		'<p><label for="active">'. LABEL_SERVER_AVAILABLE .'</label><div class="space"></div>';
 		
 		if($this->active == 1) {
-			$return_string = $return_string .'<input type="checkbox" id="active" name="active"  value="'. $this->active .'" checked>';
+			$return_string = $return_string .'<input type="checkbox" id="active" name="active"  value="'. $this->active .'" checked></p><br>';
 		}
 		else {
-			$return_string = $return_string .'<input type="checkbox" id="active" name="active"  value="'. $this->active .'">';
+			$return_string = $return_string .'<input type="checkbox" id="active" name="active"  value="'. $this->active .'"></p><br>';
 		}
 		
 		$return_string = $return_string .'</fieldset>'.
 		'<fieldset>'.'<legend>'. FIELDSET_SERVER_FROXLOR_DATA .'</legend>'.
-		'<label for="froxlor_username">'. LABEL_SERVER_FROXLOR_USERNAME .'</label>'.
-		'<input type="text" id="froxlor_username" name="froxlor_username" value="'. $this->froxlor_credentials['user'] .'">'.
-		'<label for="froxlor_password">'. LABEL_SERVER_FROXLOR_PASSWORD .'</label>'.
-		'<input type="password" id="froxlor_password" name="froxlor_password">'.
-		'<label for="froxlor_db_host">'. LABEL_SERVER_FROXLOR_DB_HOST .'</label>'.
-		'<input type="text" id="froxlor_db_host" name="froxlor_db_host"  value="'. $this->froxlor_credentials['db_server'] .'">'.
-		'<label for="froxlor_db">'. LABEL_SERVER_FROXLOR_DB .'</label>'.
-		'<input type="text" id="froxlor_db" name="froxlor_db"  value="'. $this->froxlor_credentials['db_name'] .'">'.
+		'<p><label for="froxlor_username">'. LABEL_SERVER_FROXLOR_USERNAME .'</label><div class="space"></div>'.
+		'<input type="text" id="froxlor_username" name="froxlor_username" value="'. $this->froxlor_credentials['user'] .'"></p><br>'.
+		'<p><label for="froxlor_password">'. LABEL_SERVER_FROXLOR_PASSWORD .'</label><div class="space"></div>'.
+		'<input type="password" id="froxlor_password" name="froxlor_password"></p><br>'.
+		'<p><label for="froxlor_db_host">'. LABEL_SERVER_FROXLOR_DB_HOST .'</label><div class="space"></div>'.
+		'<input type="text" id="froxlor_db_host" name="froxlor_db_host"  value="'. $this->froxlor_credentials['db_server'] .'"></p><br>'.
+		'<p><label for="froxlor_db">'. LABEL_SERVER_FROXLOR_DB .'</label><div class="space"></div>'.
+		'<input type="text" id="froxlor_db" name="froxlor_db"  value="'. $this->froxlor_credentials['db_name'] .'"></p><br>'.
 		'</fieldset>';
 	
 		$return_string = $return_string . '<input type="hidden" name="server_id" id="server_id" value="'. $this->server_id .'">';
 		$return_string = $return_string . '<input type="submit" name="edit_server" id="edit_server" value="'. BUTTON_CHANGE_SERVER .'">';
 		$return_string = $return_string . '</form></div>';
 		return $return_string;
-	
+		'</div>';
 	}
 
 	// return true if a server still exists with same ip
