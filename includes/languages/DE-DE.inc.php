@@ -96,7 +96,7 @@ define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
 define('BUTTON_SAVE_CHANGES', 'Änderungen speichern');
 define('IMG_REMOVE_PRODUCT', 'Produkt entfernen');
 define('BUTTON_CREATE_PRODUCT_ATTRIBUTE', 'Attribut anlegen');
-
+define('BUTTON_UPDATE_ADMIN_PASSWORD','administratives Passwort ändern');
 
 /* message texts */
 define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
@@ -211,7 +211,7 @@ define('LABEL_MY_CUSTOMERS','Meine Kunden');
 define('LABEL_MY_INVOICES','Meine Faktura');
 define('LABEL_MY_CONTENT','Mein Inhalt');
 define('LABEL_MY_STATISTICS','Meine Shopstatistiken');
-
+define('LABEL_MY_PASSWORD','Mein Passwort ändern');
 
 
 define('LABEL_ACTIVE','Aktiv');
@@ -246,6 +246,8 @@ define('LABEL_SERVER_FROXLOR_USERNAME','Froxlor Verwaltungsbenutzer');
 define('LABEL_SERVER_FROXLOR_PASSWORD','Froxlor Passwort');
 define('LABEL_SERVER_FROXLOR_DB','Froxlor Datenbank');
 define('LABEL_SERVER_FROXLOR_DB_HOST','Froxlor Datenbankserver');
+
+define('LABEL_PASSWORD_NEW_ADMIN_PASSWORD','Backendpasswort');
 
 
 define('TABLE_HEADING_CONTENT_TITLE','Titel');
@@ -336,5 +338,7 @@ define('INFO_MESSAGE_PRODUCT_INFO_SUCCESSFULLY_DELETED', 'Das Produktattribut wu
 
 define('INFO_MESSAGE_SERVER_CREATION_SUCCESSFUL', 'Der Server wurde erfolgreich angelegt.');
 
+define('INFO_MESSAGE_PASSWORT_SUCCESSFULLY_CHANGED', 'Das Passwort wurde erfolgreich geändert!');
+define('WARNING_MESSAGE_PASSWORT_CHANGE_ABORTED','Es ist ein Fehler beim Ändern des Passwortes aufgetreten. Versuchen Sie es später bitte erneut!');
 
 ?>
