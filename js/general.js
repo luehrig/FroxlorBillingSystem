@@ -106,7 +106,7 @@ $(function() {
 				var password = $("input[id=password]").val();
 				var passwordagain = $(this).val();
 
-//				passwordsMatching(password, passwordagain);
+				passwordsMatching(password, passwordagain);
 
 			});
 
