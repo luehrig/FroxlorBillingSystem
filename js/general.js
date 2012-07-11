@@ -706,6 +706,8 @@ $(function() {
 				var billing_address_id = $(
 						"input[type=hidden][id=billing_address_id]").val();
 
+				var language_id = $("input[type=hidden][id=language_id]").val();
+				
 				// load received order page
 				$.ajax({
 					type : "POST",
@@ -716,12 +718,14 @@ $(function() {
 						billing_address_id : billing_address_id
 					}
 				}).done(function(msg) {
-					$('.content_container').html(msg);
 
 					showMessagePopup('success', msg, null, null);
 
 					// clear quantity counter in header for cart
 					setProductCountInCart();
+					
+					// redirect to home page
+					loadContent('home', language_id);
 				});
 
 				return false;

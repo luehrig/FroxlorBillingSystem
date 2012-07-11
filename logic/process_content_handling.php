@@ -175,6 +175,7 @@ switch($action) {
 		// write address information (address ids into hidden fields)
 		echo '<input type="hidden" id="shipping_address_id" name="shipping_address_id" value="'. $identified_shipping_address .'">';
 		echo '<input type="hidden" id="billing_address_id" name="billing_address_id" value="'. $identified_billing_address .'">'; 
+		echo '<input type="hidden" id="language_id" name="language_id" value="'. $language_id .'">';
 		
 		echo '<h1>'.HEADING_ORDER_OVERVIEW.'</h1>';
 		echo '<div class="boxwrapper">';
