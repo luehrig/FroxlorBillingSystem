@@ -119,7 +119,7 @@ switch($action) {
 		echo '</div>';
 		echo '<div class="message_box"></div>';
 
-		echo '<a href="checkout_step3.html&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		echo '<a href="checkout_step3.html&lang='. language::internalToISO($language_id) .'" id="checkout_step3" class="button_style nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 		
 
 		echo '</div>';
@@ -142,7 +142,7 @@ switch($action) {
 		$customer = new customer($_SESSION['customer_id']);
 		echo $customer->printAddressForm();
 		
-		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
+		echo '<a href="checkout_step4.html&lang='. language::internalToISO($language_id) .'" id="checkout_step4" class="button_style nonav">'. BUTTON_CHECKOUT_NEXT .'</a>';
 		
 		echo '</div>';
 		
@@ -186,7 +186,7 @@ switch($action) {
 		echo '</fieldset>';
 		echo '</div>';
 
-		echo '<a href="order_received.html&lang='. language::internalToISO($language_id) .'" id="save_order" class="nonav">'. BUTTON_CHECKOUT_SEND_ORDER .'</a>';
+		echo '<a href="order_received.html&lang='. language::internalToISO($language_id) .'" id="save_order" class="button_style nonav">'. BUTTON_CHECKOUT_SEND_ORDER .'</a>';
 
 		break;
 

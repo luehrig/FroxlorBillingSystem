@@ -143,7 +143,7 @@ class shoppingcart {
 		
 		$return_string = $return_string .'<div id="buttons">';
 											if($display_checkout == true) {
-												$return_string = $return_string .'<a href="checkout_step1.html" id="start_checkout">'. BUTTON_CHECKOUT .'</a>';
+												$return_string = $return_string .'<a href="checkout_step1.html" id="start_checkout" class="button_style">'. BUTTON_CHECKOUT .'</a>';
 											}	
 		$return_string = $return_string .'</div>';
 		
