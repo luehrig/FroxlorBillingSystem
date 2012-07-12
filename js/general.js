@@ -6,9 +6,7 @@ $(function() {
 	// class so that, when
 	// clicked, their `id` value is pushed onto the history hash instead of
 	// being navigated to directly.
-	// TODO: delete
-	//$("body").on("click", 'a[class*="nav"]', function() {
-	$("body").on("click", '.nav', function() {
+	$("body").on("click", 'a.nav', function() {
 		var state = $(this).attr('id');
 		var lang = $('input[type=hidden][id=site_language]').val();
 		// $.bbq.pushState('#!page=' + state + '&lang=' + lang);
