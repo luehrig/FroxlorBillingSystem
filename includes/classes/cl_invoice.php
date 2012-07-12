@@ -258,6 +258,7 @@ class invoice {
 			}
 				
 			$mail = null;
+			$mail = new PHPMailer(true);
 			
 			// send invoice to shop owner
 			try {

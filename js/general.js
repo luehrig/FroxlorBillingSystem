@@ -6,7 +6,9 @@ $(function() {
 	// class so that, when
 	// clicked, their `id` value is pushed onto the history hash instead of
 	// being navigated to directly.
-	$("body").on("click", 'a[class*="nav"]', function() {
+	// TODO: delete
+	//$("body").on("click", 'a[class*="nav"]', function() {
+	$("body").on("click", '.nav', function() {
 		var state = $(this).attr('id');
 		var lang = $('input[type=hidden][id=site_language]').val();
 		// $.bbq.pushState('#!page=' + state + '&lang=' + lang);
@@ -614,7 +616,7 @@ $(function() {
 	});
 
 	// catch case if terms were not accepted and customer clicks next
-	$("body").on("click", 'a[id=checkout_step3][class*="nonav"]', function() {
+	$("body").on("click", ' a.nonav[id=checkout_step3]', function() {
 
 		$.ajax({
 			type : "POST",
@@ -631,8 +633,8 @@ $(function() {
 	});
 
 	// catch case if terms were not accepted and customer clicks next
-	$("body").on("click", 'a[id=checkout_step4][class*="nonav"]', function() {
-
+	$('body').on('click', ' a.nonav[id=checkout_step4]', function() {
+		
 		// read address data
 		var shippingAddress = {};
 		var billingAddress = {};
@@ -645,7 +647,7 @@ $(function() {
 		$('input[id^=shipping]').each(function() {
 			var key = $(this).attr('id');
 			key = key.substr(8, key.strlen);
-
+			
 			shippingAddress[key] = $(this).val();
 		});
 
@@ -693,9 +695,9 @@ $(function() {
 	});
 
 	// catch case if terms were not accepted and customer clicks next
-	$("body").on(
-			"click",
-			"a[id=save_order][class=nonav]",
+	$('body').on(
+			'click',
+			' a.nonav[id=save_order]',
 			function() {
 				// disable link to prevent customer to click multiple times if
 				// save order is in ajax call
