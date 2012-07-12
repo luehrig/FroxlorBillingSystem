@@ -1024,3 +1024,9 @@ table td[id="small_font"]{
 .cust_address_information fieldset{
 	margin-top: 1em;
 }
+
+.space
+{
+	width:100px;
+	float:left;
+}

@@ -334,5 +334,7 @@ define('INFO_MESSAGE_CONTENT_CREATED', 'Der Inhalt mit dem Titel wurde erfolgrei
 define('INFO_MESSAGE_INVOICE_STATUS_CHANGED', 'Der Rechnungsstatus wurde erfolgreich geändert.');
 define('INFO_MESSAGE_PRODUCT_INFO_SUCCESSFULLY_DELETED', 'Das Produktattribut wurde erfolgreich gelöscht.');
 
+define('INFO_MESSAGE_SERVER_CREATION_SUCCESSFUL', 'Der Server wurde erfolgreich angelegt.');
+
 
 ?>

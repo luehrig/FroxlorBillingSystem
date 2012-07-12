@@ -560,7 +560,12 @@ switch($action) {
 			echo WARNING_MESSAGE_SERVER_ALREADY_EXISTS;
 		}
 		else{
-			server::create($server_data);
+			if (server::create($server_data)){
+				echo INFO_MESSAGE_SERVER_CREATION_SUCCESSFUL;
+			}
+			else{
+				echo INFO_MESSAGE_DB_ACTION_FAILED;
+			}
 		}
 
 		echo '</fieldset>';
