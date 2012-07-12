@@ -82,13 +82,14 @@ foreach ($active_product_array as $product_id => $product_data){
 	foreach($attribute_value_map as $attr_name => $value){
 		$return_string = $return_string. '<li>'. $attr_name .' '. $value .'</li>';
 	}
-	
+	$value_array = array($product_id, PRODUCT_DETAILS_LESS, PRODUCT_DETAILS_MORE);
+	$trimmed_values = implode(',', $value_array);
 	$return_string = $return_string.
 				'</ul>
 			</fieldset>
 		</div>
 	<!-- TODO: rel tag has to content the product id! -->
-	<button class="buttonlayout_more" rel="'.$product_id.'">'.PRODUCT_DETAILS_MORE.'</button>
+	<button class="buttonlayout_more" rel="'.$trimmed_values.'">'.PRODUCT_DETAILS_MORE.'</button>
 	</div>
 	
 	';

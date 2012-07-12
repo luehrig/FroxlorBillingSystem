@@ -18,11 +18,16 @@ $help_title = $content->getTitle($language_id);
 
 echo '<h1>'. $help_title .'</h1>'. '<div class="boxwrapper">'.
 
-		'<div class=" whitebox box_1inRow">
+		'<div class="left_text_align"><div class=" whitebox box_1inRow">
 		<fieldset>'.
 		$help_text.
 		'</fieldset>
-		</div>
+		<fieldset>
+		<h2>'. HEADING_SITEMAP .'</h2>
+		<img src="'. PATH_IMAGES_REL .'sitemap_frontend.png">
+		</fieldset>
+		
+		</div></div>
 
 		</div>';
 

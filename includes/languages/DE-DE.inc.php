@@ -136,7 +136,7 @@ define('PRODUCT_DETAILS_LESS','Weniger');
 define('VIEW_MENU_HELP','Hilfe');
 define('VIEW_MENU_CONTACT','Kontakt');
 define('VIEW_MENU_IMPRINT', 'Impressum');
-define('VIEW_MENU_HOME', 'Home');
+define('VIEW_MENU_HOME', 'Startseite');
 define('VIEW_MENU_PRODUCTS', 'Produkte');
 define('VIEW_MENU_CUSTOMERCENTER', 'Kundenbereich');
 define('VIEW_MENU_SHOPPING_CART','Warenkorb');
@@ -188,6 +188,9 @@ define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','Rechnung %s');
 
 /* help / contact */
 define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetreiber gesendet!');
+define('HEADING_SITEMAP', 'Sitemap');
+
+/* -----------------------------  Backend   ------------------------------------------------ */
 
 define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den Shopbetreiber');
 define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
