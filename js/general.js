@@ -623,7 +623,8 @@ $(function() {
 				action : "show_alert_accept_terms"
 			}
 		}).done(function(msg) {
-			$('.message_box').html(msg);
+			// display popup with warning message
+			showMessagePopup('warning', msg, null, null);
 		});
 
 		return false;
