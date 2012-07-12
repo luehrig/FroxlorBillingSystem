@@ -54,6 +54,11 @@ body
 	box-shadow: inset 0 0 10px 0 #000;
 }
 
+/* style for divs with text align left */
+.left_text_align {
+	text-align: left;
+}
+
 /*style of footer*/
 .footer
 {
@@ -132,25 +137,37 @@ a:active {
 
 /* Button style for links */
 .button_style{
-	outline: thin outset;
+	outline: 1.5px outset;
     padding: 5px;
-    margin: 10px 0;
     font-weight: normal;
+    background: none repeat scroll 0 0 white;
+    clear: both;
+    float: left;
+    font-weight: normal;
+    margin: 5px 10px;
+    min-width: 100px;
+    text-decoration: none;
+    white-space: nowrap;
 }
 a.button_style:link{
 	font-weight: normal;
+	text-decoration: none
 }
 a.button_style:visited {
 	outline: thin outset;
+	font-weight: normal;
 }
 a.button_style:focus {
 	outline: thick outset;
+	font-weight: normal;
 }
 a.button_style:hover {
-	outline: thick outset;
+	outline: 2px outset;
+	font-weight: normal;
 }
 a.button_style:active {
 	outline: thin outset;
+	font-weight: normal;
 }
 
 
@@ -1012,4 +1029,10 @@ table td[id="small_font"]{
 }
 .cust_address_information fieldset{
 	margin-top: 1em;
+}
+
+.space
+{
+	width:100px;
+	float:left;
 }

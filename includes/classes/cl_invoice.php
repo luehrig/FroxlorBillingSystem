@@ -212,6 +212,9 @@ class invoice {
 				//echo $e->getMessage(); //Boring error messages from anything else!
 			}
 				
+			$mail = null;
+			$mail = new PHPMailer(true);
+			
 			// send invoice to shop owner
 			try {
 				$mail->AddAddress( $customizing->getCustomizingValue('business_company_email'), $customizing->getCustomizingValue('business_company_name') );
@@ -254,6 +257,9 @@ class invoice {
 				//echo $e->getMessage();
 			}
 				
+			$mail = null;
+			$mail = new PHPMailer(true);
+			
 			// send invoice to shop owner
 			try {
 				$mail->Host       = SMTP_SERVER; // SMTP server

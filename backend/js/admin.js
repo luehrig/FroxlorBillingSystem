@@ -908,8 +908,8 @@ $(function() {
 					}
 				}).done(function(msg) {
 					$('.content').html(msg);
-
-					if (msg == '') {
+					
+					/* 
 						// reload server area
 						$.ajax({
 							type : "POST",
@@ -920,7 +920,7 @@ $(function() {
 						}).done(function(msg) {
 							$('.content').html(msg);
 						});
-					}
+					*/
 
 				});
 

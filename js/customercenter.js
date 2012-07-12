@@ -4,38 +4,6 @@ $(function() {
 		// code that is executed if page was loaded
 	});
 
-	// check if customer logged in
-	$("body").on("click", "a[class^=cm]", function() {
-		// trigger dummy event
-		$.ajax({
-			type : "POST",
-			url : "logic/process_customer_action.php",
-			data : {
-				action : "check_login"
-			}
-		}).done(function(msg) {
-			
-			// if return string is not empty -> error message that customer is not logged in -> redirect to home page
-			if(msg != '') {
-				// reset old state information
-				$('a[id=customercenter]').removeClass('nav');
-				$('a[id=customercenter]').removeClass('mm_active');
-				$('#customer_header').html('');
-				
-				// raise error popup
-				showMessagePopup('error', msg, null, null);
-				
-				// load new content and set correct state information
-				loadContent('home',null);
-				$('a[id=home]').addClass('mm_active');
-			}
-		});
-		
-		return false;
-		
-	});
-	
-	
 	// Login: show customer header (welcome + logout link) and direct to
 	// customer center
 	$("body").on("click",

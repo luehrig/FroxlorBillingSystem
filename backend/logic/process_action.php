@@ -396,6 +396,7 @@ switch($action) {
 		echo'<h1>'.LABEL_MY_PRODUCTATTRIBUTES.'</h1>';
 		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		if(productAttribute::descriptionAlreadyExists($language_id, $description)){
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS;
 		}
@@ -407,6 +408,8 @@ switch($action) {
 				echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED;
 			}
 		}
+		echo'</fieldset>';
+		echo'</div>';
 		break;
 
 	case 'open_translate_attribute_form':
@@ -425,9 +428,10 @@ switch($action) {
 		}
 		else{
 			echo $product_attribute->printFormTranslate(language::printLanguages('product_translate_language_selection', $languages_not_translated, $language_id));
-			echo '</fieldset>';
-			echo '</div>';
+			
 		}
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'translate_attribute':
@@ -437,6 +441,8 @@ switch($action) {
 		$product_attribute_data['description'] = $_POST['description'];
 		$product_attribute = new productAttribute();
 
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		if($product_attribute->translateAttribute($product_attribute_data)){
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED;
 		}
@@ -444,12 +450,17 @@ switch($action) {
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATION_FAILED;
 		}
 
+		echo '</fieldset>';
+		echo '</div>';
+		
 		break;
 
 	case 'delete_product_attribute':
 		$product_attribute_id = $_POST['product_attribute_id'];
 		$language_id = $_POST['language_id'];
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		if($product_attribute->delete() AND productInfo::deleteAllProductInfosByAttrId($product_attribute_id)){
 
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED;
@@ -457,6 +468,8 @@ switch($action) {
 		else{
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_DELETION_FAILED;
 		}
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 	case 'open_product_attribute_editor':
@@ -481,6 +494,8 @@ switch($action) {
 		$description = $_POST['description'];
 		$changed_atribute_data = array("language_id"=>$language_id, "description"=>$description);
 
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		if(productAttribute::productAttributeExists($changed_atribute_data, $product_attribute_id)){
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS;
 		}
@@ -498,6 +513,8 @@ switch($action) {
 
 		}
 
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 

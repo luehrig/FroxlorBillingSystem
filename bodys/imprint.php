@@ -22,9 +22,11 @@ $imprint_title = $content->getTitle($language_id);
 echo '<h1>'. $imprint_title .'</h1>'. '<div class="boxwrapper">'.
 
 	'<div class=" whitebox box_1inRow">
+	<div class="left_text_align">
 		<fieldset>'.
 			$imprint_text. 
 		'</fieldset>
+	</div>
 	</div>
 	
 </div>';
