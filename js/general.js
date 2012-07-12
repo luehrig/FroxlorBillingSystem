@@ -788,16 +788,23 @@ $(function() {
 
 	// display details for product in product overview
 	$("body").on("click", "button[class=buttonlayout_more]", function() {
-		// get product id from rel tag
-		var product_id = $(this).attr('rel');
+		// get relevant values / strings from rel tag as csv
+		var commaSeperatedValues = $(this).attr('rel');
+		
+		// split string to array
+		// array(productId, "less", "more")
+		var valueArray = commaSeperatedValues.split(",");
+		
+		// get product id from value Array
+		var product_id = valueArray[0];
 		var detailboxid = '#book' + product_id;
 
 		if ($(detailboxid).is(":hidden")) {
 			$(detailboxid).slideDown("slow");
-			$(this).text("Weniger");
+			$(this).text(valueArray[1]);
 		} else {
 			$(detailboxid).slideUp();
-			$(this).text("Mehr");
+			$(this).text(valueArray[2]);
 		}
 	});
 
