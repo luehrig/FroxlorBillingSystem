@@ -142,6 +142,7 @@ a:active {
     margin: 5px 10px;
     min-width: 100px;
     text-decoration: none;
+    white-space: nowrap;
 }
 a.button_style:link{
 	font-weight: normal;
