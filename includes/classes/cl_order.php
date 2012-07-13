@@ -20,12 +20,12 @@ class order {
 
 		$this->load($order_id, $language_id);
 	}
-	
+
 	/* public section */
 	public function getOrderID() {
 		return $this->order_id;
 	}
-	
+
 	public function getOrderDetails() {
 		$orderDetails = array();
 		$orderDetails['order_id'] = $this->order_id;
@@ -33,18 +33,19 @@ class order {
 		$orderDetails['order_date'] = $this->order_date;
 		$orderDetails['shipping_address_id'] = $this->shipping_address_id;
 		$orderDetails['billing_address_id'] = $this->billing_address_id;
-		
+
 		return $orderDetails;
 	}
-	
+
 	public function getOrderPositions() {
 		return $this->order_positions;
 	}
 
-	
+
 	public static function create($customer_id, $shipping_address_id, $billing_address_id = NULL, $order_date = NULL, $order_status = NULL, $order_positions) {
 		$customizing = new customizing();
-
+		$canceledProducts = array();
+		
 		// if no order status was passed use default order status from customizing
 		if($order_status == NULL) {
 			$order_status = $customizing->getCustomizingValue('business_standard_order_status');
@@ -54,7 +55,7 @@ class order {
 		if($billing_address_id == NULL) {
 			$billing_address_id = $shipping_address_id;
 		}
-		
+
 		// insert order master data
 		// use current date
 		if($order_date == NULL) {
@@ -71,38 +72,42 @@ class order {
 		$order_id = db_insert_id();
 
 		if($order_id != false) {
-				
+
 			for($i=0; $i < count($order_positions); $i++) {
 				// reset variables that were used before
 				$order_position_id = null;
 
-				$insert_statement = 'INSERT INTO '. TBL_ORDER_POSITION .' (order_id, product_id, quantity, price)
-				VALUES ('. (int) $order_id .', '. (int) $order_positions[$i]['product_id'] .', '. (int) $order_positions[$i]['quantity'] .','. $order_positions[$i]['price'] .')';
-
-				db_query($insert_statement);
-				$order_position_id = db_insert_id();
-
 				// get right server for product
 				$recommended_server = server::getAppropriateServer($order_positions[$i]['product_id'], $order_positions[$i]['quantity']);
-				
-				$customizing = new customizing();
-				$froxlor_customer_id = $customizing->getCustomizingValue('business_froxlor_client_prefix') .'_'. $customer_id;
-				
+
 				if($recommended_server != null) {
+
+					$insert_statement = 'INSERT INTO '. TBL_ORDER_POSITION .' (order_id, product_id, quantity, price)
+					VALUES ('. (int) $order_id .', '. (int) $order_positions[$i]['product_id'] .', '. (int) $order_positions[$i]['quantity'] .','. $order_positions[$i]['price'] .')';
+
+					db_query($insert_statement);
+					$order_position_id = db_insert_id();
+
+
+
+					// $customizing = new customizing();
+					$froxlor_customer_id = $customizing->getCustomizingValue('business_froxlor_client_prefix') .'_'. $customer_id;
+
+
 					// reserve disc space on selected server
 					$booked_server = new server($recommended_server);
 					$booked_server->bookProduct( (int) $order_positions[$i]['product_id']);
-					
+						
 					// save single order position details
 					$insert_statement = 'INSERT INTO '. TBL_ORDER_POSITION_DETAIL .' (order_position_id, server_id, froxlor_customer_id)
 					VALUES ('. (int) $order_position_id .', '. (int) $recommended_server .', "'. $froxlor_customer_id .'")';
 					db_query($insert_statement);
 				}
 				else {
-					echo WARNING_SERVER_NO_SERVER_AVAILABLE;
+					echo sprintf(WARNING_SERVER_NO_SERVER_AVAILABLE, $order_positions[$i]['title']);
 				}
 			}
-				
+
 		}
 
 		return new order($order_id);
@@ -132,7 +137,7 @@ class order {
 		// order found in DB
 		if(db_num_results($query) == 1) {
 			$result_data = db_fetch_array($query);
-				
+
 			$this->order_id = $result_data['order_id'];
 			$this->customer_id = $result_data['customer_id'];
 			$this->shipping_address_id = $result_data['customer_shipping_address'];
@@ -140,7 +145,7 @@ class order {
 			$this->order_date = $result_data['order_date'];
 			$this->order_status = $result_data['status'];
 			$this->order_status_id = $result_data['order_status_id'];
-				
+
 			return true;
 		}
 		else {
