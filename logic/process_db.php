@@ -3,14 +3,15 @@ session_start();
 
 include_once '../configuration.inc.php';
 
-require '../includes/classes/cl_customizing.php';
-require '../includes/classes/cl_customer.php';
+require_once PATH_CLASSES .'cl_customizing.php';
+require_once PATH_CLASSES .'cl_customer.php';
 require_once PATH_CLASSES .'cl_language.php';
 
-require '../functions/database.php';
+require_once PATH_FUNCTIONS .'database.php';
+require_once PATH_FUNCTIONS .'security.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
-include_once '../includes/database_tables.php';
+include_once PATH_INCLUDES .'database_tables.php';
 
 if(!isset($language_id)) {
 	// check if language was handed over
@@ -33,7 +34,7 @@ $action = $_POST['action'];
 switch($action) {
 
 	case 'create_customer':
-		$customerData = mysql_real_escape_string($_POST['customerData']);
+		$customerData = db_security_escape_string_array($_POST['customerData']);
 
 		customer::create($customerData);
 
