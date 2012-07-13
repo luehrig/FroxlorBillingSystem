@@ -299,7 +299,7 @@ define('EXPLANATION_CONTENT','Hier können Sie den Inhalt Ihrer Seiten verwalten
 
 
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS', 'Dieses Produktattribut existiert bereits!');
-define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_SUCCESSFUL', 'Änderungen wurden erfolgreich gespeichert.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_SUCCESSFUL', 'Die Productattributänderungen wurden erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_SUCCESSFUL', 'Produktattribut erfolgreich angelegt.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED', 'Es ist ein Fehler beim Anlegen des Produktattributs aufgetreten.');
@@ -314,7 +314,7 @@ define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATIONS_FOR_ALL_SUPPORTED_LANGUAGES_
 define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Das Produkt wurde erfolgreich angelegt.');
 define('INFO_MESSAGE_DB_ACTION_FAILED', 'Es ist ein Fehler beim Ändern der Datenbank aufgetreten.');
 
-define('INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL', 'Änderungen wurden erfolgreich gespeichert.');
+define('INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL', 'Die Produktänderungen wurden erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
 
 define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
@@ -340,6 +340,9 @@ define('INFO_MESSAGE_INVOICE_STATUS_CHANGED', 'Der Rechnungsstatus wurde erfolgr
 define('INFO_MESSAGE_PRODUCT_INFO_SUCCESSFULLY_DELETED', 'Das Produktattribut wurde erfolgreich gelöscht.');
 
 define('INFO_MESSAGE_SERVER_CREATION_SUCCESSFUL', 'Der Server wurde erfolgreich angelegt.');
+define('INFO_MESSAGE_SERVER_UPDATE_SUCCESSFUL', 'Die Serveränderungen wurden erfolgreich gespeichert.');
+define('INFO_MESSAGE_SERVER_SUCCESSFULLY_DELETED', 'Server wurde erfolgreich entfernt.');
+define('INFO_MESSAGE_SERVER_DELETION_FAILED', 'Es ist ein Fehler beim Löschen des Servers aufgetreten.');
 
 define('INFO_MESSAGE_PASSWORT_SUCCESSFULLY_CHANGED', 'Das Passwort wurde erfolgreich geändert!');
 define('WARNING_MESSAGE_PASSWORT_CHANGE_ABORTED','Es ist ein Fehler beim Ändern des Passwortes aufgetreten. Versuchen Sie es später bitte erneut!');

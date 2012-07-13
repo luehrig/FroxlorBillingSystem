@@ -639,7 +639,12 @@ switch($action) {
 				'active'=>$active);
 
 		$server = new server($server_id);
-		$server->update($server_data);
+		if($server->update($server_data)){
+			echo INFO_MESSAGE_SERVER_UPDATE_SUCCESSFUL;
+		}
+		else{
+			echo INFO_MESSAGE_DB_ACTION_FAILED;
+		}
 
 		echo '</fieldset>';
 		echo '</div>';
@@ -650,11 +655,15 @@ switch($action) {
 		echo'<a href="#" id="back_to_myserver" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
-
 		$server_id = $_POST['server_id'];
-
+		
 		$server = new server($server_id);
-		$server->delete();
+		if($server->delete()){
+			echo INFO_MESSAGE_SERVER_SUCCESSFULLY_DELETED;
+		}
+		else{
+			echo INFO_MESSAGE_SERVER_DELETION_FAILED;
+		}
 
 		echo '</fieldset>';
 		echo '</div>';
