@@ -915,6 +915,12 @@ function loadContent(areacode, language_id) {
 		}
 	}).done(function(msg) {
 		$('.content_container').html(msg);
+		
+		// set menu focus
+		// remove old active menu item
+		$('a.mm_active').removeClass('mm_active');
+		// set new active menu item
+		$('a[id='+areacode+']').addClass('mm_active');
 	});
 }
 
