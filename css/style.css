@@ -1,4 +1,8 @@
 /* --------------- General ------------------------------ */
+html, body {
+	min-height: 100%;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#F0F0F0'); /* for IE */
+}
 
 /*style of bodybackground*/
 body 
