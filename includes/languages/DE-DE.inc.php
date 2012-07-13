@@ -191,11 +191,14 @@ define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetr
 define('HEADING_SITEMAP', 'Sitemap');
 
 /* invoice */
+define('INVOICE_LABEL_INVOICE','Rechnung');
 define('INVOICE_BANK_CONTACT','Bankverbindung');
 define('INVOICE_NET_AMOUNT','Nettobetrag');
 define('INVOICE_TAX_RATE','MwSt');
 define('INVOICE_INVOICE_AMOUNT','Zahlbetrag');
 define('INVOICE_CONTINUANCE','Fortsetzung der Rechnung auf der nächsten Seite');
+define('INVOICE_LABEL_POSITION','Pos');
+define('INVOICE_LABEL_TOTAL','Gesamt');
 
 /* -----------------------------  Backend   ------------------------------------------------ */
 
