@@ -190,6 +190,16 @@ define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','Rechnung %s');
 define('MSG_SUCCESSFULLY_SENT','Ihre Nachricht wurde erfolgreich an die Shopbetreiber gesendet!');
 define('HEADING_SITEMAP', 'Sitemap');
 
+/* invoice */
+define('INVOICE_LABEL_INVOICE','Rechnung');
+define('INVOICE_BANK_CONTACT','Bankverbindung');
+define('INVOICE_NET_AMOUNT','Nettobetrag');
+define('INVOICE_TAX_RATE','MwSt');
+define('INVOICE_INVOICE_AMOUNT','Zahlbetrag');
+define('INVOICE_CONTINUANCE','Fortsetzung der Rechnung auf der nächsten Seite');
+define('INVOICE_LABEL_POSITION','Pos');
+define('INVOICE_LABEL_TOTAL','Gesamt');
+
 /* -----------------------------  Backend   ------------------------------------------------ */
 
 define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den Shopbetreiber');
