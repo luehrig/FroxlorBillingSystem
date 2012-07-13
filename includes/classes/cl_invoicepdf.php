@@ -2,10 +2,6 @@
 // TODO: delete in productive environment
 error_reporting(E_ALL);
 
-// require_once 'cl_customizing';
-// require_once 'cl_invoice.php';
-
-
 class invoicepdf extends FPDF {
 
 	private $invoice_data 			= array();
@@ -145,13 +141,13 @@ class invoicepdf extends FPDF {
 			$this->SetXY(30, 55);
 			$this->Cell(71, 6, utf8_decode($this->customer_data['first_name']) .' '. utf8_decode($this->customer_data['last_name']), 0, 1, '');
 			$this->SetXY(30, 63);
-			$this->Cell(71, 6, $this->billing_address['street']. ' '. $this->billing_address['street_number'], 0, 1, '');
+			$this->Cell(71, 6, utf8_decode($this->billing_address['street']). ' '. utf8_decode($this->billing_address['street_number']), 0, 1, '');
 			$this->SetXY(30, 73);
-			$this->Cell(71, 6, $this->billing_address['post_code'], 0, 1, '');
+			$this->Cell(71, 6, utf8_decode($this->billing_address['post_code']), 0, 1, '');
 			$this->SetXY(45, 73);
-			$this->Cell(71, 6, $this->billing_address['city'], 0, 1, '');
+			$this->Cell(71, 6, utf8_decode($this->billing_address['city']), 0, 1, '');
 			$this->SetXY(30, 80);
-			$this->Cell(71, 6, $this->billing_address['country'], 0, 1, '');
+			$this->Cell(71, 6, utf8_decode($this->billing_address['country']), 0, 1, '');
 			$this->SetFillColor(210);
 			$this->SetTextColor(72,149,206);
 
@@ -162,14 +158,14 @@ class invoicepdf extends FPDF {
 			$this->Cell(49, 4, 'Rechnungsnummer', 0, 1, 'R');
 			$this->SetFont('Arial','B','12');
 			$this->SetXY(160, 73);
-			$this->Cell(26, 4, $this->invoice_data['invoice_number'], 0, 1, '');
+			$this->Cell(26, 4, utf8_decode($this->invoice_data['invoice_number']), 0, 1, '');
 			//Kundennummer
 			$this->SetFont('Arial','','10');
 			$this->SetXY(110, 79);
 			$this->Cell(49, 4, 'Kundennummer', 0, 1, 'R');
 			$this->SetFont('Arial','B','12');
 			$this->SetXY(160, 79);
-			$this->Cell(26, 4, $this->customer_data['customer_number'], 0, 1, '');
+			$this->Cell(26, 4, utf8_decode($this->customer_data['customer_number']), 0, 1, '');
 			//Datum
 			$this->SetFont('Arial','','10');
 			$this->SetXY(110, 85);
@@ -214,33 +210,33 @@ class invoicepdf extends FPDF {
 		$this->SetFont('Arial','I','8');
 		// Adresse
 		$this->SetXY(35, 272);
-		$this->Cell(36, 3, $this->business_customizing['business_company_name'], 0, 1, '');
+		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_company_name']), 0, 1, '');
 		$this->SetXY(35, 275);
-		$this->Cell(36, 3, $this->business_customizing['business_company_street'], 0, 1, '');
+		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_company_street']), 0, 1, '');
 		$this->SetXY(35, 278);
-		$this->Cell(36, 3, $this->business_customizing['business_company_post_code'] .' '. $this->business_customizing['business_company_city'], 0, 1, '');
+		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_company_post_code']) .' '. utf8_decode($this->business_customizing['business_company_city']), 0, 1, '');
 		$this->SetXY(35, 281);
-		$this->Cell(36, 3, $this->business_customizing['business_company_country'], 0, 1, '');
+		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_company_country']), 0, 1, '');
 		//Tel, Fax, Mail, Web
 		$this->SetXY(90, 272);
-		$this->Cell(36, 3, 'Tel:    '. $this->business_customizing['business_company_tel'], 0, 1, '');
+		$this->Cell(36, 3, 'Tel:    '. utf8_decode($this->business_customizing['business_company_tel']), 0, 1, '');
 		$this->SetXY(90, 275);
-		$this->Cell(36, 3, 'Fax:   '. $this->business_customizing['business_company_fax'], 0, 1, '');
+		$this->Cell(36, 3, 'Fax:   '. utf8_decode($this->business_customizing['business_company_fax']), 0, 1, '');
 		$this->SetXY(90, 278);
-		$this->Cell(36, 3, 'Mail: '. $this->business_customizing['business_company_email'], 0, 1, '');
+		$this->Cell(36, 3, 'Mail: '. utf8_decode($this->business_customizing['business_company_email']), 0, 1, '');
 		$this->SetXY(90, 281);
-		$this->Cell(36, 3, 'Web: '. $this->business_customizing['business_company_webpage'], 0, 1, '');
+		$this->Cell(36, 3, 'Web: '. utf8_decode($this->business_customizing['business_company_webpage']), 0, 1, '');
 		// Bank
 		$this->SetXY(144, 272);
-		$this->Cell(24, 3, 'Bankverbindung:', 0, 1, 'R');
+		$this->Cell(24, 3, INVOICE_BANK_CONTACT, 0, 1, 'R');
 		$this->SetXY(168, 272);
-		$this->Cell(36, 3, $this->business_customizing['business_payment_bank_name'], 0, 1, '');
+		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_payment_bank_name']), 0, 1, '');
 		$this->SetXY(168, 275);
-		$this->Cell(36, 3, $this->business_customizing['business_payment_bank_account'], 0, 1, '');
+		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_payment_bank_account']), 0, 1, '');
 		$this->SetXY(168, 278);
-		$this->Cell(36, 3, $this->business_customizing['business_payment_bank_code'], 0, 1, '');
+		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_payment_bank_code']), 0, 1, '');
 		$this->SetXY(168, 281);
-		$this->Cell(36, 3, $this->business_customizing['business_payment_tax_id_number'], 0, 1, '');
+		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_payment_tax_id_number']), 0, 1, '');
 	} // ENDE Footer()
 
 
@@ -277,7 +273,7 @@ class invoicepdf extends FPDF {
 			$i++;
 			$this->twShowZeileMitMultiCell(array(
 					$i,
-					$pos['product_description'] .' - '. $pos['product_description'],
+					utf8_decode($pos['product_title']) .' - '. utf8_decode($pos['product_description']),
 					sprintf("%9.2f", $pos['quantity']),
 					sprintf("%9.2f", $pos['price']),
 					sprintf("%9.2f", $pos['amount'])
@@ -306,20 +302,20 @@ class invoicepdf extends FPDF {
 		//Endbetrag (brutto)
 		$this->SetFont('Arial','','10');
 		$this->SetXY(141, 251);
-		$this->Cell(24, 5, 'Nettobetrag:', 0, 1, 'R');
+		$this->Cell(24, 5, INVOICE_NET_AMOUNT .':', 0, 1, 'R');
 		$this->SetXY(169, 251);
 		$this->Cell(21, 5, sprintf("%9.2f", $this->invoice_data['invoice_sum_net']) ." ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign()), 0, 1, 'R');
 		//Steuer
 		$this->SetFont('Arial','','10');
 		$this->SetXY(141, 257);
-		$this->Cell(24, 5, '+'. $this->invoice_data['tax_rate'] .'% MwSt:', 0, 1, 'R');
+		$this->Cell(24, 5, '+'. $this->invoice_data['tax_rate'] .'% '. INVOICE_TAX_RATE .':', 0, 1, 'R');
 		$this->SetXY(169, 257);
 		$strWegenKlammer = sprintf("%9.2f", $this->invoice_data['invoice_sum_tax']). " ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign());
 		$this->Cell(21, 5, $strWegenKlammer, 0, 1, 'R');
 		//Endbetrag
 		$this->SetFont('Arial','B','12');
 		$this->SetXY(141, 263);
-		$strWegenKlammer = "Zahlbetrag:". sprintf("%9.2f", $this->invoice_data['invoice_sum_gross']). " ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign());
+		$strWegenKlammer = INVOICE_INVOICE_AMOUNT .':'. sprintf("%9.2f", $this->invoice_data['invoice_sum_gross']). " ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign());
 		$this->Cell(49, 5, $strWegenKlammer, 0, 1, 'R');
 
 		$this->SetFont('Arial','B','12');
@@ -430,7 +426,7 @@ class invoicepdf extends FPDF {
 		if($this->GetY()+$hoehe>$this->PageBreakTrigger) {
 			// Hinweis auf Folgeseite
 			$this->SetXY(26, 251);
-			$text01 = "Fortsetzung der Rechnung auf der n�chsten Seite";
+			$text01 = INVOICE_CONTINUANCE;
 			$this->SetAutoPageBreak(false);       // Seitenumbruch kurz raus
 			$this->MultiCell(110, 3.2, $text01, 0, 'C', 0);
 			$this->SetAutoPageBreak(true, 50);    // Seitenumbruch wieder rein
