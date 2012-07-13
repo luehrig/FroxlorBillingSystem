@@ -15,7 +15,7 @@ include_once '../includes/database_tables.php';
 if(!isset($language_id)) {
 	// check if language was handed over
 	if(isset($_POST['language_id'])) {
-		$language_id = language::ISOTointernal($_POST['language_id']);
+		$language_id = language::ISOTointernal(mysql_real_escape_string($_POST['language_id']));
 		if($language_id == null) {
 			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
 		}
@@ -33,19 +33,19 @@ $action = $_POST['action'];
 switch($action) {
 
 	case 'create_customer':
-		$customerData = $_POST['customerData'];
+		$customerData = mysql_real_escape_string($_POST['customerData']);
 
 		customer::create($customerData);
 
 		break;
 
 	case 'update_customer':
-		$customerData = $_POST['customerData'];
-		$shippingAddress = $_POST['shippingAddress'];
-		$billingAddress = $_POST['billingAddress'];
-		$customer_id = $_POST['customer_id'];
-		$shipping_address_id = $_POST['shipping_address_id'];
-		$billing_address_id = $_POST['billing_address_id'];
+		$customerData = db_security_escape_string_array($_POST['customerData']);
+		$shippingAddress = db_security_escape_string_array($_POST['shippingAddress']);
+		$billingAddress = db_security_escape_string_array($_POST['billingAddress']);
+		$customer_id = mysql_real_escape_string($_POST['customer_id']);
+		$shipping_address_id = mysql_real_escape_string($_POST['shipping_address_id']);
+		$billing_address_id = mysql_real_escape_string($_POST['billing_address_id']);
 
 		$customer = new customer($customer_id);
 		$customer->update($customer_id, $customerData);

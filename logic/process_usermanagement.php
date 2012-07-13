@@ -20,7 +20,7 @@ include_once PATH_FUNCTIONS .'user_management.php';
 if(!isset($language_id)) {
 	// check if language was handed over
 	if(isset($_POST['language_id'])) {
-		$language_id = language::ISOTointernal($_POST['language_id']);
+		$language_id = language::ISOTointernal(mysql_real_escape_string($_POST['language_id']));
 		if($language_id == null) {
 			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
 		}
@@ -37,8 +37,8 @@ $action = $_POST['action'];
 switch($action) {
 
 	case 'login_customer':
-		$email = $_POST['email'];
-		$password = $_POST['password'];	
+		$email = mysql_real_escape_string($_POST['email']);
+		$password = mysql_real_escape_string($_POST['password']);	
 		
 		$user_information = db_user_check_credentials( $email, $password );
 		
@@ -61,8 +61,8 @@ switch($action) {
 	break;
 	
 	case 'login_backend':
-		$email = $_POST['email'];
-		$password = $_POST['password'];
+		$email = mysql_real_escape_string($_POST['email']);
+		$password = mysql_real_escape_string($_POST['password']);
 	
 		$user_information = db_backend_user_check_credentials( $email, $password );
 	

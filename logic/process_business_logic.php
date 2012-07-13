@@ -10,6 +10,7 @@ require_once PATH_CLASSES .'cl_contract.php';
 require_once PATH_CLASSES .'cl_notice.php';
 
 require_once PATH_FUNCTIONS .'datetime.php';
+require_once PATH_FUNCTIONS .'security.php';
 
 if(session_id() == '') {
 	session_start();
@@ -26,7 +27,7 @@ include_once PATH_FUNCTIONS .'user_management.php';
 if(!isset($language_id)) {
 	// check if language was handed over
 	if(isset($_POST['language_id'])) {
-		$language_id = language::ISOTointernal($_POST['language_id']);
+		$language_id = language::ISOTointernal(mysql_real_escape_string($_POST['language_id']));
 		if($language_id == null) {
 			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
 		}
@@ -49,7 +50,7 @@ switch($action) {
 	*/
 	// display shopping cart with all products
 	case 'add_product_to_cart':
-		$product_id = $_POST['product_id'];
+		$product_id = mysql_real_escape_string($_POST['product_id']);
 
 		$cart = new shoppingcart(session_id());
 		$cart->addProduct($product_id);
@@ -65,7 +66,7 @@ switch($action) {
 
 	case 'remove_product_from_cart':
 
-		$product_id = $_POST['product_id'];
+		$product_id = mysql_real_escape_string($_POST['product_id']);
 
 		$cart = new shoppingcart(session_id());
 		$cart->removeProduct($product_id);
@@ -74,8 +75,8 @@ switch($action) {
 
 	case 'decrease_product_in_cart':
 
-		$product_id = $_POST['product_id'];
-		$quantity = $_POST['quantity'];
+		$product_id = mysql_real_escape_string($_POST['product_id']);
+		$quantity = mysql_real_escape_string($_POST['quantity']);
 
 		$cart = new shoppingcart(session_id());
 		$cart->removeProduct($product_id,$quantity);
@@ -84,8 +85,8 @@ switch($action) {
 
 	case 'increase_product_in_cart':
 
-		$product_id = $_POST['product_id'];
-		$quantity = $_POST['quantity'];
+		$product_id = mysql_real_escape_string($_POST['product_id']);
+		$quantity = mysql_real_escape_string($_POST['quantity']);
 
 		$cart = new shoppingcart(session_id());
 		$cart->addProduct($product_id,$quantity);
@@ -94,7 +95,7 @@ switch($action) {
 
 	case 'get_product_amount_in_cart':
 
-		$product_id = $_POST['product_id'];
+		$product_id = mysql_real_escape_string($_POST['product_id']);
 
 		$cart = new shoppingcart(session_id());
 		echo $cart->getProductAmount($product_id);
@@ -109,7 +110,7 @@ switch($action) {
 
 	case 'terminate_contract':
 
-		$contract_id = $_POST['contract_id'];
+		$contract_id = mysql_real_escape_string($_POST['contract_id']);
 
 		$notice = notice::create($contract_id);
 

@@ -28,6 +28,7 @@ require_once PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 require_once PATH_FUNCTIONS .'general.php';
+require_once PATH_FUNCTIONS .'security.php';
 
 include_once PATH_INCLUDES .'database_tables.php';
 //include_once PATH_LANGUAGES .'DE.inc.php';
@@ -40,7 +41,7 @@ if(!isset($action)) {
 if(!isset($language_id)) {
 	// check if language was handed over
 	if(isset($_POST['language_id'])) {
-		$language_id = language::ISOTointernal($_POST['language_id']);
+		$language_id = language::ISOTointernal(mysql_real_escape_string($_POST['language_id']));
 		if($language_id == null) {
 			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
 		}
@@ -153,8 +154,8 @@ switch($action) {
 		// show address information
 	case 'show_checkout_step4':
 		// get address arrays form address selction screen
-		$shippingAddress = $_POST['shippingAddress'];
-		$billingAddress = $_POST['billingAddress'];
+		$shippingAddress = db_security_escape_string_array($_POST['shippingAddress']);
+		$billingAddress = db_security_escape_string_array($_POST['billingAddress']);
 		
 		// get customer object
 		$customer = new customer($_SESSION['customer_id']);
@@ -204,8 +205,8 @@ switch($action) {
 		
 		
 		// get address information for order
-		$shipping_address_id = $_POST['shipping_address_id'];
-		$billing_address_id = $_POST['billing_address_id'];
+		$shipping_address_id = mysql_real_escape_string($_POST['shipping_address_id']);
+		$billing_address_id = mysql_real_escape_string($_POST['billing_address_id']);
 		
 		// if something went wrong with address id handling use default address information for customer
 		if(!isset($shipping_address_id)) {
@@ -304,7 +305,7 @@ switch($action) {
 		break;
 
 	case 'show_specific_page':
-		$destination = $_POST['destination'];
+		$destination = mysql_real_escape_string($_POST['destination']);
 		
 		header($destination);
 		

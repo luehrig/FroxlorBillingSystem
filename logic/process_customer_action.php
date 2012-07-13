@@ -34,7 +34,7 @@ $customizing = new customizing( language::getBrowserLanguage() );
 if(!isset($language_id)) {
 	// check if language was handed over
 	if(isset($_POST['language_id'])) {
-		$language_id = language::ISOTointernal($_POST['language_id']);
+		$language_id = language::ISOTointernal(mysql_real_escape_string($_POST['language_id']));
 		if($language_id == null) {
 			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
 		}
@@ -131,11 +131,11 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 
 		case 'send_email':
 			// read post variables from request
-			$first_name = $_POST['first_name'];
-			$last_name = $_POST['last_name'];
-			$customer_email = $_POST['email'];
-			$msg_type = $_POST['msg_type'];
-			$message = $_POST['message'];
+			$first_name = mysql_real_escape_string($_POST['first_name']);
+			$last_name = mysql_real_escape_string($_POST['last_name']);
+			$customer_email = mysql_real_escape_string($_POST['email']);
+			$msg_type = mysql_real_escape_string($_POST['msg_type']);
+			$message = mysql_real_escape_string($_POST['message']);
 
 			// get admin email address
 			$customizing = new customizing();
