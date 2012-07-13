@@ -96,6 +96,9 @@ switch($action) {
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
+		
+		echo '<input type="hidden" id="language_id" value="'. $language_id .'">';
+		
 		$existing_attributes_for_lang = productAttribute::getAllExistingAttrByLang($language_id);
 		$availible_attributes = productInfo::getAvailableAttributes($product_id, $existing_attributes_for_lang);
 
@@ -105,10 +108,10 @@ switch($action) {
 		break;
 
 	case 'create_new_product_info':
-		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		/* echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
 		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
-		echo'<fieldset>';
+		echo'<fieldset>'; */
 		$product_id = $_POST['product_id'];
 		//$language_id = $_POST['language_id'];
 		$attribute_id = $_POST['attribute_id'];
@@ -122,8 +125,8 @@ switch($action) {
 			echo INFO_MESSAGE_DB_ACTION_FAILED;
 		}
 
-		echo '</fieldset>';
-		echo '</div>';
+		/* echo '</fieldset>';
+		echo '</div>'; */
 		break;
 
 	case 'delete_product_info':

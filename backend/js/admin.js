@@ -344,7 +344,8 @@ $(function() {
 						'select[name=attribute_selection] option:selected')
 						.attr('id');
 				var value = $('input[type=text][id=value]').val();
-
+				var language_id = $('input[type=hidden][id=language_id]').val();
+				
 				$.ajax({
 					type : "POST",
 					url : "logic/process_action.php",
@@ -355,7 +356,21 @@ $(function() {
 						value : value
 					}
 				}).done(function(msg) {
-					$('.content').html(msg);
+					showMessagePopup('info', msg);
+					
+					// reload product
+					$.ajax({
+						type : "POST",
+						url : "logic/process_action.php",
+						data : {
+							action : "open_product_editor",
+							product_id : product_id,
+							language_id : language_id
+						}
+					}).done(function(msg) {
+						$('.content').html(msg);
+					});
+					
 				});
 
 				return false;
