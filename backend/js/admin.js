@@ -952,7 +952,6 @@ $(function() {
 					"click",
 					"input[type=submit][id=edit_server]",
 					function() {
-
 						var server_id = $('input[type=hidden][id=server_id]')
 								.val();
 						var name = $('input[type=text][id=name]').val();
@@ -1001,18 +1000,8 @@ $(function() {
 								active : active
 							}
 						}).done(function(msg) {
-							if (msg == '') {
-								// reload server area
-								$.ajax({
-									type : "POST",
-									url : "logic/process_action.php",
-									data : {
-										action : "get_server_overview"
-									}
-								}).done(function(msg) {
-									$('.content').html(msg);
-								});
-							}
+							$('.content').html(msg);
+							
 						});
 
 						return false;
@@ -1021,7 +1010,6 @@ $(function() {
 	// delete server on DB
 	$('body').on("click", "a[id=delete_server]", function() {
 		var server_id = $(this).attr('rel');
-
 		$.ajax({
 			type : "POST",
 			url : "logic/process_action.php",
@@ -1030,18 +1018,7 @@ $(function() {
 				server_id : server_id
 			}
 		}).done(function(msg) {
-			if (msg == '') {
-				// reload server area
-				$.ajax({
-					type : "POST",
-					url : "logic/process_action.php",
-					data : {
-						action : "get_server_overview"
-					}
-				}).done(function(msg) {
-					$('.content').html(msg);
-				});
-			}
+			$('.content').html(msg);
 		});
 
 		return false;
