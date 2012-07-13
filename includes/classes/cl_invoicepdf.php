@@ -13,8 +13,8 @@ class invoicepdf extends FPDF {
 	private $business_customizing   = array();
 	private $currency;
 	
-	private $twArrSpaltenbreiten      = array();
-	private $twArrSpaltenkoepfe       = array();
+	private $twArrColumnWidth      = array();
+	private $twArrColumnHeaders       = array();
 
 
 	/**
@@ -43,16 +43,16 @@ class invoicepdf extends FPDF {
 		$this->currency = new currency($this->invoice_data['currency_id']);
 		
 		// settings for PDF
-		$this->SetDisplayMode( 100 );         // wie gro� wird Seite angezeigt(in %)
-		$this->SetAutoPageBreak(true, 50);    // 50mm von unten erfolgt ein Seitenumbruch
-		$this->AliasNbPages();                // Anzahl der Seiten berechnen ({nb}-sache)
+		$this->SetDisplayMode( 100 );         // set size for display
+		$this->SetAutoPageBreak(true, 50);    // page break will occurre after 50mm
+		$this->AliasNbPages();                // calculate number of pages ({nb}-sache)
 
 		// create new page in document
-		$this->AddPage();                     // PDF starten (ruft auch Header() und Footer() auf
-
+		$this->AddPage();                    
+		
 		// additional objects
-		$this->twShowRechnungspositionen();   // Tabelle mit allen Rechnungspositionen
-		$this->twShowLetzteSeite();           // nur auf der letzten Seite
+		$this->twShowInvoicePosition();  
+		$this->twShowFinalPage();          
 	}
 
 
@@ -63,21 +63,21 @@ class invoicepdf extends FPDF {
 	public function Header() {
 		// every page gets:
 		if ($this->page > 0) {
-			// Farben und Schrift allgemein
+			// colors and font for general document
 			$this->SetFont('Arial','B','12');     // Schrift
 			$this->SetTextColor(000, 000, 102);   // Schriftfarbe
 			$this->SetFillColor(210);             // F�llungsfarbe (Hintergrund)
 			$this->SetDrawColor(000);   			// Rahmenfarbe
 			$this->SetLineWidth(0.4);             // Rahmenst�rke
 
-			// Hintergrundfarbe und -rahmen des Dokumentes
+			// background for invoice
 			$this->SetFillColor(239);
 			$this->SetLineWidth(0.5);
-			$this->twRundeckbereich(22, 10, 179, 277, 4, 'DF');
+			$this->twRoundCornerArea(22, 10, 179, 277, 4, 'DF');
 
 
 
-			// Schrift Firmenbezeichnung
+			// font setup for company name
 			$this->SetTextColor(123);
 			$this->SetFont('Arial','B','16');
 			$this->SetXY(50, 23);                     // xy linksoben der (folgenden)Cell
@@ -90,21 +90,21 @@ class invoicepdf extends FPDF {
 
 			$this->SetTextColor(000, 000, 102);
 
-			// kleine Linie unter Firmenbezeichnung
+			// small linie after company name
 			$this->SetDrawColor(72,149,206);
 			$this->SetFillColor(72,149,206);
-			$this->twRundeckbereich(50, 39, 90, 1, 0.2, 'DF');
+			$this->twRoundCornerArea(50, 39, 90, 1, 0.2, 'DF');
 
-			// Box mit Logo
+			// box with logo
 			$this->Image(PATH_IMAGES .'/logos/logo_invoice.png',149, 24);
 
-			//Seitenzahl (zB Seite 1 von 3)
+			// page numbers
 			$this->SetFont('Arial','','8');
 			$this->SetXY(149, 50);
 			$this->AliasNbPages();       // erstmal Anzahl der Seiten berechnen
 			$this->Cell(38, 4, 'Seite '.$this->PageNo().' von {nb}', 0, 1, 'C');
 
-			// Faltzeichen (links, 1/3 und 1/2 der Seite)
+			// markers for wrinkles
 			$this->SetFillColor(255);
 			$this->SetXY(8, 107);
 			$this->Cell(6, 0, '', 1, 1, 'C');
@@ -112,32 +112,32 @@ class invoicepdf extends FPDF {
 			$this->Cell(6, 0, '', 1, 1, 'C');
 			$this->SetFillColor(210);
 
-			// RundBox (wenns letzte Seite ist->Zahlungsbedingungen, sonst Hinweis auf Folgeseite
+			// roundbox for billing terms or hint for next page
 			$this->SetFillColor(247);
 			$this->SetDrawColor(000);
 			$this->SetLineWidth(0.1);
-			$this->twRundeckbereich(24, 249, 114, 20, 2, 'DF');
+			$this->twRoundCornerArea(24, 249, 114, 20, 2, 'DF');
 
-			// RundBox zur Ausgabe der berechneten Zahlbetr�ge
+			// round box for calculated sums
 			$this->SetTextColor(000);
 			$this->SetFillColor(255);
 			$this->SetDrawColor(72,149,206);
 			$this->SetLineWidth(0.5);
-			$this->twRundeckbereich(140, 249, 51, 20, 2, 'DF');
+			$this->twRoundCornerArea(140, 249, 51, 20, 2, 'DF');
 			$this->SetDrawColor(000);
 
-			$this->SetY(59);   // wenn mehrseitiges Dokument
+			$this->SetY(59);   // if multi page document
 		}
 
-		// NUR f�r die erste Seite gilt:
+		// only for first page
 		if ($this->page == 1) {
 
-			// Box f�r (Kunden-)Adresse
+			// box for customer address
 			$this->SetFont('Arial','B','12');
 			$this->SetTextColor(000);
 			$this->SetFillColor(255);
 			$this->SetLineWidth(0.1);
-			$this->twRundeckbereich(25, 52, 75, 36, 2, 'DF');
+			$this->twRoundCornerArea(25, 52, 75, 36, 2, 'DF');
 			$this->SetXY(30, 55);
 			$this->Cell(71, 6, utf8_decode($this->customer_data['first_name']) .' '. utf8_decode($this->customer_data['last_name']), 0, 1, '');
 			$this->SetXY(30, 63);
@@ -151,64 +151,63 @@ class invoicepdf extends FPDF {
 			$this->SetFillColor(210);
 			$this->SetTextColor(72,149,206);
 
-			// Rechnungsnummer, Kundennummer, Datum
-			//Rechnungsnummer
+			// header data for invoice
+			// invoice number
 			$this->SetFont('Arial','','10');
 			$this->SetXY(110, 73);
-			$this->Cell(49, 4, 'Rechnungsnummer', 0, 1, 'R');
+			$this->Cell(49, 4, TABLE_HEADING_INVOICE_INVOICE_NUMBER, 0, 1, 'R');
 			$this->SetFont('Arial','B','12');
 			$this->SetXY(160, 73);
 			$this->Cell(26, 4, utf8_decode($this->invoice_data['invoice_number']), 0, 1, '');
-			//Kundennummer
+			//customer number
 			$this->SetFont('Arial','','10');
 			$this->SetXY(110, 79);
-			$this->Cell(49, 4, 'Kundennummer', 0, 1, 'R');
+			$this->Cell(49, 4, TABLE_HEADING_CUSTOMER_CUSTOMER_NUMBER, 0, 1, 'R');
 			$this->SetFont('Arial','B','12');
 			$this->SetXY(160, 79);
 			$this->Cell(26, 4, utf8_decode($this->customer_data['customer_number']), 0, 1, '');
-			//Datum
+			// invoice date
 			$this->SetFont('Arial','','10');
 			$this->SetXY(110, 85);
-			$this->Cell(49, 4, 'Datum', 0, 1, 'R');
+			$this->Cell(49, 4, TABLE_HEADING_INVOICE_ISSUE_DATE, 0, 1, 'R');
 			$this->SetFont('Arial','B','12');
 			$this->SetXY(160, 85);
 			$this->Cell(26, 4, mysql_date2german($this->invoice_data['issue_date']), 0, 1, '');
 
 			$this->SetFont('Arial','B','12');
 
-			// Linie unter (Kunden-)Adresse
-			//$this->twRundeckbereich(30, 91, 155, 1, 0.4, 'DF');
-			 
-			// das Wort Rechnung
+			// line after customer address
+				 
+			// header text 'invoice'
 			$this->SetFont('Arial','B','22');
 			$this->SetXY(34, 94);
-			$this->Cell(146, 8, 'Rechnung', 0, 1, 'C');
+			$this->Cell(146, 8, INVOICE_LABEL_INVOICE, 0, 1, 'C');
 			$this->SetFont('Arial','B','12');
 
-			// RundBox der Rechnungspositionen (auf erster Seite weiter unten wegen Adressfeld)
+			// round box with invoice positions (because first page includes contact information)
 			$this->SetFillColor(255);
 			$this->SetLineWidth(0.3);
-			$this->twRundeckbereich(25, 104, 165, 142, 2, 'DF');
+			$this->twRoundCornerArea(25, 104, 165, 142, 2, 'DF');
 		}
 
-		// f�r ALLE Seiten AUSSER die erste Seite:
+		// for all pages (excepted first page)
 		if ($this->page > 1) {
-			// die RundBox (ab der zweiten Seite weiter oben)
+			// round box (starts with second page
 			$this->SetFillColor(255);
 			$this->SetLineWidth(0.1);
-			$this->twRundeckbereich(25, 56, 165, 191, 2, 'DF');
+			$this->twRoundCornerArea(25, 56, 165, 191, 2, 'DF');
 		}
-	} // ENDE Header()
+	} // end Header()
 
 
 	public function Footer() {
-		// RundBox unten (mit Adress-, Bankangaben usw.)
+		// round boxes bottom (with address and bank details)
 		$this->SetFillColor(247);
 		$this->SetTextColor(72,149,206);
 		$this->SetLineWidth(0.1);
-		$this->twRundeckbereich(24, 271, 167, 14, 2.4, 'DF');
+		$this->twRoundCornerArea(24, 271, 167, 14, 2.4, 'DF');
 		$this->SetFont('Arial','I','8');
-		// Adresse
+		// address
 		$this->SetXY(35, 272);
 		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_company_name']), 0, 1, '');
 		$this->SetXY(35, 275);
@@ -217,7 +216,7 @@ class invoicepdf extends FPDF {
 		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_company_post_code']) .' '. utf8_decode($this->business_customizing['business_company_city']), 0, 1, '');
 		$this->SetXY(35, 281);
 		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_company_country']), 0, 1, '');
-		//Tel, Fax, Mail, Web
+		// communication
 		$this->SetXY(90, 272);
 		$this->Cell(36, 3, 'Tel:    '. utf8_decode($this->business_customizing['business_company_tel']), 0, 1, '');
 		$this->SetXY(90, 275);
@@ -226,7 +225,7 @@ class invoicepdf extends FPDF {
 		$this->Cell(36, 3, 'Mail: '. utf8_decode($this->business_customizing['business_company_email']), 0, 1, '');
 		$this->SetXY(90, 281);
 		$this->Cell(36, 3, 'Web: '. utf8_decode($this->business_customizing['business_company_webpage']), 0, 1, '');
-		// Bank
+		// bank
 		$this->SetXY(144, 272);
 		$this->Cell(24, 3, INVOICE_BANK_CONTACT, 0, 1, 'R');
 		$this->SetXY(168, 272);
@@ -237,82 +236,80 @@ class invoicepdf extends FPDF {
 		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_payment_bank_code']), 0, 1, '');
 		$this->SetXY(168, 281);
 		$this->Cell(36, 3, utf8_decode($this->business_customizing['business_payment_tax_id_number']), 0, 1, '');
-	} // ENDE Footer()
+	} // end Footer()
 
 
 
 	/* tw Funktionen private -------------------------------------------------- */
 
 	/**
-	 * Zeigt eine Tabelle mit den Rechnungspositionen an.
-	 * ben�tigt 'twTabelleMitMultiCell'
+	 * display table with all invoice positions
 	 */
-	private function twShowRechnungspositionen() {
+	private function twShowInvoicePosition() {
 
-		// Spaltenbreiten und Beschriftung der Spaltenk�pfe festlegen
-		$this->twSetSpaltenbreiten(array(8, 99, 14, 20, 20));
-		$this->twSetSpaltenkoepfe(array('Pos', 'Text', 'Menge', 'Preis', 'Gesamt'));
+		// set column width and title for column headers
+		$this->twSetColumnWidth(array(8, 99, 14, 20, 20));
+		$this->twSetColumnHeaders(array(INVOICE_LABEL_POSITION, LABEL_PRODUCT_DESCRIPTION, LABEL_PRODUCT_QUANTITY, LABEL_PRODUCT_PRICE, INVOICE_LABEL_TOTAL));
 
-		// Tabellenk�pfe (nur mit Cell)
+		// table headers (only with cells)
 		$this->SetFillColor(244);
 		$this->SetTextColor(000);
 		$this->SetLineWidth(0.3);
 		$this->SetFont('Arial', 'B', '12');
 		$this->SetXY(27, 106);
-		for ($i=0; $i<count($this->twArrSpaltenkoepfe); $i++) {
-			$this->Cell($this->twArrSpaltenbreiten[$i], 7, $this->twArrSpaltenkoepfe[$i], 1, 0, 'C', 1);
+		for ($i=0; $i<count($this->twArrColumnHeaders); $i++) {
+			$this->Cell($this->twArrColumnWidth[$i], 7, $this->twArrColumnHeaders[$i], 1, 0, 'C', 1);
 		}
 		$this->ln();
 
-		// Tabellenzeilen (mit MultiCell)
+		// table rows (including multi-cell)
 		$this->SetFillColor(224, 235, 255);
 		$this->SetFont('Arial', '', 10);
 		$this->SetXY(27, 113);
 		$i = 0;
 		foreach ($this->order_positions as $pos) {
 			$i++;
-			$this->twShowZeileMitMultiCell(array(
+			$this->twShowRowWithMultiCell(array(
 					$i,
 					utf8_decode($pos['product_title']) .' - '. utf8_decode($pos['product_description']),
 					sprintf("%9.2f", $pos['quantity']),
 					sprintf("%9.2f", $pos['price']),
 					sprintf("%9.2f", $pos['amount'])
 			));
-			$this->SetX(27);  // sonst gehts immer ganz links los...
+			$this->SetX(27);  // start on the left hand-side
 		}
-		$this->Cell(array_sum($this->twArrSpaltenbreiten), 0, '', 'T');  //Tabellenlinie unten
+		$this->Cell(array_sum($this->twArrColumnWidth), 0, '', 'T');  // set table line at bottom
 	}
 
 
 
 	/**
-	 * Wird bei mehreren Seiten nur auf der letzten Seite angezeigtzeigt.
-	 * Zeigt Zahlungsbedingungen und Zahlbetrag (im Footer) an.
+	 * is only used if multiple pages are used
 	 */
-	private function twShowLetzteSeite() {
+	private function twShowFinalPage() {
 		$content = new content($this->business_customizing['business_payment_payment_terms']);
 		
-		// Zahlungsbedingungen
+		// terms for billing
 		$this->SetFont('Arial','I','9');
 		$this->SetXY(26, 251);
-		$this->SetAutoPageBreak(true, 10);    // Seitenumbruch weiter runter
+		$this->SetAutoPageBreak(true, 10);    // set auto PageBreak
 		$this->MultiCell(110, 3.2, $content->getText(), 0, 'L', 0);
 
-		// Zahlbetr�ge
-		//Endbetrag (brutto)
+		// invoice amounts
+		// gross amount
 		$this->SetFont('Arial','','10');
 		$this->SetXY(141, 251);
 		$this->Cell(24, 5, INVOICE_NET_AMOUNT .':', 0, 1, 'R');
 		$this->SetXY(169, 251);
 		$this->Cell(21, 5, sprintf("%9.2f", $this->invoice_data['invoice_sum_net']) ." ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign()), 0, 1, 'R');
-		//Steuer
+		// tax
 		$this->SetFont('Arial','','10');
 		$this->SetXY(141, 257);
 		$this->Cell(24, 5, '+'. $this->invoice_data['tax_rate'] .'% '. INVOICE_TAX_RATE .':', 0, 1, 'R');
 		$this->SetXY(169, 257);
 		$strWegenKlammer = sprintf("%9.2f", $this->invoice_data['invoice_sum_tax']). " ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign());
 		$this->Cell(21, 5, $strWegenKlammer, 0, 1, 'R');
-		//Endbetrag
+		// total amount
 		$this->SetFont('Arial','B','12');
 		$this->SetXY(141, 263);
 		$strWegenKlammer = INVOICE_INVOICE_AMOUNT .':'. sprintf("%9.2f", $this->invoice_data['invoice_sum_gross']). " ". iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign());
@@ -325,32 +322,32 @@ class invoicepdf extends FPDF {
 
 
 
-	/* twRundeckbereich START ------------------------------------------------- */
-	private function twRundeckbereich($x, $y, $w, $h, $r, $style='') {
+	/* twRoundCornerArea START ------------------------------------------------- */
+	private function twRoundCornerArea($x, $y, $w, $h, $r, $style='') {
 		$twRund = 4/3 * (sqrt(2) - 1);
 		$k      = $this->k;
 		$hp     = $this->h;
 		$this->_out(sprintf('%.2f %.2f m',($x + $r) * $k, ($hp - $y) * $k));
-		// rechts oben
+		// top right
 		$xc = $x + $w - $r ;
 		$yc = $y + $r;
 		$this->_out(sprintf('%.2f %.2f l', $xc * $k, ($hp - $y) * $k)); // Line
-		$this->twRundeck($xc + $r*$twRund, $yc - $r, $xc + $r, $yc - $r*$twRund, $xc + $r, $yc); // Kurve
-		// rechts unten
+		$this->twRoundCorner($xc + $r*$twRund, $yc - $r, $xc + $r, $yc - $r*$twRund, $xc + $r, $yc); // Kurve
+		// bottom right
 		$xc = $x + $w - $r ;
 		$yc = $y + $h - $r;
 		$this->_out(sprintf('%.2f %.2f l',($x + $w) * $k, ($hp - $yc) * $k));  // Line
-		$this->twRundeck($xc + $r, $yc + $r*$twRund, $xc + $r*$twRund, $yc + $r, $xc, $yc + $r); // Kurve
-		// links unten
+		$this->twRoundCorner($xc + $r, $yc + $r*$twRund, $xc + $r*$twRund, $yc + $r, $xc, $yc + $r); // Kurve
+		// bottom left
 		$xc = $x + $r ;
 		$yc = $y + $h - $r;
 		$this->_out(sprintf('%.2f %.2f l',$xc * $k, ($hp - ($y + $h)) * $k));  // Line
-		$this->twRundeck($xc - $r*$twRund, $yc + $r, $xc - $r, $yc + $r*$twRund, $xc - $r, $yc); // Kurve
-		// links oben
+		$this->twRoundCorner($xc - $r*$twRund, $yc + $r, $xc - $r, $yc + $r*$twRund, $xc - $r, $yc); // Kurve
+		// top left
 		$xc = $x + $r ;
 		$yc = $y + $r;
 		$this->_out(sprintf('%.2f %.2f l',($x) * $k, ($hp - $yc) * $k));  // Line
-		$this->twRundeck($xc - $r, $yc - $r*$twRund, $xc - $r*$twRund, $yc - $r, $xc, $yc - $r); // Kurve
+		$this->twRoundCorner($xc - $r, $yc - $r*$twRund, $xc - $r*$twRund, $yc - $r, $xc, $yc - $r); // Kurve
 
 		if     ($style == 'F') $op = 'f';
 		elseif ($style == 'FD' or $style == 'DF') $op = 'B';
@@ -359,8 +356,8 @@ class invoicepdf extends FPDF {
 		$this->_out($op);
 	}
 
-	private function twRundeck($x1, $y1, $x2, $y2, $x3, $y3) {
-		// Cubic B�zier Kurve (f�r Rechteck mit Runden Ecken)
+	private function twRoundCorner($x1, $y1, $x2, $y2, $x3, $y3) {
+		// cubic corner for rectangle
 		$h = $this->h;
 		$this->_out(sprintf('%.2f %.2f %.2f %.2f %.2f %.2f c ',
 				$x1*$this->k,
@@ -370,79 +367,72 @@ class invoicepdf extends FPDF {
 				$x3*$this->k,
 				($h-$y3)*$this->k));
 	}
-	/* twRundeckbereich END --------------------------------------------------- */
+	/* twRoundCornerArea END --------------------------------------------------- */
 
 
 
-
-
-
-	/* twTabelleMitMultiCell START -------------------------------------------- */
-	/// Tabelle mit MultiCell (siehe: www.fpdf.de/downloads/addons/3/)
-	/// private $twArrSpaltenbreiten; (...oben schon deklariert)
-	/// private $twArrSpaltenkoepfe;  (...oben schon deklariert)
-
-	private function twSetSpaltenbreiten($arrSpaltenbreiten) {
-		$this->twArrSpaltenbreiten=$arrSpaltenbreiten;
+	/* twMultiCellTable START -------------------------------------------- */
+	private function twSetColumnWidth($arrColumnWidth) {
+		$this->twArrColumnWidth=$arrColumnWidth;
 	}
 
-	private function twSetSpaltenkoepfe($arrSpaltenkoepfe) {
-		$this->twArrSpaltenkoepfe=$arrSpaltenkoepfe;
+	private function twSetColumnHeaders($arrColumnHeaders) {
+		$this->twArrColumnHeaders=$arrColumnHeaders;
 	}
 
-	private function twShowZeileMitMultiCell($arrSpalten) {
-		$anzSpalten    = count($arrSpalten);
-		$anzZeilen     = 0;   // ... �ndert sich
-		$zeilenhoehe   = 5;   // hier die Zeilenh�he setzen!
-		$hoeheGesamt   = 0;   // ... �ndert sich
-		$spaltenbreite = 0;   // ... �ndert sich
+	private function twShowRowWithMultiCell($arrColumns) {
+		$anzSpalten    = count($arrColumns);
+		$number_of_columns     = 0;   // ... �ndert sich
+		$rowheight   = 5;   // hier die Zeilenh�he setzen!
+		$heightTotal   = 0;   // ... �ndert sich
+		$columnwidth = 0;   // ... �ndert sich
 
 		for($i=0; $i<$anzSpalten; $i++) {
-			$anzZeilen = max($anzZeilen, $this->twHoleAnzahlZeilen($this->twArrSpaltenbreiten[$i], $arrSpalten[$i]));
+			$number_of_columns = max($number_of_columns, $this->twHoleAnzahlZeilen($this->twArrColumnWidth[$i], $arrColumns[$i]));
 		}
 
-		$hoeheGesamt = $zeilenhoehe * $anzZeilen;   // f�r Gesamth�he aller Zeilen
-		$this->twCheckSeitenumbruch($hoeheGesamt);  // Seitenumbruch, falls n�tig
-		//zeichnet die Zellen einer Zeile
+		$heightTotal = $rowheight * $number_of_columns;   // totel height for rows
+		$this->twCheckPageBreak($heightTotal);  // PageBreak if neccessary
+		// draw cells of one row
 		for($i=0; $i<$anzSpalten; $i++) {
-			$spaltenbreite = $this->twArrSpaltenbreiten[$i];  // Spaltenbreite holen
-			$x             = $this->GetX();                   // aktuelle Position holen (x)
-			$y             = $this->GetY();                   // aktuelle Position holen (y)
+			$columnwidth = $this->twArrColumnWidth[$i];  // get column width
+			$x             = $this->GetX();              // get current x position aktuelle
+			$y             = $this->GetY();              // get current y position
 
-			// den Rahmen und die Inhalte zeichnen
-			$this->Rect($x, $y, $spaltenbreite, $hoeheGesamt);
+			// draw broder and content
+			$this->Rect($x, $y, $columnwidth, $heightTotal);
 			if ($i == 1) {
-				$this->MultiCell($spaltenbreite, $zeilenhoehe, $arrSpalten[$i], 0, 'L');
+				$this->MultiCell($columnwidth, $rowheight, $arrColumns[$i], 0, 'L');
 			} else {
-				$this->MultiCell($spaltenbreite, $zeilenhoehe, $arrSpalten[$i], 0, 'R');
+				$this->MultiCell($columnwidth, $rowheight, $arrColumns[$i], 0, 'R');
 			}
-			$this->SetXY($x+$spaltenbreite, $y);  // Position (rechts von MultiCell) setzen
+			$this->SetXY($x+$columnwidth, $y);  // set position right hand-side from multi-cell
 		}
-		$this->Ln($hoeheGesamt);                //n�chste Zeile
+		$this->Ln($heightTotal);                
 	}
 
-	private function twCheckSeitenumbruch($hoehe) {
-		// bei Bedarf eine neue Seite erzeugen und Hinweis auf Folgeseite
-		if($this->GetY()+$hoehe>$this->PageBreakTrigger) {
-			// Hinweis auf Folgeseite
+	private function twCheckPageBreak($height) {
+		// create new page if neccessary and append hint on next page 
+		if($this->GetY()+$height>$this->PageBreakTrigger) {
+			// hint on next page
 			$this->SetXY(26, 251);
 			$text01 = INVOICE_CONTINUANCE;
-			$this->SetAutoPageBreak(false);       // Seitenumbruch kurz raus
+			$this->SetAutoPageBreak(false);       // PageBreak out
 			$this->MultiCell(110, 3.2, $text01, 0, 'C', 0);
-			$this->SetAutoPageBreak(true, 50);    // Seitenumbruch wieder rein
-			// neue Seite
+			$this->SetAutoPageBreak(true, 50);    // PageBreak in
+			// new page
 			$this->AddPage($this->CurOrientation);
 			$this->SetX(27);
 		}
 	}
 
-	private function twHoleAnzahlZeilen($breite, $txt) {
-		// berechnet die Anzahl der Zeilen der MultiCell bei einer Breite ($breite)
+	private function twHoleAnzahlZeilen($width, $txt) {
+		// calculate number of multi-cell rows with given width ($width)
 		$cw = &$this->CurrentFont['cw'];
-		if ($breite == 0) {
-			$breite=$this->w-$this->rMargin-$this->x;
+		if ($width == 0) {
+			$width=$this->w-$this->rMargin-$this->x;
 		}
-		$wmax = ($breite-2*$this->cMargin)*1000/$this->FontSize;
+		$wmax = ($width-2*$this->cMargin)*1000/$this->FontSize;
 		$s = str_replace("\r", '', $txt);
 		$nb = strlen($s);
 		if ($nb>0 && $s[$nb-1]=="\n") {
@@ -490,9 +480,9 @@ class invoicepdf extends FPDF {
 		}
 		return $nl;
 	}
-	/* twTabelleMitMultiCell END --------------------------------------------- */
+	/* twMultiCellTable END --------------------------------------------- */
 
 
 
-} // ENDE der Klasse PDF
+}
 ?>

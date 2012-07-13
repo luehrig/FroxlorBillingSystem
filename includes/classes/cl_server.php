@@ -63,7 +63,7 @@ class server {
 			total_space = "'. $server_data['total_space'] .'",
 			free_space = "'. $server_data['free_space'] .'",
 			active = '. (int) $server_data['active'] .' 
-			WHERE server_id = '. (int) $this->server_id .'';
+			WHERE server_id = "'. (int) $this->server_id .'"';
 
 			$result = db_query($sql_statement);
 				
@@ -79,6 +79,7 @@ class server {
 			// load new data
 			$this->load($this->server_id);
 		}
+		return $result;
 	}
 
 	// delete server that exists
