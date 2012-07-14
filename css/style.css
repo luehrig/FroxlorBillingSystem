@@ -216,8 +216,12 @@ a.back:hover{
 
 /* Message Popups */
 .popup_message_text{
-	max-width: 150px;
-	padding: 10px;
+	max-width: 450px;
+	padding: 25px;
+}
+.popup_message_text img{
+	float: left;
+	margin: 5px;
 }
 
 
