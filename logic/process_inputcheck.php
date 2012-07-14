@@ -72,6 +72,7 @@ switch($action) {
 			$return_string .= WARNING_EMAIL_ALREADY_EXISTS;
 		}
 		echo $return_string;
+		return $return_string;
 		break;
 }
 

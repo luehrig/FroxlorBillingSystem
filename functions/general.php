@@ -70,12 +70,12 @@ function search($searchKey, $array){
 
 // registration check if entered emaill address already exists
 function checkIfEmailAlreadyExists($email){
-	$sql_select_statement = 'SELECT COUNT(email)  FROM '. TBL_CUSTOMER .' WHERE email = "'. $email .'"';
-	$number_of_email_addresses = db_query($sql_select_statement);
-	if($number_of_email_addresses != 0){
+	$sql_select_statement = 'SELECT c.email  FROM '. TBL_CUSTOMER .' as c WHERE c.email = "'. $email .'"';
+	$db_result_array = db_fetch_array(db_query($sql_select_statement));
+	if ($db_result_array != NULL){
 		return true;
 	}
-	else{
+	else {
 		return false;
 	}
 }

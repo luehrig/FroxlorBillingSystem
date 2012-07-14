@@ -158,7 +158,7 @@ $(function() {
 								customerData[key] = $(this).val();
 							});
 
-							// get password
+							// get email
 							customerData['email'] = $(
 									'input[type=email][id=email]').val();
 
@@ -169,10 +169,12 @@ $(function() {
 							var passwordretry = $(
 									'input[type=password][id=passwordagain]')
 									.val();
-
+							alert(passwordsMatching(customerData['password'], passwordretry));
 							// check if any input is invalid
-							if (passwordsMatching(customerData['password'],
-									passwordretry) == false) {
+							if (passwordsMatching(customerData['password'], passwordretry) == false ||
+									validateEmail(customerData['email']) == false ||
+									checkIfEmailAlreadyExists(customerData['email']) == true) {
+								alert('hier muss abgerbochen werden');
 								return false;
 							} else {
 								// get all select fields
@@ -297,8 +299,7 @@ $(function() {
 	 */
 	function validateEmail(input) {
 		$('div[id=invalid_email_message]').remove();
-		if (!input
-				.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.([a-z][a-z]+)|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i)) {
+		if (!input.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.([a-z][a-z]+)|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i)) {
 
 			$.ajax({
 				type : "POST",
@@ -311,10 +312,10 @@ $(function() {
 				$('#messagearea').append(msg);
 			});
 
-			return true;
+			return false;
 		} else {
 			$('div[id=invalid_email_message]').remove();
-			return false;
+			return true;
 		}
 	}
 	
@@ -338,6 +339,9 @@ $(function() {
 			}).done(function(msg) {
 				$('#email_already_exists_message').remove();
 				$('#messagearea').append(msg);
+				if(msg.length > 40){
+					return true;
+				}
 			});
 			
 			return false;
