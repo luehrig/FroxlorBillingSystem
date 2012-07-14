@@ -104,6 +104,7 @@ define('WARNING_PASSWORD_NOT_MATCHING','Die eingegebenen Passwörter stimmen nic
 define('WARNING_INVALID_TELEPHONE','Bitte geben Sie eine gültige Telefonnummer ein!');
 define('WARNING_INVALID_FAX','Bitte geben Sie eine gültige Faxnummer ein!');
 define('WARNING_INVALID_EMAIL','Die eingegebene Email Adresse ist ungültig!');
+define('WARNING_EMAIL_ALREADY_EXISTS','Es existiert schon ein Kunde mit der eingegebenen Email-Adresse!');
 define('WARNING_FILL_ALL_MANDATORY_FIELDS','Bitte füllen Sie alle Pflichtfelder aus!');
 define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
 define('WARNING_WRONG_CREDENTIALS','Die angegebenen Zugangsdaten sind nicht korrekt! Bitte prüfen Sie ihre Eingabe.');
