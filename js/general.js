@@ -117,6 +117,7 @@ $(function() {
 	 */
 	$("body").on("change", "input[id=email]", function() {
 		validateEmail($(this).val());
+		checkIfEmailAlreadyExists($(this).val());
 	});
 
 	/*
@@ -316,7 +317,32 @@ $(function() {
 			return false;
 		}
 	}
-
+	
+	
+	
+	/*
+	 * 
+	 * check if email address already exist
+	 * 
+	 */
+	function checkIfEmailAlreadyExists(email) {
+		$('div[id=email_already_exists_message]').remove();
+		
+			$.ajax({
+				type : "POST",
+				url : "logic/process_inputcheck.php",
+				data : {
+					action : "check_if_email_already_exists",
+					email : email
+				}
+			}).done(function(msg) {
+				$('#email_already_exists_message').remove();
+				$('#messagearea').append(msg);
+			});
+			
+			return false;
+	}
+	
 	/*
 	 * check if input is valid fax number
 	 * 

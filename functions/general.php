@@ -1,5 +1,10 @@
 <?php
 
+require PATH_FUNCTIONS .'database.php';
+db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
+
+include_once PATH_INCLUDES .'database_tables.php';
+
 // get default language from customizing
 function get_default_language() {
 	$sql_statement = 'SELECT cust.value AS default_language FROM '. TBL_CUSTOMIZING .' AS cust WHERE cust.key = "default_language"';
@@ -61,6 +66,18 @@ function search($searchKey, $array){
 		}
 	}
 	return false;
+}
+
+// registration check if entered emaill address already exists
+function checkIfEmailAlreadyExists($email){
+	$sql_select_statement = 'SELECT COUNT(email)  FROM '. TBL_CUSTOMER .' WHERE email = "'. $email .'"';
+	$number_of_email_addresses = db_query($sql_select_statement);
+	if($number_of_email_addresses != 0){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 ?>
