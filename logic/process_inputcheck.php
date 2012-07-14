@@ -7,6 +7,7 @@ include '../configuration.inc.php';
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 
+require PATH_FUNCTIONS .'general.php';
 require PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
@@ -64,29 +65,17 @@ switch($action) {
 		echo '<div id="invalid_email_message">'. WARNING_INVALID_EMAIL .'</div>';
 		break;
 		
-	/* case 'check_email':
-		$email = $_POST['email'];
-		
-		// check validation of email
-		if(!$valid_email = validEmail($email)){
-			echo WARNING_INVALID_EMAIL_ADDRESS;
+	case 'check_if_email_already_exists':
+		$return_string = '<div id="email_already_exists_message">';
+		$email_to_check = $_POST['email'];
+		if(checkIfEmailAlreadyExists($email_to_check)){
+			$return_string .= WARNING_EMAIL_ALREADY_EXISTS;
 		}
-		
+		echo $return_string;
+		return $return_string;
 		break;
-		*/
-		
-// 	case 'check_phone_no':
-// 		$phone_no = $_POST['phone_no'];
-// 		$reg_expr = '/[(+49)0]{1}\d+\s?[\/-]?\s?\d+/';
-// 		if (!preg_match($reg_expr, $phone_no)){
-// 			echo WARNING_INVALID_PHONE_NO;
-// 		}
-// 		break;
-	
-// 	case 'get_message_mandatory_not_filled':
-// 		echo WARNING_FILL_ALL_MANDATORY_FIELDS;
-// 	break;
 }
+
 
 /**
  Validate an email address.
