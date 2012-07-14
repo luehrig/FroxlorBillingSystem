@@ -1007,7 +1007,7 @@ function loadContent(areacode, language_id) {
 function showMessagePopup(msgtype, msg, msg_code, language_id) {
 
 	var msgtext;
-	var msgoutput = '';
+	var msgoutput = '<div class="popup_message_text">';
 
 	// check if icon has to be displayed
 	switch (msgtype) {
@@ -1050,7 +1050,7 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 			// write received message text to local variable
 			msgtext = msg;
 
-			msgoutput = msgoutput + ' ' + msgtext;
+			msgoutput = msgoutput + ' ' + msgtext +'</div>';
 
 			$.colorbox({
 				html : msgoutput
@@ -1061,7 +1061,7 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 		});
 
 	} else {
-		msgoutput = msgoutput + ' ' + msg;
+		msgoutput = msgoutput + ' ' + msg +'</div>';
 
 		$.colorbox({
 			html : msgoutput
