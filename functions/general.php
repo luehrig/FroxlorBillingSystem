@@ -1,9 +1,9 @@
 <?php
 
-require PATH_FUNCTIONS .'database.php';
-db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
+// require PATH_FUNCTIONS .'database.php';
+// db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
-include_once PATH_INCLUDES .'database_tables.php';
+// include_once PATH_INCLUDES .'database_tables.php';
 
 // get default language from customizing
 function get_default_language() {

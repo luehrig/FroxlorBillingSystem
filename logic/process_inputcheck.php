@@ -7,6 +7,7 @@ include '../configuration.inc.php';
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
 
+require PATH_FUNCTIONS .'general.php';
 require PATH_FUNCTIONS .'database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
