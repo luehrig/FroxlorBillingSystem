@@ -213,6 +213,14 @@ a.back:hover{
 #error_msg_area{
 	color: red;
 }
+
+/* Message Popups */
+.popup_message_text{
+	max-width: 150px;
+	padding: 10px;
+}
+
+
 /* --------------- Header Area ------------------------------ */
 
 
