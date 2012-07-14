@@ -117,6 +117,7 @@ $(function() {
 	 */
 	$("body").on("change", "input[id=email]", function() {
 		validateEmail($(this).val());
+		checkIfEmailAlreadyExists($(this).val());
 	});
 
 	/*
@@ -157,7 +158,7 @@ $(function() {
 								customerData[key] = $(this).val();
 							});
 
-							// get password
+							// get email
 							customerData['email'] = $(
 									'input[type=email][id=email]').val();
 
@@ -169,9 +170,16 @@ $(function() {
 									'input[type=password][id=passwordagain]')
 									.val();
 
+							// get phone no.
+							customerData['telephone'] = $('input[type=text][id=telephone]').val();
+
 							// check if any input is invalid
-							if (passwordsMatching(customerData['password'],
-									passwordretry) == false) {
+							if (
+									passwordsMatching(customerData['password'], passwordretry) == false ||
+									validateEmail(customerData['email']) == false ||
+									checkIfEmailAlreadyExists(customerData['email']) == true || 
+									validateTelephone(customerData['telephone'])) {
+								alert('hier muss abgerbochen werden');
 								return false;
 							} else {
 								// get all select fields
@@ -281,8 +289,8 @@ $(function() {
 			}).done(function(msg) {
 				$('div[id=passwords_not_matching]').remove();
 				$('#messagearea').append(msg);
-				return false;
 			});
+			return false;
 		} else {
 			$('div[id=passwords_not_matching]').remove();
 			return true;
@@ -296,8 +304,7 @@ $(function() {
 	 */
 	function validateEmail(input) {
 		$('div[id=invalid_email_message]').remove();
-		if (!input
-				.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.([a-z][a-z]+)|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i)) {
+		if (!input.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.([a-z][a-z]+)|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i)) {
 
 			$.ajax({
 				type : "POST",
@@ -310,13 +317,49 @@ $(function() {
 				$('#messagearea').append(msg);
 			});
 
-			return true;
+			return false;
 		} else {
 			$('div[id=invalid_email_message]').remove();
-			return false;
+			return true;
 		}
 	}
+	
+	
+	
+	/*
+	 * 
+	 * check if email address already exist
+	 * 
+	 */
+	function checkIfEmailAlreadyExists(email) {
+		$('div[id=email_already_exists_message]').remove();
+			var check_msg=''; 
+			$.ajax({
+				async: false,
+				type : "POST",
+				url : "logic/process_inputcheck.php",
+				data : {
+					action : "check_if_email_already_exists",
+					email : email
+				},
+				success: function(return_msg){
+					$('#email_already_exists_message').remove();
+					$('#messagearea').append(return_msg);
+					check_msg = return_msg;
+				}			
+			});
 
+			if(check_msg.length > 40){
+				return true;
+			}
+			else{
+				return false;
+			}
+
+			
+			
+	}
+	
 	/*
 	 * check if input is valid fax number
 	 * 
@@ -820,18 +863,47 @@ $(function() {
 		// get product id from rel tag
 		var product_id = $(this).attr('rel');
 
+		// check if product is out of stock
 		$.ajax({
 			type : "POST",
 			url : "logic/process_business_logic.php",
 			data : {
-				action : "add_product_to_cart",
+				action : "check_server_for_product",
 				product_id : product_id
 			}
 		}).done(function(msg) {
-			setProductCountInCart();
-			showMessagePopup("success", null, "buy_confirm", 1);
-		});
+			// server available server was found -> add product to cart
+			if(msg == 'true') {
+				
+				$.ajax({
+					type : "POST",
+					url : "logic/process_business_logic.php",
+					data : {
+						action : "add_product_to_cart",
+						product_id : product_id
+					}
+				}).done(function(msg) {
+					setProductCountInCart();
+					showMessagePopup("success", null, "buy_confirm", 1);
+				});
 
+			}
+			// show popup with warning message
+			else {
+				$.ajax({
+					type : "POST",
+					url : "logic/get_texts.php",
+					data : {
+						action : "get_message_no_server_available"
+					}
+				}).done(function(msg) {
+					showMessagePopup("error", msg, null, null);
+				});
+				
+			}
+			
+		});
+		
 		return false;
 
 	});

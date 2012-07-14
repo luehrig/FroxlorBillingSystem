@@ -54,6 +54,9 @@ switch($action) {
 		
 		echo SUCCESS_PRODUCT_TO_SHOPPINGCART;
 
+	case 'get_message_no_server_available':
+		echo ERROR_SERVER_NOT_AVAILABLE;
+		break;
 }
 
 ?>

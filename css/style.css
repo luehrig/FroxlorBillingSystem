@@ -1,4 +1,13 @@
 /* --------------- General ------------------------------ */
+html, body {
+	min-height: 100%;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00abf4', endColorstr='#F0F0F0'); /* for IE */
+}
+
+.hide_for_mobile
+{
+	display:none;
+}
 
 /*style of bodybackground*/
 body 
