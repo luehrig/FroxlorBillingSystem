@@ -176,7 +176,7 @@ $(function() {
 							if (passwordsMatching(customerData['password'], passwordretry) == false ||
 									validateEmail(customerData['email']) == false ||
 									checkIfEmailAlreadyExists(customerData['email']) == true) {
-								alert('hier muss abgerbochen werden');
+								// cancel action
 								return false;
 							} else {
 								// get all select fields
