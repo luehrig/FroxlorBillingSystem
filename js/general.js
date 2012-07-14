@@ -107,8 +107,6 @@ $(function() {
 				var passwordagain = $(this).val();
 
 				passwordsMatching(password, passwordagain);
-				
-				alert(passwordsMatching(password, passwordagain));
 
 			});
 
@@ -171,11 +169,16 @@ $(function() {
 							var passwordretry = $(
 									'input[type=password][id=passwordagain]')
 									.val();
-							alert(passwordsMatching(customerData['password'], passwordretry));
+
+							// get phone no.
+							customerData['telephone'] = $('input[type=text][id=telephone]').val();
+
 							// check if any input is invalid
-							if (passwordsMatching(customerData['password'], passwordretry) == false ||
+							if (
+									passwordsMatching(customerData['password'], passwordretry) == false ||
 									validateEmail(customerData['email']) == false ||
-									checkIfEmailAlreadyExists(customerData['email']) == true) {
+									checkIfEmailAlreadyExists(customerData['email']) == true || 
+									validateTelephone(customerData['telephone'])) {
 								alert('hier muss abgerbochen werden');
 								return false;
 							} else {
@@ -330,23 +333,31 @@ $(function() {
 	 */
 	function checkIfEmailAlreadyExists(email) {
 		$('div[id=email_already_exists_message]').remove();
-		
+			var check_msg=''; 
 			$.ajax({
+				async: false,
 				type : "POST",
 				url : "logic/process_inputcheck.php",
 				data : {
 					action : "check_if_email_already_exists",
 					email : email
-				}
-			}).done(function(msg) {
-				$('#email_already_exists_message').remove();
-				$('#messagearea').append(msg);
-				if(msg.length > 40){
-					return true;
-				}
+				},
+				success: function(return_msg){
+					$('#email_already_exists_message').remove();
+					$('#messagearea').append(return_msg);
+					check_msg = return_msg;
+				}			
 			});
+
+			if(check_msg.length > 40){
+				return true;
+			}
+			else{
+				return false;
+			}
+
 			
-			return false;
+			
 	}
 	
 	/*
