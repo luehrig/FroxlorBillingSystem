@@ -52,6 +52,7 @@ body
 	clear: both;
 	padding-bottom: 40px;
 	background-repeat:no-repeat;
+	min-height: 300px;
 	
 	-moz-box-shadow: inset 0 0 10px 0 #000;
 	-webkit-box-shadow: inset 0 0 10px 0 #000;
@@ -628,6 +629,13 @@ legend
 .registrationform input[type="reset"]{
 	margin-left: 80px;
 	margin-top: 10px;
+	float: left;
+	padding: 3px 1px;
+}
+.registrationform input[id="register"]{
+	margin-top: 10px;
+	float: left;
+	padding: 3px 1px;
 }
 
 .help_style li{
