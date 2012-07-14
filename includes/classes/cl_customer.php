@@ -191,7 +191,7 @@ class customer {
 		'<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_ADDRESS_INFORMATION .'</legend>
 		<fieldset>
-		<legend>'. FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION .'</legend>
+		<legend>'. SHIPPING_ADDRESS .'</legend>
 		<div id="shippingaddress">
 		<p><label for="shippingstreet">'. LABEL_STREET .'</label>
 		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'"></p>
@@ -265,7 +265,7 @@ class customer {
 		$return_string = $return_string .'<fieldset>
 		<legend>'. FIELDSET_CUSTOMER_ADDRESS_INFORMATION .'</legend>
 		<fieldset>
-		<legend>'. FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION .'</legend>
+		<legend>'. SHIPPING_ADDRESS .'</legend>
 		<div id="shippingaddress">
 		<p><label for="shippingstreet">'. LABEL_STREET .'</label>
 		<input type="text" id="shippingstreet" name="shippingstreet" rel="mandatory" value="'. $shipping_address_data['street'] .'">

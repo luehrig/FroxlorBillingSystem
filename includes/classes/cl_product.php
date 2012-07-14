@@ -299,8 +299,8 @@ class product {
 		$number_of_products = db_num_results($product_query);
 		$new_product_id = $number_of_products + 1;
 		
-		$return_string = '<div id="'.$container_id.'">.
-		<form method="post" class="form_backend">'.'<fieldset>'.
+		$return_string = '<div id="'.$container_id.'">'.
+		'<form method="post" class="form_backend">'.'<fieldset>'.
 		'<legend>'.
 		'<label for="product_id_notation">'. LABEL_PRODUCT_ID .' </label>'.
 		'<label for="product_id">'. $new_product_id.' </label>'.

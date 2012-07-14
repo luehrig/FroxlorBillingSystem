@@ -120,7 +120,7 @@ include_once PATH_LANGUAGES . strtoupper( language::internalToISO($language_id) 
 			<div class=" whitebox box_1inRow">
 			<fieldset>
 				<legend>
-					<?php echo FIELDSET_ADDRESS_INFORMATION; ?>
+					<?php echo SHIPPING_ADDRESS; ?>
 				</legend>
 				<div id="shippingaddress">
 					<p>

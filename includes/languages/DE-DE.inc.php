@@ -17,15 +17,23 @@ define('PAGE_TITLE_SHOPMAINTENANCE_BACKEND','Shopeinstellungen');
 /* general texts */
 define('IS_MANDATORY_FIELD','Diese Eingabe ist eine Pflichtangabe!');
 define('LINK_BACK', 'zurück');
+define('LINK_DELETE', 'Löschen');
+define('LINK_DISPLAY', 'Anzeigen');
+define('LABEL_ACTIVE','Aktiv');
+define('LABEL_INACTIVE','Inaktiv');
+define('BUTTON_SAVE','Speichern');
+
+
+/* -----------------------------  Backend   ------------------------------------------------ */
 
 
 /* registration process */
+define ('SHIPPING_ADDRESS', 'Lieferadresse');
 define('LABEL_GENDER','Anrede');
 define('LABEL_TITLE','Titel');
 define('LABEL_FIRST_NAME','Vorname');
 define('LABEL_LAST_NAME','Nachname');
 define('LABEL_COMPANY','Firma');
-define('SHIPPING_ADDRESS','Lieferadresse');
 define('LABEL_BILLING_ADDRESS','Rechnungsadresse');
 define('LABEL_TELEPHONE','Telefon');
 define('LABEL_FAX','Fax');
@@ -40,11 +48,9 @@ define('LABEL_COUNTRY','Land');
 
 define('FIELDSET_GENERAL_INFORMATION','Allgemeine Daten');
 define('FIELDSET_CONTACT_INFORMATION','Kontaktdaten');
-define('FIELDSET_ADDRESS_INFORMATION','Lieferadresse');
 define('FIELDSET_CUSTOMER_GENERAL_INFORMATION','Allgemeine Daten');
 define('FIELDSET_CUSTOMER_CONTACT_INFORMATION','Kontaktdaten');
 define('FIELDSET_CUSTOMER_ADDRESS_INFORMATION','Adressdaten');
-define('FIELDSET_CUSTOMER_SHIPPING_ADDRESS_INFORMATION','Lieferadresse');
 define('FIELDSET_CUSTOMER_BILLING_ADDRESS_INFORMATION','Rechnungsadresse');
 
 define('SELECT_CUSTOMER_GENDER_MALE','Herr');
@@ -74,29 +80,9 @@ define('BUTTON_CREATE_ACCOUNT','Registrierung abschließen');
 define('BUTTON_LOGIN_CUSTOMER','Einloggen');
 define('BUTTON_LOGOUT_CUSTOMER','Abmelden');
 define('BUTTON_EDIT_CUSTOMER','Meine Daten bearbeiten');
-define('BUTTON_SAVE','Speichern');
 define('BUTTON_CHECKOUT','Kasse');
 define('BUTTON_CHECKOUT_NEXT','Weiter');
 define('IMG_TITEL_REMOVE', 'Entfernen');
-
-define('BUTTON_LOGOUT_BACKEND','Abmelden');
-define('BUTTON_LOGIN_BACKEND','Einloggen');
-define('BUTTON_MODIFY_CUSTOMIZING_BACKEND','Customizing ändern');
-define('BUTTON_SAVE_CUSTOMIZING_BACKEND','Customizing speichern');
-
-define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
-define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
-define('BUTTON_CHANGE_PRODUCT', 'Produkt ändern');
-define('BUTTON_CREATE_PRODUCT', 'Product anlegen');
-define('BUTTON_CHANGE_ATTRIBUTES', 'Attribute ändern');
-define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
-define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
-define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
-define('BUTTON_CHANGE_PRODUCT_ATTRIBUTE', 'Produktattribut ändern');
-define('BUTTON_SAVE_CHANGES', 'Änderungen speichern');
-define('IMG_REMOVE_PRODUCT', 'Produkt entfernen');
-define('BUTTON_CREATE_PRODUCT_ATTRIBUTE', 'Attribut anlegen');
-define('BUTTON_UPDATE_ADMIN_PASSWORD','administratives Passwort ändern');
 
 /* message texts */
 define('WARNING_SHORT_PASSWORD','Das angegebene Passwort ist zu kurz!');
@@ -133,8 +119,6 @@ define('PRODUCT_DETAILS','Details');
 define('PRODUCT_DETAILS_MORE','Mehr');
 define('PRODUCT_DETAILS_LESS','Weniger');
 
-
-
 /* main menu texts */
 define('VIEW_MENU_HELP','Hilfe');
 define('VIEW_MENU_CONTACT','Kontakt');
@@ -145,8 +129,6 @@ define('VIEW_MENU_CUSTOMERCENTER', 'Kundenbereich');
 define('VIEW_MENU_SHOPPING_CART','Warenkorb');
 
 /* customer center */
-
-
 define('EXPLANATION_NUMBER_OF_INVOICES','Es liegen %d Rechnungen für Sie vor.');
 define('TABLE_HEADING_INVOICE_INVOICE_NUMBER','Rechnungsnummer');
 define('TABLE_HEADING_INVOICE_ISSUE_DATE','Datum');
@@ -161,7 +143,6 @@ define('TABLE_HEADING_CONTRACT_CONTRACT_PERIODE','Vertragslaufzeit');
 define('TABLE_HEADING_CONTRACT_EXPIRATION_DATE_UNIT','Monat(e)');
 
 define('LABEL_CONTRACT_TERMINATION_EXECUTION_DATE','zum %s gekündigt');
-
 
 /* customer menu texts */
 define('VIEW_CMENU_MYDATA', 'Meine Daten');
@@ -199,25 +180,39 @@ define('INVOICE_BANK_CONTACT','Bankverbindung');
 define('INVOICE_NET_AMOUNT','Nettobetrag');
 define('INVOICE_TAX_RATE','MwSt');
 define('INVOICE_INVOICE_AMOUNT','Zahlbetrag');
-define('INVOICE_CONTINUANCE','Fortsetzung der Rechnung auf der nächsten Seite');
+define('INVOICE_CONTINUANCE','Fortsetzung der Rechnung auf der nächsten Seite.');
 define('INVOICE_LABEL_POSITION','Pos');
 define('INVOICE_LABEL_TOTAL','Gesamt');
 
 /* -----------------------------  Backend   ------------------------------------------------ */
 
+/* buttons */
+define('BUTTON_LOGOUT_BACKEND','Abmelden');
+define('BUTTON_LOGIN_BACKEND','Einloggen');
+define('BUTTON_MODIFY_CUSTOMIZING_BACKEND','Customizing ändern');
+define('BUTTON_SAVE_CUSTOMIZING_BACKEND','Customizing speichern');
+
+define('BUTTON_CREATE_CONTENT','Neuen Inhalt erstellen');
+define('BUTTON_CREATE_NEW_PRODUCT','Neues Produkt anlegen');
+define('BUTTON_NEW_ATTR_FOR_PROD', 'Neues Attribut hinzufügen');
+define('BUTTON_SAVE_ATTR_FOR_PROD', 'Attribut für Produkt anlegen');
+define('BUTTON_CREATE_NEW_PRODUCT_ATTRIBUTE', 'Neues Produktattribut anlegen');
+define('BUTTON_SAVE_CHANGES', 'Änderungen speichern');
+define('IMG_REMOVE_PRODUCT', 'Produkt entfernen');
+define('BUTTON_CREATE_PRODUCT_ATTRIBUTE', 'Attribut anlegen');
+define('BUTTON_UPDATE_ADMIN_PASSWORD','administratives Passwort ändern');
+define('BUTTON_CHANGE_SERVER', 'Server ändern');
+define('BUTTON_CREATE_SERVER', 'Server anlegen');
+
 define('MSG_BACKEND_WELCOME', 'Herzlich Willkommen im internen Bereich für den Shopbetreiber');
 define('MSG_CUSTOMER_WELCOME', 'Herzlich Willkommen im Kundenbereich');
 
-define('BUTTON_CHANGE_SERVER', 'Server ändern');
 define('LINK_EDIT_PRODUCT', 'Bearbeiten');
 define('LINK_TRANSLATE_PRODUCT', 'Übersetzen');
 define('LINK_DEACTIVATE_PRODUCT', 'Deaktivieren');
 define('LINK_ACTIVATE_PRODUCT', 'Aktivieren');
-define('LINK_DELETE', 'Löschen');
-define('LINK_DISPLAY', 'Anzeigen');
-define('LINK_SAVE_INVOICE_STATUS', 'Statusänderung übernehmen');
-define('BUTTON_CREATE_SERVER', 'Server anlegen');
 
+define('LINK_SAVE_INVOICE_STATUS', 'Statusänderung übernehmen');
 
 define('LABEL_MY_SHOP','Mein Shop');
 define('LABEL_MY_PRODUCTS','Meine Produkte');
@@ -229,20 +224,13 @@ define('LABEL_MY_CONTENT','Mein Inhalt');
 define('LABEL_MY_STATISTICS','Meine Shopstatistiken');
 define('LABEL_MY_PASSWORD','Mein Passwort ändern');
 
-
-define('LABEL_ACTIVE','Aktiv');
-define('LABEL_INACTIVE','Inaktiv');
-
-
-
-
 define('LABEL_PRODUCT_ID', 'Produkt Nr. ');
 define('LABEL_PRODUCT_LANGUAGE', 'Sprache');
 define('LABEL_PRODUCT_TITLE', 'Titel');
-define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'Vertragslaufzeit');
+define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'Vertragslaufzeit(Monat)');
 define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('LABEL_PRODUCT_QUANTITY', 'Menge');
-define('LABEL_PRODUCT_PRICE', 'Preis');
+define('LABEL_PRODUCT_PRICE', 'Preis(€)');
 
 define('LABEL_PRODUCT_ATTRIBUTE', 'Attribute für Produkt Nr. ');
 define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'Sprache');
@@ -265,7 +253,6 @@ define('LABEL_SERVER_FROXLOR_DB_HOST','Froxlor Datenbankserver');
 
 define('LABEL_PASSWORD_NEW_ADMIN_PASSWORD','Backendpasswort');
 
-
 define('TABLE_HEADING_CONTENT_TITLE','Titel');
 define('TABLE_HEADING_CUSTOMER_CUSTOMER_NUMBER','Kundennummer');
 define('TABLE_HEADING_CUSTOMER_FIRST_NAME','Vorname');
@@ -285,18 +272,10 @@ define('TABLE_HEADING_SERVER_STATUS','Status');
 define('TABLE_HEADING_PRODUCT_ATTRIBUTE_LANGUAGE', 'Sprache');
 define('TABLE_HEADING_PRODUCT_ATTRIBUTE_DESCRIPTION', 'Beschreibung');
 
-define('FIELDSET_LOGIN_FORM_BACKEND','Shopzugang');
+define('FIELDSET_LOGIN_FORM_BACKEND','Anmeldung für administrativen Bereich');
 
 define('FIELDSET_SERVER_SERVER_DATA','Server Informationen');
 define('FIELDSET_SERVER_FROXLOR_DATA','Froxlor Informationen');
-
-
-
-
-
-
-
-
 
 define('EXPLANATION_CUSTOMIZING_ENTRIES','Mit Hilfe der folgenden Einträge können Sie das Verhalten ihres Shops ganz einfach anpassen und bei eigenen Erweiterungen zusätzliche Einträge hinzufügen.');
 
@@ -308,9 +287,6 @@ define('EXPLANATION_NUMBER_OF_SERVERS','Aktuell befinden sich %d Server im Verka
 
 define('EXPLANATION_CONTENT','Hier können Sie den Inhalt Ihrer Seiten verwalten.');
 
-
-
-
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS', 'Dieses Produktattribut existiert bereits!');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_SUCCESSFUL', 'Die Productattributänderungen wurden erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
@@ -320,31 +296,29 @@ define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED', 'Es ist ein Fehler beim
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED', 'Produktattribut wurde erfolgreich entfernt.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_DELETION_FAILED', 'Es ist ein Fehler beim Löschen des Produktattributs aufgetreten.');
 
-define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED', 'Das Produktattribut wurde erfolgreich übersetzt.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED', 'Produktattribut wurde erfolgreich übersetzt.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATION_FAILED', 'Es ist ein Fehler beim Übersetzen des Produktattributs aufgetreten.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATIONS_FOR_ALL_SUPPORTED_LANGUAGES_ALREADY_EXIST', 'Für dieses Produktattribut existieren schon die Übersetzungen der unterstützten Sprachen.');
 
-define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Das Produkt wurde erfolgreich angelegt.');
+define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Produkt wurde erfolgreich angelegt.');
 define('INFO_MESSAGE_DB_ACTION_FAILED', 'Es ist ein Fehler beim Ändern der Datenbank aufgetreten.');
 
 define('INFO_MESSAGE_PRODUCT_UPDATE_SUCCESSFUL', 'Die Produktänderungen wurden erfolgreich gespeichert.');
 define('INFO_MESSAGE_PRODUCT_UPDATE_FAILED', 'Es ist ein Fehler beim Ändern des Datenbankeintrages aufgetreten');
 
-define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Dieses Übersetzung des Produkts %d existiert bereits!');
-define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Die Übersetzung für das Produkt %d wurde erfolgreich gespeichert.');
+define('INFO_MESSAGE_TRANSLATED_PRODUCT_ALREADY_EXISTS', 'Diese Übersetzung des Produkts %d existiert bereits!');
+define('INFO_MESSAGE_TRANSLATION_SUCCEEDED', 'Produkt % d wurde erfolgreich übersetzt.');
 define('INFO_MESSAGE_PRODUCT_ALREADY_EXISTS', 'Dieses Product existiert bereits!');
 
-define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt');
-
+define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'Das Attribut wurde erfolgreich für das Produkt angelegt.');
 
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'Es existiert bereits ein Server mit dieser IP-Adresse!');
 define('ERROR_INVOICE_NOT_PAYED','Die Rechnung %d ist noch nicht bezahlt!');
 
-
 define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Der Produktstatus wurde erfolgreich geändert.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Das Produkt wurde erfolgreich gelöscht.');
 
-define('INFO_MESSAGE_CUSTOMIZING_SAVED', 'Die Customizingänderungen wurden erfolgreich gespeichert.');
+define('INFO_MESSAGE_CUSTOMIZING_SAVED', 'Das Customizing wurde erfolgreich geändert.');
 
 define('INFO_MESSAGE_CONTENT_UPDATED', 'Der Inhalt wurde erfolgreich geändert.');
 define('INFO_MESSAGE_CONTENT_CREATED', 'Der Inhalt mit dem Titel wurde erfolgreich angelegt.');
