@@ -35,6 +35,8 @@ require PATH_CLASSES .'cl_customizing.php';
 <link rel="stylesheet" href="../css/style.css" media="screen and (min-device-width: 600px)" type="text/css" />
 <link rel="stylesheet" href="../css/colorbox.css" type="text/css">
 
+<link rel="SHORTCUT ICON" href="../images/logos/favicon.ico" type="image/x-icon">
+
 </head>
 <body>
 <div class="header">

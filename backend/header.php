@@ -57,6 +57,8 @@ $site_language = language::getBrowserLanguage();
 <script type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
 <script language="javascript" src="js/admin.js"></script>
 
+<link rel="SHORTCUT ICON" href="../images/logos/favicon.ico" type="image/x-icon">
+
 </head>
 <body>
 <div class="header">
