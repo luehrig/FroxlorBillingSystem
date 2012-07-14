@@ -474,8 +474,12 @@ $(function() {
 										})
 								.done(
 										function(msg) {
-											$('#messagearea').html(msg);
-											window.location.href = "../customercenter/index.php?content=customercenter";
+											if(msg=="true"){
+												window.location.href = "../customercenter/index.php?content=customercenter";
+											}
+											else{
+												$('#messagearea').html(msg);
+											}
 										});
 
 						// reset input fields
