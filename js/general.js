@@ -474,8 +474,12 @@ $(function() {
 										})
 								.done(
 										function(msg) {
-											$('#messagearea').html(msg);
-											window.location.href = "../customercenter/index.php?content=customercenter";
+											if(msg=="true"){
+												window.location.href = "../customercenter/index.php?content=customercenter";
+											}
+											else{
+												$('#messagearea').html(msg);
+											}
 										});
 
 						// reset input fields
@@ -1007,7 +1011,7 @@ function loadContent(areacode, language_id) {
 function showMessagePopup(msgtype, msg, msg_code, language_id) {
 
 	var msgtext;
-	var msgoutput = '';
+	var msgstyle = '<div class="popup_message_text">';
 
 	// check if icon has to be displayed
 	switch (msgtype) {
@@ -1050,7 +1054,7 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 			// write received message text to local variable
 			msgtext = msg;
 
-			msgoutput = msgoutput + ' ' + msgtext;
+			msgoutput = msgstyle + msgoutput + ' ' + msgtext +'</div>';
 
 			$.colorbox({
 				html : msgoutput
@@ -1061,7 +1065,7 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 		});
 
 	} else {
-		msgoutput = msgoutput + ' ' + msg;
+		msgoutput = msgoutput + ' ' + msg +'</div>';
 
 		$.colorbox({
 			html : msgoutput
