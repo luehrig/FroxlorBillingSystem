@@ -8,6 +8,7 @@ require_once PATH_CLASSES .'cl_product.php';
 require_once PATH_CLASSES .'cl_shoppingcart.php';
 require_once PATH_CLASSES .'cl_contract.php';
 require_once PATH_CLASSES .'cl_notice.php';
+require_once PATH_CLASSES .'cl_Server.php';
 
 require_once PATH_FUNCTIONS .'datetime.php';
 require_once PATH_FUNCTIONS .'security.php';
@@ -48,6 +49,21 @@ switch($action) {
 	* shopping cart
 	*
 	*/
+	// check if server for product is available
+	case 'check_server_for_product':
+		$product_id = mysql_real_escape_string($_POST['product_id']);
+		
+		$recommended_server = server::getAppropriateServer($product_id, 1);
+		
+		if($recommended_server != null) {
+			echo 'true';
+		}
+		else {
+			echo 'false';
+		}
+		
+		break;
+	
 	// display shopping cart with all products
 	case 'add_product_to_cart':
 		$product_id = mysql_real_escape_string($_POST['product_id']);

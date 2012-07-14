@@ -110,7 +110,7 @@ define('WARNING_STILL_LOGGED_IN','Sie sind bereits angemeldet!');
 define('WARNING_WRONG_CREDENTIALS','Die angegebenen Zugangsdaten sind nicht korrekt! Bitte prüfen Sie ihre Eingabe.');
 define('WARNING_NOT_LOGGED_IN','Sie sind nicht angemeldet oder ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an!');
 define('WARNING_CONTENT_NOT_FOUND','Die angeforderte Seite wurde nicht gefunden!');
-define('WARNING_SERVER_NO_SERVER_AVAILABLE','Für das gewählte Produkt steht aktuell leider kein passender Server zur Verfügung. Bitte wenden Sie sich an den Support.');
+define('WARNING_SERVER_NO_SERVER_AVAILABLE','Für das Produkt %s steht aktuell leider kein passender Server zur Verfügung. Wir können Ihre Bestellung daher leider nicht erfüllen.');
 define('WARNING_SERVER_NOT_ABLE_TO_ALLOCATE','Bei der Buchung des Produktes auf dem Server ist ein Fehler aufgetreten!');
 define('WARNING_SERVER_NOT_ABLE_TO_FREE','Bei der Freigabe des Produktes auf dem Server ist ein Fehler aufgetreten!');
 define('WARNING_CHECKOUT_PLEASE_ACCEPT_TERMS','Um Fortzufahren ist es nötig, dass Sie unsere allgemeinen Geschäftsbedingungen akzeptieren!');
@@ -122,6 +122,8 @@ define('WARNING_INVALID_PHONE_NO','Keine gültige Telefonnummer!');
 
 define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
 define('SUCCESS_PRODUCT_TO_SHOPPINGCART', 'Das Produkt wurde erfolgreich in den Warenkorb gelegt.');
+
+define('ERROR_SERVER_NOT_AVAILABLE','Für das Produkt ist kein Server verfügbar. Ein Kauf ist daher im Moment nicht möglich.');
 
 /* product texts */
 define('PRODUCT_QUANTITY', 'Menge');

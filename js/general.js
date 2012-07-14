@@ -846,18 +846,47 @@ $(function() {
 		// get product id from rel tag
 		var product_id = $(this).attr('rel');
 
+		// check if product is out of stock
 		$.ajax({
 			type : "POST",
 			url : "logic/process_business_logic.php",
 			data : {
-				action : "add_product_to_cart",
+				action : "check_server_for_product",
 				product_id : product_id
 			}
 		}).done(function(msg) {
-			setProductCountInCart();
-			showMessagePopup("success", null, "buy_confirm", 1);
-		});
+			// server available server was found -> add product to cart
+			if(msg == 'true') {
+				
+				$.ajax({
+					type : "POST",
+					url : "logic/process_business_logic.php",
+					data : {
+						action : "add_product_to_cart",
+						product_id : product_id
+					}
+				}).done(function(msg) {
+					setProductCountInCart();
+					showMessagePopup("success", null, "buy_confirm", 1);
+				});
 
+			}
+			// show popup with warning message
+			else {
+				$.ajax({
+					type : "POST",
+					url : "logic/get_texts.php",
+					data : {
+						action : "get_message_no_server_available"
+					}
+				}).done(function(msg) {
+					showMessagePopup("error", msg, null, null);
+				});
+				
+			}
+			
+		});
+		
 		return false;
 
 	});
