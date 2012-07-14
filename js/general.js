@@ -107,6 +107,8 @@ $(function() {
 				var passwordagain = $(this).val();
 
 				passwordsMatching(password, passwordagain);
+				
+				alert(passwordsMatching(password, passwordagain));
 
 			});
 
@@ -281,8 +283,8 @@ $(function() {
 			}).done(function(msg) {
 				$('div[id=passwords_not_matching]').remove();
 				$('#messagearea').append(msg);
-				return false;
 			});
+			return false;
 		} else {
 			$('div[id=passwords_not_matching]').remove();
 			return true;
