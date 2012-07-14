@@ -171,7 +171,7 @@ $(function() {
 							var passwordretry = $(
 									'input[type=password][id=passwordagain]')
 									.val();
-							alert(passwordsMatching(customerData['password'], passwordretry));
+							
 							// check if any input is invalid
 							if (passwordsMatching(customerData['password'], passwordretry) == false ||
 									validateEmail(customerData['email']) == false ||
