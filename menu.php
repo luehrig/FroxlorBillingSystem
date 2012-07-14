@@ -1,4 +1,4 @@
-<div class="mainmenu hide">
+<div class="mainmenu">
 	<ul>
 	   <li><a href="home.html?lang=<?php echo $site_language; ?>" id="home" class="nav mm_active"><span><?php echo VIEW_MENU_HOME; ?></span></a></li>
 	   <li><a href="products.html?lang=<?php echo $site_language; ?>" id="products" class="nav"><span><?php echo VIEW_MENU_PRODUCTS; ?></span></a></li>

@@ -115,7 +115,7 @@ $(function() {
 	 * validate entered email adress
 	 * 
 	 */
-	$("body").on("change", "input[id=email]", function() {
+	$("body").on("change", "form[id=registrationform] input[id=email]", function() {
 		validateEmail($(this).val());
 		checkIfEmailAlreadyExists($(this).val());
 	});
@@ -169,6 +169,7 @@ $(function() {
 							var passwordretry = $(
 									'input[type=password][id=passwordagain]')
 									.val();
+							
 
 							// get phone no.
 							customerData['telephone'] = $('input[type=text][id=telephone]').val();
@@ -179,7 +180,7 @@ $(function() {
 									validateEmail(customerData['email']) == false ||
 									checkIfEmailAlreadyExists(customerData['email']) == true || 
 									validateTelephone(customerData['telephone'])) {
-								alert('hier muss abgerbochen werden');
+								// cancel action
 								return false;
 							} else {
 								// get all select fields

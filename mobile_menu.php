@@ -97,6 +97,7 @@ $cart = new shoppingcart(session_id());
 	   
 	</ul>
 </div>
-
+<div id="content_container" class="content_container">
+</div>
 </body>
 </html>

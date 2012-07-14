@@ -64,16 +64,7 @@ switch($action) {
 	case 'get_message_invalid_email':
 		echo '<div id="invalid_email_message">'. WARNING_INVALID_EMAIL .'</div>';
 		break;
-		
-	case 'check_if_email_already_exists':
-		$return_string = '<div id="email_already_exists_message">';
-		$email_to_check = $_POST['email'];
-		if(checkIfEmailAlreadyExists($email_to_check)){
-			$return_string .= WARNING_EMAIL_ALREADY_EXISTS;
-		}
-		echo $return_string;
-		return $return_string;
-		break;
+	
 }
 
 

@@ -65,19 +65,10 @@ $cart = new shoppingcart(session_id());
 <body>
 <div class="header">
 	<img ID="logo" src="images/fcloud.png">
-	<div class="hide_for_mobile">
-		
-		<div class="mobilemenu">
-	<a href="mobile_menu.php?lang=<?php echo $site_language; ?>"><span><?php echo "MENU"; ?></span></a>
-		</div>
-		
-	</div>
 	<div class="header_right">
 
-				<a href="shoppingcart.html?lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
-	
+		<a href="shoppingcart.html?lang=<?php echo $site_language; ?>" id="shoppingcart" class="nav"><?php echo VIEW_MENU_SHOPPING_CART; ?> (<span id="current_cart_quantity"><?php echo $cart->getNumberOfProducts(); ?></span>)</a>
 		<br>
-		
 		<div ID="customer_header">
  		<div ID="customer_header_ajax"></div> <!-- Container for customer head when page is reloaded -->
 		<?php 
@@ -89,9 +80,7 @@ $cart = new shoppingcart(session_id());
 				echo '<a href="#" id="logout"><img src="images/logout.png" id="logout" title="'. BUTTON_LOGOUT_CUSTOMER .'"></a>';
 			}	
 		?>
-		
 		</div>
-		
 		<div class="language_switch">
 			<button class="language_button active" ID="german"> deutsch
 			</button>
