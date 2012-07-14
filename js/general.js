@@ -115,7 +115,7 @@ $(function() {
 	 * validate entered email adress
 	 * 
 	 */
-	$("body").on("change", "input[id=email]", function() {
+	$("body").on("change", "form[id=registrationform] input[id=email]", function() {
 		validateEmail($(this).val());
 		checkIfEmailAlreadyExists($(this).val());
 	});
