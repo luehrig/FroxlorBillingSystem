@@ -67,7 +67,7 @@ switch($action) {
 		
 		$product = new product($product_id, $language_id);
 		
-		echo sprintf(WARNING_SERVER_NO_SERVER_AVAILABLE, $product->getTitle());
+		echo sprintf(ERROR_SERVER_NOT_AVAILABLE, $product->getTitle());
 		break;
 }
 
