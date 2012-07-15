@@ -727,6 +727,7 @@ legend
 	padding: 0;
 	float: left;
 	border:1px solid #000000;
+	min-width: 140px;
 }
 .customermenu ul {
 	list-style-type:none;
@@ -926,13 +927,18 @@ table td[id="small_font"]{
 }
 .content label{
 	margin-left: 10px;
-	width: 7em;
+	width: 8em;
     float: left;	
 }
 .content label[for="label_attribute"], label[for="value"]{
 	margin-left: 10px;
 	width: 4em;
     float: left;	
+}
+.content label[for="contract_periode_unit"]{
+	float: right;
+    margin-right: 140px;
+    	
 }
 .content legend label{
 	margin-left: 10px;
@@ -942,6 +948,11 @@ table td[id="small_font"]{
 .content label[for="content_title"]{
 	font-weight: bold;
 	width: 45px;
+}
+.content label[for="new_admin_password"]{
+	margin-left: 10px;
+	width: 9em;
+    float: left;	
 }
 .content input{
 	margin-left: 10px;
@@ -960,9 +971,16 @@ table td[id="small_font"]{
 .content select{
 	margin-left: 10px;
 }
+
+#edit_server_editor label{
+	margin-left: 10px;
+	width: 10em;
+    float: left;	
+}
 #new_server_editor label{
 	width: 13em;
 }
+
 
 #img_delete{
 	margin: 0 10px;

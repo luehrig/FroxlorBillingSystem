@@ -146,6 +146,10 @@ switch($action) {
 
 
 	case 'update_attributes_in_prod_info':
+		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
+		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
+		echo'<div class="whitebox internal">';
+		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 
 		$attr_id_array = explode(",", $_POST['joined_attr_id_array']);
@@ -164,7 +168,8 @@ switch($action) {
 		else{
 			echo INFO_MESSAGE_PRODUCT_UPDATE_FAILED;
 		}
-
+		echo '</fieldset>';
+		echo '</div>';
 		break;
 
 
@@ -462,6 +467,7 @@ switch($action) {
 		$product_attribute_id = $_POST['product_attribute_id'];
 		$language_id = $_POST['language_id'];
 		$product_attribute = new productAttribute($product_attribute_id, $language_id);
+		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 		if($product_attribute->delete() AND productInfo::deleteAllProductInfosByAttrId($product_attribute_id)){
@@ -497,8 +503,10 @@ switch($action) {
 		$description = $_POST['description'];
 		$changed_atribute_data = array("language_id"=>$language_id, "description"=>$description);
 
+		echo'<a href="#" id="back_to_myproductattribute" class="back">'. LINK_BACK .'</a>';
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
+		
 		if(productAttribute::productAttributeExists($changed_atribute_data, $product_attribute_id)){
 			echo INFO_MESSAGE_PRODUCT_ATTRIBUTE_ALREADY_EXISTS;
 		}
@@ -853,8 +861,8 @@ switch($action) {
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 
-		echo '<label for="new_admin_password">'. LABEL_PASSWORD_NEW_ADMIN_PASSWORD .'</label><br />
-			  <input type="password" length="10" id="new_admin_password" name="new_admin_password">
+		echo '<label for="new_admin_password">'. LABEL_PASSWORD_NEW_ADMIN_PASSWORD .'</label>
+			  <input type="password" length="10" id="new_admin_password" name="new_admin_password"><br>
 			  <input type="submit" id="change_admin_password" value="'. BUTTON_UPDATE_ADMIN_PASSWORD .'">';
 		
 		echo '</fieldset>';

@@ -58,6 +58,8 @@ define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('SELECT_GENDER_MALE','Herr');
 define('SELECT_GENDER_FEMALE','Frau');
 
+define('BUTTON_RESET','Zurücksetzen');
+
 /* Contact form */
 define('LEGEND_CONTACT_FORM','Kontaktformular');
 define('RADIO_VALUE_QUESTION','Frage');
@@ -109,7 +111,7 @@ define('WARNING_INVALID_PHONE_NO','Keine gültige Telefonnummer!');
 define('SUCCESS_CONTRACT_TERMINATION','Das Produkt wurde erfolgreich zum %s gekündigt.');
 define('SUCCESS_PRODUCT_TO_SHOPPINGCART', 'Das Produkt wurde erfolgreich in den Warenkorb gelegt.');
 
-define('ERROR_SERVER_NOT_AVAILABLE','Für das Produkt ist kein Server verfügbar. Ein Kauf ist daher im Moment nicht möglich.');
+define('ERROR_SERVER_NOT_AVAILABLE','Für das Produkt %s ist kein Server verfügbar. Ein Kauf ist daher im Moment nicht möglich.');
 
 /* product texts */
 define('PRODUCT_QUANTITY', 'Menge');
@@ -227,7 +229,8 @@ define('LABEL_MY_PASSWORD','Mein Passwort ändern');
 define('LABEL_PRODUCT_ID', 'Produkt Nr. ');
 define('LABEL_PRODUCT_LANGUAGE', 'Sprache');
 define('LABEL_PRODUCT_TITLE', 'Titel');
-define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'Vertragslaufzeit(Monat)');
+define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'Vertragslaufzeit');
+define('LABEL_PRODUCT_CONTRACT_PEROIDE_UNIT','Monat(e)');
 define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('LABEL_PRODUCT_QUANTITY', 'Menge');
 define('LABEL_PRODUCT_PRICE', 'Preis(€)');

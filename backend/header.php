@@ -1,12 +1,13 @@
 <?php 
 
-require '../includes/classes/cl_customizing.php';
-require '../includes/classes/cl_language.php';
+include_once '../configuration.inc.php';
+
+require_once PATH_CLASSES .'cl_customizing.php';
+require_once PATH_CLASSES .'cl_language.php';
 
 
 session_start();
 
-include_once '../configuration.inc.php';
 
 require '../functions/database.php';
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
@@ -23,7 +24,6 @@ if(!db_backend_user_is_logged_in( session_id() )) {
 
 // // // detect preferred browser language if language is not available use the default language from shop customizing
  $site_language = language::getBrowserLanguage();
-
  include_once '../includes/languages/'. strtoupper($site_language) .'.inc.php';
 
 
@@ -68,7 +68,7 @@ $site_language = language::getBrowserLanguage();
 	
  	<div class="header_right">
 		<a class="admin_logout" href="#" id="logout"><img src="../images/logout.png" id="logout"><?php echo BUTTON_LOGOUT_BACKEND?></a>
-		<div ID="admin_welcome">Herzlich Willkommen im internen Bereich für den Shopbetreiber!
+		<div ID="admin_welcome"><?php echo MSG_BACKEND_WELCOME; ?>
 		</div>
 	</div>
 </div>

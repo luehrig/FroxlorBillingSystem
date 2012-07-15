@@ -40,7 +40,7 @@ define('LABEL_EMAIL','e-mail');
 define('LABEL_PASSWORD','password');
 define('LABEL_PASSWORDAGAIN','repeat password ');
 define('LABEL_STREET','street');
-define('LABEL_STREETNUMBER','street number');
+define('LABEL_STREETNUMBER','street no.');
 define('LABEL_POSTCODE','postcode');
 define('LABEL_CITY','city');
 define('LABEL_COUNTRY','country');
@@ -58,6 +58,8 @@ define('SELECT_CUSTOMER_GENDER_MALE','Mr.');
 define('SELECT_CUSTOMER_GENDER_FEMALE','Mrs.');
 define('SELECT_GENDER_MALE','Mr.');
 define('SELECT_GENDER_FEMALE','Mrs.');
+
+define('BUTTON_RESET','reset');
 
 /* Contact form */
 define('LEGEND_CONTACT_FORM','cantact form');
@@ -156,7 +158,7 @@ define('LABEL_LOGIN_DATA', 'login data');
 define('LABEL_B_ADDRESS', 'billing address');
 define('LABEL_S_ADDRESS', 'shipping address');
 define('LABEL_TEL', 'phone.');
-define('LABEL_SAME_ADRESS', 'Sa,e incoice address and billing address');
+define('LABEL_SAME_ADRESS', 'Same invoice address and billing address');
 define('BUTTON_CHANGE_PW', 'change password');
 define('MSG_CHANGES_SAVED', 'Your data was changed successfully!');
 
@@ -174,7 +176,7 @@ define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','invoice %s');
 
 /* help / contact */
 define('MSG_SUCCESSFULLY_SENT','Your message was successfully sent to the shop owner!');
-define('HEADING_SITEMAP', 'sitemap');
+define('HEADING_SITEMAP', 'Sitemap');
 
 /* invoice */
 define('INVOICE_LABEL_INVOICE','invoice');
@@ -206,7 +208,7 @@ define('BUTTON_UPDATE_ADMIN_PASSWORD','change admin password');
 define('BUTTON_CHANGE_SERVER', 'change server');
 define('BUTTON_CREATE_SERVER', 'create server');
 
-define('MSG_BACKEND_WELCOME', 'Welcome to the internal area of the shop owner');
+define('MSG_BACKEND_WELCOME', 'Welcome to the internal area of the shop owner!');
 define('MSG_CUSTOMER_WELCOME', 'Welcome to the customer center');
 
 define('LINK_EDIT_PRODUCT', 'edit');
@@ -230,9 +232,10 @@ define('LABEL_PRODUCT_ID', 'product no. ');
 define('LABEL_PRODUCT_LANGUAGE', 'language');
 define('LABEL_PRODUCT_TITLE', 'title');
 define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'contract periode');
+define('LABEL_PRODUCT_CONTRACT_PEROIDE_UNIT', 'month');
 define('LABEL_PRODUCT_DESCRIPTION', 'decription');
 define('LABEL_PRODUCT_QUANTITY', 'quantity');
-define('LABEL_PRODUCT_PRICE', 'price');
+define('LABEL_PRODUCT_PRICE', 'price(€)');
 
 define('LABEL_PRODUCT_ATTRIBUTE', 'attributes for product no.');
 define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'language');
@@ -295,12 +298,12 @@ define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED', 'An error has occurred wh
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_SUCCESSFUL', 'Product attribute was saved successfully.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED', 'An error has occurred while creating the produkt attribute.');
 
-define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED', 'Prduct attribute was deleted successfully.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED', 'Product attribute was deleted successfully.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_DELETION_FAILED', 'An error has occurred while deleting the producz attribute.');
 
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED', 'Product attribute was translated successfully.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATION_FAILED', 'An error has occurred while translating the product attribute.');
-define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATIONS_FOR_ALL_SUPPORTED_LANGUAGES_ALREADY_EXIST', 'All sopported translations do already exist for this product attribute.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATIONS_FOR_ALL_SUPPORTED_LANGUAGES_ALREADY_EXIST', 'All supported translations do already exist for this product attribute.');
 
 define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Product was saved successfully.');
 define('INFO_MESSAGE_DB_ACTION_FAILED', 'An error has occurred while updating a database entry.');
@@ -317,7 +320,7 @@ define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'The attribute was saved
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'A server with exactly this IP address does already exist!');
 define('ERROR_INVOICE_NOT_PAYED','Invoice %d is uncleared!');
 
-define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Prodct state was changed successfully.');
+define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Product state was changed successfully.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Product was deleted successfully.');
 
 define('INFO_MESSAGE_CUSTOMIZING_SAVED', 'Customizing was changed successfully.');

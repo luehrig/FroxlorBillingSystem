@@ -21,19 +21,6 @@ echo '
 ';
 
 
-/* $active_product_array:
- array(prod_id1 => array("title" => title1,
- 						 "contract_periode" => contractPeriode1,
- 						 "description" => description1,
- 						 "quantity" => quantity1,
- 						 "price" => price1),
- 	   prod_id2 => array("title" => title2,
- 						 "contract_periode" => contractPeriode2,
- 					 	 "description" => description2,
- 						 "quantity" => quantity2,
- 						 "price" => price2))
-*/
-
 $active_product_array = product::getAllActiveProducts($language_id);
 
 foreach ($active_product_array as $product_id => $product_data){
@@ -88,7 +75,7 @@ foreach ($active_product_array as $product_id => $product_data){
 				'</ul>
 			</fieldset>
 		</div>
-	<!-- TODO: rel tag has to content the product id! -->
+	
 	<button class="buttonlayout_more" rel="'.$trimmed_values.'">'.PRODUCT_DETAILS_MORE.'</button>
 	</div>
 	
@@ -101,6 +88,9 @@ foreach ($active_product_array as $product_id => $product_data){
 	echo $return_string;
 
 }
+
+echo '<input type="hidden" id="language_id" name="language_id" value="'. $language_id .'">';
+
 echo'</div>'
 
 ?>
