@@ -53,7 +53,9 @@ switch($action) {
 	case 'get_message_buy_confirm':
 		
 		echo SUCCESS_PRODUCT_TO_SHOPPINGCART;
-
+		
+		break;
+		
 	case 'get_message_no_server_available':
 		echo ERROR_SERVER_NOT_AVAILABLE;
 		break;
