@@ -58,6 +58,8 @@ define('SELECT_CUSTOMER_GENDER_FEMALE','Frau');
 define('SELECT_GENDER_MALE','Herr');
 define('SELECT_GENDER_FEMALE','Frau');
 
+define('BUTTON_RESET','Zurücksetzen');
+
 /* Contact form */
 define('LEGEND_CONTACT_FORM','Kontaktformular');
 define('RADIO_VALUE_QUESTION','Frage');
