@@ -220,15 +220,17 @@ switch($action) {
 		echo'<fieldset>';
 		$product_id = $_POST['product_id'];
 		$language_id = $_POST['language_id'];
-
+		$language = new language();
 		$product = new product($product_id, $language_id);
-
-		echo $product->printFormTranslate(language::printLanguages('product_translate_language_selection'));
+		$used_languages = $product->getLanguagesForExistingProduct();
+		$languages_not_translated = $language->getLanguagesNotInUse($used_languages);
+		echo $product->printFormTranslate(language::printLanguages('product_translate_language_selection', $languages_not_translated, $language_id));
 
 		echo '</fieldset>';
 		echo '</div>';
 		break;
-
+		
+		
 	case 'translate_product':
 		echo'<h1>'.LABEL_MY_PRODUCTS.'</h1>';
 		echo'<a href="#" id="back_to_myproducts" class="back">'. LINK_BACK .'</a>';
