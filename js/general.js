@@ -876,7 +876,7 @@ $(function() {
 				action : "check_server_for_product",
 				product_id : product_id
 			}
-		}).done(function(msg) {
+		}).done(function(msg) {			
 			// server available server was found -> add product to cart
 			if(msg == 'true') {
 				
