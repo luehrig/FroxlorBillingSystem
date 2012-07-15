@@ -76,7 +76,7 @@ define('LINK_REGISTRATION','register');
 /* shopping cart */
 define('HEADING_PRODUCT','product');
 define('HEADING_QUANTITY','quantity');
-define('HEADING_AMOUNT','amount');
+define('HEADING_AMOUNT','amount (€)');
 
 define('BUTTON_MORE', 'More');
 define('BUTTON_ADD_TO_CART', 'add to shopping cart');

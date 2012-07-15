@@ -63,6 +63,14 @@ body
 .left_text_align {
 	text-align: left;
 }
+.left_text_align table{
+	text-align: left;
+	width: auto;
+	border-style: hidden;
+}
+.left_text_align td{
+	border-style: hidden;
+}
 
 /*style of footer*/
 .footer
@@ -208,6 +216,11 @@ a.back:hover{
 .messagearea{
 	color: black;
 }
+#messagearea_registration{
+	color: red;
+	margin-top: 10px;
+}
+
 
 /*Error Message Area*/
 #error_msg_area{
@@ -586,7 +599,7 @@ legend
 }
 .registrationform label{
 	margin-left: 10px;
-	width: 7em;
+	width: 7.5em;
     float: left;	
 }
 .registrationform label[for="title"]{
