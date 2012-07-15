@@ -174,7 +174,7 @@ define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','invoice %s');
 
 /* help / contact */
 define('MSG_SUCCESSFULLY_SENT','Your message was successfully sent to the shop owner!');
-define('HEADING_SITEMAP', 'sitemap');
+define('HEADING_SITEMAP', 'Sitemap');
 
 /* invoice */
 define('INVOICE_LABEL_INVOICE','invoice');
