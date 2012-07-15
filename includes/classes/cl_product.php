@@ -48,6 +48,11 @@ class product {
 		}
 	}
 	
+	// returns product title
+	public function getTitle() {
+		return $this->title;
+	}
+	
 	// creates new product or tranlates product
 	public static function create($product_data) {
 		if($product_data != NULL){
