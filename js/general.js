@@ -65,6 +65,9 @@ $(function() {
 					// clear old message, if exists and append new one
 					$('#short_password').remove();
 					$('#messagearea').append(msg);
+					$('html, body').animate({
+						scrollTop : $('#messagearea').offset().top
+					}, 600);
 				});
 			});
 
@@ -93,6 +96,9 @@ $(function() {
 				}).done(function(msg) {
 					$('#invalid_telephone').remove();
 					$('#messagearea').append(msg);
+					$('html, body').animate({
+						scrollTop : $('#messagearea').offset().top
+					}, 600);
 				});
 			});
 
@@ -264,6 +270,9 @@ $(function() {
 			}).done(function(msg) {
 				$('div[id=mandatory_fields]').remove();
 				$('#messagearea').append(msg);
+				$('html, body').animate({
+					scrollTop : $('#messagearea').offset().top
+				}, 600);
 				return false;
 			});
 
@@ -290,6 +299,9 @@ $(function() {
 			}).done(function(msg) {
 				$('div[id=passwords_not_matching]').remove();
 				$('#messagearea').append(msg);
+				$('html, body').animate({
+					scrollTop : $('#messagearea').offset().top
+				}, 600);
 			});
 			return false;
 		} else {
@@ -316,6 +328,9 @@ $(function() {
 			}).done(function(msg) {
 				$('#invalid_email_message').remove();
 				$('#messagearea').append(msg);
+				$('html, body').animate({
+					scrollTop : $('#messagearea').offset().top
+				}, 600);
 			});
 
 			return false;
@@ -377,6 +392,9 @@ $(function() {
 			}).done(function(msg) {
 				$('#invalid_fax').remove();
 				$('#messagearea').append(msg);
+				$('html, body').animate({
+					scrollTop : $('#messagearea').offset().top
+				}, 600);
 				return false;
 			});
 		} else {
@@ -399,6 +417,9 @@ $(function() {
 				}
 			}).done(function(msg) {
 				$('#messagearea').append(msg);
+				$('html, body').animate({
+					scrollTop : $('#messagearea').offset().top
+				}, 600);
 				return false;
 			});
 		} else {
