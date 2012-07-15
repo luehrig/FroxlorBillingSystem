@@ -295,7 +295,7 @@ define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_UPDATE_FAILED', 'An error has occurred wh
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_SUCCESSFUL', 'Product attribute was saved successfully.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_CREATION_FAILED', 'An error has occurred while creating the produkt attribute.');
 
-define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED', 'Prduct attribute was deleted successfully.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_DELETED', 'Product attribute was deleted successfully.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_DELETION_FAILED', 'An error has occurred while deleting the producz attribute.');
 
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED', 'Product attribute was translated successfully.');
