@@ -166,6 +166,8 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 					//echo $e->getMessage(); //Boring error messages from anything else!
 				}
 					
+				$mail = null;
+				$mail = new PHPMailer(true);
 				
 				// send message to admin
 				try {
@@ -209,6 +211,8 @@ if(customer::isLoggedIn( session_id() ) || $action = 'send_email') {
 					//echo $e->getMessage();
 				}
 				
+				$mail = null;
+				$mail = new PHPMailer(true);
 				
 				// send message to shop admin
 				try {
