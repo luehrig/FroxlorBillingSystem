@@ -727,6 +727,7 @@ legend
 	padding: 0;
 	float: left;
 	border:1px solid #000000;
+	min-width: 140px;
 }
 .customermenu ul {
 	list-style-type:none;

@@ -823,6 +823,9 @@ $(function() {
 			$('.content_container').html(msg);
 		});
 		$.colorbox.close();
+		
+		// remove active menu item
+		$('a.mm_active').removeClass('mm_active');
 
 		return false;
 	});
