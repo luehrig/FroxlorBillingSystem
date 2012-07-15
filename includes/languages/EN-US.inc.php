@@ -317,7 +317,7 @@ define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'The attribute was saved
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'A server with exactly this IP address does already exist!');
 define('ERROR_INVOICE_NOT_PAYED','Invoice %d is uncleared!');
 
-define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Prodct state was changed successfully.');
+define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Product state was changed successfully.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Product was deleted successfully.');
 
 define('INFO_MESSAGE_CUSTOMIZING_SAVED', 'Customizing was changed successfully.');
