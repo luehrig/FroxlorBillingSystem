@@ -40,7 +40,7 @@ define('LABEL_EMAIL','e-mail');
 define('LABEL_PASSWORD','password');
 define('LABEL_PASSWORDAGAIN','repeat password ');
 define('LABEL_STREET','street');
-define('LABEL_STREETNUMBER','street number');
+define('LABEL_STREETNUMBER','street no.');
 define('LABEL_POSTCODE','postcode');
 define('LABEL_CITY','city');
 define('LABEL_COUNTRY','country');
