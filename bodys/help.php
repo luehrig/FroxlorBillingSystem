@@ -26,7 +26,7 @@ echo '<h1>'. $help_title .'</h1>'. '<div class="boxwrapper">'.
 		</div>
 		<fieldset>
 		<h3>'. HEADING_SITEMAP .'</h3>
-		<img src="'. PATH_IMAGES_REL .'sitemap_frontend.png" id="sitemap">
+		<img src="'. PATH_IMAGES_REL .'sitemap_frontend_'. strtolower( language::internalToISO($language_id) ) .'.png" id="sitemap">
 		</fieldset>
 		
 		</div></div>
