@@ -63,6 +63,14 @@ body
 .left_text_align {
 	text-align: left;
 }
+.left_text_align table{
+	text-align: left;
+	width: auto;
+	border-style: hidden;
+}
+.left_text_align td{
+	border-style: hidden;
+}
 
 /*style of footer*/
 .footer
