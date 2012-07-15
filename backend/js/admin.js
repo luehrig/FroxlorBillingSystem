@@ -28,8 +28,7 @@ $(function() {
 				var email = $('input[type=text][id=email]').val();
 				var password = $('input[type=password][id=password]').val();
 
-				// do ajax call. If login was successful redirect to customer
-				// center
+				// do ajax call. If login was successful redirect to admin area
 				$.ajax({
 					type : "POST",
 					url : "../logic/process_usermanagement.php",
@@ -47,6 +46,7 @@ $(function() {
 				$('input[type=text][id=email]').val('');
 				$('input[type=password][id=password]').val('');
 
+				
 				return false;
 			});
 
