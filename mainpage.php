@@ -5,6 +5,8 @@
  * 
  * receive special masked url and print content as static page
  */
+echo '<noscript>'. WARNING_MESSAGE_ENABLE_JAVASCRIPT .'</noscript>';
+
 if(isset($_GET['page'])) {
 	
 	$action = 'show_'. substr($_GET['page'], 0);

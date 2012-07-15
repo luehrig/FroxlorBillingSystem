@@ -341,4 +341,6 @@ define('INFO_MESSAGE_SERVER_DELETION_FAILED', 'An error has occurred while delet
 define('INFO_MESSAGE_PASSWORT_SUCCESSFULLY_CHANGED', 'Password was changed successfully!');
 define('WARNING_MESSAGE_PASSWORT_CHANGE_ABORTED','An error has occurred while changing the password. Please try again later!');
 
+define('WARNING_MESSAGE_ENABLE_JAVASCRIPT','Froxcloud need Javascript. Please switch on Javascript in your browser!');
+
 ?>

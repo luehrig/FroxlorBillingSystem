@@ -339,4 +339,6 @@ define('INFO_MESSAGE_SERVER_DELETION_FAILED', 'Es ist ein Fehler beim Löschen d
 define('INFO_MESSAGE_PASSWORT_SUCCESSFULLY_CHANGED', 'Das Passwort wurde erfolgreich geändert!');
 define('WARNING_MESSAGE_PASSWORT_CHANGE_ABORTED','Es ist ein Fehler beim Ändern des Passwortes aufgetreten. Versuchen Sie es später bitte erneut!');
 
+define('WARNING_MESSAGE_ENABLE_JAVASCRIPT','Froxcloud funktioniert nur korrekt, wenn Sie Javascript aktivieren!');
+
 ?>
