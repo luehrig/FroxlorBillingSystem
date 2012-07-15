@@ -867,6 +867,7 @@ $(function() {
 	$("body").on("click", "button[class=buttonlayout_buy]", function() {
 		// get product id from rel tag
 		var product_id = $(this).attr('rel');
+		var language_id = $('input[type=hidden][id=language_id]').val();
 
 		// check if product is out of stock
 		$.ajax({
@@ -889,7 +890,7 @@ $(function() {
 					}
 				}).done(function(msg) {					
 					setProductCountInCart();
-					showMessagePopup("success", null, "buy_confirm", 1);
+					showMessagePopup("success", null, "buy_confirm", language_id);
 				});
 
 			}
@@ -899,7 +900,9 @@ $(function() {
 					type : "POST",
 					url : "logic/get_texts.php",
 					data : {
-						action : "get_message_no_server_available"
+						action : "get_message_no_server_available",
+						product_id : product_id,
+						language_id : language_id
 					}
 				}).done(function(msg) {
 					showMessagePopup("error", msg, null, null);

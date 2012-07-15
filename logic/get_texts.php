@@ -4,6 +4,7 @@ include_once '../configuration.inc.php';
 
 require_once PATH_CLASSES .'cl_customizing.php';
 require_once PATH_CLASSES .'cl_language.php';
+require_once PATH_CLASSES .'cl_product.php';
 
 if(session_id() == '') {
 	session_start();
@@ -57,7 +58,16 @@ switch($action) {
 		break;
 		
 	case 'get_message_no_server_available':
-		echo ERROR_SERVER_NOT_AVAILABLE;
+		$product_id = mysql_escape_string($_POST['product_id']);
+		$language_id = mysql_escape_string($_POST['language_id']);
+		// if no language id was handed over -> use browser language
+		if(!isset($_POST['language_id'])) {
+			$language_id = language::ISOTointernal( language::getBrowserLanguage() );
+		}
+		
+		$product = new product($product_id, $language_id);
+		
+		echo sprintf(WARNING_SERVER_NO_SERVER_AVAILABLE, $product->getTitle());
 		break;
 }
 
