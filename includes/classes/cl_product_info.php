@@ -35,9 +35,9 @@ class productInfo{
 // 		}
 // 	}
 	
+	// updates attribute in db table with new value
 	public static function update($product_id, $attribute_id, $value){
 		$sql_update_statement = 'UPDATE '. TBL_PRODUCT_INFO .' SET
-				
 				value="'. $value .'" 
 				WHERE product_id="'. $product_id .'" AND attribute_id = "'. $attribute_id. '"' ;
 		return db_query($sql_update_statement);
@@ -83,7 +83,6 @@ class productInfo{
 		$return_string = '<div id="'.$container_id.'">';
 		$return_string = $return_string. '<form>'.'<fieldset>'.
 				'<input type="hidden" id = "product_id" name = product_id value = '.$product_id.'>'.
-				//'<input type="hidden" id = "language_id" name = language_id value = '.$language_id.'>'.
 				'<label for="label_attribute">'. LABEL_ATTRIBUTE .' </label>'.
 				'<select id="attribute_selection" name="attribute_selection" size="1">';
 				if(count($availible_attributes)!=0){

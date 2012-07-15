@@ -3,28 +3,24 @@ session_start();
 
 include_once '../configuration.inc.php';
 
+require PATH_FUNCTIONS .'general.php';
 require PATH_FUNCTIONS .'database.php';
+
+// open db connection
 db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
-
-
-include_once PATH_INCLUDES .'database_tables.php';
+require_once PATH_CLASSES .'cl_customizing.php';
 include_once PATH_CLASSES .'cl_language.php';
+include_once PATH_INCLUDES .'database_tables.php';
+
 
 // detect preferred browser language if language is not available use the default language from shop customizing
 $site_language = language::getBrowserLanguage();
-include_once '../includes/languages/'. strtoupper($site_language) .'.inc.php';
+include_once PATH_LANGUAGES . strtoupper($site_language) .'.inc.php';
 
 
-require PATH_FUNCTIONS .'general.php';
-
-
-require PATH_CLASSES .'cl_customizing.php';
-
-/* if(!isset($_SESSION['customizing'])) { */
-	$customizing = new customizing( get_default_language() );
-	$_SESSION['customizing'] = $customizing;
-/* } */
+$customizing = new customizing( get_default_language() );
+$_SESSION['customizing'] = $customizing;
  
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
