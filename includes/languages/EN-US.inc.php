@@ -156,7 +156,7 @@ define('LABEL_LOGIN_DATA', 'login data');
 define('LABEL_B_ADDRESS', 'billing address');
 define('LABEL_S_ADDRESS', 'shipping address');
 define('LABEL_TEL', 'phone.');
-define('LABEL_SAME_ADRESS', 'Sa,e incoice address and billing address');
+define('LABEL_SAME_ADRESS', 'Same invoice address and billing address');
 define('BUTTON_CHANGE_PW', 'change password');
 define('MSG_CHANGES_SAVED', 'Your data was changed successfully!');
 
@@ -206,7 +206,7 @@ define('BUTTON_UPDATE_ADMIN_PASSWORD','change admin password');
 define('BUTTON_CHANGE_SERVER', 'change server');
 define('BUTTON_CREATE_SERVER', 'create server');
 
-define('MSG_BACKEND_WELCOME', 'Welcome to the internal area of the shop owner');
+define('MSG_BACKEND_WELCOME', 'Welcome to the internal area of the shop owner!');
 define('MSG_CUSTOMER_WELCOME', 'Welcome to the customer center');
 
 define('LINK_EDIT_PRODUCT', 'edit');
@@ -300,7 +300,7 @@ define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_DELETION_FAILED', 'An error has occurred 
 
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_SUCCESSFULLY_TRANSLATED', 'Product attribute was translated successfully.');
 define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATION_FAILED', 'An error has occurred while translating the product attribute.');
-define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATIONS_FOR_ALL_SUPPORTED_LANGUAGES_ALREADY_EXIST', 'All sopported translations do already exist for this product attribute.');
+define('INFO_MESSAGE_PRODUCT_ATTRIBUTE_TRANSLATIONS_FOR_ALL_SUPPORTED_LANGUAGES_ALREADY_EXIST', 'All supported translations do already exist for this product attribute.');
 
 define('INFO_MESSAGE_PRODUCT_CREATION_SUCCESSFUL', 'Product was saved successfully.');
 define('INFO_MESSAGE_DB_ACTION_FAILED', 'An error has occurred while updating a database entry.');

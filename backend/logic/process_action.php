@@ -861,8 +861,8 @@ switch($action) {
 		echo'<div class="whitebox internal">';
 		echo'<fieldset>';
 
-		echo '<label for="new_admin_password">'. LABEL_PASSWORD_NEW_ADMIN_PASSWORD .'</label><br />
-			  <input type="password" length="10" id="new_admin_password" name="new_admin_password">
+		echo '<label for="new_admin_password">'. LABEL_PASSWORD_NEW_ADMIN_PASSWORD .'</label>
+			  <input type="password" length="10" id="new_admin_password" name="new_admin_password"><br>
 			  <input type="submit" id="change_admin_password" value="'. BUTTON_UPDATE_ADMIN_PASSWORD .'">';
 		
 		echo '</fieldset>';
