@@ -11,5 +11,10 @@
 			<li><a class="cm" href="#mypassword" id="mypassword"><?php echo LABEL_MY_PASSWORD; ?></a></li>
 		</ul>
 	</div>
-	<div class="content"><?php echo MSG_BACKEND_WELCOME; ?></div>
+	<div class="content">
+		<div class="whitebox internal">
+		<fieldset>
+		<?php echo MSG_BACKEND_WELCOME; ?>
+		</fieldset></div>	
+	</div>
 </div>

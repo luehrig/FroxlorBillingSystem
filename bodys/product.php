@@ -66,7 +66,7 @@ foreach ($active_product_array as $product_id => $product_data){
 	
 				<ul>
 	<li>'.PRODUCT_CONTRACT_PERIODE.': '.$product_data['contract_periode'].' '. LABEL_PRODUCT_CONTRACT_PEROIDE_UNIT .'</li>
-	<li>'.PRODUCT_PRICE.': '.$product_data['price'].' '. LABEL_PRODUCT_PRICE .'</li>';
+	<li>'.PRODUCT_PRICE.': '.$product_data['price'].' '. LABEL_PRODUCT_PRICE_UNIT_EURO .'</li>';
 	
 	foreach($attribute_value_map as $attr_name => $value) {
 		if(array_search($attr_name, $existing_attributes) == $customizing->getCustomizingValue('sys_product_attribute_discspace') ) {

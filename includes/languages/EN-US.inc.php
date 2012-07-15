@@ -236,6 +236,7 @@ define('LABEL_PRODUCT_CONTRACT_PEROIDE_UNIT', 'month');
 define('LABEL_PRODUCT_DESCRIPTION', 'decription');
 define('LABEL_PRODUCT_QUANTITY', 'quantity');
 define('LABEL_PRODUCT_PRICE', 'price(€)');
+define('LABEL_PRODUCT_PRICE_UNIT_EURO', '€');
 define('LABEL_PRODUCT_DISCSPACE_UNIT','MB');
 
 define('LABEL_PRODUCT_ATTRIBUTE', 'attributes for product no.');
