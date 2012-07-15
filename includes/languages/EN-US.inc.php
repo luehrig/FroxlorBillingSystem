@@ -62,7 +62,7 @@ define('SELECT_GENDER_FEMALE','Mrs.');
 define('BUTTON_RESET','reset');
 
 /* Contact form */
-define('LEGEND_CONTACT_FORM','cantact form');
+define('LEGEND_CONTACT_FORM','contact form');
 define('RADIO_VALUE_QUESTION','question');
 define('RADIO_VALUE_PROBLEM','problem');
 define('RADIO_VALUE_FEEDBACK','feedback');
