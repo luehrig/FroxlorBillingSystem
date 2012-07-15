@@ -229,10 +229,10 @@ define('LABEL_MY_PASSWORD','change my password');
 define('LABEL_PRODUCT_ID', 'product no. ');
 define('LABEL_PRODUCT_LANGUAGE', 'language');
 define('LABEL_PRODUCT_TITLE', 'title');
-define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'contract periode');
+define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'contract periode(month)');
 define('LABEL_PRODUCT_DESCRIPTION', 'decription');
 define('LABEL_PRODUCT_QUANTITY', 'quantity');
-define('LABEL_PRODUCT_PRICE', 'price');
+define('LABEL_PRODUCT_PRICE', 'price(€)');
 
 define('LABEL_PRODUCT_ATTRIBUTE', 'attributes for product no.');
 define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'language');
