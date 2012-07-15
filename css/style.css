@@ -516,6 +516,10 @@ legend
 
 
 /* --------------- Main Menu ------------------------------ */
+.mainmenu {
+	width: 100%;
+}
+
 .mainmenu ul
 {
 	margin:0;
@@ -968,7 +972,7 @@ table td[id="small_font"]{
 
 #edit_server_editor label{
 	margin-left: 10px;
-	width: 10em;
+	width: 12em;
     float: left;	
 }
 #new_server_editor label{
