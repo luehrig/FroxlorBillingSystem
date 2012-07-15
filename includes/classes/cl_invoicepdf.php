@@ -249,7 +249,7 @@ class invoicepdf extends FPDF {
 
 		// set column width and title for column headers
 		$this->twSetColumnWidth(array(8, 99, 14, 20, 20));
-		$this->twSetColumnHeaders(array(INVOICE_LABEL_POSITION, LABEL_PRODUCT_DESCRIPTION, LABEL_PRODUCT_QUANTITY, LABEL_PRODUCT_PRICE, INVOICE_LABEL_TOTAL));
+		$this->twSetColumnHeaders(array(INVOICE_LABEL_POSITION, LABEL_PRODUCT_DESCRIPTION, LABEL_PRODUCT_QUANTITY, LABEL_PRODUCT_PRICE .' '. iconv('UTF-8', 'windows-1252', $this->currency->getCurrencySign()), INVOICE_LABEL_TOTAL));
 
 		// table headers (only with cells)
 		$this->SetFillColor(244);

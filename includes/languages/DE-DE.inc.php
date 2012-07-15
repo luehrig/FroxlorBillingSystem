@@ -233,7 +233,7 @@ define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'Vertragslaufzeit');
 define('LABEL_PRODUCT_CONTRACT_PEROIDE_UNIT','Monat(e)');
 define('LABEL_PRODUCT_DESCRIPTION', 'Beschreibung');
 define('LABEL_PRODUCT_QUANTITY', 'Menge');
-define('LABEL_PRODUCT_PRICE', 'Preis(€)');
+define('LABEL_PRODUCT_PRICE', 'Preis');
 define('LABEL_PRODUCT_PRICE_UNIT_EURO', '€');
 define('LABEL_PRODUCT_DISCSPACE_UNIT','MB');
 

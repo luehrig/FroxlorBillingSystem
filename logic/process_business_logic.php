@@ -8,7 +8,7 @@ require_once PATH_CLASSES .'cl_product.php';
 require_once PATH_CLASSES .'cl_shoppingcart.php';
 require_once PATH_CLASSES .'cl_contract.php';
 require_once PATH_CLASSES .'cl_notice.php';
-require_once PATH_CLASSES .'cl_Server.php';
+require_once PATH_CLASSES .'cl_server.php';
 
 require_once PATH_FUNCTIONS .'datetime.php';
 require_once PATH_FUNCTIONS .'security.php';
