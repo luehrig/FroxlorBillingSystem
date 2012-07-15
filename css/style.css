@@ -934,6 +934,11 @@ table td[id="small_font"]{
 	width: 4em;
     float: left;	
 }
+.content label[for="contract_periode_unit"]{
+	float: right;
+    margin-right: 140px;
+    	
+}
 .content legend label{
 	margin-left: 10px;
     float: left;
