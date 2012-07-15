@@ -516,10 +516,6 @@ legend
 
 
 /* --------------- Main Menu ------------------------------ */
-.mainmenu {
-	width: 100%;
-}
-
 .mainmenu ul
 {
 	margin:0;
@@ -938,6 +934,11 @@ table td[id="small_font"]{
 	width: 4em;
     float: left;	
 }
+.content label[for="contract_periode_unit"]{
+	float: right;
+    margin-right: 140px;
+    	
+}
 .content legend label{
 	margin-left: 10px;
     float: left;
@@ -972,7 +973,7 @@ table td[id="small_font"]{
 
 #edit_server_editor label{
 	margin-left: 10px;
-	width: 12em;
+	width: 10em;
     float: left;	
 }
 #new_server_editor label{

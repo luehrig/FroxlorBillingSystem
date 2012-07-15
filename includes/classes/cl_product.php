@@ -227,7 +227,8 @@ class product {
 		'<label for="title">'. LABEL_PRODUCT_TITLE .'</label>'.
 		'<input type="text" id="title" name="title"><br>'.
 		'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
-		'<input type="text" id="contract_periode" name="contract_periode"><br>'.
+		'<input type="text" id="contract_periode" name="contract_periode">'.
+		'<label for="contract_periode_unit">'. LABEL_PRODUCT_CONTRACT_PEROIDE_UNIT .'</label><br>'.
 		'<label for="describtion">'. LABEL_PRODUCT_DESCRIPTION .'</label><br>'.
 		'<textarea cols="20" rows="4" id="description" name="description" ></textarea><br>'.
 		'<label for="quantity">'. LABEL_PRODUCT_QUANTITY .'</label>'.
@@ -367,7 +368,8 @@ class product {
 					'<label for="title">'. LABEL_PRODUCT_TITLE .'</label>'.
 					'<input type="text" id="title" name="title" value="'. $this->title .'"><br>'.
 					'<label for="contract_periode">'. LABEL_PRODUCT_CONTRACT_PEROIDE .'</label>'.
-					'<input type="text" id="contract_periode" name="contract_periode" value="'. $this->contract_periode .'"><br>'.
+					'<input type="text" id="contract_periode" name="contract_periode" value="'. $this->contract_periode .'">'.
+					'<label for="contract_periode_unit">'. LABEL_PRODUCT_CONTRACT_PEROIDE_UNIT .'</label><br>'.
 					'<label for="description">'. LABEL_PRODUCT_DESCRIPTION .'</label><br>'.
 					'<textarea cols="20" rows="4" id="description" name="description" >'.$this->description .'</textarea><br>'.
 					'<label for="quantity">'. LABEL_PRODUCT_QUANTITY .'</label>'.

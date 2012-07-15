@@ -40,7 +40,7 @@ define('LABEL_EMAIL','e-mail');
 define('LABEL_PASSWORD','password');
 define('LABEL_PASSWORDAGAIN','repeat password ');
 define('LABEL_STREET','street');
-define('LABEL_STREETNUMBER','street number');
+define('LABEL_STREETNUMBER','street no.');
 define('LABEL_POSTCODE','postcode');
 define('LABEL_CITY','city');
 define('LABEL_COUNTRY','country');
@@ -174,7 +174,7 @@ define('LABEL_COMMUNICATION_INVOICE_SUBJECT_ADMIN','invoice %s');
 
 /* help / contact */
 define('MSG_SUCCESSFULLY_SENT','Your message was successfully sent to the shop owner!');
-define('HEADING_SITEMAP', 'sitemap');
+define('HEADING_SITEMAP', 'Sitemap');
 
 /* invoice */
 define('INVOICE_LABEL_INVOICE','invoice');
@@ -230,9 +230,10 @@ define('LABEL_PRODUCT_ID', 'product no. ');
 define('LABEL_PRODUCT_LANGUAGE', 'language');
 define('LABEL_PRODUCT_TITLE', 'title');
 define('LABEL_PRODUCT_CONTRACT_PEROIDE', 'contract periode');
+define('LABEL_PRODUCT_CONTRACT_PEROIDE_UNIT', 'month');
 define('LABEL_PRODUCT_DESCRIPTION', 'decription');
 define('LABEL_PRODUCT_QUANTITY', 'quantity');
-define('LABEL_PRODUCT_PRICE', 'price');
+define('LABEL_PRODUCT_PRICE', 'price(€)');
 
 define('LABEL_PRODUCT_ATTRIBUTE', 'attributes for product no.');
 define('LABEL_PRODUCT_ATTRIBUTE_LANGUAGE', 'language');
@@ -317,7 +318,7 @@ define('INFO_MESSAGE_PRODUCT_INFO_CREATION_SUCCESSFUL', 'The attribute was saved
 define('WARNING_MESSAGE_SERVER_ALREADY_EXISTS', 'A server with exactly this IP address does already exist!');
 define('ERROR_INVOICE_NOT_PAYED','Invoice %d is uncleared!');
 
-define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Prodct state was changed successfully.');
+define('INFO_MESSAGE_PRODUCT_STATE_CHANGE_SUCCESSFUL', 'Product state was changed successfully.');
 define('INFO_MESSAGE_PRODUCT_SUCCESSFULLY_DELETED', 'Product was deleted successfully.');
 
 define('INFO_MESSAGE_CUSTOMIZING_SAVED', 'Customizing was changed successfully.');
