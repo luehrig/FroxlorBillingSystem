@@ -876,7 +876,7 @@ $(function() {
 				action : "check_server_for_product",
 				product_id : product_id
 			}
-		}).done(function(msg) {
+		}).done(function(msg) {			
 			// server available server was found -> add product to cart
 			if(msg == 'true') {
 				
@@ -887,7 +887,7 @@ $(function() {
 						action : "add_product_to_cart",
 						product_id : product_id
 					}
-				}).done(function(msg) {
+				}).done(function(msg) {					
 					setProductCountInCart();
 					showMessagePopup("success", null, "buy_confirm", 1);
 				});
@@ -1010,7 +1010,7 @@ function loadContent(areacode, language_id) {
  */
 function showMessagePopup(msgtype, msg, msg_code, language_id) {
 
-	var msgtext;
+	var msgtext = '';
 	var msgstyle = '<div class="popup_message_text">';
 
 	// check if icon has to be displayed
@@ -1043,6 +1043,7 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 
 	// get message text
 	if (msg_code != null) {
+
 		$.ajax({
 			type : "POST",
 			url : "logic/get_texts.php",
@@ -1053,7 +1054,7 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 		}).done(function(msg) {
 			// write received message text to local variable
 			msgtext = msg;
-
+			
 			msgoutput = msgstyle + msgoutput + ' ' + msgtext +'</div>';
 
 			$.colorbox({
