@@ -9,7 +9,12 @@ db_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 
 include_once PATH_INCLUDES .'database_tables.php';
-include_once PATH_BACKEND_LANGUAGES .'DE.inc.php';
+include_once PATH_CLASSES .'cl_language.php';
+
+// detect preferred browser language if language is not available use the default language from shop customizing
+$site_language = language::getBrowserLanguage();
+echo $site_language;
+include_once '../includes/languages/'. strtoupper($site_language) .'.inc.php';
 
 
 require PATH_FUNCTIONS .'general.php';

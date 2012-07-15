@@ -23,7 +23,6 @@ if(!db_backend_user_is_logged_in( session_id() )) {
 
 // // // detect preferred browser language if language is not available use the default language from shop customizing
  $site_language = language::getBrowserLanguage();
-
  include_once '../includes/languages/'. strtoupper($site_language) .'.inc.php';
 
 
