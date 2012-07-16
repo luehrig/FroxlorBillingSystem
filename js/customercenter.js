@@ -296,6 +296,8 @@ $(function() {
 					});
 					
 					var customer_id = $(this).attr('rel');
+					var status_msg = '';
+					
 					// update DB with changed customer data
 					$.ajax({
 						type : "POST",
@@ -310,8 +312,7 @@ $(function() {
 							billing_address_id : billing_address_id
 						}
 					}).done(function(msg) {
-						// show Message Popup with status message
-						showMessagePopup('success', msg, null, null);
+						status_msg = msg;
 						
 						// get customer data overview
 						$.ajax({
@@ -324,7 +325,11 @@ $(function() {
 						}).done(function(msg) {
 							$('.customer_content_container').html(msg);
 							// $('a[id=save_customizing]').hide();
+							
+							// show Message Popup with status message				
+							showMessagePopup('success', status_msg, null, null);
 						});
+						
 						
 					});
 				}

@@ -259,6 +259,10 @@ a.back:hover{
 {
 	border-bottom: solid 5px black;
 }
+#shoppingcart input{
+	width: 3em;
+	text-align: center;
+}
 
 #buttons
 {

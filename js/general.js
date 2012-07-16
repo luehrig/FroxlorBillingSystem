@@ -1093,7 +1093,7 @@ function showMessagePopup(msgtype, msg, msg_code, language_id) {
 		});
 
 	} else {
-		msgoutput = msgoutput + ' ' + msg +'</div>';
+		msgoutput = msgstyle + msgoutput + ' ' + msg +'</div>';
 
 		$.colorbox({
 			html : msgoutput
